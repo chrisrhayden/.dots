@@ -1,0 +1,130 @@
+#!/bin/bash
+
+# make my env
+# this is weird and specific
+
+# set debug
+if [[ $1 == -d ]]; then
+    DEBUG=1
+else
+    DEBUG=0
+fi
+
+[[ $DEBUG -eq 1 ]] && printf 'starting init script\n'
+
+make_env_dirs() {
+    local dirs
+
+    dirs_to_make=( $@ )
+
+    [[ $DEBUG -eq 1 ]] && printf '\nmaking default dirs:\n\n'
+
+    for to_make in ${dirs_to_make[@]}; do
+        [[ $DEBUG -eq 1 ]] && printf '    %s\n' "$to_make"
+
+        mkdir -p "${HOME}/${to_make}" 2>/dev/null
+    done
+}
+
+stow_by_key() {
+    [[ $DEBUG -eq 1 ]] && printf '\nrunning stow for _%s\n\n' "$1"
+
+    # run stow for all that match *_key
+    for to_stow in *_"${1}"; do
+        [[ $DEBUG -eq 1 ]] && printf '      %s\n' "$to_stow"
+
+        stow "$to_stow"
+    done
+}
+
+curl_vim_plug() {
+    local url
+    url="$1"
+
+    [[ $DEBUG -eq 1 ]] && printf '\ndownloading vim plug\n\n'
+
+    if ! curl -fL "$url" -o /tmp/plug.vim; then
+        printf 'could not curl vim plug\n' 1>&2
+        return 1
+    fi
+
+    [[ $DEBUG -eq 1 ]] && printf '\ncopying vim-plug to vim and nvim dirs\n\n'
+
+    cp /tmp/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
+    mv /tmp/plug.vim ~/.vim/autoload/plug.vim
+}
+
+install_aur_helper() {
+    local part_one helper_name helper_url
+
+    helper_name="$1"
+    helper_url="$2"
+
+    if ! cd "${HOME}/aur" ; then
+        printf 'cant cd to home/aur; idk what happened\n' 1>&2
+        return 1
+    fi
+
+    [[ $DEBUG -eq 1 ]] && \
+        printf '\ngit cloning cloning the aur helper: %s\n\n' "$aur_helper_name"
+
+    if ! git clone "$aur_helper_url"; then
+        printf 'could not clone the aur helper: %s\n' "$aur_helper_url" 1>&2
+        return 1
+    fi
+
+    if [[ ! -f  ${aur_helper_name}/PKGBUILD ]]; then
+        printf 'no PKGBUILD in aur helper project: %s\n' "$aur_helper_name" 1>&2
+        return 1
+    fi
+
+    if ! cd yay ; then
+        printf 'cant cd in to ~/aur/%s' "$aur_helper_name" 1>&2
+        return 1
+    fi
+
+    [[ $DEBUG -eq 1 ]] && printf '\nrunning makepkg -isc PKGBUILD\n\n'
+
+    makepkg -isc
+}
+
+# made in to $HOME/
+DEFAULT_DIRS=(
+    'aur'
+    'proj'
+    '.config/coc'
+    '.local/share/nvim/site/autoload'
+    '.vim/autoload/'
+    'unsort'
+    'clone'
+    'Venv'
+    'Downloads'
+    'Pictures'
+    'Documents'
+)
+
+
+
+# make default dirs
+make_env_dirs "${DEFAULT_DIRS[@]}"
+
+# run stow_by_key with all
+stow_by_key 'all'
+
+# get the first char of the host name and run stow_by_key with it
+host_char="$( hostname )"
+host_char="${host_char:0:1}"
+stow_by_key "$host_char"
+
+# add vim-plug to env
+curl_vim_plug \
+    'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+aur_helper_name='yay'
+aur_helper_url='https://aur.archlinux.org/yay.git'
+
+if ! hash $aur_helper_name 2>/dev/null; then
+    install_aur_helper "$aur_helper_name" "$aur_helper_url"
+fi
+
+[[ $DEBUG -eq 1 ]] && printf '\ninit script is done\n'

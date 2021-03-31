@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Custom Rofi Script
+
+if [[ -f ${HOME}/.dots/scripts/config_vars.sh ]]; then
+    source "${HOME}/.dots/scripts/config_vars.sh"
+else
+    echo 'pleas set env colors'
+    exit 1
+fi
+
+# Launch Rofi
+rofi -no-lazy-grab -show drun \
+    -display-drun "Applications :" -drun-display-format "{name}" \
+    -hide-scrollbar true \
+    -bw 0 \
+    -lines 10 \
+    -line-padding 15 \
+    -padding 60 \
+    -width 30 \
+    -location 1 \
+    -fullscreen \
+    -columns 4 \
+    -show-icons -icon-theme "Papirus" \
+    -font "Fantasque Sans Mono 10" \
+    -color-enabled true \
+    -color-window "$CONFIG_ROFI_WINDOW" \
+    -color-normal "$CONFIG_ROFI_NORMAL" \
+    -color-active "$CONFIG_ROFI_ACTIVE" \
+    -color-urgent "$CONFIG_ROFI_URGENT"
+
+# More Options
+# -xoffset 10 -yoffset 40 \
+# -fullscreen \

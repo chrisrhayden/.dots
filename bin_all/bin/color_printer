@@ -1,0 +1,66 @@
+#!/usr/bin/bash
+
+# print all colors
+
+run_short=1
+run_long=0
+
+check_winsize() {
+    size="$1"
+
+    # from https://unix.stackexchange.com/questions/299067/
+    terminal=/dev/pts/1
+    columns=$(stty -a <"$terminal" | grep -Po '(?<=columns )\d+')
+
+    if [[ $columns -lt $size ]]; then
+        return 1
+    fi
+
+    return 0
+}
+
+short_colors() {
+    if ! check_winsize 90; then
+        printf 'console should be grater then 90 characters\n'
+        return 1
+    fi
+
+    printf '   49  '
+
+    for bg_color in {40..47} {100..107}; do
+        if [[ $bg_color -lt 101 ]]; then
+            printf ' '
+        fi
+
+        printf '%d  ' "$bg_color"
+    done
+    printf '\n'
+
+    for fg_color in {30..37} {90..97}; do
+        printf '%s %btext%b'  "$fg_color" "\033[${fg_color}m" '\033[0m'
+        for bg_color in {40..47} {100..107}; do
+            printf ' %btext%b' "\033[${bg_color};${fg_color}m" '\033[0m'
+        done
+        printf '%b\n' '\033[0m'
+    done
+}
+
+while [[ -n "$1" ]]; do
+    case "$1" in
+        -s|--short)
+            run_short=1
+            ;;
+        -l|--long)
+            run_long=1
+            ;;
+        *)
+            printf "%bbad arg; %s%b\n" '\033[31m' "$1" '\033[0m'
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+if ((run_short)); then
+    short_colors
+fi

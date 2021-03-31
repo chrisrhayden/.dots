@@ -1,0 +1,19 @@
+[user]
+	name = chrisrhayden
+	email = chrisrhayden@gmail.com
+
+[alias]
+    s = status --short
+    sv = status
+    b = branch
+    cb = checkout -b
+    c = checkout
+    cm = commit -m
+
+[merge]
+    tool = vimdiff
+
+[mergetool "vimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[init]
+	defaultBranch = development

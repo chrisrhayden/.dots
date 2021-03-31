@@ -1,0 +1,7 @@
+build:
+	g++ -Wall -ggdb3 -pedantic -o ./out/target_build \
+		"$(find ./src/ -name "*.cc")"
+
+
+run:
+	./out/target_build

@@ -1,0 +1,26 @@
+dirs = [
+    "src",
+    "out",
+]
+
+files = []
+
+build = """
+git init
+"""
+
+[[templates]]
+path = "src/main.c"
+include = "{{config-dir}}/projects/c_basic/main.c"
+
+[[templates]]
+path = "Makefile"
+include = "{{config-dir}}/projects/c_basic/Makefile"
+
+[[templates]]
+path = ".gitignore"
+include = "{{config-dir}}/projects/c_basic/c.gitignore"
+
+[[templates]]
+path = ".clang-format"
+include = "{{config-dir}}/projects/c_basic/clang_format.yaml"

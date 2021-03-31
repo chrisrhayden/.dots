@@ -1,0 +1,24 @@
+dirs = [
+    "src",
+]
+
+files = [
+    "{{name}}/main.lua",
+]
+
+build = """
+python -m venv "${HOME}/Venv/{{name}}_env"
+
+git init {{root}}
+"""
+
+
+[[templates]]
+path = "{{name}}/main.py"
+template = """def main():
+    ''' main function '''
+    print('hello wolrd')
+
+if __name__ == '__main__':
+    main()
+"""

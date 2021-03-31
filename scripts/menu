@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Custom Rofi Script
+
+if [[ -f ${HOME}/.dots/scripts/config_vars.sh ]]; then
+    source "${HOME}/.dots/scripts/config_vars.sh"
+else
+    echo 'pleas set config_vars'
+    exit 1
+fi
+
+# Launch Rofi
+rofi -no-lazy-grab -show drun \
+    -display-drun "Applications :" -drun-display-format "{name}" \
+    -lines 10 \
+    -line-padding 10 \
+    -padding 20 \
+    -width 30 \
+    -xoffset "$CONFIG_ROFI_X_OFFSET" \
+    -yoffset -"$CONFIG_ROFI_Y_OFFSET" \
+    -location 7 \
+    -columns 2 \
+    -show-icons -icon-theme "Papirus" \
+    -font "Fantasque Sans Mono 10" \
+    -color-enabled true \
+    -color-window "$CONFIG_ROFI_WINDOW" \
+    -color-normal "$CONFIG_ROFI_NORMAL" \
+    -color-active "$CONFIG_ROFI_ACTIVE" \
+    -color-urgent "$CONFIG_ROFI_URGENT"
+
+# More Options
+# -fullscreen \
+
+# Theming help
+# color window = background, border, separator
+# color normal = background, foreground, background-alt, highlight-background, highlight-foreground
+# color active = background, foreground, background-alt, highlight-background, highlight-foreground
+# color urgent = background, foreground, background-alt, highlight-background, highlight-foreground

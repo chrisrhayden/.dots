@@ -1,0 +1,5 @@
+mullvad-vpn
+picom
+dunst
+redshift
+# vim: set filetype=sh foldmethod=marker:
