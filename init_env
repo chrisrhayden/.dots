@@ -78,7 +78,7 @@ install_aur_helper() {
         return 1
     fi
 
-    if ! cd yay ; then
+    if ! cd "$helper_name" ; then
         printf 'cant cd in to ~/aur/%s' "$aur_helper_name" 1>&2
         return 1
     fi
