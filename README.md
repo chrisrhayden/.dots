@@ -6,14 +6,11 @@ AAAAHAHAHAHHAHAHAHAAHAHAHAHAHAHAHH
 
 ## requirements
 
-- stow
-  this uses stow to symlink all the dirs/files to the required location
+- stow to symlink all the dirs/files to the required location
 
-- curl
-  for the vim plugin manger
+- curl for the vim plugin manger
 
-- git & base-devel
-  for the for the aur helper
+- git & base-devel for the for the aur helper
 
 
 ## usage
