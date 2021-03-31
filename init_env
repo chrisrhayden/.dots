@@ -10,6 +10,25 @@ else
     DEBUG=0
 fi
 
+# made in to $HOME/
+DEFAULT_DIRS=(
+    'proj'
+    '.config/coc'
+    'unsort'
+    'clone'
+    'Venv'
+    'Downloads'
+    'Pictures'
+    'Documents'
+)
+
+
+aur_helper_name='paru'
+aur_helper_url='https://aur.archlinux.org/paru.git'
+
+host_char="$( hostname )"
+host_char="${host_char:0:1}"
+
 [[ $DEBUG -eq 1 ]] && printf 'starting init script\n'
 
 make_env_dirs() {
@@ -29,7 +48,10 @@ make_env_dirs() {
 stow_by_key() {
     [[ $DEBUG -eq 1 ]] && printf '\nrunning stow for _%s\n\n' "$1"
 
-    # run stow for all that match *_key
+    # run stow for all that match *_key,
+    #
+    # TODO: if there are no directory's named *_key then this will fail,
+    # i should fix this
     for to_stow in *_"${1}"; do
         [[ $DEBUG -eq 1 ]] && printf '      %s\n' "$to_stow"
 
@@ -50,7 +72,10 @@ curl_vim_plug() {
 
     [[ $DEBUG -eq 1 ]] && printf '\ncopying vim-plug to vim and nvim dirs\n\n'
 
+    mkdir ~/.local/share/nvim/site/autoload/ &>/dev/null
     cp /tmp/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
+
+    mkdir ~/.vim/autoload/ &>/dev/null
     mv /tmp/plug.vim ~/.vim/autoload/plug.vim
 }
 
@@ -59,6 +84,8 @@ install_aur_helper() {
 
     helper_name="$1"
     helper_url="$2"
+
+    mkdir ~/aur &>/dev/null
 
     if ! cd "${HOME}/aur" ; then
         printf 'cant cd to home/aur; idk what happened\n' 1>&2
@@ -88,23 +115,6 @@ install_aur_helper() {
     makepkg -isc
 }
 
-# made in to $HOME/
-DEFAULT_DIRS=(
-    'aur'
-    'proj'
-    '.config/coc'
-    '.local/share/nvim/site/autoload'
-    '.vim/autoload/'
-    'unsort'
-    'clone'
-    'Venv'
-    'Downloads'
-    'Pictures'
-    'Documents'
-)
-
-
-
 # make default dirs
 make_env_dirs "${DEFAULT_DIRS[@]}"
 
@@ -112,18 +122,15 @@ make_env_dirs "${DEFAULT_DIRS[@]}"
 stow_by_key 'all'
 
 # get the first char of the host name and run stow_by_key with it
-host_char="$( hostname )"
-host_char="${host_char:0:1}"
 stow_by_key "$host_char"
 
 # add vim-plug to env
-curl_vim_plug \
-    'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]]; then
+    curl_vim_plug \
+        'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+fi
 
-aur_helper_name='yay'
-aur_helper_url='https://aur.archlinux.org/yay.git'
-
-if ! hash $aur_helper_name 2>/dev/null; then
+if ! command -v $aur_helper_name &>/dev/null; then
     install_aur_helper "$aur_helper_name" "$aur_helper_url"
 fi
 
