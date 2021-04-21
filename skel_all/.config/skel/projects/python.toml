@@ -24,10 +24,8 @@ if __name__ == '__main__':
 """
 
 [[templates]]
-path = ".env"
+path = ".init.sh"
 template = """
-# this is a zsh/bash file
-
 init_env() {
     local env_dir project_name full_path
 
