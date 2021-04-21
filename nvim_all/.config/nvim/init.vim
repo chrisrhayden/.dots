@@ -21,13 +21,6 @@ runtime mappings.vim
 
 " after/ftplugin
 
-" }}}
-
-" specific settings {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" after/ftplugin/
-
 " writing_init.vim
 
 " view_init.vim
