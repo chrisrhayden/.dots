@@ -26,8 +26,7 @@ Abolish m{,e}sgs messages
 Abolish obj{,s} objects
 Abolish anme name
 Abolish stroing string
-Abolish pixle pixel
-Abolish pxl pixel
+Abolish p{,i}xl{,e} pixel
 Abolish in{it,ti}ng initializing
 " https://en.wiktionary.org/wiki/titel, its Latin i guess
 Abolish titel title
