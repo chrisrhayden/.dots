@@ -55,14 +55,14 @@ Plug 'junegunn/vim-easy-align'
 " it takes a lot to to set this up
 " Plug 'puremourning/vimspector'
 
-" vim like access to the file system, idk how to explain shortly
-Plug 'justinmk/vim-dirvish'
-
 " view and search lsp symbols & tags in vim/neovim with a tagbar or fzf
 Plug 'liuchengxu/vista.vim'
 
 " fuzzy thing
 Plug 'nvim-telescope/telescope.nvim'
+
+" vim like access to the file system, idk how to explain shortly
+Plug 'justinmk/vim-dirvish'
 
 " show undo's in a tree so you can see the divergent paths
 " this is really nice when i need it
@@ -90,13 +90,11 @@ Plug 'kevinoid/vim-jsonc'
 Plug 'cespare/vim-toml'
 
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'kovetskiy/sxhkd-vim'
 
 Plug 'tikhomirov/vim-glsl'
 " }}}
 
 " misc {{{
-
 Plug 'lervag/wiki.vim'
 
 " render markdown in a browser

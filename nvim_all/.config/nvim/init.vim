@@ -12,13 +12,14 @@ runtime plugins.vim
 
 runtime settings.vim
 
-luafile $XDG_CONFIG_HOME/nvim/treesitter_settings.lua
-luafile $XDG_CONFIG_HOME/nvim/telescope_settings.lua
+luafile $XDG_CONFIG_HOME/nvim/settings.lua
 
 runtime mappings.vim
 
 " abbreviations
 " after/plugin/abolish.vim
+
+" after/ftplugin
 
 " }}}
 

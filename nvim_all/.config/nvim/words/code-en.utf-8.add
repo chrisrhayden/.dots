@@ -1149,3 +1149,6 @@ readme
 vimspector
 hashmaps
 entrys
+malloc
+segfault
+cpp
