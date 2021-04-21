@@ -9,6 +9,7 @@ LS='/mnt/linuxstorage'
 MOV='/mnt/linuxstorage/movies'
 MUS='/mnt/slowlinuxstorage/music'
 SHO='/mnt/slowlinuxstorage/shows'
+ANI='/mnt/slowlinuxstorage/anime'
 SL='/mnt/slowlinuxstorage'
 STE='/home/chris/.local/share/Steam/'
 export BK BOK DOT GAM LS MOV MUS SHO SL STE
