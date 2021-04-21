@@ -47,5 +47,6 @@ elif [[ -n $VOLUME_NUM ]]; then
 fi
 
 if command -v pamixer &>/dev/null ; then
-    pamixer --get-volume
+    printf ' > volume '
+    pamixer --get-volume-human
 fi
