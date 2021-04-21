@@ -1,7 +1,10 @@
-run_env() {
-    local no_ask source_file
+run_init() {
+    local no_ask source_file init_name
 
-    if [[ -f ${PWD}/.env ]]; then
+    init_name=.init.sh
+
+    ls -al
+    if [[ -f ${PWD}/${init_name} ]]; then
         no_ask="$1"
         source_file='no'
 
@@ -10,26 +13,25 @@ run_env() {
             source_file='y'
 
         else
-            if command -pv bat &>/dev/null; then
+            if command -v bat &>/dev/null; then
                 # a portable solution is
                 #   bat_cmd="$(command -vp bat)"
                 #   $bat_cmd --args "FILE"
 
                 /usr/bin/bat \
                     --paging 'never' \
-                    --map-syntax '*.env:Bourne Again Shell (bash)' \
-                    "${PWD}/.env"
+                    "${PWD}/${init_name}"
 
             else
                 printf '>>>\n\n'
-                /usr/bin/cat "${PWD}/.env"
+                /usr/bin/cat "${PWD}/${init_name}"
                 printf '\n<<<\n'
 
             fi
 
             # for whatever fucking reason zsh does not use the same flag as bash
             # for the prompt, oh well
-            printf ' source this file %s (y|N) > ' "${PWD}/.env"
+            printf ' source this file %s (y|N) > ' "${PWD}/${init_name}"
             read -r
             printf '\n'
 
@@ -39,7 +41,7 @@ run_env() {
         fi
 
         if [[ $source_file == y ]]; then
-            source "${PWD}/.env"
+            source "${PWD}/${init_name}"
         fi
     fi
 
@@ -70,10 +72,10 @@ to() {
         shift
     done
 
-    # if a . is given then try and run the .env file
+    # if a . is given then try and run the .init.sh file
     if [[ $project_name == '.' ]]; then
-        # just run the env and quit
-        if ! run_env "$no_ask"; then
+        # just run the init and quit
+        if ! run_init "$no_ask"; then
             return 1
         fi
 
@@ -100,7 +102,7 @@ to() {
         return 1
     fi
 
-    if ! run_env "$no_ask"; then
+    if ! run_init "$no_ask"; then
         return 1
     fi
 
