@@ -28,3 +28,6 @@ Abolish anme name
 Abolish stroing string
 Abolish pixle pixel
 Abolish pxl pixel
+Abolish in{it,ti}ng initializing
+" https://en.wiktionary.org/wiki/titel, its Latin i guess
+Abolish titel title

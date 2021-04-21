@@ -91,6 +91,11 @@ set splitbelow
 set splitright
 " }}}
 
+" language specific settings {{{
+" make vim treat *.h files like c not cpp
+let g:c_syntax_for_h = 1
+" }}}
+
 " toggle relativenumber {{{
 " from https://github.com/jeffkreeftmeijer/vim-numbertoggle/
 augroup RelativizeNum
