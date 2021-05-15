@@ -1,9 +1,8 @@
 run_init() {
-    local no_ask source_file init_name
+    local no_ask init_name bat_cmd
 
     init_name=.init.sh
 
-    ls -al
     if [[ -f ${PWD}/${init_name} ]]; then
         no_ask="$1"
         source_file='no'
@@ -13,11 +12,9 @@ run_init() {
             source_file='y'
 
         else
-            if command -v bat &>/dev/null; then
-                # a portable solution is
-                #   bat_cmd="$(command -vp bat)"
-                #   $bat_cmd --args "FILE"
+            bat_cmd="$(command -vp bat)"
 
+            if [[ -n $bat_cmd ]]; then
                 /usr/bin/bat \
                     --paging 'never' \
                     "${PWD}/${init_name}"
@@ -36,12 +33,8 @@ run_init() {
             printf '\n'
 
             if [[ $REPLY == y ]] || [[ $REPLY == Y ]]; then
-                source_file='y'
+                source "${PWD}/${init_name}"
             fi
-        fi
-
-        if [[ $source_file == y ]]; then
-            source "${PWD}/${init_name}"
         fi
     fi
 
@@ -49,7 +42,7 @@ run_init() {
 }
 
 to() {
-    local project_base project_name  whole_path base_name no_ask
+    local project_base project_name whole_path base_name no_ask
 
     # set variables
     project_base="${HOME}/proj"
@@ -67,6 +60,10 @@ to() {
                 ;;
             -n|--no-ask)
                 no_ask='true'
+                ;;
+            *)
+                printf '%s; Error bad arg\n' $1
+                return 1
                 ;;
         esac
         shift
@@ -92,8 +89,8 @@ to() {
         whole_path="${project_base}/${project_name}"
 
     else
-        printf 'no project or directory named %s in %s\n' \
-            "$project_name" "$project_base"
+        printf '`%s` not directory in local path or in project directory\n' \
+            "$project_name"
 
         return 1
     fi

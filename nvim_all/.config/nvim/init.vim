@@ -10,6 +10,9 @@ let mapleader = "\<space>"
 
 runtime plugins.vim
 
+" this should be removed when its fixed
+autocmd FileType vim syntax keyword Function Plug
+
 runtime settings.vim
 
 luafile $XDG_CONFIG_HOME/nvim/settings.lua
@@ -115,3 +118,4 @@ runtime mappings.vim
 "   vim-search-and-highlight-but-do-not-jump
 
 " }}}
+
