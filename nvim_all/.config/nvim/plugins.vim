@@ -13,13 +13,19 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 " }}}
 
+" lsp {{{
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+" }}}
+
 " completion {{{
 " an adapter for vscode plugins (e.g. language servers)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " }}}
 
 " editor functionality {{{
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'lewis6991/spellsitter.nvim'
 
 " the tpope collection {{{
 " a set of good key bindings
@@ -50,6 +56,9 @@ Plug 'junegunn/fzf.vim'
 " align a group of text like, useful every now and then
 Plug 'junegunn/vim-easy-align'
 " }}}
+
+Plug 'windwp/nvim-autopairs'
+" Plug 'steelsojka/pears.nvim'
 
 " A multi language graphical debugger for Vim -- from its readme
 " it takes a lot to to set this up
@@ -112,101 +121,101 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " languages {{{
-" coc {{{
-let g:coc_global_extensions = [
-      \ 'coc-vimlsp',
-      \ 'coc-rust-analyzer',
-      \ 'coc-clangd',
-      \ 'coc-pyright',
-      \ 'coc-tsserver',
-      \ 'coc-eslint',
-      \ 'coc-sh',
-      \ 'coc-json',
-      \ 'coc-snippets',
-      \ 'coc-pairs'
-      \ ]
+" " coc {{{
+" " \ 'coc-pairs'
+" let g:coc_global_extensions = [
+"       \ 'coc-vimlsp',
+"       \ 'coc-rust-analyzer',
+"       \ 'coc-clangd',
+"       \ 'coc-pyright',
+"       \ 'coc-tsserver',
+"       \ 'coc-eslint',
+"       \ 'coc-sh',
+"       \ 'coc-json',
+"       \ 'coc-snippets',
+"       \ ]
 
-" mappings {{{
-nmap <silent> <leader>rn <Plug>(coc-rename)
+" " mappings {{{
+" nmap <silent> <leader>rn <Plug>(coc-rename)
 
-" move to the next error
-nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>N <Plug>(coc-diagnostic-prev)
+" " move to the next error
+" nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
+" nmap <silent> <leader>N <Plug>(coc-diagnostic-prev)
 
-" show where the thing was declared
-nmap <silent> <leader>gr <Plug>(coc-references)
+" " show where the thing was declared
+" nmap <silent> <leader>gr <Plug>(coc-references)
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" " Applying codeAction to the selected region.
+" " Example: `<leader>aap` for current paragraph
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" TODO: do the same thing as show_documentation maybe
-" switch to the definition
-nmap <silent> gd <Plug>(coc-definition)
+" " TODO: do the same thing as show_documentation maybe
+" " switch to the definition
+" nmap <silent> gd <Plug>(coc-definition)
 
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
+" nmap <silent> <leader>gi <Plug>(coc-implementation)
+" nmap <silent> <leader>gy <Plug>(coc-type-definition)
 
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-" xmap if <Plug>(coc-funcobj-i)
-" omap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap af <Plug>(coc-funcobj-a)
-" xmap ic <Plug>(coc-classobj-i)
-" omap ic <Plug>(coc-classobj-i)
-" xmap ac <Plug>(coc-classobj-a)
-" omap ac <Plug>(coc-classobj-a)
+" " Map function and class text objects
+" " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+" " xmap if <Plug>(coc-funcobj-i)
+" " omap if <Plug>(coc-funcobj-i)
+" " xmap af <Plug>(coc-funcobj-a)
+" " omap af <Plug>(coc-funcobj-a)
+" " xmap ic <Plug>(coc-classobj-i)
+" " omap ic <Plug>(coc-classobj-i)
+" " xmap ac <Plug>(coc-classobj-a)
+" " omap ac <Plug>(coc-classobj-a)
 
-" this isn't bad
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-" Note coc#float#scroll works on neovim >= 0.4.0 or vim >= 8.2.0750
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll()
-      \ ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll()
-      \ ? coc#float#scroll(0) : "\<C-b>"
+" " this isn't bad
+" " Remap <C-f> and <C-b> for scroll float windows/popups.
+" " Note coc#float#scroll works on neovim >= 0.4.0 or vim >= 8.2.0750
+" nnoremap <nowait><expr> <C-f> coc#float#has_scroll()
+"       \ ? coc#float#scroll(1) : "\<C-f>"
+" nnoremap <nowait><expr> <C-b> coc#float#has_scroll()
+"       \ ? coc#float#scroll(0) : "\<C-b>"
 
-inoremap <nowait><expr> <C-f> coc#float#has_scroll()
-      \ ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <nowait><expr> <C-b> coc#float#has_scroll()
-      \ ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+" inoremap <nowait><expr> <C-f> coc#float#has_scroll()
+"       \ ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+" inoremap <nowait><expr> <C-b> coc#float#has_scroll()
+"       \ ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" " Applying codeAction to the selected region.
+" " Example: `<leader>aap` for current paragraph
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+" " Remap keys for applying codeAction to the current buffer.
+" nmap <leader>ac  <Plug>(coc-codeaction)
+" " Apply AutoFix to problem on the current line.
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
 
-" language specific settings
-" after/ftplugin/
-" c_settings.vim
-" }}}
+" " language specific settings
+" " after/ftplugin/
+" " c_settings.vim
+" " }}}
 
-" NOTE: this kinda sucks, but its also not so bad
-" show docs {{{
-function! s:show_documentation()
-  if (index(['vim', 'help'], &filetype) >= 0)
-    execute 'h ' . expand('<cword>')
+" " NOTE: this kinda sucks, but its also not so bad
+" " show docs {{{
+" function! s:show_documentation()
+"   if (index(['vim', 'help'], &filetype) >= 0)
+"     execute 'h ' . expand('<cword>')
 
-  elseif (index(['sh', 'bash', 'zsh'], &filetype) >= 0)
-    execute 'Man ' . expand('<cword>')
+"   elseif (index(['sh', 'bash', 'zsh'], &filetype) >= 0)
+"     execute 'Man ' . expand('<cword>')
 
-  else
-    call CocAction('doHover')
+"   else
+"     call CocAction('doHover')
 
-  endif
-endfunction
+"   endif
+" endfunction
 
-" use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-" }}}
-" }}}
+" " use K to show documentation in preview window.
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" " }}}
+" " }}}
 
 " rust.vim {{{
 " dont overwrite settings, the auto formatter will take care of bad formating
@@ -276,10 +285,10 @@ nnoremap <leader>mr :Make! run<cr>
 " easy align {{{
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 " this and it conflicts with ga, but its just to print the ascii value
-nmap ga <Plug>(EasyAlign)
+nmap <leader>a <Plug>(EasyAlign)
 
 " Start interactive EasyAlign in visual mode
-xmap ga <Plug>(EasyAlign)
+xmap <leader>a <Plug>(EasyAlign)
 " }}}
 
 " fzf.vim {{{

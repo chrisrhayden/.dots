@@ -15,9 +15,17 @@ autocmd FileType vim syntax keyword Function Plug
 
 runtime settings.vim
 
-luafile $XDG_CONFIG_HOME/nvim/settings.lua
-
 runtime mappings.vim
+
+lua << EOF
+    require("lsp_config")
+
+    require("treesitter_config")
+
+    require("auto_pairs_config")
+
+    require("telescope_config")
+EOF
 
 " abbreviations
 " after/plugin/abolish.vim

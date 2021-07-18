@@ -31,7 +31,8 @@ set relativenumber
 " highlight columns at the given column number
 set colorcolumn=81,101
 " the status line config, lol
-set statusline=%!'\ %n\ %t\ %m\ %r\ %{coc#status()}\ %=\ %y\ \ [%l/%L]\ '
+" set statusline=%!'\ %n\ %t\ %m\ %r\ %{coc#status()}\ %=\ %y\ \ [%l/%L]\ '
+set statusline=%!'\ %n\ %t\ %m\ %r\ %=\ %y\ \ [%l/%L]\ '
 " list mode will display given characters in certain places (e.g. <tab> == >-)
 set list
 " the characters list mode will use

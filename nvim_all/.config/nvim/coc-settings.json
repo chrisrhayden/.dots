@@ -9,7 +9,8 @@
         "rust",
         "Json",
         "javascript",
-        "typescript"
+        "typescript",
+        "typescriptreact"
     ],
     "rust-analyzer.updates.channel": "stable",
     "rust-analyzer.inlayHints.enable": false,
