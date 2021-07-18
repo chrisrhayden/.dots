@@ -1,0 +1,3 @@
+Bmpv() {
+    mpv "$@" &>/dev/null &
+}

@@ -128,17 +128,6 @@ clone_xsel() {
     fi
 }
 
-# mpv {{{
-# its nice to be able to tab complete after two letters
-Bmpv() {
-    # bash doesn't like a ; after the &
-    mpv "$@" &>/dev/null &
-}
-alias bmpv='Bmpv'
-
-empv() { mpv "$@" & exit 0; }
-# }}}
-
 # misc {{{
 today() {
     printf '\n%s\n%b%s%b\n' \
@@ -252,6 +241,7 @@ vim_help() { vim +"help $1 | only"; }
 # }}}
 
 # extra not used much {{{
+
 layout() {
     local line_color='\033[32m'
     local reset='\033[0m'
