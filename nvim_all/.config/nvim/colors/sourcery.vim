@@ -39,7 +39,6 @@ endif
 set background=dark
 " }}}
 
-
 " internal {{{
 " vim ui {{{
 hi Normal                      ctermbg=NONE ctermfg=145 cterm=NONE    guibg=#191919 guifg=#bcbcbc gui=NONE
@@ -66,6 +65,7 @@ hi PmenuSbar                   ctermbg=232 ctermfg=145 cterm=NONE    guibg=#0f0f
 hi PmenuThumb                  ctermbg=145 ctermfg=232 cterm=NONE    guibg=#bcbcbc guifg=#0f0f0f gui=NONE
 hi WildMenu                    ctermbg=232 ctermfg=96 cterm=NONE    guibg=#0f0f0f guifg=#785d92 gui=NONE
 hi NormalFloat                 ctermbg=232 ctermfg=96 cterm=NONE    guibg=#0f0f0f guifg=#785d92 gui=NONE
+hi FloatBorder                 ctermbg=232 ctermfg=242 cterm=NONE    guibg=#0f0f0f guifg=#6c6c6c gui=NONE
 hi ErrorMsg                    ctermbg=131 ctermfg=234 cterm=NONE    guibg=#af5f5f guifg=#191919 gui=NONE
 hi ModeMsg                     ctermbg=NONE ctermfg=65 cterm=NONE       guibg=NONE guifg=#5f875f gui=NONE
 hi MoreMsg                     ctermbg=NONE ctermfg=65 cterm=NONE       guibg=NONE guifg=#5f875f gui=NONE
@@ -156,7 +156,7 @@ hi link htmlLink Special
 " neovim {{{
 hi NvimInternalError          ctermbg=NONE ctermfg=131 cterm=NONE guibg=NONE guifg=#af5f5f gui=NONE
 
-augroup LuaHighlight
+augroup HighlightYanked
   autocmd!
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
@@ -167,6 +167,14 @@ augroup END
 hi CocErrorFloat                ctermbg=232 ctermfg=131 cterm=NONE guibg=#0f0f0f guifg=#af5f5f gui=NONE
 hi CocErrorSign                 ctermbg=234 ctermfg=131 cterm=NONE guibg=#191919 guifg=#af5f5f gui=NONE
 hi CocHintSign                  ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#5fafaf gui=NONE
+
+hi LspDiagnosticsDefaultHint ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#6c6c6c gui=NONE
+hi LspDiagnosticsDefaultError ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#af5f5f gui=NONE
+hi LspDiagnosticsDefaultInformation ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#5fafaf gui=NONE
+hi LspDiagnosticsDefaultWarning ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=#d88527 gui=NONE
+
+hi LspDiagnosticsUnderlineError cterm=underline gui=underline guisp=#af5f5f
+hi LspDiagnosticsUnderlineWarning cterm=underline gui=underline guisp=#d88527
 " }}}
 
 " debug {{{

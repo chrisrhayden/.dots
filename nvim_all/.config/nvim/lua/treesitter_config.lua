@@ -1,61 +1,49 @@
 require'nvim-treesitter.configs'.setup {
   -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = "maintained",
-  -- highlight = {
-  --   -- false will disable the whole extension:w
-  --   enable = true,
-  --   -- list of language that will be disabled
-  --   -- disable = {},
-  -- },
-  indent = {
-    enable = true
-  },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
+      init_selection = "<space>gnn",
+      node_incremental = "<space>grn",
+      scope_incremental = "<space>grc",
+      node_decremental = "<space>grm",
     },
   },
   textobjects = {
-    --  move = {
-    --   enable = true,
-    --   goto_next_start = {
-    --     ["]]"] = "@function.outer",
-    --     ["]m"] = "@class.outer",
-    --   },
-    --   goto_next_end = {
-    --     ["]]"] = "@function.outer",
-    --     ["]M"] = "@class.outer",
-    --   },
-    --   goto_previous_start = {
-    --     ["[["] = "@function.outer",
-    --     ["[m"] = "@class.outer",
-    --   },
-    --   goto_previous_end = {
-    --     ["[["] = "@function.outer",
-    --     ["[M"] = "@class.outer",
-    --   },
-    -- },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]]"] = "@function.outer",
+        -- ["]m"] = "@function.outer",
+        -- ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        -- ["]M"] = "@function.outer",
+        -- ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[["] = "@function.outer",
+        -- ["[m"] = "@function.outer",
+        -- ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        -- ["[M"] = "@function.outer",
+        -- ["[]"] = "@class.outer",
+      },
+    },
     select = {
       enable = true,
+      -- Automatically jump forward to textobj, similar to targets.vim 
+      lookahead = true,
       keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
         ["ic"] = "@class.inner",
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>p"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>P"] = "@parameter.inner",
+        ["ib"] = "@block.inner",
+        ["ab"] = "@block.outer",
       },
     },
   },

@@ -54,8 +54,12 @@ colorscheme sourcery
 " }}}
 
 " feel / editing {{{
+" disable the swapfile
+set noswapfile
 " time in milliseconds to wait for a mapped sequence to complete
 set timeoutlen=500
+" this is the count for CursorHold and writing out to the swap file
+set updatetime=500
 " save these settings when making views
 set viewoptions=folds,cursor
 " save these settings when making sessions

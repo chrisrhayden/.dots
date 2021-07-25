@@ -18,12 +18,16 @@ runtime settings.vim
 runtime mappings.vim
 
 lua << EOF
+    -- lua/lsp_config.lua
     require("lsp_config")
 
+    -- lua/treesitter_config.lua
     require("treesitter_config")
 
+    -- lua/auto_pairs_config.lua
     require("auto_pairs_config")
 
+    -- lua/telescope_config.lua
     require("telescope_config")
 EOF
 
