@@ -1,0 +1,32 @@
+Abolish b{r,ra,re,rea,ear}k{,e} break
+Abolish clieant client
+Abolish creat crate
+Abolish lein line
+Abolish liek like
+Abolish nedl endl
+Abolish ot to
+Abolish sdt std
+Abolish shitf shift
+Abolish sl{ef,fe} self
+Abolish som{,t,th}ing something
+Abolish everytihng everything
+" statice is actually a plant
+Abolish statice static
+Abolish teh the
+Abolish tets test
+Abolish thay they
+Abolish ting thing
+Abolish tsd std
+Abolish useing using
+Abolish viod void
+Abolish wpgu wgpu
+Abolish yeald yield
+Abolish m{,e}sg message
+Abolish m{,e}sgs messages
+Abolish obj{,s} objects
+Abolish anme name
+Abolish stroing string
+Abolish p{,i}xl{,e} pixel
+Abolish in{it,ti}ng initializing
+" https://en.wiktionary.org/wiki/titel, its Latin i guess
+Abolish titel title

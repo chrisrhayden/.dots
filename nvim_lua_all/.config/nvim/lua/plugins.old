@@ -1,0 +1,110 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vim-plug {{}}
+
+" plug in settings {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" languages {{{
+" rust.vim {{{
+" dont overwrite settings, the auto formatter will take care of bad formating
+let g:rust_recommended_style = 0
+
+" use vim's conceal and symbols like ⟶  and ⟹  to style code
+" the unicode char size depends on the terminal supporting double wide chars
+let g:rust_conceal = 1
+let g:rust_conceal_mod_path = 1
+" }}}
+
+" python-syntax {{{
+let g:python_highlight_all = 1
+
+" this is just annoying
+let g:python_highlight_space_errors = 0
+" }}}
+
+" vim-markdown {{{
+let g:vim_markdown_no_default_key_mappings = 1
+
+" indent by the given amount of spaces when hitting `o` and `O`, its annoying
+let g:vim_markdown_new_list_item_indent = 0
+
+" so you can follow internal anchors
+let g:vim_markdown_follow_anchor = 1
+
+" let g:vim_markdown_conceal = 1
+
+let g:vim_markdown_conceal_code_blocks = 0
+
+" buffer local settings, (e.g. mappings, conceallevel, etc)
+" after/ftplugin/markdown.vim
+" after/syntax/markdown.vim
+" }}}
+" }}}
+
+" added functionality {{{
+" git {{{
+nnoremap <leader>gs :Gstatus<cr>
+
+" after/ftplugin/fugitive.vim
+" }}}
+
+" dispatch {{{
+" run ctags in pwd
+command CTags :Start! ctags -R .
+" this is for rust / cargo
+nnoremap <leader>mr :Make! run<cr>
+" }}}
+
+" easy align {{{
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" this and it conflicts with ga, but its just to print the ascii value
+nmap <leader>a <Plug>(EasyAlign)
+
+" Start interactive EasyAlign in visual mode
+xmap <leader>a <Plug>(EasyAlign)
+" }}}
+
+" vista {{{
+" toggle the vista tag window
+nnoremap <f8> :Vista!!<cr>
+
+let g:vista_echo_cursor_strategy = 'floating_win'
+
+let g:vista_close_on_jump = 1
+
+nnoremap <leader>vv :Vista finder<cr>
+" }}}
+
+" undo tree {{{
+nnoremap <F5> :UndotreeToggle<CR>
+
+" make undo pop up on the right
+let g:undotree_WindowLayout = 3
+" }}}
+
+" wiki {{{
+" the wiki root
+let g:wiki_global_load = 0
+
+let g:wiki_root = '~/notebook'
+
+let g:wiki_filetypes = ["md"]
+
+let g:wiki_link_target_type = "md"
+let g:wiki_link_extension = ".md"
+
+function MyCleanLinkText(text) abort
+  " lower case and replace all spaces with a `_`
+  return substitute(tolower(a:text), '\s\+', '_', 'g')
+endfunction
+
+let g:wiki_map_link_create = 'MyCleanLinkText'
+
+" ~/.config/nvim/after/ftplugin/markdown.vim
+" }}}
+" }}}
+
+" }}}
