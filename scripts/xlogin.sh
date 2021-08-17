@@ -9,7 +9,6 @@
 #    exec startx
 #fi
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-
     # start the xorg server
     exec startx
 fi

@@ -19,17 +19,13 @@ def parse_args():
 
     parser.add_argument("--layout", "-l",
             help="the layout type to use",
-            choices=["dev", "info", "youtube"],
+            choices=["dev", "info"],
+            required=True,
     )
 
     parser.add_argument("--workspace", "-w",
             help="a workspace to use instead of the focused one",
             type=int,
-    )
-
-    parser.add_argument("--start-up", "-s",
-        help="make the start up layouts",
-        action="store_true"
     )
 
     return parser.parse_args()
@@ -85,16 +81,19 @@ def get_focused_workspace():
     return workspace_num
 
 
-def make_layout(current_workspace, workspace_num, config):
+def make_layout(workspace_num, config):
+    focused_workspace = get_focused_workspace()
+
+    if not focused_workspace:
+        return False
+
     layout_path = config["layout_path"]
 
-    layout_msg = ["i3-msg"]
+    layout_msg = ['i3-msg']
 
-    if current_workspace != workspace_num:
+    if workspace_num and (workspace_num != focused_workspace):
         layout_msg.append(
-            f"workspace --no-auto-back-and-forth {workspace_num}; "
-            f"append_layout {layout_path}"
-        )
+                f"workspace {workspace_num}; append_layout {layout_path}")
     else:
         layout_msg.append(f"append_layout {layout_path}")
 
@@ -107,58 +106,21 @@ def make_layout(current_workspace, workspace_num, config):
     return True
 
 
-def main(layout_configs, default_workspaces):
-    success = False
-
+def main(layout_configs):
     args = parse_args()
 
-    current_workspace = get_focused_workspace()
+    # argparse will make sure only valid layouts get this far
+    config = layout_configs[args.layout]
 
-    if args.start_up:
-        for (layout, workspace) in default_workspaces.items():
+    workspace = args.workspace
 
-            success = make_layout(current_workspace, workspace, layout_configs[layout])
-
-            if not success:
-                break
-
-    else:
-        if not args.layout:
-            success = False
-        else:
-
-            # argparse will make sure only valid layouts get this far
-            config = layout_configs[args.layout]
-
-            if args.workspace:
-                workspace = args.workspace
-            else:
-                workspace = current_workspace
-
-            success = make_layout(current_workspace, workspace, config)
-
-    return success
+    return make_layout(workspace, config)
 
 
 if __name__ == "__main__":
     if not environ["HOME"]:
         eprint("HOME env variable not set")
         exit(1)
-
-    default_workspaces = {
-        "dev": "2",
-        "info": "1",
-        "youtube": "7"
-    }
-
-    youtube_applications = [
-        ["firefox", "--new-window", "https://www.youtube.com/"]
-    ]
-
-    youtube_config = {
-        "layout_path": path.join(environ["HOME"], ".config/i3/layouts/youtube.jsonc"),
-        "applications": youtube_applications,
-    }
 
     info_applications = [
         [
@@ -199,11 +161,10 @@ if __name__ == "__main__":
     layout_configs = {
         "dev": dev_config,
         "info": info_config,
-        "youtube": youtube_config,
     }
 
 
-    if not main(layout_configs, default_workspaces):
+    if not main(layout_configs):
         exit(1)
 
     exit(0)

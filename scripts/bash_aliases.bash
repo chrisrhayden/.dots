@@ -158,6 +158,7 @@ getvids() {
         --output '/mnt/linuxstorage/shows/youtube/%(title)s_%(id)s.%(ext)s' "$@"
 }
 # }}}
+# }}}
 
 # editor {{{
 # set up config file aliases {{{
@@ -169,42 +170,26 @@ getvids() {
     # declare an associative array
     declare -A dot_files
 
-    keys=''
-
-    # this is kinda shitty, {ba,zs}sh doesn't export arrays of any
-    # kind so we use an exported string space separated paths
-    #   (e.g. "echo '"${HOME}/.config/i3/config" "${HOME}/.bashrc" ..  )
-    export all_dot_files
-
-    # a helper function, mostly for the `vim_dots` alias
-    clean_dot_file_paths() {
-        echo "${all_dot_files}" \
-            | envsubst \
-            | tr ' ' '\n' | tr -d ' ' | tr -d '"' | sed '/^$/d'
-    }
-
     dot_files[brconf]='"${HOME}/.bashrc"'
     dot_files[baconf]='"${HOME}/.dots/scripts/bash_aliases.bash"'
     dot_files[zrconf]='"${HOME}/.zshrc.d/.zshrc"'
-    # dot_files[nvconf]='"${HOME}/.config/nvim/init.vim"'
     dot_files[nvconf]='"${HOME}/.config/nvim/init.lua"'
     dot_files[alconf]='"${HOME}/.config/alacritty/alacritty.yml"'
-    dot_files[teconf]='"${HOME}/.config/termite/config"'
-    dot_files[bsconf]='"${HOME}/.config/bspwm/bspwmrc"'
-    dot_files[sxconf]='"${HOME}/.config/sxhkd/sxhkdrc"'
     dot_files[poconf]='"${HOME}/.config/polybar/config.ini"'
     dot_files[i3conf]='"${HOME}/.config/i3/config"'
-    dot_files[quconf]='"${HOME}/.config/qutebrowser/config.py"'
+
+    keys=''
+    dots_list=''
 
     if [[ $CONFIG_SHELL == zsh ]]; then
         setopt shwordsplit
         keys="${(k)dot_files}"
 
-        all_dot_files="${(v)dot_files}"
+        dots_list="${(v)dot_files}"
     else
         keys="${!dot_files[@]}"
 
-        all_dot_files="${dot_files[@]}"
+        dots_list="${dot_files[@]}"
     fi
 
 
@@ -218,7 +203,21 @@ getvids() {
         unsetopt shwordsplit
     fi
 
-    alias vim_dots='clean_dot_file_paths \
+    # a helper function, mostly for the `vim_dots` alias
+    clean_dot_file_paths() {
+        echo "$@" \
+            | envsubst \
+            | sed -E 's|" "|\n|g' | tr -d '"' | sed '/^$/d'
+    }
+
+    # this is kinda shitty, {ba,zs}sh doesn't export arrays of any
+    # kind so we use an exported string space separated paths
+    #   (e.g. "echo '"${HOME}/.config/i3/config" "${HOME}/.bashrc" ..  )
+    export all_dot_files
+
+    all_dot_files=$(clean_dot_file_paths "$dots_list")
+
+    alias v_dots='echo "$all_dot_files" \
         | vim \
             +"setlocal noswapfile" \
             +"setlocal buftype=nofile" \
@@ -228,17 +227,15 @@ getvids() {
 # }}}
 
 # vim cmds {{{
-alias vpclean='vim +"PlugClean" +"qall"'
-alias vpupdate='vim +"PlugUpdate" +"CocUpdate" +"qall"'
-alias vpinstall='vim +"PlugInstall" +"qall"'
+
+alias v_update='vim '${dot_files[nvconf]}' +"PackerSync"'
 
 alias view='$EDITOR -R -u ${HOME}/.config/nvim/view_init.vim'
 alias wim='$EDITOR -u "${HOME}/.config/nvim/writing_init.vim"'
 
-vim_help() { vim +"help $1 | only"; }
+v_help() { vim +"help $1 | only"; }
 # }}}
 
-# }}}
 # }}}
 
 # extra not used much {{{
