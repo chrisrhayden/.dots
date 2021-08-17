@@ -159,11 +159,11 @@ o.formatoptions = o.formatoptions
 -- from https://github.com/jeffkreeftmeijer/vim-numbertoggle/
 -- toggle relativenumber
 
--- local set_relative = "BufEnter,FocusGained,InsertLeave,WinEnter,CmdlineLeave"
--- local set_norelative = "BufLeave,FocusLost,InsertEnter,WinLeave,CmdlineEnter"
+local set_relative = "BufEnter,InsertLeave,WinEnter,CmdlineLeave,FocusGained"
+local set_norelative = "BufLeave,InsertEnter,WinLeave,CmdlineEnter,FocusLost"
 
-local set_relative = "BufEnter,WinEnter,InsertLeave,CmdlineLeave"
-local set_norelative = "BufLeave,WinLeave,InsertEnter,CmdlineEnter"
+-- local set_relative = "BufEnter,InsertLeave,WinEnter,CmdlineLeave"
+-- local set_norelative = "BufLeave,InsertEnter,WinLeave,CmdlineEnter"
 
 vim.api.nvim_exec([[
 augroup RelativizeNum
@@ -179,6 +179,7 @@ augroup END
 -- how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
 local set_cursorline = "VimEnter,BufEnter,WinEnter"
 local set_nocursorline = "BufLeave,WinLeave "
+
 vim.api.nvim_exec([[
 augroup CursorLine
     autocmd!

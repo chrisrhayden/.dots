@@ -30,3 +30,4 @@ Abolish p{,i}xl{,e} pixel
 Abolish in{it,ti}ng initializing
 " https://en.wiktionary.org/wiki/titel, its Latin i guess
 Abolish titel title
+Abolish hashamp hashmap

@@ -19,14 +19,12 @@ require("mappings")
 -- lua/lsp_config.lua
 require("lsp_config")
 
+-- this does not update the tree if highlighting is not enabled, and
+-- highlighting does not work well with spellchecking
 -- lua/treesitter_config.lua
-require("treesitter_config")
+-- require("treesitter_config")
 
--- lua/auto_pairs_config.lua
-require("auto_pairs_config")
-
--- lua/telescope_config.lua
-require("telescope_config")
+vim.cmd("runtime wilder_config.vim")
 
 -- abbreviations
 -- after/plugin/abolish.vim

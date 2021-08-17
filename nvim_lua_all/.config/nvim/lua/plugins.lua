@@ -13,7 +13,7 @@ return require("packer").startup(function()
     -- lsp {{{
     use "neovim/nvim-lspconfig"
     use "hrsh7th/nvim-compe"
-    use "folke/trouble.nvim"
+    -- use "folke/trouble.nvim"
 
     use "jose-elias-alvarez/null-ls.nvim"
 
@@ -28,26 +28,36 @@ return require("packer").startup(function()
     -- }}}
 
     -- fuzzy finder for lots of things like files, LSP symbols and other stuff
-    use "nvim-telescope/telescope.nvim"
-
-    -- get suggestions in the wilder menu
     use {
-      "gelguy/wilder.nvim",
+      "nvim-telescope/telescope.nvim",
       config = function()
-        local popcmd = "call wilder#set_option('renderer', wilder#renderer_mux({"
-            .. "':': wilder#popupmenu_renderer(),"
-            .. "'/': wilder#wildmenu_renderer(),}))"
+        require('telescope').setup {
+          defaults = {
+            layout_strategy = "flex",
+          }
+        }
 
-        vim.api.nvim_exec([[
-          call wilder#enable_cmdline_enter()
-          set wildcharm=<Tab>
-          cmap <expr> <Tab> wilder#in_context() ? wilder#next() : '\\<Tab>'
-          cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : '\\<S-Tab>'
-          " only / and ? are enabled by default
-          call wilder#set_option('modes', ['/', '?', ':'])
-        ]] .. popcmd, false)
+        local opts = {noremap = true}
+
+        vim.api.nvim_set_keymap("n", "<leader>ff",
+          "<cmd>Telescope find_files<cr>", opts)
+
+        vim.api.nvim_set_keymap("n", "<leader>fg",
+          "<cmd>Telescope live_grep<cr>",  opts)
+
+        vim.api.nvim_set_keymap("n", "<leader>fb",
+          "<cmd>Telescope buffers<cr>",    opts)
+
+        vim.api.nvim_set_keymap("n", "<leader>fh",
+          "<cmd>Telescope help_tags<cr>",  opts)
+
+        vim.api.nvim_set_keymap("n", "<leader>fs",
+          "<cmd>Telescope symbols<cr>",  opts)
       end
     }
+
+    -- get suggestions in the wilder menu
+    use "gelguy/wilder.nvim"
 
     -- the tpope collection {{{
     -- a set of good key bindings
@@ -86,7 +96,21 @@ return require("packer").startup(function()
       ]]
     }
 
-    use "windwp/nvim-autopairs"
+    use {
+      "windwp/nvim-autopairs",
+      config = [[
+        local npairs = require('nvim-autopairs')
+        local Rule = require('nvim-autopairs.rule')
+        local cond = require('nvim-autopairs.conds')
+
+        npairs.setup()
+
+        npairs.add_rule(
+          Rule("<", ">", {"rust"})
+            :with_pair(cond.before_regex_check("%a"))
+        )
+      ]]
+    }
 
     -- vim like access to the file system, idk how to explain shortly
     use {
@@ -109,8 +133,6 @@ return require("packer").startup(function()
         vim.g.undotree_WindowLayout = 3
       ]]
     }
-
-    use "airblade/vim-gitgutter"
 
     -- additions that are close enough to plugins to not want in my rc
     use "chrisrhayden/my_vim_utils"

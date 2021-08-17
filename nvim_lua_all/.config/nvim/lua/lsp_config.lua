@@ -57,14 +57,33 @@ local on_attach = function(client, bufnr)
   -- workspace mappings
   buf_set_keymap("n", "<space>wa",
     "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts)
-  buf_set_keymap("n",
+
+    buf_set_keymap("n",
     "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts)
+
   buf_set_keymap("n", "<space>wl",
     "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
 
   -- buf_set_keymap("n", "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
   -- buf_set_keymap("n", "<space>e",
   --   "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", opts)
+  -- auto format files on save/write
+  --
+  -- this wont trow an error for file types that dont have an lsp active i guess
+  vim.api.nvim_exec([[
+  augroup AutoFormater
+    autocmd!
+    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+  augroup END
+  ]], false)
+
+
+  vim.api.nvim_exec([[
+  augroup HoldForDiagnostics
+    autocmd!
+    autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics{focusable=false}
+  augroup END
+  ]], false)
 end
 
 local tsserver_attach = function(client, bufnr)
@@ -131,9 +150,11 @@ end
 -- Use a loop to conveniently call "setup" on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
+  clangd = on_attach,
   pyright = on_attach,
   rust_analyzer = on_attach,
   tsserver = tsserver_attach,
+  pyright = on_attach,
 }
 
 for lsp, attach_func in pairs(servers) do
@@ -144,25 +165,6 @@ for lsp, attach_func in pairs(servers) do
     }
   }
 end
-
--- auto format files on save/write
---
--- this wont trow an error for file types that dont have an lsp active i guess
-vim.api.nvim_exec([[
-augroup AutoFormater
-  autocmd!
-  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
-augroup END
-]], false)
-
-
-vim.api.nvim_exec([[
-augroup HoldForDiagnostics
-  autocmd!
-  autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics{focusable=false}
-augroup END
-]], false)
-
 
 require("compe").setup {
   enabled = true,
@@ -182,7 +184,7 @@ require("compe").setup {
     border = { "", "" ,"", " ", "", "", "", " " },
     winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
     max_width = 120,
-    min_width = 60,
+    min_width = 1,
     max_height = math.floor(vim.o.lines * 0.3),
     min_height = 1,
   },
@@ -198,24 +200,6 @@ require("compe").setup {
     luasnip = true,
   },
 }
-
-require("trouble").setup {
-  auto_open = false,
-  auto_close = true,
-  signs = {
-    -- icons / text used for a diagnostic
-    error = "",
-    warning = "",
-    hint = "",
-    information = "",
-    other = ""
-  },
-}
-
-vim.api.nvim_set_keymap("n", "<leader>to", "<cmd>Trouble<cr>", {
-  noremap = true,
-  silent = true
-})
 
 vim.fn.sign_define("LspDiagnosticsSignError", {
   text = "",
