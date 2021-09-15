@@ -62,8 +62,7 @@ map("v", "K", ":m '<-2<cr>gv=gv", nore_opts)
 -- }}}
 
 -- yank to clipboard {{{
--- Yank to the end of line, I think this unused ??? holy shit
-map("n", "Y", "y$", nore_opts)
+-- map("n", "Y", "y$", nore_opts)
 -- yank to clip board {{{
 -- yank file
 map("n", "<leader>yf", 'gg"+yG``', nore_opts)
@@ -145,9 +144,9 @@ map("n", "<leader>ln", ":lnewer<CR>", nore_opts)
 -- }}}
 
 -- tab {{{
-map("n", "<leader>tp", ":tabprevious<cr>", nore_opts)
-map("n", "<leader>tn", ":tabnext<cr>", nore_opts)
-map("n", "<leader>tN", ":tabnew<cr>", nore_opts)
+-- map("n", "<leader>tp", ":tabprevious<cr>", nore_opts)
+-- map("n", "<leader>tn", ":tabnext<cr>", nore_opts)
+-- map("n", "<leader>tN", ":tabnew<cr>", nore_opts)
 -- -- }}}
 
 -- terminal {{{

@@ -49,7 +49,7 @@ o.inccommand = "split"
 -- visually break lines according to `breakat` instead of the last fitting char
 o.linebreak = true
 -- highlight or underline the line the cursor is on
-o.cursorline = true
+-- o.cursorline = true
 -- minimum lines to keep above and below the cursor
 o.scrolloff = 2
 -- minimum characters between the cursor and the sides similar to scrolloff
@@ -87,6 +87,10 @@ o.statusline = table.concat({
 -- }}}
 
 -- feel / editing {{{
+o.completeopt = {
+  "menuone",
+  "noselect"
+}
 -- disable the swapfile
 o.swapfile = false
 -- time in milliseconds to wait for a mapped sequence to complete
@@ -178,7 +182,7 @@ augroup END
 -- https://stackoverflow.com/questions/14068751/
 -- how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
 local set_cursorline = "VimEnter,BufEnter,WinEnter"
-local set_nocursorline = "BufLeave,WinLeave "
+local set_nocursorline = "BufLeave,WinLeave"
 
 vim.api.nvim_exec([[
 augroup CursorLine

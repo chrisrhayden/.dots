@@ -147,10 +147,17 @@ local tsserver_attach = function(client, bufnr)
   })
 end
 
+local c_attach = function (client, bufnr)
+  on_attach(client, bufnr)
+
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space><BS>",
+    "<cmd>ClangdSwitchSourceHeader<cr>", {noremap = true, silent = true})
+end
+
 -- Use a loop to conveniently call "setup" on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  clangd = on_attach,
+  clangd = c_attach,
   pyright = on_attach,
   rust_analyzer = on_attach,
   tsserver = tsserver_attach,
@@ -171,7 +178,8 @@ require("compe").setup {
   autocomplete = true,
   debug = false,
   min_length = 1,
-  preselect = "enable",
+  preselect = "never",
+  -- preselect = "always",
   throttle_time = 80,
   source_timeout = 200,
   resolve_timeout = 800,

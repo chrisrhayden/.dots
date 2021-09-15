@@ -10,6 +10,8 @@ vim.g.mapleader = " "
 -- lua/plugins.lua
 require("plugins")
 
+vim.opt.conceallevel = 1
+
 -- lua/settings.lua
 require("settings")
 

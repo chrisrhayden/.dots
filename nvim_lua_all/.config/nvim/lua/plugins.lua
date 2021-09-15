@@ -12,8 +12,16 @@ return require("packer").startup(function()
 
     -- lsp {{{
     use "neovim/nvim-lspconfig"
-    use "hrsh7th/nvim-compe"
-    -- use "folke/trouble.nvim"
+    -- use "hrsh7th/nvim-compe"
+    use {
+      "hrsh7th/nvim-cmp",
+      requires = {
+        "hrsh7th/vim-vsnip",
+        "hrsh7th/cmp-buffer",
+      }
+    }
+
+    -- use "nvim-lua/lsp-status.nvim"
 
     use "jose-elias-alvarez/null-ls.nvim"
 
@@ -28,6 +36,7 @@ return require("packer").startup(function()
     -- }}}
 
     -- fuzzy finder for lots of things like files, LSP symbols and other stuff
+
     use {
       "nvim-telescope/telescope.nvim",
       config = function()
@@ -39,20 +48,20 @@ return require("packer").startup(function()
 
         local opts = {noremap = true}
 
-        vim.api.nvim_set_keymap("n", "<leader>ff",
+        vim.api.nvim_set_keymap("n", "<leader>tf",
           "<cmd>Telescope find_files<cr>", opts)
 
-        vim.api.nvim_set_keymap("n", "<leader>fg",
+        vim.api.nvim_set_keymap("n", "<leader>tg",
           "<cmd>Telescope live_grep<cr>",  opts)
 
-        vim.api.nvim_set_keymap("n", "<leader>fb",
+        vim.api.nvim_set_keymap("n", "<leader>tb",
           "<cmd>Telescope buffers<cr>",    opts)
 
-        vim.api.nvim_set_keymap("n", "<leader>fh",
+        vim.api.nvim_set_keymap("n", "<leader>th",
           "<cmd>Telescope help_tags<cr>",  opts)
 
-        vim.api.nvim_set_keymap("n", "<leader>fs",
-          "<cmd>Telescope symbols<cr>",  opts)
+        vim.api.nvim_set_keymap("n", "<leader>ts",
+          "<cmd>Telescope lsp_document_symbols<cr>",  opts)
       end
     }
 
@@ -147,8 +156,8 @@ return require("packer").startup(function()
 
         -- use vim's conceal and symbols like ⟶  and ⟹  to style code
         -- the unicode char size depends on the terminal supporting double wide chars
-        vim.g.rust_conceal = 1
-        vim.g.rust_conceal_mod_path = 1
+        -- vim.g.rust_conceal = 1
+        -- vim.g.rust_conceal_mod_path = 1
       ]]
     }
     use "pest-parser/pest.vim"
@@ -190,7 +199,8 @@ return require("packer").startup(function()
 
     use "cespare/vim-toml"
 
-    use "PotatoesMaster/i3-vim-syntax"
+    -- use "PotatoesMaster/i3-vim-syntax"
+    use "mboughaba/i3config.vim"
 
     use "tikhomirov/vim-glsl"
     -- }}}
