@@ -22,12 +22,14 @@ DEFAULT_DIRS=(
     'Documents'
 )
 
-
 aur_helper_name='paru'
 aur_helper_url='https://aur.archlinux.org/paru.git'
 
 host_char="$( hostname )"
 host_char="${host_char:0:1}"
+
+packer_url="https://github.com/wbthomason/packer.nvim"
+packer_destination="/home/chris/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
 [[ $DEBUG -eq 1 ]] && printf 'starting init script\n'
 
@@ -59,27 +61,19 @@ stow_by_key() {
     done
 }
 
-curl_vim_plug() {
-    local url
-    url="$1"
+clone_neovim_packer() {
+    [[ $DEBUG -eq 1 ]] && printf '\ncloning packer from:\n  %s\nto:\n  %s' \
+        "$packer_url" "$packer_destination"
 
-    [[ $DEBUG -eq 1 ]] && printf '\ndownloading vim plug\n\n'
+    mkdir /home/chris/.local/share/nvim/site/pack/packer/start/ &>/dev/null
 
-    if ! curl -fL "$url" -o /tmp/plug.vim; then
-        printf 'could not curl vim plug\n' 1>&2
-        return 1
-    fi
-
-    [[ $DEBUG -eq 1 ]] && printf '\ncopying vim-plug to vim and nvim dirs\n\n'
-
-    mkdir ~/.local/share/nvim/site/autoload/ &>/dev/null
-    cp /tmp/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
-
-    mkdir ~/.vim/autoload/ &>/dev/null
-    mv /tmp/plug.vim ~/.vim/autoload/plug.vim
+    git clone --depth 1 "$packer_url" "$packer_destination" || return 1
 }
 
 install_aur_helper() {
+    [[ $DEBUG -eq 1 ]] && \
+        printf '\ngit cloning cloning the aur helper: %s\n\n' "$aur_helper_name"
+
     local part_one helper_name helper_url
 
     helper_name="$1"
@@ -91,9 +85,6 @@ install_aur_helper() {
         printf 'cant cd to home/aur; idk what happened\n' 1>&2
         return 1
     fi
-
-    [[ $DEBUG -eq 1 ]] && \
-        printf '\ngit cloning cloning the aur helper: %s\n\n' "$aur_helper_name"
 
     if ! git clone "$aur_helper_url"; then
         printf 'could not clone the aur helper: %s\n' "$aur_helper_url" 1>&2
@@ -124,10 +115,9 @@ stow_by_key 'all'
 # get the first char of the host name and run stow_by_key with it
 stow_by_key "$host_char"
 
-# add vim-plug to env
-if [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]]; then
-    curl_vim_plug \
-        'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# add packer for neovim; this might not work
+if [[ ! -d /home/chris/.local/share/nvim/site/pack/packer/start/packer.nvim ]]; then
+    clone_neovim_packer
 fi
 
 if ! command -v $aur_helper_name &>/dev/null; then
