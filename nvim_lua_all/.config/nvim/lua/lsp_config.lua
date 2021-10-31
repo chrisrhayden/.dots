@@ -1,8 +1,8 @@
 local nvim_lsp = require("lspconfig")
 
-require("null-ls").config {}
+-- require("null-ls").config {}
 
-require("lspconfig")["null-ls"].setup {}
+-- require("lspconfig")["null-ls"].setup {}
 
 local on_attach = function(client, bufnr)
    vim.lsp.handlers["textDocument/hover"] =
@@ -73,7 +73,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_exec([[
   augroup AutoFormater
     autocmd!
-    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+    autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
   augroup END
   ]], false)
 
@@ -81,71 +81,71 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_exec([[
   augroup HoldForDiagnostics
     autocmd!
-    autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics{focusable=false}
+    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
   augroup END
   ]], false)
 end
 
-local tsserver_attach = function(client, bufnr)
-  on_attach(client, bufnr)
+-- local tsserver_attach = function(client, bufnr)
+--   on_attach(client, bufnr)
 
-  -- client.resolved_capabilities.document_formatting = false
+--   -- client.resolved_capabilities.document_formatting = false
 
-  local ts_utils = require("nvim-lsp-ts-utils")
+--   local ts_utils = require("nvim-lsp-ts-utils")
 
-  ts_utils.setup {
-    debug = false,
-    disable_commands = false,
-    enable_import_on_completion = false,
+--   ts_utils.setup {
+--     debug = false,
+--     disable_commands = false,
+--     enable_import_on_completion = false,
 
-    -- import all
-    import_all_timeout = 5000, -- ms
-    import_all_priorities = {
-        buffers = 4, -- loaded buffer names
-        buffer_content = 3, -- loaded buffer content
-        local_files = 2, -- git files or files with relative path markers
-        same_file = 1, -- add to existing import statement
-    },
-    import_all_scan_buffers = 100,
-    import_all_select_source = false,
+--     -- import all
+--     import_all_timeout = 5000, -- ms
+--     import_all_priorities = {
+--         buffers = 4, -- loaded buffer names
+--         buffer_content = 3, -- loaded buffer content
+--         local_files = 2, -- git files or files with relative path markers
+--         same_file = 1, -- add to existing import statement
+--     },
+--     import_all_scan_buffers = 100,
+--     import_all_select_source = false,
 
-    -- eslint
-    eslint_enable_code_actions = true,
-    eslint_enable_disable_comments = true,
-    eslint_bin = "eslint",
-    eslint_config_fallback = nil,
-    eslint_enable_diagnostics = true,
+--     -- eslint
+--     eslint_enable_code_actions = true,
+--     eslint_enable_disable_comments = true,
+--     eslint_bin = "eslint",
+--     eslint_config_fallback = nil,
+--     eslint_enable_diagnostics = true,
 
-    -- formatting
-    enable_formatting = false,
-    formatter = "prettier",
-    formatter_config_fallback = nil,
+--     -- formatting
+--     enable_formatting = false,
+--     formatter = "prettier",
+--     formatter_config_fallback = nil,
 
-    -- update imports on file move
-    update_imports_on_move = false,
-    require_confirmation_on_move = false,
-    watch_dir = nil,
-  }
+--     -- update imports on file move
+--     update_imports_on_move = false,
+--     require_confirmation_on_move = false,
+--     watch_dir = nil,
+--   }
 
-  -- required to fix code action ranges
-  ts_utils.setup_client(client)
+--   -- required to fix code action ranges
+--   ts_utils.setup_client(client)
 
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gs", ":TSLspOrganize<CR>", {
-  --   noremap = true, silent = true
-  -- })
+--   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gs", ":TSLspOrganize<CR>", {
+--   --   noremap = true, silent = true
+--   -- })
 
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>qq", ":TSLspFixCurrent<CR>", {
-    noremap = true, silent = true
-  })
+--   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>qq", ":TSLspFixCurrent<CR>", {
+--     noremap = true, silent = true
+--   })
 
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gr", ":TSLspRenameFile<CR>", {
-    noremap = true, silent = true
-  })
+--   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gr", ":TSLspRenameFile<CR>", {
+--     noremap = true, silent = true
+--   })
 
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gi", ":TSLspImportAll<CR>", {
-    noremap = true, silent = true
-  })
-end
+--   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gi", ":TSLspImportAll<CR>", {
+--     noremap = true, silent = true
+--   })
+-- end
 
 local c_attach = function (client, bufnr)
   on_attach(client, bufnr)
@@ -160,7 +160,7 @@ local servers = {
   clangd = c_attach,
   pyright = on_attach,
   rust_analyzer = on_attach,
-  tsserver = tsserver_attach,
+  tsserver = on_attach,
   pyright = on_attach,
 }
 
@@ -173,41 +173,25 @@ for lsp, attach_func in pairs(servers) do
   }
 end
 
-require("compe").setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 1,
-  preselect = "never",
-  -- preselect = "always",
-  throttle_time = 80,
-  source_timeout = 200,
-  resolve_timeout = 800,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = {
-    -- the border option is the same as `|help nvim_open_win|`
-    border = { "", "" ,"", " ", "", "", "", " " },
-    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-    max_width = 120,
-    min_width = 1,
-    max_height = math.floor(vim.o.lines * 0.3),
-    min_height = 1,
-  },
+local cmp = require("cmp")
 
-  source = {
-    path = true,
-    buffer = true,
-    calc = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    vsnip = true,
-    ultisnips = true,
-    luasnip = true,
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end
   },
-}
+  -- mapping = { },
+  completion = {
+    completeopt  = "menuone,noselect"
+  },
+  preselect = cmp.PreselectMode.None,
+  sources = {
+    { name = "vsnip" },
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+  }
+})
 
 vim.fn.sign_define("LspDiagnosticsSignError", {
   text = "",

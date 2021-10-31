@@ -2,15 +2,13 @@
 -- vim init
 --------------------------------------------------------------------------------
 
--- default settings {{{
+-- settings {{{
 --------------------------------------------------------------------------------
 -- set early so all leader mappings defined use this key
 vim.g.mapleader = " "
 
 -- lua/plugins.lua
 require("plugins")
-
-vim.opt.conceallevel = 1
 
 -- lua/settings.lua
 require("settings")

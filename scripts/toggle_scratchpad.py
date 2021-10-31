@@ -2,7 +2,6 @@
 
 import subprocess
 from sys import argv
-import ast
 import os
 
 dropdown_opts = {

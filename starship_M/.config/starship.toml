@@ -12,16 +12,16 @@ truncate_to_repo = false
 truncation_length = 0
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
+format = '([\[$all_status$ahead_behind\] ]($style))'
 
 [git_branch]
 format = '[$symbol$branch]($style) '
 style = 'cyan'
 
 [python]
-format = '- [${symbol}]($style)[${version}](green) [${virtualenv}]($style) '
-symbol = ' '
+format = '[${symbol} ]($style)[${version} ](green)[${virtualenv} ]($style)'
+symbol = ''
 style = 'green bold'
 
 [nodejs]
-format = '- [$symbol](green bold)[$version](green) '
+format = '[$symbol](green bold)[$version ](green)'

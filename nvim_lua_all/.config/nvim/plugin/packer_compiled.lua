@@ -73,6 +73,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/cmp-buffer"
   },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/chris/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-vsnip"] = {
+    loaded = true,
+    path = "/home/chris/.local/share/nvim/site/pack/packer/start/cmp-vsnip"
+  },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/chris/.local/share/nvim/site/pack/packer/start/friendly-snippets"
+  },
   ["i3config.vim"] = {
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/i3config.vim"
@@ -85,10 +97,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/my_vim_utils"
   },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "/home/chris/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
-  },
   ["nvim-autopairs"] = {
     config = { "        local npairs = require('nvim-autopairs')\n        local Rule = require('nvim-autopairs.rule')\n        local cond = require('nvim-autopairs.conds')\n\n        npairs.setup()\n\n        npairs.add_rule(\n          Rule(\"<\", \">\", {\"rust\"})\n            :with_pair(cond.before_regex_check(\"%a\"))\n        )\n      " },
     loaded = true,
@@ -99,25 +107,13 @@ _G.packer_plugins = {
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
-    config = { "        require('colorizer').setup({\"*\"}, {names = false})\n      " },
+    config = { "        require('colorizer').setup({ \"*\", \"!packer\", }, { names = false })\n      " },
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
-  },
-  ["nvim-lsp-ts-utils"] = {
-    loaded = true,
-    path = "/home/chris/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
-  },
-  ["nvim-treesitter"] = {
-    loaded = true,
-    path = "/home/chris/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
-  },
-  ["nvim-treesitter-textobjects"] = {
-    loaded = true,
-    path = "/home/chris/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -131,17 +127,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/pest.vim"
   },
-  playground = {
-    loaded = true,
-    path = "/home/chris/.local/share/nvim/site/pack/packer/start/playground"
-  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/plenary.nvim"
-  },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/home/chris/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["python-syntax"] = {
     config = { "        vim.g.python_highlight_all = 1\n        -- highlighting space errors is annoying\n        vim.g.python_highlight_space_errors = 0\n      " },
@@ -185,7 +173,7 @@ _G.packer_plugins = {
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
   ["vim-dirvish"] = {
-    config = { "          -- disable netrw\n          vim.g.loaded_netrw = 1\n          vim.g.loaded_netrwPlugin = 1\n        " },
+    config = { "\27LJ\1\2Ù\2\0\0\3\0\6\0\v4\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\0\0007\0\3\0007\0\4\0%\1\5\0)\2\1\0>\0\3\1G\0\1\0ˆ\2          command! -nargs=? -complete=dir Explore Dirvish <args>\n          command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>\n          command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>\n          \14nvim_exec\bapi\17loaded_netrw\6g\bvim\0" },
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/vim-dirvish"
   },
@@ -241,8 +229,13 @@ _G.packer_plugins = {
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/vim-unimpaired"
   },
   ["vim-vsnip"] = {
+    config = { "        vim.g.vsnip_snippet_dir =\n          \"~/.local/share/nvim/site/pack/packer/start/friendly-snippets/\"\n        vim.api.nvim_set_keymap(\"i\", \"<C-y>\",\n          \"vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-y>'\", {expr = true})\n        vim.api.nvim_set_keymap(\"s\", \"<C-y>\",\n          \"vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-y>'\", {expr = true})\n      " },
     loaded = true,
     path = "/home/chris/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    loaded = true,
+    path = "/home/chris/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ"
   },
   ["wiki.vim"] = {
     config = { '        -- the wiki root\n        vim.g.wiki_global_load = 0\n\n        vim.g.wiki_root = "~/notebook"\n\n        vim.g.wiki_filetypes = {"md"}\n\n        vim.g.wiki_link_target_type = "md"\n        vim.g.wiki_link_extension = ".md"\n\n        -- ~/.config/nvim/after/ftplugin/markdown.vim\n      ' },
@@ -263,22 +256,20 @@ time([[Config for python-syntax]], true)
         vim.g.python_highlight_space_errors = 0
       
 time([[Config for python-syntax]], false)
--- Config for: rust.vim
-time([[Config for rust.vim]], true)
-        -- dont overwrite vim settings
-        vim.g.rust_recommended_style = 0
-
-        -- use vim's conceal and symbols like âŸ¶â€€ and âŸ¹â€€ to style code
-        -- the unicode char size depends on the terminal supporting double wide chars
-        -- vim.g.rust_conceal = 1
-        -- vim.g.rust_conceal_mod_path = 1
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+try_loadstring('\27LJ\1\2ƒ\4\0\0\6\0\21\00024\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\0013\0\6\0004\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\v\0%\4\f\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\r\0%\4\14\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\15\0%\4\16\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\17\0%\4\18\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\19\0%\4\20\0\16\5\0\0>\1\5\1G\0\1\0,<cmd>Telescope lsp_document_symbols<cr>\15<leader>ts!<cmd>Telescope help_tags<cr>\15<leader>th\31<cmd>Telescope buffers<cr>\15<leader>tb!<cmd>Telescope live_grep<cr>\15<leader>tg"<cmd>Telescope find_files<cr>\15<leader>tf\6n\20nvim_set_keymap\bapi\bvim\1\0\1\fnoremap\2\rdefaults\1\0\0\1\0\1\20layout_strategy\tflex\nsetup\14telescope\frequire\0', "config", "telescope.nvim")
+time([[Config for telescope.nvim]], false)
+-- Config for: vim-vsnip
+time([[Config for vim-vsnip]], true)
+        vim.g.vsnip_snippet_dir =
+          "~/.local/share/nvim/site/pack/packer/start/friendly-snippets/"
+        vim.api.nvim_set_keymap("i", "<C-y>",
+          "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-y>'", {expr = true})
+        vim.api.nvim_set_keymap("s", "<C-y>",
+          "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-y>'", {expr = true})
       
-time([[Config for rust.vim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-        require('colorizer').setup({"*"}, {names = false})
-      
-time([[Config for nvim-colorizer.lua]], false)
+time([[Config for vim-vsnip]], false)
 -- Config for: wiki.vim
 time([[Config for wiki.vim]], true)
         -- the wiki root
@@ -296,10 +287,7 @@ time([[Config for wiki.vim]], true)
 time([[Config for wiki.vim]], false)
 -- Config for: vim-dirvish
 time([[Config for vim-dirvish]], true)
-          -- disable netrw
-          vim.g.loaded_netrw = 1
-          vim.g.loaded_netrwPlugin = 1
-        
+try_loadstring("\27LJ\1\2Ù\2\0\0\3\0\6\0\v4\0\0\0007\0\1\0'\1\1\0:\1\2\0004\0\0\0007\0\3\0007\0\4\0%\1\5\0)\2\1\0>\0\3\1G\0\1\0ˆ\2          command! -nargs=? -complete=dir Explore Dirvish <args>\n          command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>\n          command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>\n          \14nvim_exec\bapi\17loaded_netrw\6g\bvim\0", "config", "vim-dirvish")
 time([[Config for vim-dirvish]], false)
 -- Config for: vim-easy-align
 time([[Config for vim-easy-align]], true)
@@ -312,6 +300,26 @@ time([[Config for vim-fugitive]], true)
         vim.api.nvim_set_keymap("n", "<leader>gs", ":Git<cr>", {noremap = true})
       
 time([[Config for vim-fugitive]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+        require('colorizer').setup({ "*", "!packer", }, { names = false })
+      
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: rust.vim
+time([[Config for rust.vim]], true)
+        -- dont overwrite vim settings
+        vim.g.rust_recommended_style = 0
+
+        -- use vim's conceal and symbols like âŸ¶â€€ and âŸ¹â€€ to style code
+        -- the unicode char size depends on the terminal supporting double wide chars
+        -- vim.g.rust_conceal = 1
+        -- vim.g.rust_conceal_mod_path = 1
+      
+time([[Config for rust.vim]], false)
+-- Config for: sourcery
+time([[Config for sourcery]], true)
+vim.cmd("colorscheme sourcery")
+time([[Config for sourcery]], false)
 -- Config for: undotree
 time([[Config for undotree]], true)
         vim.api.nvim_set_keymap("n", "<F5>", ":UndotreeToggle<CR>", {noremap = true})
@@ -320,14 +328,6 @@ time([[Config for undotree]], true)
         vim.g.undotree_WindowLayout = 3
       
 time([[Config for undotree]], false)
--- Config for: sourcery
-time([[Config for sourcery]], true)
-vim.cmd("colorscheme sourcery")
-time([[Config for sourcery]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-try_loadstring('\27LJ\1\2ƒ\4\0\0\6\0\21\00024\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\0013\0\6\0004\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\v\0%\4\f\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\r\0%\4\14\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\15\0%\4\16\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\17\0%\4\18\0\16\5\0\0>\1\5\0014\1\a\0007\1\b\0017\1\t\1%\2\n\0%\3\19\0%\4\20\0\16\5\0\0>\1\5\1G\0\1\0,<cmd>Telescope lsp_document_symbols<cr>\15<leader>ts!<cmd>Telescope help_tags<cr>\15<leader>th\31<cmd>Telescope buffers<cr>\15<leader>tb!<cmd>Telescope live_grep<cr>\15<leader>tg"<cmd>Telescope find_files<cr>\15<leader>tf\6n\20nvim_set_keymap\bapi\bvim\1\0\1\fnoremap\2\rdefaults\1\0\0\1\0\1\20layout_strategy\tflex\nsetup\14telescope\frequire\0', "config", "telescope.nvim")
-time([[Config for telescope.nvim]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
         local npairs = require('nvim-autopairs')

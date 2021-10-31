@@ -4,12 +4,13 @@
 -- short cut to set options
 local o = vim.opt
 
--- make a directory if it does not exist
-local function mkdir_if_missing(dir_path)
+-- make a directory if it does not exist {{{
+function mkdir_if_missing(dir_path)
   if vim.fn.isdirectory(dir_path) == 0 then
     vim.cmd("silent !mkdir " .. dir_path)
   end
 end
+-- }}}
 
 -- security {{{
 -- mode lines allow per-file settings to be embedded in the file
@@ -75,7 +76,7 @@ o.colorcolumn = {
 o.statusline = table.concat({
   "",           -- will add a space from the separator
   -- "%n",      -- buffer number
-  "%{winnr()}",
+  "%{winnr()}", -- window number
   "%t",         -- file name, only the tail
   "%m",         -- buffer state
   "%r",         -- if the buffer is read only
@@ -162,12 +163,8 @@ o.formatoptions = o.formatoptions
 -- relativenumber {{{
 -- from https://github.com/jeffkreeftmeijer/vim-numbertoggle/
 -- toggle relativenumber
-
-local set_relative = "BufEnter,InsertLeave,WinEnter,CmdlineLeave,FocusGained"
+local set_relative   = "BufEnter,InsertLeave,WinEnter,CmdlineLeave,FocusGained"
 local set_norelative = "BufLeave,InsertEnter,WinLeave,CmdlineEnter,FocusLost"
-
--- local set_relative = "BufEnter,InsertLeave,WinEnter,CmdlineLeave"
--- local set_norelative = "BufLeave,InsertEnter,WinLeave,CmdlineEnter"
 
 vim.api.nvim_exec([[
 augroup RelativizeNum

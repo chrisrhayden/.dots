@@ -2,10 +2,14 @@
 
 set -e
 
+if oomman -vp notify-send ; then
+    notify-send 'setting screen lock'
+fi
+
 lockbg='/tmp/lock.png'
 
 maim "$lockbg"
 
-convert "$lockbg" -filter point -resize '10%' -resize '1000%' "$lockbg"
+convert "$lockbg" -filter point -resize '10%' -resize '1000%' -quality 50 "$lockbg"
 
-i3lock -u -i "$lockbg"
+i3lock -i "$lockbg"

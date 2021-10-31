@@ -22,11 +22,8 @@ rofi -no-lazy-grab -show drun \
     -columns 2 \
     -show-icons -icon-theme "Papirus" \
     -font "Fantasque Sans Mono 10" \
-    -color-enabled true \
-    -color-window "$CONFIG_ROFI_WINDOW" \
-    -color-normal "$CONFIG_ROFI_NORMAL" \
-    -color-active "$CONFIG_ROFI_ACTIVE" \
-    -color-urgent "$CONFIG_ROFI_URGENT"
+    -theme "~/.dots/scripts/rofi_theme.rofi.sh"
+
 
 # More Options
 # -fullscreen \

@@ -273,6 +273,12 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+grave move scratchpad
 bindsym $mod+grave scratchpad show
 
+# for_window [class="scratchpad"] floating enable, move scratchpad, scratchpad show
+# for_window [class="scratchpad"] fullscreen enable
+
+bindsym $mod+Shift+F4 exec --no-startup-id \
+    "alacritty --class \\"_scratchpad,_scratchpad\\""
+
 bindsym $mod+F1 exec --no-startup-id firefox
 bindsym $mod+F2 exec --no-startup-id firefox 'https://www.youtube.com/'
 bindsym $mod+Shift+F2 exec  --no-startup-id \
@@ -289,8 +295,8 @@ bindsym $mod+Tab exec --no-startup-id ~/.dots/scripts/menu
 # startup {{{
 # exec_always --no-startup-id autotiling
 exec --no-startup-id "~/.dots/scripts/startup_cmds.sh"
-exec --no-startup-id "~/.dots/scripts/make_layout.py --start-up"
+# exec --no-startup-id "~/.dots/scripts/make_layout.py --start-up"
 # }}}
 # }}}
 
-# vim:filetype=i3 foldmethod=marker:
+# vim:filetype=i3config foldmethod=marker:

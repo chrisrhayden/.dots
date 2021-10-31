@@ -5,38 +5,65 @@ return require("packer").startup(function()
     -- manage the packer instanse as well
     use "wbthomason/packer.nvim"
 
-    -- utils {{{
-    use "nvim-lua/popup.nvim"
-    use "nvim-lua/plenary.nvim"
-    -- }}}
-
     -- lsp {{{
     use "neovim/nvim-lspconfig"
-    -- use "hrsh7th/nvim-compe"
     use {
       "hrsh7th/nvim-cmp",
       requires = {
-        "hrsh7th/vim-vsnip",
+        "hrsh7th/cmp-vsnip",
         "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lsp",
       }
     }
 
+
     -- use "nvim-lua/lsp-status.nvim"
 
-    use "jose-elias-alvarez/null-ls.nvim"
-
-    use "jose-elias-alvarez/nvim-lsp-ts-utils"
+    -- use {
+    --   "jose-elias-alvarez/nvim-lsp-ts-utils",
+    --   requires = "jose-elias-alvarez/null-ls.nvim"
+    -- }
     -- }}}
 
     -- editor functionality {{{
-    -- treesitter {{{
-    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-    use "nvim-treesitter/nvim-treesitter-textobjects"
-    use "nvim-treesitter/playground"
+    -- -- treesitter {{{
+    -- use {
+    --   "nvim-treesitter/nvim-treesitter",
+    --   run = ":TSUpdate",
+    --   requires = {
+    --     "nvim-treesitter/nvim-treesitter-textobjects",
+    --     "nvim-treesitter/playground"
+    --   }
+    -- }
+    -- use {
+    --   "lewis6991/spellsitter.nvim",
+    --   config = function()
+    --     require('spellsitter').setup()
+    --   end
+    -- }
     -- }}}
 
-    -- fuzzy finder for lots of things like files, LSP symbols and other stuff
+    -- snippets {{{
+    use {
+      "hrsh7th/vim-vsnip",
+      config = [[
+        vim.g.vsnip_snippet_dir =
+          "~/.local/share/nvim/site/pack/packer/start/friendly-snippets/"
+        vim.api.nvim_set_keymap("i", "<C-y>",
+          "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-y>'", {expr = true})
+        vim.api.nvim_set_keymap("s", "<C-y>",
+          "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-y>'", {expr = true})
+      ]],
+      requires = {
+        "hrsh7th/vim-vsnip-integ",
+        "rafamadriz/friendly-snippets"
+      }
+    }
+    -- }}}
 
+
+    -- telescope {{{
+    -- fuzzy finder for lots of things like files, LSP symbols and other stuff
     use {
       "nvim-telescope/telescope.nvim",
       config = function()
@@ -62,8 +89,12 @@ return require("packer").startup(function()
 
         vim.api.nvim_set_keymap("n", "<leader>ts",
           "<cmd>Telescope lsp_document_symbols<cr>",  opts)
-      end
+      end,
+      requires = {
+        "nvim-lua/plenary.nvim"
+      }
     }
+    -- }}}
 
     -- get suggestions in the wilder menu
     use "gelguy/wilder.nvim"
@@ -79,6 +110,13 @@ return require("packer").startup(function()
     use "tpope/vim-endwise"
     -- repeat plugin commands like surround
     use "tpope/vim-repeat"
+    -- work with variants of words for abbreviations
+    use "tpope/vim-abolish"
+    -- readline bindings in insert mode
+    use "tpope/vim-rsi"
+    -- run cmds like make async and attach at anytime
+    -- i never use this but i probably should
+    -- use "tpope/vim-dispatch"
     -- a git wrapper
     use {
       "tpope/vim-fugitive",
@@ -87,13 +125,6 @@ return require("packer").startup(function()
       ]]
       -- after/ftplugin/fugitive.vim
     }
-    -- work with variants of words for abbreviations
-    use "tpope/vim-abolish"
-    -- readline bindings in insert mode
-    use "tpope/vim-rsi"
-    -- run cmds like make async and attach at anytime
-    -- i never use this but i probably should
-    -- use "tpope/vim-dispatch"
     -- }}}
 
     -- align a group of text like, useful every now and then
@@ -124,11 +155,16 @@ return require("packer").startup(function()
     -- vim like access to the file system, idk how to explain shortly
     use {
       "justinmk/vim-dirvish",
-        config = [[
+        config = function()
           -- disable netrw
           vim.g.loaded_netrw = 1
-          vim.g.loaded_netrwPlugin = 1
-        ]]
+          -- vim.g.loaded_netrwPlugin = 1
+          vim.api.nvim_exec([[
+          command! -nargs=? -complete=dir Explore Dirvish <args>
+          command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+          command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
+          ]], false)
+        end
     }
 
     -- show undo's in a tree so you can see the divergent paths
@@ -231,14 +267,17 @@ return require("packer").startup(function()
     }
 
     -- render markdown in a browser
-    use {"iamcco/markdown-preview.nvim",  run = "cd app && yarn install"}
+    use {
+      "iamcco/markdown-preview.nvim",
+      run = "cd app && yarn install"
+    }
 
     -- a very fast, multi-syntax context-sensitive color name highlighter, #5fafaf
     -- use "ap/vim-css-color"
     use {
       "norcalli/nvim-colorizer.lua",
       config = [[
-        require('colorizer').setup({"*"}, {names = false})
+        require('colorizer').setup({ "*", "!packer", }, { names = false })
       ]]
     }
     -- }}}

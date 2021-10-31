@@ -761,9 +761,10 @@ source_nvm() {
 
 # source things {{{
 
+# "${HOME}/.dots/scripts/config_vars.sh"
 xsource "${HOME}/.dots/scripts/bash_aliases.bash" \
     "${HOME}/.dots/scripts/to.sh" \
-    "${HOME}/.dots/scripts/mpv_tools.sh" 
+    "${HOME}/.dots/scripts/mpv_tools.sh" \
 
 # eval the LS_COLORS variable from dircolors -b file
 [[ -f ~/.dir_colors ]] && eval "$(dircolors -b ~/.dir_colors)"
