@@ -2,10 +2,10 @@
 -- mappings
 --------------------------------------------------------------------------------
 
-local map = vim.api.nvim_set_keymap
+local nore_opts = { noremap = true }
+local nore_silent_opts = { noremap = true, silent = true }
 
-local nore_opts = {noremap = true}
-local nore_silent_opts = {noremap = true, silent = true}
+local map = vim.api.nvim_set_keymap
 
 -- commands {{{
 vim.cmd("command W :w")
@@ -18,14 +18,14 @@ map("", "Q", "<nop>", {})
 
 -- i never want just the help index page
 map("", "<help>", "<nop>", {})
-map("", "<f1>",   "<nop>", {})
+map("", "<f1>", "<nop>", {})
 map("i", "<f1>", "<nop>", {})
 
 -- disable Arrow keys
 -- this is still kinda nice as scroll is sometimes arrow keys or something
-map("", "<up>",    "<nop>", {})
-map("", "<down>",  "<nop>", {})
-map("", "<left>",  "<nop>", {})
+map("", "<up>", "<nop>", {})
+map("", "<down>", "<nop>", {})
+map("", "<left>", "<nop>", {})
 map("", "<right>", "<nop>", {})
 -- }}}
 
@@ -35,12 +35,14 @@ map("n", "<leader>h", ":set hlsearch!<cr>", nore_opts)
 
 -- movements {{{
 -- more then 5 to jump list; from primeagen
-map("n", "j", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'j'", {
-  noremap = true, expr = true
+map("n", "j", '(v:count > 5 ? "m\'" . v:count : "") . \'j\'', {
+  noremap = true,
+  expr = true,
 })
 
-map("n", "k", "(v:count > 5 ? \"m'\" . v:count : \"\") . 'k'", {
-  noremap = true, expr = true
+map("n", "k", '(v:count > 5 ? "m\'" . v:count : "") . \'k\'', {
+  noremap = true,
+  expr = true,
 })
 -- }}}
 
@@ -68,8 +70,6 @@ map("v", "K", ":m '<-2<cr>gv=gv", nore_opts)
 map("n", "<leader>yf", 'gg"+yG``', nore_opts)
 -- yank line
 map("n", "<leader>yy", '"+yy', nore_opts)
--- yank to end of line
-map("n", "<leader>Y",  '"+y$', nore_opts)
 -- yank word
 map("n", "<leader>yw", '"+yw', nore_opts)
 -- }}}
@@ -127,7 +127,7 @@ map("n", "<M-=>", "<C-W><C-=>", nore_opts)
 
 -- for anything
 map("n", "<leader>C", ":close<CR>", nore_opts)
-map("n", "<leader>o", ":only<CR>", nore_opts)
+map("n", "<leader>O", ":only<CR>", nore_opts)
 
 -- quickfix
 map("n", "<leader>co", ":copen<CR>", nore_opts)
@@ -144,16 +144,15 @@ map("n", "<leader>ln", ":lnewer<CR>", nore_opts)
 -- }}}
 
 -- tab {{{
--- map("n", "<leader>tp", ":tabprevious<cr>", nore_opts)
--- map("n", "<leader>tn", ":tabnext<cr>", nore_opts)
--- map("n", "<leader>tN", ":tabnew<cr>", nore_opts)
--- -- }}}
+map("n", "<leader>tp", ":tabprevious<cr>", nore_opts)
+map("n", "<leader>tn", ":tabnext<cr>", nore_opts)
+map("n", "<leader>tN", ":tabnew<cr>", nore_opts)
+-- }}}
 
 -- terminal {{{
 -- make ecs escape terminal
--- map("n", "<Esc>", "<C-\><C-n>", nore_opts)
+map("t", "<Esc>", [[<C-\><C-n>]], nore_opts)
 
-map("n", "<leader>te", ":split <bar> terminal<cr>", nore_opts)
 map("n", "<leader>`", ":split <bar> terminal<cr>", nore_opts)
 -- }}}
 

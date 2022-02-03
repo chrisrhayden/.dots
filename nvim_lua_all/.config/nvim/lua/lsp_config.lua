@@ -1,214 +1,309 @@
+--------------------------------------------------------------------------------
+-- lsp config
+--------------------------------------------------------------------------------
+
+CLIENT_NAMES = {}
+
 local nvim_lsp = require("lspconfig")
+local lsp_status = require("lsp-status")
+-- local null_ls = require("null-ls")
 
--- require("null-ls").config {}
+function ShowLineDiagnostics()
+  local wins = vim.api.nvim_list_wins()
+  local show = true
 
--- require("lspconfig")["null-ls"].setup {}
+  for _, win in pairs(wins) do
+    local win_type = vim.fn.win_gettype(win)
 
-local on_attach = function(client, bufnr)
-   vim.lsp.handlers["textDocument/hover"] =
-     vim.lsp.with(vim.lsp.handlers.hover, {focusable = false})
+    if win_type == "popup" then
+      show = false
+    end
+  end
 
-   vim.lsp.handlers["textDocument/signatureHelp"] =
-     vim.lsp.with(vim.lsp.handlers.hover, {focusable = false})
+  if show == true then
+    vim.diagnostic.open_float(nil, {
+      focusable = false,
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter" },
+      border = "rounded",
+    })
+  end
+end
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    underline = true,
-    signs = true,
-  })
+function LspStatus()
+  if #vim.lsp.buf_get_clients() > 0 then
+    local progress = lsp_status.status_progress()
 
+    if progress ~= nil and progress ~= "" then
+      return progress
+    else
+      return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
+    end
+  end
+
+  return ""
+end
+
+local function on_attach(client, bufnr)
   -- mappings
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function bmap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
 
-  local opts = { noremap=true, silent=true }
+  local function bopt(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
 
-  local goto_opts = "{popup_opts = {focusable = false}}"
+  bopt("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  local opts = { noremap = true, silent = true }
+
+  local goto_opts = "{float = {focusable = false, border = 'rounded'}}"
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap("n", "<space>n",
-    "<cmd>lua vim.lsp.diagnostic.goto_next(" .. goto_opts .. ")<cr>", opts)
+  bmap(
+    "n",
+    "<space>n",
+    "<cmd>lua vim.diagnostic.goto_next(" .. goto_opts .. ")<cr>",
+    opts
+  )
 
-  buf_set_keymap("n", "<space>N",
-    "<cmd>lua vim.lsp.diagnostic.goto_prev(" .. goto_opts .. ")<cr>", opts)
+  bmap(
+    "n",
+    "<space>N",
+    "<cmd>lua vim.diagnostic.goto_prev(" .. goto_opts .. ")<cr>",
+    opts
+  )
 
-  buf_set_keymap("n", "[d",
-    "<cmd>lua vim.lsp.diagnostic.goto_prev(" .. goto_opts .. ")<cr>", opts)
+  bmap(
+    "n",
+    "[d",
+    "<cmd>lua vim.diagnostic.goto_prev(" .. goto_opts .. ")<cr>",
+    opts
+  )
 
-  buf_set_keymap("n", "]d",
-    "<cmd>lua vim.lsp.diagnostic.goto_next(" .. goto_opts .. ")<cr>", opts)
+  bmap(
+    "n",
+    "]d",
+    "<cmd>lua vim.diagnostic.goto_next(" .. goto_opts .. ")<cr>",
+    opts
+  )
 
-  buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-  buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<cr>", opts)
-  buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-  buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+  bmap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+  bmap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<cr>", opts)
+  bmap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+  bmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+  bmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 
+  bmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
-  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", opts)
+  bmap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  bmap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 
-  buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-
-  buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", opts)
-  buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
+  bmap("n", "<space>q", "<cmd>lua vim.diagnostic.set_loclist()<cr>", opts)
+  bmap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 
   -- workspace mappings
-  buf_set_keymap("n", "<space>wa",
-    "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", opts)
+  bmap(
+    "n",
+    "<space>wa",
+    "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>",
+    opts
+  )
 
-    buf_set_keymap("n",
-    "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", opts)
+  bmap(
+    "n",
+    "<space>wr",
+    "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>",
+    opts
+  )
 
-  buf_set_keymap("n", "<space>wl",
-    "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", opts)
+  bmap(
+    "n",
+    "<space>wl",
+    "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
+    opts
+  )
 
-  -- buf_set_keymap("n", "<leader>k", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-  -- buf_set_keymap("n", "<space>e",
-  --   "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", opts)
+  lsp_status.on_attach(client)
+
+  if vim.tbl_contains(CLIENT_NAMES, client.name) == false then
+    table.insert(CLIENT_NAMES, client.name)
+  end
+
   -- auto format files on save/write
-  --
   -- this wont trow an error for file types that dont have an lsp active i guess
-  vim.api.nvim_exec([[
+  vim.api.nvim_exec(
+    [[
   augroup AutoFormater
     autocmd!
     autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
   augroup END
-  ]], false)
+  ]],
+    false
+  )
 
-
-  vim.api.nvim_exec([[
+  vim.api.nvim_exec(
+    [[
   augroup HoldForDiagnostics
     autocmd!
-    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})
+    autocmd CursorHold * lua ShowLineDiagnostics()
   augroup END
-  ]], false)
+  ]],
+    false
+  )
 end
 
--- local tsserver_attach = function(client, bufnr)
---   on_attach(client, bufnr)
+local function BasicSettings()
+  return {
+    capabilities = require("cmp_nvim_lsp").update_capabilities(
+      vim.lsp.protocol.make_client_capabilities()
+    ),
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  }
+end
 
---   -- client.resolved_capabilities.document_formatting = false
+local function CSettings()
+  local server_settings = BasicSettings()
 
---   local ts_utils = require("nvim-lsp-ts-utils")
+  server_settings["on_attach"] = function(client, bufnr)
+    on_attach(client, bufnr)
 
---   ts_utils.setup {
---     debug = false,
---     disable_commands = false,
---     enable_import_on_completion = false,
+    vim.api.nvim_buf_set_keymap(
+      bufnr,
+      "n",
+      "<space><BS>",
+      "<cmd>ClangdSwitchSourceHeader<cr>",
+      { noremap = true, silent = true }
+    )
+  end
 
---     -- import all
---     import_all_timeout = 5000, -- ms
---     import_all_priorities = {
---         buffers = 4, -- loaded buffer names
---         buffer_content = 3, -- loaded buffer content
---         local_files = 2, -- git files or files with relative path markers
---         same_file = 1, -- add to existing import statement
---     },
---     import_all_scan_buffers = 100,
---     import_all_select_source = false,
+  return server_settings
+end
 
---     -- eslint
---     eslint_enable_code_actions = true,
---     eslint_enable_disable_comments = true,
---     eslint_bin = "eslint",
---     eslint_config_fallback = nil,
---     eslint_enable_diagnostics = true,
+local function CSharpSettings()
+  local server_settings = BasicSettings()
 
---     -- formatting
---     enable_formatting = false,
---     formatter = "prettier",
---     formatter_config_fallback = nil,
+  server_settings["cmd"] = {
+    "/usr/bin/omnisharp",
+    "--languageserver",
+    "--hostPID",
+    tostring(vim.fn.getpid()),
+  }
 
---     -- update imports on file move
---     update_imports_on_move = false,
---     require_confirmation_on_move = false,
---     watch_dir = nil,
---   }
+  return server_settings
+end
 
---   -- required to fix code action ranges
---   ts_utils.setup_client(client)
+local function LuaSettings()
+  local server_settings = BasicSettings()
 
---   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gs", ":TSLspOrganize<CR>", {
---   --   noremap = true, silent = true
---   -- })
+  -- setup up nvim config files
+  local runtime_path = vim.split(package.path, ";")
+  table.insert(runtime_path, "lua/?.lua")
+  table.insert(runtime_path, "lua/?/init.lua")
 
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>qq", ":TSLspFixCurrent<CR>", {
---     noremap = true, silent = true
---   })
+  server_settings["cmd"] = {
+    "/usr/bin/lua-language-server",
+    "-E",
+    "/usr/lib/lua-language-server/main.lua",
+  }
+  server_settings["settings"] = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- make "vim" global
+        globals = { "vim", "use" },
+      },
+      workspace = {
+        -- add neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  }
 
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gr", ":TSLspRenameFile<CR>", {
---     noremap = true, silent = true
---   })
+  return server_settings
+end
 
---   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gi", ":TSLspImportAll<CR>", {
---     noremap = true, silent = true
---   })
--- end
+local function RustSettings()
+  local rust_settings = BasicSettings()
 
-local c_attach = function (client, bufnr)
-  on_attach(client, bufnr)
+  rust_settings["settings"] = {
+    ["rust-analyzer"] = {
+      checkOnSave = { command = "clippy" },
+    },
+  }
 
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<space><BS>",
-    "<cmd>ClangdSwitchSourceHeader<cr>", {noremap = true, silent = true})
+  return rust_settings
 end
 
 -- Use a loop to conveniently call "setup" on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  clangd = c_attach,
-  pyright = on_attach,
-  rust_analyzer = on_attach,
-  tsserver = on_attach,
-  pyright = on_attach,
+  omnisharp = CSharpSettings,
+  clangd = CSettings,
+  pyright = BasicSettings,
+  rust_analyzer = RustSettings,
+  tsserver = BasicSettings,
+  sumneko_lua = LuaSettings,
 }
 
-for lsp, attach_func in pairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = attach_func,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
+for lsp, settings_func in pairs(servers) do
+  nvim_lsp[lsp].setup(settings_func())
 end
 
-local cmp = require("cmp")
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end
-  },
-  -- mapping = { },
-  completion = {
-    completeopt  = "menuone,noselect"
-  },
-  preselect = cmp.PreselectMode.None,
+require("null-ls").setup({
   sources = {
-    { name = "vsnip" },
-    { name = "nvim_lsp" },
-    { name = "buffer" },
-  }
+    require("null-ls").builtins.formatting.stylua,
+  },
 })
 
-vim.fn.sign_define("LspDiagnosticsSignError", {
+lsp_status.config({
+  indicator_errors = "",
+  indicator_warnings = "",
+  indicator_info = "",
+  indicator_hint = "",
+  indicator_ok = "",
+  status_symbol = "",
+})
+
+lsp_status.register_progress()
+
+vim.diagnostic.config({
+  virtual_text = false,
+  underline = false,
+  signs = true,
+  update_in_insert = false,
+})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  { focusable = false, border = "rounded" }
+)
+
+vim.fn.sign_define("DiagnosticSignError", {
   text = "",
-  texthl = "LspDiagnosticsSignError",
+  texthl = "DiagnosticSignError",
 })
 
-vim.fn.sign_define("LspDiagnosticsSignWarning", {
+vim.fn.sign_define("DiagnosticSignWarn", {
   text = "",
-  texthl = "LspDiagnosticsSignWarning",
+  texthl = "DiagnosticSignWarn",
 })
 
-vim.fn.sign_define("LspDiagnosticsSignInformation", {
+vim.fn.sign_define("DiagnosticSignInfo", {
   text = "",
-  texthl = "LspDiagnosticsSignInformation",
+  texthl = "DiagnosticSignInfo",
 })
 
-vim.fn.sign_define("LspDiagnosticsSignHint", {
+vim.fn.sign_define("DiagnosticSignHint", {
   text = "",
-  texthl = "LspDiagnosticsSignHint",
+  texthl = "DiagnosticSignHint",
 })

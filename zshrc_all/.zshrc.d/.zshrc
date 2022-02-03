@@ -171,6 +171,7 @@ export NLTK_DATA
 function xsource () {
     while (( ${#argv} > 0 )) ; do
         if [[ -r "$1" ]]; then
+            # echo "$1"
             source "$1"
         else
             printf 'file does not exist: %s\n' \

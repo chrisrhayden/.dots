@@ -8,9 +8,7 @@ AAAAHAHAHAHHAHAHAHAAHAHAHAHAHAHAHH
 
 - stow to symlink all the dirs/files to the required location
 
-- curl for the vim plugin manger
-
-- git & base-devel for the for the aur helper
+- git & base-devel for the for the aur helper and packer
 
 
 ## usage

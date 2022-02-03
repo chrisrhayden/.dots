@@ -105,12 +105,34 @@ cdfzf() {
     cd "$(echo "$find_out" | fzf)"
 }
 
+shutdown_in() {
+    local count
+    count="$1"
+
+    if ! [[ $count =~ '^[0-9]+$' ]]; then
+        printf "did not get a number to count down\n"
+    fi
+
+    while (($count > 0)); do
+        printf 'shut down in %s\n' "$count"
+        count=$((count - 1))
+        sleep 1
+    done
+
+    shutdown now
+}
 
 get_pacman_mirrors() {
     echo "WARNING very slow (sent to stderr)" 1>&2
     reflector --country us --fastest 20  --protocol https --sort rate
 }
 # }}}
+
+img() {
+    if [[ $TERM == *kitty* ]]; then
+        kitty + icat "$@"
+    fi
+}
 
 to_lower() {
     tr '[:upper:]' '[:lower:]'
@@ -128,7 +150,6 @@ clone_xsel() {
     fi
 }
 
-# misc {{{
 today() {
     printf '\n%s\n%b%s%b\n' \
         "$(date +'%-l:%M%P')" \
@@ -158,7 +179,6 @@ getvids() {
         --output '/mnt/linuxstorage/shows/youtube/%(title)s_%(id)s.%(ext)s' "$@"
 }
 # }}}
-# }}}
 
 # editor {{{
 # set up config file aliases {{{
@@ -173,10 +193,14 @@ getvids() {
     dot_files[brconf]='"${HOME}/.bashrc"'
     dot_files[baconf]='"${HOME}/.dots/scripts/bash_aliases.bash"'
     dot_files[zrconf]='"${HOME}/.zshrc.d/.zshrc"'
-    dot_files[nvconf]='"${HOME}/.config/nvim/init.lua"'
     dot_files[alconf]='"${HOME}/.config/alacritty/alacritty.yml"'
     dot_files[poconf]='"${HOME}/.config/polybar/config.ini"'
     dot_files[i3conf]='"${HOME}/.config/i3/config"'
+    dot_files[weconf]='"${HOME}/.config/wezterm/wezterm.lua"'
+    dot_files[kiconf]='"${HOME}/.config/kitty/kitty.conf"'
+
+    dot_files[nvconf]='+"cd ${HOME}/.config/nvim" "${HOME}/.config/nvim/init.lua"'
+    dot_files[notes]='+"cd ${HOME}/notebook" "${HOME}/notebook/index.org"'
 
     keys=''
     dots_list=''

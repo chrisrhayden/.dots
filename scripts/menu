@@ -22,7 +22,6 @@ rofi -no-lazy-grab -show drun \
     -columns 2 \
     -show-icons -icon-theme "Papirus" \
     -font "Fantasque Sans Mono 10" \
-    -theme "~/.dots/scripts/rofi_theme.rofi.sh"
 
 
 # More Options

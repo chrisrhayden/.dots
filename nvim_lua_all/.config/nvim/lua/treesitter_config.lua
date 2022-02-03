@@ -1,19 +1,35 @@
-require'nvim-treesitter.configs'.setup {
-  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+--------------------------------------------------------------------------------
+-- treesitter
+--------------------------------------------------------------------------------
+
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+parser_config.org = {
+  install_info = {
+    url = "https://github.com/milisims/tree-sitter-org",
+    revision = "main",
+    files = { "src/parser.c", "src/scanner.cc" },
+  },
+  filetype = "org",
+}
+
+require("nvim-treesitter.configs").setup({
   ensure_installed = "maintained",
   highlight = {
     enable = true,
+    -- disable = {"org"},
+    additional_vim_regex_highlighting = true,
   },
-  indent = {
-    enable = true,
-  },
+  -- indent = {
+  --   enable = true,
+  -- },
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<space>gnn",
-      node_incremental = "<space>grn",
-      scope_incremental = "<space>grc",
-      node_decremental = "<space>grm",
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
     },
   },
   textobjects = {
@@ -41,7 +57,7 @@ require'nvim-treesitter.configs'.setup {
     },
     select = {
       enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim 
+      -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = false,
       keymaps = {
         ["af"] = "@function.outer",
@@ -52,25 +68,17 @@ require'nvim-treesitter.configs'.setup {
         ["ab"] = "@block.outer",
       },
     },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>s"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>S"] = "@parameter.inner",
+      },
+    },
   },
   playground = {
     enable = true,
-    disable = {},
-    -- Debounced time for highlighting nodes in the playground from source code
-    updatetime = 25,
-    -- Whether the query persists across vim sessions
-    persist_queries = false,
-    keybindings = {
-      toggle_query_editor = 'o',
-      toggle_hl_groups = 'i',
-      toggle_injected_languages = 't',
-      toggle_anonymous_nodes = 'a',
-      toggle_language_display = 'I',
-      focus_language = 'f',
-      unfocus_language = 'F',
-      update = 'R',
-      goto_node = '<cr>',
-      show_help = '?',
-    },
   },
-}
+})

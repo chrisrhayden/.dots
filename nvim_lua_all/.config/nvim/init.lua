@@ -16,13 +16,14 @@ require("settings")
 -- lua/mappings.lua
 require("mappings")
 
+-- lua/cmp_config.lua
+require("cmp_config")
+
 -- lua/lsp_config.lua
 require("lsp_config")
 
--- this does not update the tree if highlighting is not enabled, and
--- highlighting does not work well with spellchecking
 -- lua/treesitter_config.lua
--- require("treesitter_config")
+require("treesitter_config")
 
 vim.cmd("runtime wilder_config.vim")
 
@@ -38,56 +39,62 @@ vim.cmd("runtime wilder_config.vim")
 
 -- notes {{{
 --------------------------------------------------------------------------------
--- security:
+-- * security:
 --   `nomodeline` should be set but there really isn't a good replacement for
---   this functionality without crazy setup and config since `noexrc` is on by
---   default so `secure` should not be necessary but i set both to on anyway
+--   this functionality without crazy setup and config
+--
+--   since `noexrc` is on by default so `secure` should not be necessary but i
+--   set both to on anyway
 
--- neovim:
+-- * neovim:
 --   neovim has much better defaults, too many settings are changed or have
 --   defaults to mention or keep commented out but will need to be set if i ever
---   use this rc with vanilla vim neovim's default directory's are pretty good,
---   putting most things in to $XDG_DATA_HOME/nvim/{thing} but `backupdir` still
---   try's for PWD see `:help vim-differences` in neovim for the differences
+--   use this rc with vanilla vim
+--
+--   neovim's default directory's are pretty good, putting most things in to
+--   $XDG_DATA_HOME/nvim/{thing} but `backupdir` still try's for PWD see
+--
+--   `:help vim-differences` in neovim for the differences
 
--- cache:
+-- * cache:
 --   vim can make a lot of files (e.g. swap, undo, backup, etc,) so there is
 --   potential that it will fill up disk space, especially undo's i think.
 --   maybe a cron/systemd job to clean up every now and then or if a directory
 --   gets to big
 
--- tabstop:
+-- * tabstop:
 --   it sounds like you should be able to leave `tabstop` alone but there are so
 --   many edge cases that it doesn't really work well, along with this i want
 --   real tabs to be the equivalent amount of spaces visually so code and other
 --   text lines up well, so it becomes much easier to set `tabstop` and have the
 --   other tab settings like `expandtab` and `shiftwidth` use `tabstop`
 
--- spell & thesaurus:
+-- * spell & thesaurus:
 --   spelling/thesaurus files can be found here if vim does not download them
 --   https://cgit.freedesktop.org/libreoffice/dictionaries/tree/en
 
--- alternative settings:
+-- * alternative settings:
 --   its very cumbersome to have alternative settings spread out, having
 --   settings in a central file like `web.vim` can help but still sucks
 
--- sources:
+-- * sources:
 --   a lot of things in my rc come from stackoverflow but i didnt credit people
---   at first, but i have started to when it seems appropriate sigh, i cant find
---   where i got a lot of my mappings, I've also changed them a lot by now, i
---   think an issues is the projects i think i got them from have changed,
+--   at first, but i have started to when it seems appropriate, sigh, i cant
+--   find where i got a lot of my mappings, I've also changed them a lot by now,
+--   i think an issues is the projects i think i got them from have changed,
 --   anyway i think its mostly these projects in no order
 --   https://github.com/liuchengxu/vim-better-default/
 --   https://github.com/SpaceVim/SpaceVim
 
--- misc:
+-- * misc:
 --   netrw is needed for web access like opening or downloading links
 
--- cool but unused:
+-- * cool but unused:
 --   insert unicode text instead of regular ascii in vim like 𝔳𝔦𝔪 or ᵛⁱᵐ
---   Plug 'segeljakt/vim-isotope'
+--     "segeljakt/vim-isotope"
+--
 --   a startup dashboard
---   Plug 'hardcoreplayers/dashboard-nvim'
+--     "hardcoreplayers/dashboard-nvim"
 -- }}}
 
 -- todo's {{{
@@ -112,6 +119,21 @@ vim.cmd("runtime wilder_config.vim")
 -- * dont jump to the first search with *
 --   https://stackoverflow.com/questions/4256697/
 --   vim-search-and-highlight-but-do-not-jump
+-- * a call tree
+--   https://github.com/ldelossa/calltree.nvim
+-- * a completion plugin that is supposed to be fast
+--   https://github.com/ms-jpq/coq_nvim
+-- * a bunch of neovim stuff
+--   https://www.reddit.com/r/neovim/comments/o20w3z/
+--   what_are_your_favorite_neovim_plugins_exclusive/
+-- * make diagrams in vim
+--   https://github.com/jbyuki/venn.nvim
+-- * improve increment/decrement
+--   https://github.com/monaqa/dial.nvim
+-- * a file mangier
+--   https://github.com/tamago324/lir.nvim
+-- * a prject manager
+--   https://github.com/ahmedkhalf/project.nvim
 -- }}}
 
 -- vim: foldmethod=marker

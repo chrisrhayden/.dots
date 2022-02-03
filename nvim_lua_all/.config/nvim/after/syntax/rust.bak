@@ -14,7 +14,7 @@ syn match rustNiceOperator "=>" contains=rustFatRightArrowHead,rustFatRightArrow
 " syn match rustNiceOperator /\<\@!_\(_*\>\)\@=/ conceal cchar=′
 
 " For those who don't want to see `pub`...
-if get(g:, 'my_rust_conceal_pub', 0)
+if get(g:, "my_rust_conceal_pub", 0)
     syn match rustPublicSigil contained "pu" conceal cchar=＊
     syn match rustPublicRest contained "b" conceal cchar= 
     syn match rustNiceOperator "pub " contains=rustPublicSigil,rustPublicRest

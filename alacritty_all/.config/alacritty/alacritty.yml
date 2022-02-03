@@ -15,22 +15,32 @@ mouse:
 font:
   normal:
     # family: Hack Nerd Font
-    family: FiraCode Nerd Font Mono
+    # family: SourceCodePro
+    # family: FiraCode Nerd Font Mono
+    family: Cartograph CF
     style: Regular
 
-  bold:
-    family: FiraCode Nerd Font Mono
-    style: Bold
-
-  italic:
-    family: Fira Mono
-    style: Italic
-
-  bold_italic:
-    family: Fira Mono
-    style: Bold Italic
-
+  # bold:
+  #   family: FiraCode Nerd Font Mono
+  #   style: Bold
+  #
+  # italic:
+  #   family: Fira Mono
+  #   style: Italic
+  #
+  # bold_italic:
+  #   family: Fira Mono
+  #   style: Bold Italic
+  #
   size: 12
+  # offset:
+  #   x: 0
+  #   y: -6
+  # glyph_offset:
+  #   x: 0
+  #   y: -2
+
+
 # }}}
 
 # colors {{{
