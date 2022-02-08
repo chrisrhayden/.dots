@@ -1,0 +1,7 @@
+configuration {
+    modi: "drun";
+    font: "Fira Code 12";
+    display-name: "> ";
+}
+
+@theme "/home/chris/.dots/scripts/rofi/basic_theme.rasi"

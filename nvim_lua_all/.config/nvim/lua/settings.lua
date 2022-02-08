@@ -46,7 +46,8 @@ o.wrap = false
 -- minimum lines to keep above and below the cursor
 o.scrolloff = 4
 -- minimum characters between the cursor and the sides similar to scrolloff
-o.sidescrolloff = 10
+-- o.sidescrolloff = 10
+o.sidescrolloff = 4
 -- o.colors to be very close to gui vim, set with color scheme
 o.termguicolors = true
 -- set whether syntax with the conceal attribute is shown

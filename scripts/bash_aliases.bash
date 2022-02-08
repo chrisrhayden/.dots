@@ -200,7 +200,7 @@ getvids() {
     dot_files[kiconf]='"${HOME}/.config/kitty/kitty.conf"'
 
     dot_files[nvconf]='+"cd ${HOME}/.config/nvim" "${HOME}/.config/nvim/init.lua"'
-    dot_files[notes]='+"cd ${HOME}/notebook" "${HOME}/notebook/index.org"'
+    dot_files[org]='+"cd ${HOME}/notebook" "${HOME}/notebook/index.org"'
 
     keys=''
     dots_list=''

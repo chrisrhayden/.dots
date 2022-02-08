@@ -1,0 +1,7 @@
+configuration {
+    location: 5;
+    xoffset: -10;
+    yoffset: -45;
+}
+
+@import "basic_config.rasi"

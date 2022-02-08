@@ -1,0 +1,12 @@
+NOTE_FILE="${HOME}/notebook/notes.txt"
+
+if [[ -d $NOTE_FILE ]]; then
+    printf "note file is a dir\n"
+    exit 1
+elif ! [[ -e $NOTE_FILE ]]; then
+    touch "$NOTE_FILE"
+fi
+
+printf '%s: %s\n' "$(date +"%a %F")" "$*" | tee -a $NOTE_FILE
+
+# vim: filetype=bash

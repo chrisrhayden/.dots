@@ -1,5 +1,5 @@
 configuration {
-    modi: "window,run,drun,ssh";
+/*  modi: "window,run,ssh";*/
 /*  font: "mono 12";*/
 /*  location: 0;*/
 /*  yoffset: 0;*/
@@ -42,9 +42,9 @@ configuration {
 /*  scroll-method: 0;*/
 /*  window-format: "{w}    {c}   {t}";*/
 /*  click-to-exit: true;*/
-/*  theme: ;*/
 /*  max-history-size: 25;*/
 /*  combi-hide-mode-prefix: false;*/
+/*  combi-display-format: "{mode} {text}";*/
 /*  matching-negate-char: '-' /* unsupported */;*/
 /*  cache-dir: ;*/
 /*  window-thumbnail: false;*/
@@ -58,7 +58,7 @@ configuration {
 /*  display-windowcd: ;*/
 /*  display-run: ;*/
 /*  display-ssh: ;*/
-    display-drun: "Apps";
+/*  display-drun: ;*/
 /*  display-combi: ;*/
 /*  display-keys: ;*/
 /*  display-filebrowser: ;*/

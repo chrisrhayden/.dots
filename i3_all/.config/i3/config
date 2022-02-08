@@ -291,7 +291,7 @@ bindsym $mod+F6 exec --no-startup-id ~/.dots/scripts/make_layout.py --layout inf
 
 bindsym $mod+F12 exec --no-startup-id blurlock
 
-bindsym $mod+Tab exec --no-startup-id ~/.dots/scripts/menu
+bindsym $mod+Tab exec --no-startup-id ~/.dots/scripts/rofi/menu
 # }}}
 
 # startup {{{

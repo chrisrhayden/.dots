@@ -453,7 +453,7 @@ require("packer").startup(function()
       require("orgmode").setup({
         org_agenda_files = { "~/notebook/*" },
         org_default_notes_file = "~/notebook/index.org",
-        org_hide_emphasis_markers = true,
+        -- org_hide_emphasis_markers = true,
         org_indent_mode = "noindent",
         org_blank_before_new_entry = {
           heading = true,

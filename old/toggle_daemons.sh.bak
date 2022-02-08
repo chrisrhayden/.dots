@@ -1,0 +1,40 @@
+#!/bin/bash
+
+notify_send() {
+    if hash notify-send; then
+        notify-send "$1"
+    fi
+}
+
+
+rofi_menu=''
+
+daemons=( $(sed -e '/^#/ d' ~/.dots/scripts/daemons.txt) )
+
+for da in ${daemons[@]}; do
+    if pgrep -x "$da" &>/dev/null ; then
+        rofi_menu+=" ${da}|"
+    else
+        rofi_menu+=" ${da}|"
+    fi
+done
+
+# remove the trailing | from the menu string
+rofi_menu="${rofi_menu%|}"
+
+# # Launch Rofi
+choose="$(
+    rofi -config ~/.dots/scripts/rofi_config.rasi -dmenu -sep '|' <<< $rofi_menu
+)"
+
+# get just the daemon cmd from the menu string
+daemon_cmd="${choose##* }"
+
+if [[ $choose == * ]]; then
+    notify_send "stopping $daemon_cmd"
+    pkill "$daemon_cmd"
+
+elif [[ $choose == * ]]; then
+    notify_send "starting $daemon_cmd"
+    $daemon_cmd &>/dev/null &
+fi
