@@ -6,9 +6,6 @@
     // defaults
     background-color: var(bg-color);
     text-color: var(fg-color);
-    /* border: 0; */
-    /* padding: 0; */
-    /* margin: 0; */
 }
 
 window {
