@@ -17,7 +17,8 @@ font:
     # family: Hack Nerd Font
     # family: SourceCodePro
     # family: FiraCode Nerd Font Mono
-    family: Cartograph CF
+    family: FiraCode Nerd Font
+    # family: Cartograph CF
     style: Regular
 
   # bold:
@@ -44,7 +45,10 @@ font:
 # }}}
 
 # colors {{{
-background_opacity: 0.9
+# background_opacity: 0.9
+window:
+  opacity: 0.9
+
 
 # Base16 Isotope 256 - alacritty color config
 # Jan T. Sott

@@ -4,7 +4,9 @@
 
 # Launch Rofi
 MENU="$(
-    rofi -config ~/.dots/scripts/rofi/right_aligned_config.rasi -dmenu -sep '|' \
+    rofi -config ~/.dots/scripts/rofi/right_aligned_config.rasi \
+        -theme-str 'window {width: 260px;}' \
+        -dmenu -sep '|' \
         <<< "  Lock|  Logout|  Reboot|  Shutdown"
 )"
 
@@ -14,12 +16,3 @@ case "$MENU" in
   *Reboot) systemctl reboot ;;
   *Shutdown) systemctl -i poweroff
 esac
-
-# More Options
-# -fullscreen \
-
-# Theming help
-# color window = background, border, separator
-# color normal = background, foreground, background-alt, highlight-background, highlight-foreground
-# color active = background, foreground, background-alt, highlight-background, highlight-foreground
-# color urgent = background, foreground, background-alt, highlight-background, highlight-foreground

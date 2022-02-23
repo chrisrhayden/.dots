@@ -1,7 +1,12 @@
 configuration {
     modi: "drun";
     font: "Fira Code 12";
-    display-name: "> ";
+    drun {
+        display-name: "Apps  ";
+    }
+    dmenu {
+        display-name: "  ";
+    }
     width: 10;
 }
 

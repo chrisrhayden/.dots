@@ -28,7 +28,9 @@ rofi_menu="${rofi_menu%|}"
 
 # # Launch Rofi
 choose="$(
-    rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi -dmenu -sep "|" <<< "$rofi_menu"
+    rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi \
+        -theme-str 'window {width: 160px;}' \
+        -dmenu -sep "|" <<< "$rofi_menu"
 )"
 
 if [[ -n $choose ]]; then

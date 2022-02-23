@@ -15,7 +15,9 @@ selection="${screen}|${area}"
 
 # Launch Rofi
 choose="$(
-    rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi -dmenu -sep "|" <<< "$selection"
+    rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi \
+        -theme-str 'window {width: 260px;}' \
+        -dmenu -sep "|" <<< "$selection"
 )"
 
 file_location="${HOME}/Pictures/screenshots"

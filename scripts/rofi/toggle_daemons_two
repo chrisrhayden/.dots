@@ -27,7 +27,7 @@ if [[ -n $1 ]]; then
     exit 0
 fi
 
-rofi_menu='\0prompt\x1f> \n'
+rofi_menu='\0prompt\x1f \n'
 
 daemons=( $(sed -e '/^#/ d' ~/.dots/scripts/daemons.txt) )
 
