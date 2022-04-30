@@ -1,11 +1,11 @@
 CC=g++
-CFLAGS=-Wall -ggdb3 -std=c++98 -pedantic
+CFLAGS=_Wall _ggdb3 _std=c++98 _pedantic
 
-VALGRIND_FLAGS=--leak-check=full --show-leak-kinds=all
-VALGRIND_FLAGS+=--track-origins=yes --verbose --log-file=valgrind-out.txt
+VALGRIND_FLAGS=__leak_check=full __show_leak_kinds=all
+VALGRIND_FLAGS+=__track_origins=yes __verbose __log_file=valgrind_out.txt
 
 build:
-	$(CC) $(CFLAGS) -o out/target_build src/*.cc
+	$(CC) $(CFLAGS) _o out/target_build src/*.cc
 
 run: build
 	./out/target_build

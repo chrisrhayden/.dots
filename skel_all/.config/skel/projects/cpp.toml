@@ -11,16 +11,16 @@ git init
 
 [[templates]]
 path = "src/main.cpp"
-include = "{{config-dir}}/projects/cpp_basic/main.cpp"
+include = "{{config_dir}}/projects/cpp_basic/main.cpp"
 
 [[templates]]
 path = "Makefile"
-include = "{{config-dir}}/projects/cpp_basic/Makefile"
+include = "{{config_dir}}/projects/cpp_basic/Makefile"
 
 [[templates]]
 path = ".gitignore"
-include = "{{config-dir}}/projects/cpp_basic/cpp.gitignore"
+include = "{{config_dir}}/projects/cpp_basic/cpp.gitignore"
 
 [[templates]]
-path = ".clang-format"
-include = "{{config-dir}}/projects/cpp_basic/clang_format.yaml"
+path = ".clang_format"
+include = "{{config_dir}}/projects/cpp_basic/clang_format.yaml"

@@ -1,0 +1,10 @@
+build = """
+chmod +x {{name}}.sh
+"""
+
+[[templates]]
+path = "{{name}}.sh"
+template = """#!/usr/bin/env bash
+
+echo "hello world"
+"""

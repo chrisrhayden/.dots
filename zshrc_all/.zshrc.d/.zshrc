@@ -732,7 +732,7 @@ xsource "${HOME}/.zshrc.d/zsh_plugins.sh"
 fast-theme ~/.zshrc.d/zsh_syntax_theme.ini 1>/dev/null
 
 # zlong_ignore_cmds='ssh man htop mocp'
-zlong_ignore_cmds='ssh man htop mocp view wim vim_help vim_dots py python spt '
+zlong_ignore_cmds='ssh man htop mocp view wim vim_help vim_dots py python spt vim nvim '
 
 zlong_duration=40
 export zlong_ignore_cmds zlong_duration

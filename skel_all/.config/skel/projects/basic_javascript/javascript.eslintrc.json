@@ -14,7 +14,7 @@
       "error",
       2, {"SwitchCase": 1}
     ],
-    "linebreak-style": [
+    "linebreak_style": [
       "error",
       "unix"
     ],

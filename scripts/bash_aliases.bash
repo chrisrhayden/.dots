@@ -128,6 +128,25 @@ get_pacman_mirrors() {
 }
 # }}}
 
+menu() {
+    local thing cmd items
+    items=''
+    thing='thing'
+    cmd="$1"
+
+    while true; do
+        thing=''
+        items="$(ls -1)"
+
+        thing="$(printf 'exit\n%s\n' $items | sort | fzf)"
+        if [[ $thing != '' ]] && [[ $thing != exit ]]; then
+            $cmd "$thing"
+        else
+            break
+        fi
+    done
+}
+
 img() {
     if [[ $TERM == *kitty* ]]; then
         kitty + icat "$@"

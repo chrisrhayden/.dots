@@ -1,2 +1,2 @@
-nnoremap df G
-nmap za =
+nnoremap <buffer> df G
+nmap <buffer> za =

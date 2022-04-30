@@ -16,20 +16,8 @@ require("settings")
 -- lua/mappings.lua
 require("mappings")
 
--- lua/cmp_config.lua
-require("cmp_config")
-
--- lua/lsp_config.lua
-require("lsp_config")
-
--- lua/treesitter_config.lua
-require("treesitter_config")
-
-vim.cmd("runtime wilder_config.vim")
-
 -- abbreviations
 -- after/plugin/abolish.vim
-
 -- after/ftplugin
 
 -- c_settings.vim
@@ -52,11 +40,12 @@ vim.cmd("runtime wilder_config.vim")
 --   use this rc with vanilla vim
 --
 --   neovim's default directory's are pretty good, putting most things in to
---   $XDG_DATA_HOME/nvim/{thing} but `backupdir` still try's for PWD see
+--   $XDG_DATA_HOME/nvim/{thing} but `backupdir` still try's for PWD
 --
 --   `:help vim-differences` in neovim for the differences
 
 -- * cache:
+--   meh, its probably not a big deal
 --   vim can make a lot of files (e.g. swap, undo, backup, etc,) so there is
 --   potential that it will fill up disk space, especially undo's i think.
 --   maybe a cron/systemd job to clean up every now and then or if a directory
@@ -102,12 +91,8 @@ vim.cmd("runtime wilder_config.vim")
 -- * better organize my mappings
 -- * find out why `wundo` wont make the file with a variable
 -- * make debug mappings local to debug sessions
--- * figure out a way to change window dimensions so the focused window is always
---   the largest without affection floating windows
--- * find out a way to set NOTE in comments
---   see this stackoverflow for more
---   https://stackoverflow.com/questions/4097259/
---   in-vim-how-do-i-highlight-todo-and-fixme#comment24652856_4097541
+-- * figure out a way to change window dimensions so the focused window is
+--   always the largest without affection floating windows
 -- }}}
 
 -- good ideas {{{
@@ -121,17 +106,14 @@ vim.cmd("runtime wilder_config.vim")
 --   vim-search-and-highlight-but-do-not-jump
 -- * a call tree
 --   https://github.com/ldelossa/calltree.nvim
--- * a completion plugin that is supposed to be fast
---   https://github.com/ms-jpq/coq_nvim
 -- * a bunch of neovim stuff
 --   https://www.reddit.com/r/neovim/comments/o20w3z/
 --   what_are_your_favorite_neovim_plugins_exclusive/
--- * make diagrams in vim
---   https://github.com/jbyuki/venn.nvim
 -- * improve increment/decrement
 --   https://github.com/monaqa/dial.nvim
--- * a file mangier
+-- * a file managers
 --   https://github.com/tamago324/lir.nvim
+--   https://github.com/elihunter173/dirbuf.nvim
 -- * a prject manager
 --   https://github.com/ahmedkhalf/project.nvim
 -- }}}

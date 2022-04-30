@@ -1,28 +1,28 @@
 dirs = [ "src", "dist" ]
 
 build = """
-yarn init -y
+yarn init _y
 yarn add \
     'typescript' \
     '@types/node' \
     'eslint' \
-    '@typescript-eslint/parser' \
-    '@typescript-eslint/eslint-plugin'
+    '@typescript_eslint/parser' \
+    '@typescript_eslint/eslint_plugin'
 
 git init
 """
 
 [[templates]]
 path = "src/main.ts"
-include = "{{config-dir}}/projects/basic_typescript/main.ts"
+include = "{{config_dir}}/projects/basic_typescript/main.ts"
 
 [[templates]]
 path  = ".eslintrc.json"
-include = "{{config-dir}}/projects/basic_typescript/typescript.eslintrc.json"
+include = "{{config_dir}}/projects/basic_typescript/typescript.eslintrc.json"
 
 [[templates]]
 path = ".gitignore"
-include = "{{config-dir}}/projects/basic_typescript/typescript.gitignore"
+include = "{{config_dir}}/projects/basic_typescript/typescript.gitignore"
 
 [[templates]]
 path = "tsconfig.json"

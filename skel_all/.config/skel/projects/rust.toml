@@ -5,5 +5,5 @@ cargo new {{root}}
 """
 
 [[templates]]
-path = "{{root}}/rustfmt.toml"
+path = "rustfmt.toml"
 include = "{{config-dir}}/projects/rustfmt.toml"

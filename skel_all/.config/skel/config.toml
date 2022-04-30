@@ -1,26 +1,28 @@
 # the paths to the projects
 # {{config-dir}} will correspond to ~/.config/skel
 [skeletons]
-basic_c        = "{{config-dir}}/projects/c.toml"
+basic_c          = "{{config-dir}}/projects/c.toml"
 basic_cpp        = "{{config-dir}}/projects/cpp.toml"
-cc        = "{{config-dir}}/projects/cc.toml"
+cc               = "{{config-dir}}/projects/cc.toml"
 basic_rust       = "{{config-dir}}/projects/rust.toml"
 basic_python     = "{{config-dir}}/projects/python.toml"
 basic_javascript = "{{config-dir}}/projects/javascript.toml"
 basic_typescript = "{{config-dir}}/projects/typescript.toml"
 basic_shell      = "{{config-dir}}/projects/shell.toml"
-react_type      = "{{config-dir}}/projects/react_type.toml"
-
-
+react_type       = "{{config-dir}}/projects/react_type.toml"
+basic_lua        = "{{config-dir}}/projects/lua.toml"
+basic_bash       = "{{config-dir}}/projects/bash.toml"
 
 # alias's to use on the cli
 [alias]
-basic_c        = ["c", "old_c"]
+basic_c          = ["c", "old_c"]
 basic_cpp        = ["cpp", "cp", "c++"]
-cc        = ["cc"]
+cc               = ["cc"]
 basic_rust       = ["r",   "rs", "rust"]
 basic_python     = ["py",  "p",  "python"]
 basic_javascript = ["js",  "j",  "javascript"]
 basic_typescript = ["ts",  "t",  "typescript"]
-basic_shell      = ["sh",  "shell",  "bash", "ba"]
-react_type = ["rt"]
+react_type       = ["rt"]
+basic_lua        = ["lua", "lu"]
+basic_shell      = ["sh",  "shell"]
+basic_bash       = ["bash", "ba"]

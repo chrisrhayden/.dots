@@ -1,5 +1,5 @@
 Abolish b{r,ra,re,rea,ear}k{,e} break
-Abolish clieant client
+Abolish clieant{,s} client{,s}
 Abolish creat crate
 Abolish lein line
 Abolish liek like
@@ -13,6 +13,8 @@ Abolish everytihng everything
 " statice is actually a plant
 Abolish statice static
 Abolish teh the
+Abolish hte the
+Abolish paht path
 Abolish tets test
 Abolish thay they
 Abolish ting thing
@@ -31,3 +33,4 @@ Abolish in{it,ti}ng initializing
 " https://en.wiktionary.org/wiki/titel, its Latin i guess
 Abolish titel title
 Abolish hashamp hashmap
+Abolish {despa,sepe}rat{e,es,ed,ing,ely,ion,ions,or}  {despe,sepa}rat{}

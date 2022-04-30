@@ -66,7 +66,7 @@ dkms.conf
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
+# $ git config __global mergetool.keepBackup false
 *.orig
 
 # Created by git when using merge tools for conflicts
@@ -81,12 +81,12 @@ dkms.conf
 
 ### Vim ###
 # Swap
-[._]*.s[a-v][a-z]
+[._]*.s[a_v][a_z]
 !*.svg  # comment out if you don't need vector files
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
+[._]*.sw[a_p]
+[._]s[a_rt_v][a_z]
+[._]ss[a_gi_z]
+[._]sw[a_p]
 
 # Session
 Session.vim
@@ -95,7 +95,7 @@ Sessionx.vim
 # Temporary
 .netrwhist
 *~
-# Auto-generated tag files
+# Auto_generated tag files
 tags
 # Persistent undo
 [._]*.un~

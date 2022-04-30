@@ -2,6 +2,9 @@
 -- settings
 --------------------------------------------------------------------------------
 
+-- NOTE: there is potential that some settings sould be buffer/window local but
+-- i haven't run in to any issues so far
+
 local o = vim.opt
 
 -- security {{{
@@ -24,13 +27,14 @@ local word_dir = vim.env.XDG_CONFIG_HOME .. "/nvim/words"
 vim.fn.mkdir(word_dir, "p")
 -- where to save personal words for spell check, (i.e. words added with zg)
 o.spellfile = word_dir .. "/code-en.utf-8.add"
--- thesaurus completion, <C-x><C-t>
+-- thesaurus completion, <C-x><C-t>,
+-- this needs to be installed by hand
 o.thesaurus = word_dir .. "/en_thesaurus.txt"
 -- }}}
 
 -- ui {{{
 -- redraw only when the user changes the screen
--- o.lazyredraw = true
+o.lazyredraw = true
 -- use the number column, set below
 o.number = true
 -- use relative numbers for the number column
@@ -42,12 +46,11 @@ o.linebreak = true
 -- whether to wrap long lines
 o.wrap = false
 -- highlight or underline the line the cursor is on
--- o.cursorline = true
+o.cursorline = true
 -- minimum lines to keep above and below the cursor
 o.scrolloff = 4
 -- minimum characters between the cursor and the sides similar to scrolloff
--- o.sidescrolloff = 10
-o.sidescrolloff = 4
+-- o.sidescrolloff = 4
 -- o.colors to be very close to gui vim, set with color scheme
 o.termguicolors = true
 -- set whether syntax with the conceal attribute is shown
@@ -76,7 +79,20 @@ o.colorcolumn = {
   "81",
   "101",
 }
+
 -- the status line config
+-- check if the LspStatus function exists and if so get the result to print to
+-- the status line
+-- this kinda sucks but since this is only my status line being generic is
+-- pointless
+function CheckLspStatus()
+  if LspStatus ~= nil then
+    return LspStatus()
+  else
+    return ""
+  end
+end
+
 o.statusline = table.concat({
   "", -- will add a space from the separator
   -- "%n",      -- buffer number
@@ -85,7 +101,7 @@ o.statusline = table.concat({
   "%m", -- buffer state
   "%r", -- if the buffer is read only
   "%=", -- adjust the next items to the left
-  "%{v:lua.LspStatus()}",
+  "%{v:lua.CheckLspStatus()}",
   "%=", -- adjust the next items to the left
   "%y", -- file type
   "[%l/%L]", -- show current line out of all lines
@@ -94,6 +110,8 @@ o.statusline = table.concat({
 -- }}}
 
 -- feel / editing {{{
+-- o.shortmess = "a"
+-- how completions work in insert mode
 o.completeopt = {
   "menuone",
   "noselect",
@@ -155,23 +173,21 @@ o.shada = {
 -- vim.opt.formatoptions = "tcqjron"
 -- from tjdevries
 o.formatoptions = o.formatoptions
-  - "a" -- Auto formatting is BAD.
-  - "t" -- Don't auto format my code. I got linters for that.
-  + "c" -- In general, I like it when comments respect textwidth
-  + "q" -- Allow formatting comments w/ gq
-  - "o" -- O and o, don't continue comments
-  + "r" -- But do continue when pressing enter.
-  + "n" -- Indent past the formatlistpat, not underneath it.
-  + "j" -- Auto-remove comments if possible.
-  - "2" -- I'm not in gradeschool anymore
+    - "a" -- Auto formatting is BAD.
+    - "t" -- Don't auto format my code. I got linters for that.
+    + "c" -- In general, I like it when comments respect textwidth
+    + "q" -- Allow formatting comments w/ gq
+    - "o" -- O and o, don't continue comments
+    + "r" -- But do continue when pressing enter.
+    + "n" -- Indent past the formatlistpat, not underneath it.
+    + "j" -- Auto-remove comments if possible.
+    - "2" -- I'm not in gradeschool anymore
 -- }}}
 
 -- language specific settings {{{
 -- make vim treat *.h files like c not cpp
+-- TODO: this could probably be set somewhere else to also use cpp
 vim.g.c_syntax_for_h = 1
-
--- disable the built in python style so vim keeps the global default for python
--- vim.g.python_recommended_style = 0
 -- }}}
 
 -- interpreters {{{
@@ -196,34 +212,85 @@ vim.cmd("packadd! termdebug")
 vim.g.termdebug_wide = 1
 -- }}}
 
+-- augroups {{{
+local create_augroup = vim.api.nvim_create_augroup
+local create_autocmd = vim.api.nvim_create_autocmd
+
 -- relativenumber {{{
 -- from https://github.com/jeffkreeftmeijer/vim-numbertoggle/
--- toggle relativenumber
-local set_relative = "BufEnter,InsertLeave,WinEnter,CmdlineLeave,FocusGained"
-local set_norelative = "BufLeave,InsertEnter,WinLeave,CmdlineEnter,FocusLost"
+function ToggleRelNumber()
+  if vim.g.use_relnumber == true then
+    vim.g.use_relnumber = false
 
-vim.cmd([[
-augroup RelativizeNum
-  autocmd!
-  autocmd ]] .. set_relative .. [[ * if &number | set relativenumber | endif
-  autocmd ]] .. set_norelative .. [[ * if &number | set norelativenumber | endif
-augroup END
-]])
+    vim.opt.relativenumber = false
+  else
+    vim.g.use_relnumber = true
+
+    vim.opt.relativenumber = true
+  end
+end
+
+vim.api.nvim_create_user_command("ToggleRelNumber", ToggleRelNumber, {})
+
+local relative_group = create_augroup("RelativeGroup", {})
+
+-- toggle relativenumber
+local set_relative = {
+  "BufEnter",
+  "InsertLeave",
+  "WinEnter",
+  "CmdlineLeave",
+  "FocusGained",
+}
+local set_norelative = {
+  "BufLeave",
+  "InsertEnter",
+  "WinLeave",
+  "CmdlineEnter",
+  "FocusLost",
+}
+
+vim.g.use_relnumber = true
+
+-- "if &number | set relativenumber | endif",
+create_autocmd(set_relative, {
+  pattern = "*",
+  group = relative_group,
+  callback = function()
+    if vim.wo.number == true and vim.g.use_relnumber == true then
+      vim.opt.relativenumber = true
+    end
+  end,
+})
+
+create_autocmd(set_norelative, {
+  pattern = "*",
+  group = relative_group,
+  callback = function()
+    if vim.g.use_relnumber == true then
+      vim.opt.relativenumber = false
+    end
+  end,
+})
 -- }}}
 
 -- show/hide cursorline {{{
 -- https://stackoverflow.com/questions/14068751/
 -- how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
-local set_cursorline = "VimEnter,BufEnter,WinEnter"
-local set_nocursorline = "BufLeave,WinLeave"
+local cursor_line_group = create_augroup("CursorLineGroup", { clear = true })
 
-vim.cmd([[
-augroup CursorLine
-    autocmd!
-    autocmd ]] .. set_cursorline .. [[ * setlocal cursorline
-    autocmd ]] .. set_nocursorline .. [[ * setlocal nocursorline
-augroup END
-]])
+local set_cursorline = { "VimEnter", "BufEnter", "WinEnter" }
+local set_nocursorline = { "BufLeave", "WinLeave" }
+
+create_autocmd(set_cursorline, {
+  command = "setlocal cursorline",
+  group = cursor_line_group
+})
+
+create_autocmd(set_nocursorline, {
+  command = "setlocal nocursorline",
+  group = cursor_line_group
+})
 -- }}}
 
 -- ripgrep instead of grep {{{
@@ -236,6 +303,7 @@ end
 -- }}}
 
 -- auto save views {{{
+-- https://vim.fandom.com/wiki/Make_views_automatic
 -- this is sort of a last resort to ignore buffers that are special but still
 -- are treated like normal files
 local skip_filetypes = { "gitcommit" }
@@ -260,15 +328,35 @@ function SpecialBuffer()
   return false
 end
 
-vim.cmd([[
-    augroup AutoSaveView
-        autocmd!
-        autocmd BufWritePost,BufLeave,WinLeave,InsertLeave ?*
-              \ if v:lua.SpecialBuffer() == v:false | mkview | endif
-        autocmd BufWinEnter ?*
-              \ if v:lua.SpecialBuffer() == v:false | silent! loadview | endif
-    augroup end
-  ]])
+local auto_save_view_group = create_augroup("AutoSaveView", {})
+
+local save_view = {
+  "BufWritePost",
+  "BufLeave",
+  "WinLeave",
+  "InsertLeave",
+}
+
+create_autocmd(save_view, {
+  group = auto_save_view_group,
+  pattern = "*",
+  callback = function()
+    if SpecialBuffer() == false then
+      vim.cmd("mkview")
+    end
+  end,
+})
+
+create_autocmd("BufWinEnter", {
+  group = auto_save_view_group,
+  pattern = "*",
+  callback = function()
+    if SpecialBuffer() == false then
+      vim.cmd("silent! loadview")
+    end
+  end
+})
+-- }}}
 -- }}}
 
 -- vim: foldmethod=marker

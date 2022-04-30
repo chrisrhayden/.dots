@@ -2,23 +2,16 @@ dirs = [
     "src",
 ]
 
-files = [
-    "{{name}}/main.lua",
-]
+# files = [ "src/main.lua", ]
 
-build = """
-python -m venv "${HOME}/Venv/{{name}}_env"
-
-git init {{root}}
-"""
+# build = """ """
 
 
 [[templates]]
-path = "{{name}}/main.py"
-template = """def main():
-    ''' main function '''
-    print('hello wolrd')
+path = "src/main.lua"
+template = """function Main()
+    print("hello wolrd")
+end
 
-if __name__ == '__main__':
-    main()
+Main()
 """

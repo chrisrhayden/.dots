@@ -1,22 +1,22 @@
 {
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": ["eslint:recommended", "plugin:@typescript_eslint/recommended"],
   "env": {
     "browser": true,
     "es6": true,
     "node": true
   },
-  "parser": "@typescript-eslint/parser",
+  "parser": "@typescript_eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "plugins": ["@typescript_eslint/eslint_plugin"],
   "rules": {
     "indent": [
       "error",
       2, {"SwitchCase": 1}
     ],
-    "linebreak-style": [
+    "linebreak_style": [
       "error",
       "unix"
     ],
