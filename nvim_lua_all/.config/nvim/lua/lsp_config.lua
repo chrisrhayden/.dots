@@ -5,7 +5,7 @@
 CLIENT_NAMES = {}
 
 local nvim_lsp = require("lspconfig")
-local lsp_status = require("lsp-status")
+-- local lsp_status = require("lsp-status")
 
 require("lspsaga").init_lsp_saga({
   rename_action_keys = {
@@ -25,13 +25,14 @@ require("lspsaga").init_lsp_saga({
 -- get lsp info and lsp server name to show in the last status
 function LspStatus()
   if #vim.lsp.buf_get_clients() > 0 then
-    local progress = lsp_status.status_progress()
+    -- local progress = lsp_status.status_progress()
 
-    if progress ~= nil and progress ~= "" then
-      return progress
-    else
-      return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
-    end
+    -- if progress ~= nil and progress ~= "" then
+    --   return progress
+    -- else
+    --   return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
+    -- end
+    return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
   end
 
   return ""
@@ -104,7 +105,7 @@ local function on_attach(client, bufnr)
 
   bmap("n", "<leader>q", "<cmd>lua vim.diagnostic.set_loclist()<cr>", opts)
 
-  lsp_status.on_attach(client)
+  -- lsp_status.on_attach(client)
 
   if vim.tbl_contains(CLIENT_NAMES, client.name) == false then
     table.insert(CLIENT_NAMES, client.name)
@@ -131,9 +132,7 @@ end
 
 local function basic_settings()
   return {
-    capabilities = require("cmp_nvim_lsp").update_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
-    ),
+    -- capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
@@ -267,16 +266,16 @@ for lsp, settings_func in pairs(servers) do
   nvim_lsp[lsp].setup(settings_func())
 end
 
-lsp_status.config({
-  indicator_errors = "",
-  indicator_warnings = "",
-  indicator_info = "",
-  indicator_hint = "",
-  indicator_ok = "",
-  status_symbol = "",
-})
-
-lsp_status.register_progress()
+-- lsp_status.config({
+--   indicator_errors = "",
+--   indicator_warnings = "",
+--   indicator_info = "",
+--   indicator_hint = "",
+--   indicator_ok = "",
+--   status_symbol = "",
+-- })
+--
+-- lsp_status.register_progress()
 
 vim.diagnostic.config({
   virtual_text = false,
