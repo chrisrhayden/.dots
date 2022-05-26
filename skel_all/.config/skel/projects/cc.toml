@@ -11,16 +11,16 @@ git init
 
 [[templates]]
 path = "src/main.cc"
-include = "{{config_dir}}/projects/cc_basic/main.cc"
+include = "{{config-dir}}/projects/cc_basic/main.cc"
 
 [[templates]]
 path = "justfile"
-include = "{{config_dir}}/projects/cc_basic/justfile"
+include = "{{config-dir}}/projects/cc_basic/justfile"
 
 [[templates]]
 path = ".gitignore"
-include = "{{config_dir}}/projects/cc_basic/cc.gitignore"
+include = "{{config-dir}}/projects/cc_basic/cc.gitignore"
 
 [[templates]]
 path = ".clang_format"
-include = "{{config_dir}}/projects/cc_basic/clang_format.yaml"
+include = "{{config-dir}}/projects/cc_basic/clang_format.yaml"

@@ -22,5 +22,5 @@ path = ".gitignore"
 include = "{{config-dir}}/projects/c_basic/c.gitignore"
 
 [[templates]]
-path = ".clang_format"
+path = ".clang-format"
 include = "{{config-dir}}/projects/c_basic/clang_format.yaml"

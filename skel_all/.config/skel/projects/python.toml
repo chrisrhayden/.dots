@@ -17,7 +17,7 @@ git init {{root}}
 path = "{{name}}/main.py"
 template = """def main():
     ''' main function '''
-    print('hello wolrd')
+    print('hello world')
 
 if __name__ == '__main__':
     main()
@@ -30,7 +30,7 @@ init_env() {
     local env_dir project_name full_path
 
     # if the env exists there is nothing to do
-    if [[ _n $VIRTUAL_ENV ]]; then
+    if [[ -n $VIRTUAL_ENV ]]; then
         return 0
     fi
 
@@ -41,7 +41,7 @@ init_env() {
 
     full_path="${env_dir}/${project_name}/bin/activate"
 
-    if [[ _f $full_path ]]; then
+    if [[ -f $full_path ]]; then
         source "$full_path"
     fi
 

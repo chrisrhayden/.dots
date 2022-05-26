@@ -5,60 +5,60 @@
 -- NOTE: there is potential that some settings sould be buffer/window local but
 -- i haven't run in to any issues so far
 
-local o = vim.opt
+local set = vim.opt
 
 -- security {{{
 -- mode lines allow per-file settings to be embedded in the file
 -- o.modeline = true
 
 -- dont run non standard vimrc, off by default
-o.exrc = false
+set.exrc = false
 
 -- disallow certain vim functions from being run in non standard vimrc's
-o.secure = true
+set.secure = true
 -- }}}
 
 -- setup paths {{{
 local backup_dir = vim.env.XDG_DATA_HOME .. "/nvim/backup//"
 -- make sure backup files are made in `$XDG_DATA_HOME/nvim/backup/`
-o.backupdir = backup_dir
+set.backupdir = backup_dir
 
 local word_dir = vim.env.XDG_CONFIG_HOME .. "/nvim/words"
 vim.fn.mkdir(word_dir, "p")
 -- where to save personal words for spell check, (i.e. words added with zg)
-o.spellfile = word_dir .. "/code-en.utf-8.add"
+set.spellfile = word_dir .. "/code-en.utf-8.add"
 -- thesaurus completion, <C-x><C-t>,
 -- this needs to be installed by hand
-o.thesaurus = word_dir .. "/en_thesaurus.txt"
+set.thesaurus = word_dir .. "/en_thesaurus.txt"
 -- }}}
 
 -- ui {{{
 -- redraw only when the user changes the screen
-o.lazyredraw = true
+set.lazyredraw = true
 -- use the number column, set below
-o.number = true
+set.number = true
 -- use relative numbers for the number column
-o.relativenumber = true
+set.relativenumber = true
 -- visually show potential changes
-o.inccommand = "split"
+set.inccommand = "split"
 -- visually break lines according to `breakat` instead of the last fitting char
-o.linebreak = true
+set.linebreak = true
 -- whether to wrap long lines
-o.wrap = false
+set.wrap = false
 -- highlight or underline the line the cursor is on
-o.cursorline = true
+-- set.cursorline = true
 -- minimum lines to keep above and below the cursor
-o.scrolloff = 4
+set.scrolloff = 4
 -- minimum characters between the cursor and the sides similar to scrolloff
 -- o.sidescrolloff = 4
 -- o.colors to be very close to gui vim, set with color scheme
-o.termguicolors = true
+set.termguicolors = true
 -- set whether syntax with the conceal attribute is shown
-o.conceallevel = 2
+set.conceallevel = 2
 -- list mode will display given characters in certain places (e.g. <tab>  = = >-)
-o.list = true
+set.list = true
 -- the characters list mode will use
-o.listchars = {
+set.listchars = {
   tab = ">-",
   trail = "·",
   extends = "ᐳ",
@@ -66,7 +66,7 @@ o.listchars = {
   nbsp = "+",
 }
 -- characters for certain parts of the ui
-o.fillchars = {
+set.fillchars = {
   eob = " ",
   fold = "-",
   foldopen = "┌",
@@ -75,7 +75,7 @@ o.fillchars = {
   diff = "-",
 }
 -- highlight columns at the given column number
-o.colorcolumn = {
+set.colorcolumn = {
   "81",
   "101",
 }
@@ -93,7 +93,7 @@ function CheckLspStatus()
   end
 end
 
-o.statusline = table.concat({
+set.statusline = table.concat({
   "", -- will add a space from the separator
   -- "%n",      -- buffer number
   "%{winnr()}", -- window number
@@ -112,49 +112,49 @@ o.statusline = table.concat({
 -- feel / editing {{{
 -- o.shortmess = "a"
 -- how completions work in insert mode
-o.completeopt = {
+set.completeopt = {
   "menuone",
   "noselect",
 }
 -- disable the swapfile
-o.swapfile = false
+set.swapfile = false
 -- time in milliseconds to wait for a mapped sequence to complete
-o.timeoutlen = 500
+set.timeoutlen = 500
 -- this is the count for CursorHold and writing out to the swap file
-o.updatetime = 500
+set.updatetime = 500
 -- turn on spell checking
-o.spell = true
+set.spell = true
 -- search case insensitive
-o.ignorecase = true
+set.ignorecase = true
 -- override `ignorecase` when an upper case letter is used
-o.smartcase = true
+set.smartcase = true
 -- always insert spaces instead of a tab
-o.expandtab = true
+set.expandtab = true
 -- the number of spaces tabs equate to
-o.tabstop = 4
+set.tabstop = 4
 -- what auto indent uses (e.g. >>), 0 makes it use the `tabstop` value
-o.shiftwidth = 0
+set.shiftwidth = 0
 -- indent to the same level as the surrounding text
-o.smartindent = true
+set.smartindent = true
 -- physically break lines as 80 characters
-o.textwidth = 80
+set.textwidth = 80
 -- text folding method
-o.foldmethod = "indent"
+set.foldmethod = "indent"
 -- what level to start folds (0 = all closed, 99 = all open)
-o.foldlevelstart = 99
+set.foldlevelstart = 99
 -- max nested folds
-o.foldnestmax = 5
+set.foldnestmax = 5
 -- o.horizontal splits to below by default
-o.splitbelow = true
+set.splitbelow = true
 -- o.vertical splits to right by default
-o.splitright = true
+set.splitright = true
 -- save these settings when making views
-o.viewoptions = {
+set.viewoptions = {
   "folds",
   "cursor",
 }
 -- save these settings when making sessions
-o.sessionoptions = {
+set.sessionoptions = {
   "buffers",
   "folds",
   "help",
@@ -163,7 +163,7 @@ o.sessionoptions = {
   "sesdir",
 }
 -- settings for the shada file
-o.shada = {
+set.shada = {
   "'100",
   "s10",
   "h",
@@ -172,7 +172,7 @@ o.shada = {
 -- define how vim will format text
 -- vim.opt.formatoptions = "tcqjron"
 -- from tjdevries
-o.formatoptions = o.formatoptions
+set.formatoptions = set.formatoptions
     - "a" -- Auto formatting is BAD.
     - "t" -- Don't auto format my code. I got linters for that.
     + "c" -- In general, I like it when comments respect textwidth
@@ -212,12 +212,24 @@ vim.cmd("packadd! termdebug")
 vim.g.termdebug_wide = 1
 -- }}}
 
+-- ripgrep instead of grep {{{
+-- https://www.wezm.net/technical/2016/09/ripgrep-with-vim/
+if vim.fn.executable("rg") == 1 then
+  set.grepprg = "rg --vimgrep --no-heading"
+  set.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+  vim.cmd("cnoreabbrev rg grep")
+end
+-- }}}
+
 -- augroups {{{
 local create_augroup = vim.api.nvim_create_augroup
 local create_autocmd = vim.api.nvim_create_autocmd
 
 -- relativenumber {{{
 -- from https://github.com/jeffkreeftmeijer/vim-numbertoggle/
+
+vim.g.use_relnumber = true
+
 function ToggleRelNumber()
   if vim.g.use_relnumber == true then
     vim.g.use_relnumber = false
@@ -250,11 +262,7 @@ local set_norelative = {
   "FocusLost",
 }
 
-vim.g.use_relnumber = true
-
--- "if &number | set relativenumber | endif",
 create_autocmd(set_relative, {
-  pattern = "*",
   group = relative_group,
   callback = function()
     if vim.wo.number == true and vim.g.use_relnumber == true then
@@ -264,7 +272,6 @@ create_autocmd(set_relative, {
 })
 
 create_autocmd(set_norelative, {
-  pattern = "*",
   group = relative_group,
   callback = function()
     if vim.g.use_relnumber == true then
@@ -277,29 +284,20 @@ create_autocmd(set_norelative, {
 -- show/hide cursorline {{{
 -- https://stackoverflow.com/questions/14068751/
 -- how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
-local cursor_line_group = create_augroup("CursorLineGroup", { clear = true })
+local cursor_line_group = create_augroup("CursorLineGroup", {})
 
-local set_cursorline = { "VimEnter", "BufEnter", "WinEnter" }
-local set_nocursorline = { "BufLeave", "WinLeave" }
+local cursorline_envt = { "BufWinEnter", "WinEnter" }
+local nocursorline_envt = { "BufLeave", "WinLeave" }
 
-create_autocmd(set_cursorline, {
+create_autocmd(cursorline_envt, {
   command = "setlocal cursorline",
   group = cursor_line_group
 })
 
-create_autocmd(set_nocursorline, {
+create_autocmd(nocursorline_envt, {
   command = "setlocal nocursorline",
   group = cursor_line_group
 })
--- }}}
-
--- ripgrep instead of grep {{{
--- https://www.wezm.net/technical/2016/09/ripgrep-with-vim/
-if vim.fn.executable("rg") == 1 then
-  o.grepprg = "rg --vimgrep --no-heading"
-  o.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-  vim.cmd("cnoreabbrev rg grep")
-end
 -- }}}
 
 -- auto save views {{{
@@ -339,7 +337,7 @@ local save_view = {
 
 create_autocmd(save_view, {
   group = auto_save_view_group,
-  pattern = "*",
+  pattern = "*?",
   callback = function()
     if SpecialBuffer() == false then
       vim.cmd("mkview")
@@ -349,7 +347,7 @@ create_autocmd(save_view, {
 
 create_autocmd("BufWinEnter", {
   group = auto_save_view_group,
-  pattern = "*",
+  pattern = "*?",
   callback = function()
     if SpecialBuffer() == false then
       vim.cmd("silent! loadview")

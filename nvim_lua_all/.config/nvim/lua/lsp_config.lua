@@ -7,6 +7,36 @@ CLIENT_NAMES = {}
 local nvim_lsp = require("lspconfig")
 local lsp_status = require("lsp-status")
 
+require("lspsaga").init_lsp_saga({
+  rename_action_keys = {
+    quit = { '<C-c>', "<esc>" }, exec = '<CR>' -- quit can be a table
+  },
+  rename_prompt_prefix = "rename ➤",
+  code_action_keys = {
+    quit = "<esc>",
+    exec = "<cr>"
+  },
+  code_action_prompt = {
+    enable = false
+  },
+  border_style = "round",
+})
+
+-- get lsp info and lsp server name to show in the last status
+function LspStatus()
+  if #vim.lsp.buf_get_clients() > 0 then
+    local progress = lsp_status.status_progress()
+
+    if progress ~= nil and progress ~= "" then
+      return progress
+    else
+      return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
+    end
+  end
+
+  return ""
+end
+
 -- only show diagnostics if there isn't a popup window
 function ShowLineDiagnostics()
   local wins = vim.api.nvim_list_wins()
@@ -24,21 +54,6 @@ function ShowLineDiagnostics()
     close_events = { "BufLeave", "CursorMoved", "InsertEnter" },
     border = "rounded",
   })
-end
-
--- get lsp info and lsp server name to show in the last status
-function LspStatus()
-  if #vim.lsp.buf_get_clients() > 0 then
-    local progress = lsp_status.status_progress()
-
-    if progress ~= nil and progress ~= "" then
-      return progress
-    else
-      return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
-    end
-  end
-
-  return ""
 end
 
 local function on_attach(client, bufnr)
@@ -60,30 +75,34 @@ local function on_attach(client, bufnr)
 
   bmap(
     "n",
-    "<space>n",
+    "<leader>n",
     "<cmd>lua vim.diagnostic.goto_next(" .. goto_opts .. ")<cr>",
     opts
   )
 
   bmap(
     "n",
-    "<space>N",
+    "<leader>N",
     "<cmd>lua vim.diagnostic.goto_prev(" .. goto_opts .. ")<cr>",
     opts
   )
 
   bmap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<cr>", opts)
   bmap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<cr>", opts)
-  bmap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+  bmap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
   bmap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
   bmap("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 
   bmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
-  bmap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  bmap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  -- bmap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  bmap("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<cr>", opts)
+  -- bmap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  bmap("n",
+    "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", opts)
+  bmap("v", "<leader>ca", ":<c-u>lua require('lspsaga.codeaction').range_code_action()<cr", opts)
 
-  bmap("n", "<space>q", "<cmd>lua vim.diagnostic.set_loclist()<cr>", opts)
+  bmap("n", "<leader>q", "<cmd>lua vim.diagnostic.set_loclist()<cr>", opts)
 
   lsp_status.on_attach(client)
 
@@ -131,7 +150,7 @@ local function c_settings()
     vim.api.nvim_buf_set_keymap(
       bufnr,
       "n",
-      "<space><BS>",
+      "<leader><BS>",
       "<cmd>ClangdSwitchSourceHeader<cr>",
       { noremap = true, silent = true }
     )
@@ -265,6 +284,7 @@ vim.diagnostic.config({
   signs = true,
   update_in_insert = false,
 })
+
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover,

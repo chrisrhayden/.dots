@@ -1,5 +1,3 @@
-# the paths to the projects
-# {{config-dir}} will correspond to ~/.config/skel
 [skeletons]
 basic_bash.path          = "{{config-dir}}/projects/bash.toml"
 basic_bash.aliases       = ["bash", "ba"]

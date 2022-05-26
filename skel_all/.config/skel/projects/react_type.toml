@@ -1,7 +1,7 @@
 dirs = [ "src", "dist" ]
 
 build = """
-yarn init _y
+yarn init -y
 yarn add \
     'typescript' \
     '@types/node' \
@@ -18,15 +18,15 @@ git init
 
 [[templates]]
 path = "src/main.ts"
-include = "{{config_dir}}/projects/basic_typescript/main.ts"
+include = "{{config-dir}}/projects/basic_typescript/main.ts"
 
 [[templates]]
 path  = ".eslintrc.json"
-include = "{{config_dir}}/projects/basic_typescript/typescript.eslintrc.json"
+include = "{{config-dir}}/projects/basic_typescript/typescript.eslintrc.json"
 
 [[templates]]
 path = ".gitignore"
-include = "{{config_dir}}/projects/basic_typescript/typescript.gitignore"
+include = "{{config-dir}}/projects/basic_typescript/typescript.gitignore"
 
 [[templates]]
 path = "tsconfig.json"

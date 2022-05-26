@@ -46,6 +46,8 @@ require("packer").startup(function()
     end,
     requires = {
       "nvim-lua/lsp-status.nvim",
+      "tami5/lspsaga.nvim",
+      -- "glepnir/lspsaga.nvim",
     },
   })
   -- }}}

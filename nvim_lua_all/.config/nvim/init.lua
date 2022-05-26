@@ -18,6 +18,7 @@ require("mappings")
 
 -- abbreviations
 -- after/plugin/abolish.vim
+
 -- after/ftplugin
 
 -- c_settings.vim

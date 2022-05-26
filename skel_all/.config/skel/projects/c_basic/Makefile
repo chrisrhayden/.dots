@@ -1,12 +1,12 @@
 CC=gcc
-CFLAGS=_Wall _ggdb3 _pedantic
+CFLAGS=-Wall -ggdb3 -pedantic
 
 SRC = $(wildcard ./src/*.c)
 
 TARGET_NAME = ./out/target_build
 
 build: $(SRC)
-	$(CC) $(CFLAGS) $^ _o $(TARGET_NAME)
+	$(CC) $(CFLAGS) $^ -o $(TARGET_NAME)
 
 run: build
 	./out/target_build

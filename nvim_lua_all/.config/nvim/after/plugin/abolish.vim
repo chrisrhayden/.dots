@@ -33,4 +33,4 @@ Abolish in{it,ti}ng initializing
 " https://en.wiktionary.org/wiki/titel, its Latin i guess
 Abolish titel title
 Abolish hashamp hashmap
-Abolish {despa,sepe}rat{e,es,ed,ing,ely,ion,ions,or}  {despe,sepa}rat{}
+Abolish {despa,desp,sepe}rat{,e,es,ed,ing,ely,ion,ions,or}  {despe,despe,sepa}rat{}
