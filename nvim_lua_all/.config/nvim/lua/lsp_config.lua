@@ -5,7 +5,6 @@
 CLIENT_NAMES = {}
 
 local nvim_lsp = require("lspconfig")
--- local lsp_status = require("lsp-status")
 
 require("lspsaga").init_lsp_saga({
   rename_action_keys = {
@@ -25,14 +24,19 @@ require("lspsaga").init_lsp_saga({
 -- get lsp info and lsp server name to show in the last status
 function LspStatus()
   if #vim.lsp.buf_get_clients() > 0 then
-    -- local progress = lsp_status.status_progress()
+    local progress = vim.lsp.util.get_progress_messages()[1]
 
-    -- if progress ~= nil and progress ~= "" then
-    --   return progress
-    -- else
-    --   return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
-    -- end
-    return "[" .. table.concat(CLIENT_NAMES, ", ") .. "]"
+    if progress and (progress["done"] == nil or progress["done"] == false) then
+      local message = progress["message"] or ""
+      local percent = progress["percentage"] or 0
+      local name = progress["name"] or ""
+      local title = progress["title"] or ""
+
+      return string.format("[%s] %s %s %%%s", name, title, message, tostring(percent))
+    else
+
+      return "[" .. table.concat(CLIENT_NAMES, ", ") .. "] "
+    end
   end
 
   return ""
@@ -104,8 +108,6 @@ local function on_attach(client, bufnr)
   bmap("v", "<leader>ca", ":<c-u>lua require('lspsaga.codeaction').range_code_action()<cr", opts)
 
   bmap("n", "<leader>q", "<cmd>lua vim.diagnostic.set_loclist()<cr>", opts)
-
-  -- lsp_status.on_attach(client)
 
   if vim.tbl_contains(CLIENT_NAMES, client.name) == false then
     table.insert(CLIENT_NAMES, client.name)
@@ -274,8 +276,6 @@ end
 --   indicator_ok = "",
 --   status_symbol = "",
 -- })
---
--- lsp_status.register_progress()
 
 vim.diagnostic.config({
   virtual_text = false,

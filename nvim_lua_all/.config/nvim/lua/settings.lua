@@ -85,13 +85,6 @@ set.colorcolumn = {
 -- the status line
 -- this kinda sucks but since this is only my status line being generic is
 -- pointless
-function CheckLspStatus()
-  if LspStatus ~= nil then
-    return LspStatus()
-  else
-    return ""
-  end
-end
 
 set.statusline = table.concat({
   "", -- will add a space from the separator
@@ -101,7 +94,7 @@ set.statusline = table.concat({
   "%m", -- buffer state
   "%r", -- if the buffer is read only
   "%=", -- adjust the next items to the left
-  "%{v:lua.CheckLspStatus()}",
+  "%{v:lua.LspStatus()}",
   "%=", -- adjust the next items to the left
   "%y", -- file type
   "[%l/%L]", -- show current line out of all lines
