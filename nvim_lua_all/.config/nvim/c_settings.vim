@@ -5,6 +5,8 @@
 
 " nnoremap <leader><backspace> :CocCommand clangd.switchSourceHeader<cr>
 
-set foldmethod=expr
+setlocal tabstop=2
 
-set foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmethod=expr
+
+setlocal foldexpr=nvim_treesitter#foldexpr()
