@@ -119,7 +119,7 @@ local function on_attach(client, bufnr)
 
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
-    callback = vim.lsp.buf.formatting_seq_sync,
+    callback = function() vim.lsp.buf.format() end,
     group = auto_format_group,
   })
 

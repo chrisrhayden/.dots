@@ -103,7 +103,7 @@ set.statusline = table.concat({
 -- }}}
 
 -- feel / editing {{{
--- o.shortmess = "a"
+set.shortmess = "a"
 -- how completions work in insert mode
 set.completeopt = {
   "menuone",
