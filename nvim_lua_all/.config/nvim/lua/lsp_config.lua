@@ -261,7 +261,6 @@ local servers = {
   sumneko_lua = lua_settings,
   zk = basic_settings,
   java_language_server = java_settings,
-  bashls = basic_settings,
 }
 
 for lsp, settings_func in pairs(servers) do

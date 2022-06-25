@@ -21,8 +21,7 @@ done
 [[ -f '/home/chris/.themes/wall/wallpaper' ]] && \
     feh --bg-scale '/home/chris/.themes/wall/wallpaper'
 
-[[ -x ~/.dots/scripts/run_polybar.sh ]] && \
-    ~/.dots/scripts/run_polybar.sh
+# [[ -x ~/.dots/scripts/run_polybar.sh ]] && \ ~/.dots/scripts/run_polybar.sh
 # }}}
 
 if ping -c 1 8.8.8.8 &>/dev/null \

@@ -297,7 +297,7 @@ bindsym $mod+Tab exec --no-startup-id ~/.dots/scripts/rofi/menu
 
 # startup {{{
 # exec_always --no-startup-id autotiling
-exec --no-startup-id "~/.dots/scripts/startup_cmds.sh"
+# exec --no-startup-id "~/.dots/scripts/startup_cmds.sh"
 # exec --no-startup-id "~/.dots/scripts/make_layout.py --start-up"
 # }}}
 # }}}

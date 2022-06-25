@@ -16,3 +16,7 @@ fi
 
 # turn off th bell
 xset b off
+
+if [[ -x ~/.dots/scripts/startup_cmds.sh ]]; then
+    ~/.dots/scripts/startup_cmds.sh
+fi
