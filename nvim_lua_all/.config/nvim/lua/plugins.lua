@@ -98,6 +98,16 @@ require("packer").startup(function()
     },
   })
 
+  use({
+    "gbprod/substitute.nvim",
+    config = function()
+      require("substitute").setup()
+
+      -- vim.keymap.set("n", "ss",
+      --   "<cmd>lua require('substitute').line()<cr>", { noremap = true })
+    end
+  })
+
   -- a bunch of small plugins in one repo
   use({
     "echasnovski/mini.nvim",
@@ -311,12 +321,12 @@ require("packer").startup(function()
   })
 
   -- see https://github.com/mickael-menu/zk for more
-  use({
-    "mickael-menu/zk-nvim",
-    config = function()
-      require("zk").setup()
-    end,
-  })
+  -- use({
+  --   "mickael-menu/zk-nvim",
+  --   config = function()
+  --     require("zk").setup()
+  --   end,
+  -- })
 
   use({
     "lervag/wiki.vim",
