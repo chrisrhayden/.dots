@@ -2,7 +2,7 @@
 -- settings
 --------------------------------------------------------------------------------
 
--- NOTE: there is potential that some settings sould be buffer/window local but
+-- NOTE: there is potential that some settings should be buffer/window local but
 -- i haven't run in to any issues so far
 
 local set = vim.opt
