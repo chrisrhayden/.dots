@@ -6,21 +6,6 @@ CLIENT_NAMES = {}
 
 local nvim_lsp = require("lspconfig")
 
-require("lspsaga").init_lsp_saga({
-  rename_action_keys = {
-    quit = { '<C-c>', "<esc>" }, exec = '<CR>' -- quit can be a table
-  },
-  rename_prompt_prefix = "rename ➤",
-  code_action_keys = {
-    quit = "<esc>",
-    exec = "<cr>"
-  },
-  code_action_prompt = {
-    enable = false
-  },
-  border_style = "round",
-})
-
 -- get lsp info and lsp server name to show in the last status
 function LspStatus()
   if #vim.lsp.buf_get_clients() > 0 then
@@ -100,12 +85,8 @@ local function on_attach(client, bufnr)
 
   bmap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<cr>", opts)
 
-  -- bmap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  bmap("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<cr>", opts)
-  -- bmap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  bmap("n",
-    "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", opts)
-  bmap("v", "<leader>ca", ":<c-u>lua require('lspsaga.codeaction').range_code_action()<cr", opts)
+  bmap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  bmap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 
   bmap("n", "<leader>q", "<cmd>lua vim.diagnostic.set_loclist()<cr>", opts)
 
@@ -268,7 +249,6 @@ for lsp, settings_func in pairs(servers) do
 end
 
 -- lsp_status.config({
---   indicator_errors = "",
 --   indicator_warnings = "",
 --   indicator_info = "",
 --   indicator_hint = "",

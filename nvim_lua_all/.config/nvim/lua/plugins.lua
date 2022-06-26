@@ -46,8 +46,6 @@ require("packer").startup(function()
     end,
     requires = {
       "nvim-lua/lsp-status.nvim",
-      "tami5/lspsaga.nvim",
-      -- "glepnir/lspsaga.nvim",
     },
   })
   -- }}}
@@ -309,6 +307,21 @@ require("packer").startup(function()
     config = function()
       vim.cmd([[ colorscheme sourcery ]])
     end,
+  })
+
+  use({
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker")
+    end,
+    requires = {
+      {
+        "stevearc/dressing.nvim",
+        config = function()
+          require('dressing').setup()
+        end
+      }
+    }
   })
 
   -- draw diagrams with ascii
