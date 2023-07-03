@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# simple volume script
+
+MUTE=0
+VOLUME_NUM=''
+
+get_default_sink_name() {
+    pacmd stat | awk -F": " '/^Default sink name: /{print $2}'
+}
+
+toggle_sink_mute() {
+    local sink_name volume_num
+    sink_name="$1"
+
+    pactl set-sink-mute "$sink_name" toggle
+}
+
+set_volume() {
+    local sink_name volume_num
+    sink_name="$1"
+    volume_num="$2"
+
+    pactl set-sink-volume "$sink_name" "${volume_num}%"
+}
+
+if [[ $# -eq 0 ]]; then
+    VOLUME_NUM=100
+fi
+
+while [[ -n $1 ]]; do
+    case "$1" in
+        [0-9]*)
+            VOLUME_NUM="${1%*%}"
+            ;;
+        -m|--mute|m)
+            MUTE=1
+            ;;
+    esac
+    shift
+done
+
+if ((MUTE)); then
+    toggle_sink_mute "$(get_default_sink_name)"
+elif [[ -n $VOLUME_NUM ]]; then
+    set_volume "$(get_default_sink_name)" "$VOLUME_NUM"
+fi
+
+if command -v pamixer &>/dev/null ; then
+    printf ' > volume '
+    pamixer --get-volume-human
+fi

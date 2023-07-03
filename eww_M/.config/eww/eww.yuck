@@ -1,0 +1,114 @@
+(include "./info.yuck")
+(include "./hypr.yuck")
+(include "./time.yuck")
+(include "./tools.yuck")
+(include "./sys.yuck")
+
+(defwindow bar_one
+  :monitor 1
+  :geometry (geometry
+             :width "100%"
+             :height "26px"
+             :anchor "bottom center")
+  (main_layout
+    :id "1"
+    :bar_size 26))
+
+(defwindow bar_zero
+  :monitor 0
+  :geometry (geometry
+             :width "100%"
+             :height "26px"
+             :anchor "bottom center")
+  (main_layout
+    :id "0"
+    :bar_size 26))
+
+(defwidget main_layout [id bar_size]
+  (centerbox
+    :class "main-layout"
+    (hypr_ws
+      :id id
+      :bar_size bar_size)
+    (time)
+    (side_layout :id id)))
+
+
+(defwidget side_layout [id]
+  (box
+    :halign "end"
+    :space-evenly false
+    (tool_toggle :id id)
+    (info_toggle :id id)
+    (sys_toggle :id id)))
+
+
+(defwindow info_zero
+  :monitor 0
+  :geometry (geometry
+             :y "30px"
+             :x "55px"
+             :anchor "bottom right")
+  (info_zero))
+
+(defwindow info_one
+  :monitor 1
+  :geometry (geometry
+             :y "30px"
+             :x "55px"
+             :anchor "bottom right")
+  (info_one))
+
+(defwindow tool_one
+  :monitor 1
+  :stacking "overlay"
+  :geometry (geometry
+             :y "30px"
+             :x "105px"
+             :anchor "bottom right")
+  (tool_one))
+
+(defwindow tool_zero
+  :monitor 0
+  :stacking "overlay"
+  :geometry (geometry
+             :y "30px"
+             :x "105px"
+             :anchor "bottom right")
+  (tool_zero))
+
+(defwindow workspace_one
+  :monitor 1
+  ; :stacking "bottom"
+  :geometry (geometry
+             :y "30px"
+             :x "105px"
+             :anchor "bottom right")
+  (workspace_one))
+
+(defwindow workspace_zero
+  :monitor 0
+  ; :stacking "bottom"
+  :geometry (geometry
+             :y "30px"
+             :x "105px"
+             :anchor "bottom right")
+  (workspace_zero))
+
+(defwindow sys_one
+  :monitor 1
+  ; :stacking "bottom"
+  :geometry (geometry
+             :y "30px"
+             :x "15px"
+             :anchor "bottom right")
+  (sys_one))
+
+(defwindow sys_zero
+  :monitor 0
+  ; :stacking "bottom"
+  :geometry (geometry
+             :y "30px"
+             :x "15px"
+             :anchor "bottom right")
+  (sys_zero))

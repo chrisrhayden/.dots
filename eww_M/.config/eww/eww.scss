@@ -1,0 +1,85 @@
+// $bg-color: #191919;
+// $bg-color: #2E3140;
+// $bg-color: #3F2336;
+// $fg-focus-color: #A05E6E;
+// $fg-focus-color: #F57E77;
+// $fg-unfocus-color: #A9ABB0;
+// $fg-focus-color-alt: #A9ABB0;
+// $fg-focus-color: #df6a88;
+
+$fg-color: #ffffff;
+$bg-color: #7D6A80;
+
+
+$fg-focus-color: $fg-color;
+$fg-unfocus-color: #87888c;
+
+$fg-hover: #000000;
+$bg-hover: $bg-color;
+
+$font-size: 16px;
+$font-family: "Cartograph CF";
+
+* {
+    all: unset;
+}
+
+.main-layout {
+    font-size: $font-size;
+    font-family: $font-family;
+
+    background-color: transparent;
+
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.info-layout {
+    font-size: $font-size;
+    font-family: $font-family;
+
+    background-color: transparent;
+}
+
+.tool-layout {
+    font-size: $font-size;
+    font-family: $font-family;
+
+    background-color: transparent;
+}
+
+.normal {
+    padding-left: 5px;
+    padding-right: 5px;
+
+    border-radius: 5px;
+
+    &:hover {
+        background-color: $bg-hover;
+        color: $fg-hover;
+    }
+}
+
+.opaque {
+    font-size: $font-size;
+    font-family: $font-family;
+    padding-right: 5px;
+    padding-left: 5px;
+
+    border-radius: 5px;
+    color: #000000;
+    background-color: $bg-color;
+
+    &:hover {
+        color: $fg-color;
+        font-weight: bold;
+    }
+}
+
+.ws-focused {
+    color: $fg-focus-color;
+}
+
+.ws-unfocused {
+    color: $fg-unfocus-color;
+}

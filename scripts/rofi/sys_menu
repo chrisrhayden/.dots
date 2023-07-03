@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Custom Rofi Script
+
+# Launch Rofi
+MENU="$(
+    rofi -config ~/.dots/scripts/rofi/right_aligned_config.rasi \
+        -theme-str 'window {width: 260px;}' \
+        -dmenu -sep '|' \
+        <<< "  Lock|  Logout|  Reboot|  Shutdown"
+)"
+
+case "$MENU" in
+  *Lock) ~/bin/blurlock ;;
+  *Logout) openbox --exit;;
+  *Reboot) systemctl reboot ;;
+  *Shutdown) systemctl -i poweroff
+esac

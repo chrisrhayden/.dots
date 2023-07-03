@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Custom Rofi Script
+
+# Launch Rofi
+rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi \
+    -theme-str 'window {width: 620;}' \
+    -show-icons \
+    -show drun

@@ -1,0 +1,14 @@
+dirs = [ "src" ]
+
+build = """
+yarn init -y -cwd '{{root}}'
+yarn add -cwd '{{root}}' 'eslint'
+"""
+
+[[templates]]
+path = "src/main.js"
+include = "{{config-dir}}/projects/basic_javascript/main.js"
+
+[[templates]]
+path  = ".eslintrc.json"
+include = "{{config-dir}}/projects/basic_javascript/javascript.eslintrc.json"

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+wayland_clip() {
+    if [[ -t 0 ]]; then
+        wl-paste
+    else
+        wl-copy
+    fi
+}
+
+main() {
+    if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+        wayland_clip
+    else
+        echo "xorg not supported"
+        return 1
+    fi
+}
+
+main
+exit $?

@@ -1,0 +1,13 @@
+configuration {
+    modi: "drun";
+    font: "Fira Code 12";
+    drun {
+        display-name: "Apps  ";
+    }
+    dmenu {
+        display-name: "  ";
+    }
+    width: 10;
+}
+
+@theme "/home/chris/.dots/scripts/rofi/basic_theme.rasi"

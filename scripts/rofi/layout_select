@@ -1,0 +1,38 @@
+#!/bin/bash
+
+notify_send() {
+    if hash notify-send; then
+        notify-send "$1"
+    fi
+}
+
+if ! hash python3 ; then
+    echo 'needs python 3'
+    exit 1
+fi
+
+rofi_menu=''
+
+layouts=( $(sed -e '/^#/ d' ~/.dots/scripts/layouts.txt) )
+
+for da in ${layouts[@]}; do
+    if pgrep -x "$da" &>/dev/null ; then
+        rofi_menu+="${da}|"
+    else
+        rofi_menu+="${da}|"
+    fi
+done
+
+# remove the trailing | from the menu string
+rofi_menu="${rofi_menu%|}"
+
+# # Launch Rofi
+choose="$(
+    rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi \
+        -theme-str 'window {width: 160px;}' \
+        -dmenu -sep "|" <<< "$rofi_menu"
+)"
+
+if [[ -n $choose ]]; then
+    python3 "${HOME}/.dots/scripts/make_layout.py" --layout "$choose"
+fi

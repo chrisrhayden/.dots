@@ -1,0 +1,303 @@
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+#
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# config {{{
+# set $mod as windows key
+set $mod Mod4
+
+# style {{{
+# color {{{
+# windows
+set $text_colors         #d8dee8
+
+# focused work space, the one your using
+set $foc_text_color      #1F1F1F
+set $foc_window_bg       #b7b7b7
+
+set $foc_inac_window     #1F1F1F
+
+set $unfoc_window_bg     #1F1F1F
+
+# bar
+set $urgent              #E53935
+set $urgent_text_color   #d8dee8
+
+# active_workspace, workspace you can see but aren't using
+set $act_work            #1F1F1F
+set $act_text_color      #1F1F1F
+# }}}
+
+# Font for window titles. Will also be used by the bar unless a different font
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+font pango:Hack Regular 10
+
+# window colors         border             background         text            indicator
+client.focused          $foc_window_bg     $foc_window_bg     $foc_text_color    #555555
+client.unfocused        $unfoc_window_bg   $unfoc_window_bg   $text_colors    #555555
+client.focused_inactive $foc_inac_window   $foc_inac_window   $text_colors    #555555
+client.urgent           $urgent_window_bg  $urgent_window_bg  $text_colors    #00ff00
+
+
+# borders
+new_window 1pixel
+for_window [class="^.*"] border pixel 2
+# for_window [class="^.*"] border pixel 0
+# }}}
+
+# windowing {{{
+# focus_follows_mouse no
+focus_on_window_activation no
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+# fixed for real vim bindings
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the child container
+bindsym $mod+o focus child
+
+# focus the parent container
+bindsym $mod+p focus parent
+# }}}
+
+# workspace {{{
+# set $workspace1 "1"
+# set $workspace2 "2"
+# set $workspace3 "3"
+# set $workspace4 "4"
+# set $workspace5 "5"
+# set $workspace6 "6"
+# set $workspace7 "7"
+# set $workspace8 "8"
+# set $workspace9 "9"
+# set $workspace10 "10"
+
+# to switch back to workspace by hitting same number
+workspace_auto_back_and_forth yes
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# cycle through active workspaces
+# https://faq.i3wm.org/question/4979/
+# cycling-through-active-workspaces/index.html
+# bindsym $mod+Tab workspace next_on_output
+
+# can essential cycle right
+bindsym $mod+Shift+m move workspace to output right
+
+# mod z to switch
+# bindsym $mod+z workspace back_and_forth
+
+### ASSIGN WORKSPACE
+assign [class="Steam"] 10
+
+#### WORKSPACE SCREEN
+# workspace $workspace10 output HDMI-0
+# workspace $workspace9 output HDMI-0
+
+# }}}
+
+# adjust windows {{{
+# resize {{{
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize           shrink width  10 px or 10 ppt
+        bindsym j resize           grow height   10 px or 10 ppt
+        bindsym k resize           shrink height 10 px or 10 ppt
+        bindsym l resize           grow width    10 px or 10 ppt
+
+        # smaller movements
+        bindsym Shift+h resize    shrink width  5 px or 5 ppt
+        bindsym Shift+j resize    grow   height   5 px or 5 ppt
+        bindsym Shift+k resize    shrink height 5 px or 5 ppt
+        bindsym Shift+l resize    grow   width    5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize        shrink width  10 px or 10 ppt
+        bindsym Down resize        grow height   10 px or 10 ppt
+        bindsym Up resize          shrink height 10 px or 10 ppt
+        bindsym Right resize       grow width    10 px or 10 ppt
+
+        # smaller movements
+        bindsym Shift+Left resize  shrink width  5 px or 5 ppt
+        bindsym Shift+Down resize  grow height   5 px or 5 ppt
+        bindsym Shift+Up resize    shrink height 5 px or 5 ppt
+        bindsym Shift+Right resize grow width    5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode        "default"
+        bindsym Escape mode        "default"
+}
+
+bindsym $mod+r mode "resize"
+# }}}
+
+# gaps {{{
+# start size
+gaps inner 10
+#gaps outer 5
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+# }}}
+# }}}
+
+# keybindings {{{
+# system {{{
+# kill focused window
+bindsym $mod+w kill
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 in place (preserves your layout/session, can be used to upgrade i3),
+bindsym $mod+Shift+r restart
+
+bindsym $mod+Shift+Delete exec /usr/bin/poweroff
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# }}}
+
+# bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec kitty
+
+bindsym $mod+Shift+grave move scratchpad
+bindsym $mod+grave scratchpad show
+
+# for_window [class="scratchpad"] floating enable, move scratchpad, scratchpad show
+# for_window [class="scratchpad"] fullscreen enable
+
+bindsym $mod+Shift+F4 exec --no-startup-id \
+    "alacritty --class \\"_scratchpad,_scratchpad\\""
+
+bindsym $mod+F1 exec --no-startup-id firefox
+bindsym $mod+F2 exec --no-startup-id firefox 'https://www.youtube.com/'
+bindsym $mod+Shift+F2 exec  --no-startup-id \
+    firefox --new-window 'https://www.youtube.com/'
+
+bindsym $mod+F5 exec --no-startup-id ~/.dots/scripts/make_layout.py --layout dev
+bindsym $mod+F6 exec --no-startup-id ~/.dots/scripts/make_layout.py --layout info
+
+bindsym $mod+F12 exec --no-startup-id blurlock
+
+bindsym $mod+Tab exec --no-startup-id ~/.dots/scripts/rofi/menu
+# }}}
+
+# startup {{{
+exec --no-startup-id "~/.dots/scripts/startup_cmds.sh"
+# }}}
+# }}}
+
+# vim:filetype=i3config foldmethod=marker:

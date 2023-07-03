@@ -1,0 +1,105 @@
+# general {{{
+mouse:
+  hide_when_typing: true
+
+#scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  #history: 10000
+
+  # Scrolling distance multiplier.
+  #multiplier: 3
+# }}}
+
+# font {{{
+font:
+  normal:
+    # family: Hack Nerd Font
+    # family: SourceCodePro
+    # family: FiraCode Nerd Font Mono
+    family: FiraCode Nerd Font
+    # family: Cartograph CF
+    style: Regular
+
+  # bold:
+  #   family: FiraCode Nerd Font Mono
+  #   style: Bold
+  #
+  # italic:
+  #   family: Fira Mono
+  #   style: Italic
+  #
+  # bold_italic:
+  #   family: Fira Mono
+  #   style: Bold Italic
+  #
+  size: 12
+  # offset:
+  #   x: 0
+  #   y: -6
+  # glyph_offset:
+  #   x: 0
+  #   y: -2
+
+
+# }}}
+
+# colors {{{
+# background_opacity: 0.9
+window:
+  opacity: 0.9
+
+
+# Base16 Isotope 256 - alacritty color config
+# Jan T. Sott
+colors:
+  # Default colors
+  primary:
+    background: '#000000'
+    foreground: '#d0d0d0'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '#000000'
+    cursor: '#d0d0d0'
+
+  # Normal colors
+  normal:
+    # use grey so "black" will still stand out on the black background
+    # this is because comments are often normal black and other things like the
+    # incomplete commands from `zdharma/fast-syntax-highlighting` are "bright"
+    # black
+    black:   '#000000'
+    red:     '#ff0000'
+    green:   '#33ff00'
+    yellow:  '#fff000'
+    # i like this color a lot but i like yellow as a warning, i think this would
+    # have been better as a bright variant but thats not being done
+    # yellow:  '#ff0099'
+    blue:    '#0066ff'
+    magenta: '#cc00ff'
+    cyan:    '#00ffff'
+    white:   '#d0d0d0'
+
+  # Bright colors
+  bright:
+    black:   '#808080'
+    red:     '#ff0000'
+    green:   '#33ff00'
+    yellow: '#fff000'
+    # yellow:  '#ff0099'
+    blue:    '#0066ff'
+    magenta: '#cc00ff'
+    cyan:    '#00ffff'
+    white:   '#ffffff'
+
+  indexed_colors:
+    - { index: 16, color: '#ff9900' }
+    - { index: 17, color: '#3300ff' }
+    - { index: 18, color: '#404040' }
+    - { index: 19, color: '#606060' }
+    - { index: 20, color: '#c0c0c0' }
+    - { index: 21, color: '#e0e0e0' }
+# }}}
+
+# vim: foldmethod=marker

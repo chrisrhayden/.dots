@@ -1,0 +1,37 @@
+#!/bin/bash
+
+notify_send() {
+    if hash notify-send; then
+        notify-send "$1"
+    fi
+}
+
+screen=" screen"
+# just getting the widow is weirdly hard to do
+# window=" window"
+area=" area"
+
+selection="${screen}|${area}"
+
+# Launch Rofi
+choose="$(
+    rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi \
+        -theme-str 'window {width: 260px;}' \
+        -dmenu -sep "|" <<< "$selection"
+)"
+
+file_location="${HOME}/Pictures/screenshots"
+mkdir -p "$file_location" 2>/dev/null
+file_name="${file_location}/screenshot_$(date +'%F_%T').png"
+
+case $choose in
+    "$screen")
+        sleep 1
+        maim "$file_name"
+        notify_send "screen shot saved to $file_name"
+        ;;
+    "$area")
+        maim -s "$file_name"
+        notify_send "screen shot saved to $file_name"
+        ;;
+esac

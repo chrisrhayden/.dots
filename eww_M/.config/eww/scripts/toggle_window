@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# toggle a window
+#
+# this will close all other windows and open a selected one
+
+declare -A vars
+
+vars['info_0']="info-reveal-0"
+vars['info_1']="info-reveal-1"
+vars['tool_1']="tool-reveal-1"
+vars['tool_0']="tool-reveal-0"
+vars['workspace_1']="workspace-reveal-1"
+vars['workspace_0']="workspace-reveal-0"
+vars['system_1']="system-reveal-1"
+vars['system_0']="system-reveal-0"
+
+
+close_all() {
+    for v in "${vars[@]}"; do
+        eww update "${v}=false"
+    done
+}
+
+get_value() {
+    printf '%s' "$(eww get $1)"
+}
+
+main() {
+    name="$1"
+    id="$2"
+
+    if [[ $name == "close" ]]; then
+        close_all
+        return
+    fi
+
+    target="${vars[${name}_${id}]}"
+
+    is_open="$(get_value "$target")"
+
+    if [[ $is_open == 'true' ]]; then
+        close_all
+    else
+        close_all
+        eww update "$target"=true
+    fi
+}
+
+main "$1" "$2"

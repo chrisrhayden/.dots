@@ -1,0 +1,53 @@
+# see https://github.com/CppCXY/EmmyLuaCodeStyle
+[*.lua]
+
+# optional space/tab
+indent_style = space
+# if indent_style is space, this is valid
+indent_size = 2
+# if indent_style is tab, this is valid
+# tab_width = 4
+# none/single/double
+quote_style = double
+
+continuation_indent = 2
+
+# this mean utf8 length , if this is 'unset' then the line width is no longer
+# checked this option decides when to chopdown the code
+max_line_length = 80
+
+#optional keep/never/always/smart
+trailing_table_separator = keep
+
+# keep/remove/remove_table_only/remove_string_only
+call_arg_parentheses = remove_table_only
+
+# [operator space]
+space_around_math_operator = true
+
+space_after_comma = true
+
+space_after_comma_in_for_statement = true
+
+space_around_concat_operator = true
+
+# [align]
+
+align_call_args = false
+
+align_function_params = true
+
+# align_continuous_assign_statement = true
+align_continuous_assign_statement = false
+
+align_continuous_rect_table_field = false
+
+align_if_branch = false
+
+align_array_table = false
+
+# [indent]
+
+never_indent_before_if_condition = false
+
+never_indent_comment_on_if_branch = false

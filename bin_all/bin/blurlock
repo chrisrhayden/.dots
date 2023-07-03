@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+set -e
+
+if command -vp notify-send &>/dev/null; then
+    notify-send 'setting screen lock'
+fi
+
+lockbg='/tmp/lock.png'
+
+grim "$lockbg"
+
+# convert "$lockbg" -filter point -resize '10%' -resize '1000%' -quality 50 "$lockbg"
+
+convert -scale 10% -blur 0x2.5 -resize 1000% "$lockbg" "$lockbg"
+
+swaylock -u -s fit -i "$lockbg"

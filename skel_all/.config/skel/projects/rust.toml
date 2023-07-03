@@ -1,0 +1,9 @@
+build_first = true
+
+build = """
+cargo new {{root}}
+"""
+
+[[templates]]
+path = "rustfmt.toml"
+include = "{{config-dir}}/projects/rustfmt.toml"

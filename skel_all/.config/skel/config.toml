@@ -1,0 +1,23 @@
+[skeletons]
+basic_bash.path          = "{{config-dir}}/projects/bash.toml"
+basic_bash.aliases       = ["bash", "ba"]
+basic_c.path             = "{{config-dir}}/projects/c.toml"
+basic_c.aliases          = ["c"]
+basic_cpp.path           = "{{config-dir}}/projects/cpp.toml"
+basic_cpp.aliases        = ["cpp", "cp", "c++"]
+basic_javascript.path    = "{{config-dir}}/projects/javascript.toml"
+basic_javascript.aliases = ["js", "javascript"]
+basic_lua.path           = "{{config-dir}}/projects/lua.toml"
+basic_lua.aliases        = ["lua", "lu"]
+basic_python.path        = "{{config-dir}}/projects/python.toml"
+basic_python.aliases     = ["py", "p", "python"]
+basic_rust.path          = "{{config-dir}}/projects/rust.toml"
+basic_rust.aliases       = ["rs", "rust"]
+basic_shell.path         = "{{config-dir}}/projects/shell.toml"
+basic_shell.aliases      = ["sh",  "shell"]
+basic_typescript.path    = "{{config-dir}}/projects/typescript.toml"
+basic_typescript.aliases = ["ts", "typescript"]
+cc.path                  = "{{config-dir}}/projects/cc.toml"
+cc.aliases               = ["cc"]
+react_type.path          = "{{config-dir}}/projects/react_type.toml"
+react_type.aliases       = ["rt"]

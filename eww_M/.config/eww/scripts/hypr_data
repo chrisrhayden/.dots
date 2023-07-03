@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+
+import os, socket, sys, json
+from subprocess import run
+
+def run_cmd(cmd):
+    cmd_out = run(cmd, capture_output=True)
+
+    cmd_out.check_returncode()
+
+    if not cmd_out.stdout:
+        cmd_str = " ".join(cmd)
+        raise Exception(f"did not get output from {cmd_str}")
+
+    return json.loads(cmd_out.stdout)
+
+
+def hypr_info():
+    monitors = run_cmd(["hyprctl", "monitors", "-j"])
+    workspaces = run_cmd(["hyprctl", "workspaces", "-j"])
+    active_window = run_cmd(["hyprctl", "activewindow", "-j"])
+
+    return {
+        "monitors": monitors,
+        "workspaces": workspaces,
+        "active_window": active_window,
+    }
+
+
+def make_items(hypr_data):
+    mons = {}
+    data = {}
+
+    # map monitors to an object and add the monitor entry to the data object
+    for m in hypr_data["monitors"]:
+        # add the monitor entry to data
+        # use ids as that is whats getting passed in eww
+        data[m["id"]] = []
+        # map monitors to an object
+        mons[m["name"]] = {
+            "id": m["id"],
+            "focused_id": m["activeWorkspace"]["id"],
+            "focused": m["focused"],
+        }
+
+    # map workspaces to the correct monitor entry in data
+    for w in hypr_data["workspaces"]:
+        mon_name = w["monitor"]
+        mon_id = mons[mon_name]["id"]
+
+        new_ws = {
+            "id": w["id"],
+            "name": w["name"],
+            "focused": mons[mon_name]["focused_id"] == w["id"],
+            "focused_mon": mons[mon_name]["focused"],
+        }
+
+        data[mon_id].append(new_ws)
+
+    # sort workspaces to show up in the correct order
+    for v in data.values():
+        v.sort(key=lambda i: i["id"])
+
+    # add active_window after sorting
+    if hypr_data["active_window"]:
+        data["active_window"] = {
+            "id": hypr_data["active_window"]["monitor"],
+            "title": hypr_data["active_window"]["title"]
+        }
+    else:
+        data["active_window"] = {}
+
+    return json.dumps(data)
+
+
+def update():
+    return make_items(hypr_info())
+
+
+def main():
+    hypr_sig = os.environ["HYPRLAND_INSTANCE_SIGNATURE"]
+
+    if not hypr_sig:
+        print("did not get HYPRLAND_INSTANCE_SIGNATURE", file=sys.stderr)
+        return False
+
+    server = socket.socket(socket.AF_UNIX)
+
+    server.connect(f"/tmp/hypr/{hypr_sig}/.socket2.sock")
+
+    print(update(), flush=True, file=sys.stdout)
+
+    while True:
+        _hypr_recv = server.recv(1024)
+
+        print(update(), flush=True, file=sys.stdout)
+
+
+if __name__ == "__main__":
+    success = True
+
+    try:
+        success = main()
+    # i dislike the stack trace from ctrl-c when testing
+    except KeyboardInterrupt:
+        sys.exit(0)
+
+    if not success:
+        sys.exit(1)

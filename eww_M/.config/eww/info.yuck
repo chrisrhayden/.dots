@@ -1,0 +1,77 @@
+; info like ram and cpu usage
+
+; TODO: i want a better way to do this
+(defvar info-reveal-0 false)
+(defvar info-reveal-1 false)
+
+(defwidget info_toggle [id]
+  (box :halign "end"
+    (button
+      :onclick "${EWW_CONFIG_DIR}/scripts/toggle_window info ${id}"
+      :onrightclick "${EWW_CONFIG_DIR}/scripts/toggle_window close"
+      :class "info-toggle normal"
+      "info")))
+
+(defwidget info_zero []
+  (box
+    :orientation "v"
+    :space-evenly false
+    (revealer
+      :reveal info-reveal-0
+      :transition "slideup"
+      (info_layout))))
+
+(defwidget info_one []
+  (revealer
+    :reveal info-reveal-1
+    :transition "slideup"
+    (info_layout)))
+
+; (defwidget info_one []
+;   (box
+;     :orientation "v"
+;     :space-evenly false
+;     (revealer
+;       :reveal info-reveal-1
+;       :transition "slideup"
+;       (info_layout))))
+
+(defwidget info_layout []
+  (box
+    :class "info-layout"
+    :spacing 4
+    :space-evenly false
+    :orientation "v"
+    :halign "end"
+    (cpu)
+    (ram)
+    (net)))
+
+(defvar cpu-select true)
+
+(defwidget cpu []
+  (button
+    :halign "end"
+    :class "cpu-bt opaque"
+    :onclick "eww update cpu-select=${cpu-select ? false : true}"
+    {cpu-select ? "cpu" : "cpu ${round(EWW_CPU["avg"], 0)}%"}))
+
+(defvar ram-select true)
+
+(defwidget ram []
+  (button
+    :halign "end"
+    :class "ram-bt opaque"
+    :onclick "eww update ram-select=${ram-select ? false : true}"
+    {ram-select ? "ram" : "ram used ${round(EWW_RAM["used_mem_perc"], 0)}%"}))
+
+(defvar net-select true)
+
+(defwidget net []
+  (button
+    :class "network-bt opaque"
+    :halign "end"
+    :onclick "eww update net-select=${net-select ? false : true}"
+    {net-select
+      ? "net"
+      : "net ↓ ${EWW_NET["enp34s0"]["NET_DOWN"]} ↑ ${EWW_NET["enp34s0"]["NET_UP"]}"}))

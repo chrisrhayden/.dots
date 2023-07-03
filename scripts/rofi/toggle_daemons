@@ -1,0 +1,3 @@
+rofi -config ~/.dots/scripts/rofi/left_aligned_config.rasi \
+    -show d -modi "d:/home/chris/.dots/scripts/rofi/toggle_daemons_two" \
+    -theme-str 'window {width: 250px;}'

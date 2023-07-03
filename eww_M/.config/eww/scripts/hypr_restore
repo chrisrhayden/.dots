@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+
+from time import sleep
+from subprocess import run
+import sys
+
+layouts = {}
+
+layouts["work"] = [
+    ["exec", "kitty"],
+    ["layoutmsg", "preselect", "left"],
+    ["exec", "kitty"],
+    ["layoutmsg", "preselect", "up"],
+    ["exec", "firefox"],
+]
+
+layouts["htop"] = [
+    ["exec", "kitty --session ~/.config/kitty/htop.conf"]
+]
+
+def hyprctl(cmd, two):
+    new = cmd.copy()
+    new.extend(two)
+
+    out = run(new, )
+    out.check_returncode()
+
+hypr_dispatch = lambda args: hyprctl(["hyprctl", "dispatch"], args)
+hypr_setoption = lambda args: hyprctl(["hyprctl", "keyword"], args)
+
+def make_workspace(workspace):
+    hypr_setoption(["input:follow_mouse", "0"])
+
+    for e in layouts[workspace]:
+        hypr_dispatch(e)
+        sleep(.2)
+
+    hypr_setoption(["input:follow_mouse", "1"])
+
+
+def main(workspace):
+    if workspace not in layouts:
+        print(f"did not get a correct workspace -- {workspace}", file=sys.stderr)
+        return False
+
+    make_workspace(workspace)
+
+    return True
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("did not get enough args", file=sys.stderr)
+        sys.exit(1)
+
+    workspace = sys.argv[1]
+    if not main(workspace):
+        sys.exit(1)

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+wayland_screen_grab() {
+    name="$1"
+
+    grim "$name"
+}
+
+main() {
+    name="${HOME}/Pictures/screenshots/screenshot_$(date +"%F:%R:%S").png"
+
+    if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+        wayland_screen_grab "$name"
+    else
+        echo "xorg not supported"
+        return 1
+    fi
+
+    notify-send "screen shot saved to $name"
+
+    return 0
+}
+
+main
+exit $?

@@ -1,0 +1,80 @@
+(defvar tool-reveal-1 false)
+(defvar tool-reveal-0 false)
+(defvar workspace-reveal-1 false)
+(defvar workspace-reveal-0 false)
+
+(defwidget workspace_one []
+  (revealer
+    :reveal workspace-reveal-1
+    (workspace_layout)))
+
+(defwidget workspace_zero []
+  (revealer
+    :reveal workspace-reveal-0
+    (workspace_layout)))
+
+(defwidget workspace_layout []
+  (box
+    :orientation "v"
+    :spacing 4
+    :halign "end"
+    (work)
+    (htop)))
+
+(defwidget work []
+  (button
+    :class "opaque"
+    :halign "end"
+    :onclick "${EWW_CONFIG_DIR}/scripts/hypr_restore work & ${EWW_CONFIG_DIR}/scripts/toggle_window close"
+    "work"))
+
+(defwidget htop []
+ (button
+   :class "opaque"
+    :halign "end"
+   :onclick "${EWW_CONFIG_DIR}/scripts/hypr_restore htop & ${EWW_CONFIG_DIR}/scripts/toggle_window close"
+   "htop"))
+
+(defwidget screen [id]
+  (button
+    :class "opaque"
+    :timeout "500ms"
+    :halign "end"
+    :onclick 'sleep 2 && "$HOME"/bin/screen_grab & ${EWW_CONFIG_DIR}/scripts/toggle_window close'
+    "screen"))
+
+(defwidget workspace [id]
+  (button
+    :class "opaque"
+    :halign "end"
+    :onclick "${EWW_CONFIG_DIR}/scripts/toggle_window workspace ${id}"
+    (box "workspace")))
+
+(defwidget tool_toggle [id]
+  (button
+    :onclick "${EWW_CONFIG_DIR}/scripts/toggle_window tool ${id}"
+    :onrightclick "${EWW_CONFIG_DIR}/scripts/toggle_window close"
+    :class "tool-toggle normal"
+    "tools"))
+
+(defwidget tool_layout [id]
+  (box
+    :class "tool-layout"
+    :space-evenly false
+    :spacing 4
+    :orientation "v"
+    :halign "end"
+    (screen :id id)
+    (workspace :id id)))
+
+(defwidget tool_one []
+  (revealer
+    :reveal tool-reveal-1
+    :transition "slideup"
+    (tool_layout :id "1")))
+
+(defwidget tool_zero []
+  (revealer
+    :reveal tool-reveal-0
+    :transition "slideup"
+    (tool_layout :id "0")))

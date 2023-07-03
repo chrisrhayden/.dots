@@ -1,0 +1,25 @@
+(deflisten hypr_data
+  :initial "{}"
+  `/home/chris/.config/eww/scripts/hypr_data`)
+
+(defwidget hypr_ws [id bar_size]
+  (box
+    :class "hypr"
+    :halign "start"
+    :space-evenly false
+    (for w in {hypr_data[id]}
+      (button
+        :width bar_size
+        :class "${w["focused"] ? "ws-focused normal" : "ws-unfocused normal"}"
+        :onclick "hyprctl dispatch workspace ${w.id}"
+        "${w.name}"))))
+
+(defwidget hypr_title [id]
+  (eventbox
+    :class "title-evt normal"
+    (box
+      :class "title-box normal"
+      { hypr_data.active_window.id == id
+         ? "${hypr_data.active_window.title}" : ""})))
+      
+

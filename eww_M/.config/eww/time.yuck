@@ -1,0 +1,17 @@
+(defvar time-select true)
+
+(defpoll tm
+  :interval "5s"
+  :initial "{}"
+  ; this is pretty unreadable
+  `date +'{"mon":"%b","day":"%a","h":"%-l","m":"%M","ap":"%P","f":"%F"}' | tr [:upper:] [:lower:]`)
+
+(defwidget time []
+  (button
+    :halign "end"
+    :class "time normal"
+    :onclick 'eww update time-select=${time-select ? false : true}'
+    {time-select
+      ? "${tm.day} ${tm.h}:${tm.m} ${tm.ap}"
+      : "${tm.mon} ${tm.day} ${tm.f} ${tm.h}:${tm.m} ${tm.ap}"}))
+

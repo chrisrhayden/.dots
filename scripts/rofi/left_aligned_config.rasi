@@ -1,0 +1,8 @@
+configuration {
+    location: 7;
+    xoffset: 10;
+    yoffset: -45;
+    /* display-name: "> "; */
+}
+
+@import "basic_config.rasi"

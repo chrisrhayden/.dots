@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+killall -q eww &>/dev/null
+
+while pgrep -u $UID -x polybar > /dev/null; do
+    sleep .5
+done
+
+eww open-many \
+    bar_one bar_zero \
+    info_one info_zero \
+    tool_one tool_zero \
+    workspace_one workspace_zero \
+    sys_one sys_zero

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+notify_send() {
+    if hash notify-send; then
+        notify-send "$1"
+    fi
+}
+
+kill_deamon() {
+    notify_send "stopping $1"
+    pkill "$1"
+}
+
+run_deamon() {
+    notify_send "starting $1"
+    $1 &>/dev/null &
+}
+
+if [[ -n $1 ]]; then
+    status=${1%% *}
+    cmd="${1##* }"
+    if [[ $status == * ]]; then
+        kill_deamon "$cmd"
+    else
+        run_deamon "$cmd"
+    fi
+    exit 0
+fi
+
+rofi_menu='\0prompt\x1f \n'
+
+daemons=( $(sed -e '/^#/ d' ~/.dots/scripts/daemons.txt) )
+
+for da in ${daemons[@]}; do
+    rofi_menu+='\n'
+
+    if pgrep -x "$da" &>/dev/null ; then
+        rofi_menu+=" ${da}"
+    else
+        rofi_menu+=" ${da}"
+    fi
+done
+
+echo -e "$rofi_menu"

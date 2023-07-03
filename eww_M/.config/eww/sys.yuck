@@ -1,0 +1,45 @@
+(defvar system-reveal-1 false)
+(defvar system-reveal-0 false)
+
+(defwidget sys_toggle [id]
+  (button
+    :halign "end"
+    :onclick "${EWW_CONFIG_DIR}/scripts/toggle_window system ${id}"
+    :onrightclick "${EWW_CONFIG_DIR}/scripts/toggle_window close"
+    :class "system-toggle normal"
+    "sys"))
+
+(defwidget sys_one []
+  (revealer
+    :reveal system-reveal-1
+    :transition "slideup"
+    (sys_layout)))
+
+(defwidget sys_zero []
+  (revealer
+    :reveal system-reveal-0
+    :transition "slideup"
+    (sys_layout)))
+
+(defwidget sys_layout []
+  (box
+    :spacing 4
+    :space-evenly false
+    :orientation "v"
+    :halign "end"
+    (reboot)
+    (poweroff)))
+
+(defwidget poweroff []
+  (button
+    :halign "end"
+    :class "opaque"
+    :onclick "poweroff"
+    "power off"))
+
+(defwidget reboot []
+  (button
+    :halign "end"
+    :class "opaque"
+    :onclick "reboot"
+    "reboot"))

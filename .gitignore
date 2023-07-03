@@ -1,0 +1,35 @@
+*.netrwhist*
+**/zsh_plugins.sh
+**/packer_compiled.lua
+**/lazy
+nvim_all/.config/nvim/lazy-lock.json
+
+wall_M/
+# Created by https://www.gitignore.io/api/vim
+# Edit at https://www.gitignore.io/?templates=vim
+
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+# End of https://www.gitignore.io/api/vim
+moc_all/.moc/*
+nvim_all/.config/nvim/.netrwhist
+
+zshrc_all/.zshrc.d/.zcompdump
+zshrc_all/.zshrc.d/.zcompcache

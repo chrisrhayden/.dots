@@ -1,0 +1,32 @@
+{
+  "extends": ["eslint:recommended", "plugin:@typescript_eslint/recommended"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "@typescript_eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript_eslint/eslint_plugin"],
+  "rules": {
+    "indent": [
+      "error",
+      2, {"SwitchCase": 1}
+    ],
+    "linebreak_style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+}

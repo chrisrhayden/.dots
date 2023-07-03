@@ -1,0 +1,7 @@
+# dirs = [ "{{name}}", ]
+
+# files = [ "{{name}}", ]
+
+[[templates]]
+path = "{{name}}"
+template = """#!/usr/bin/env sh"""

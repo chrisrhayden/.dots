@@ -1,0 +1,32 @@
+* {
+    // // variables
+    // bg-col:  #1E1D2F;
+    // bg-col-light: #1E1D2F;
+    // border-col: #1E1D2F;
+    // selected-col: #1E1D2F;
+    // blue: #7aa2f7;
+    // fg-col: #D9E0EE;
+    // fg-col2: #F28FAD;
+    // grey: #D9E0EE;
+    bg-color: #191919;
+    fg-color: #FFFFFF;
+    shade1: #311B92;
+
+    // defaults
+    background-color: var(bg-color);
+    text-color: var(fg-color);
+}
+
+window {
+    padding: 2%;
+}
+
+listview {
+    fixed-height: false;
+    lines: 10;
+}
+
+element-text selected {
+    background-color: var(shade1);
+    text-color: var(fg-color);
+}
