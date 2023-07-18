@@ -20,7 +20,7 @@ return {
 
   -- the tpope collection {{{
   -- a set of good key bindings
-  "tpope/vim-unimpaired",
+  -- "tpope/vim-unimpaired",
   -- change surrounding object in a very vim like way (e.g. cs<from><to> cs"')
   "tpope/vim-surround",
   -- add ending keywords where it can, (e.g. fi and endif)
@@ -62,16 +62,10 @@ return {
     build = "cargo build --release"
   },
 
-  {
-    dir = "~/proj/sourcery",
-    config = function()
-      vim.cmd [[ colorscheme sourcery ]]
-    end
-  },
-
   "rafcamlet/nvim-luapad",
 
   "rust-lang/rust.vim",
 
   "elkowar/yuck.vim",
+  "NoahTheDuke/vim-just",
 }

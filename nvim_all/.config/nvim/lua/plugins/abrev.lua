@@ -1,6 +1,6 @@
 return {
-  -- dir = "~/proj/abrev.nvim",
-  "chrisrhayden/abrev.nvim",
+  dir = "~/proj/abrev.nvim",
+  -- "chrisrhayden/abrev.nvim",
   opts = {
     abrevs = {
       { "b{r,ra,re,rea,ear}k{,e}", "break", },
@@ -8,8 +8,7 @@ return {
       { "creat", "crate", },
       { "lein", "line", },
       { "liek", "like", },
-      -- maybe not ned
-      { "ned{,l}", "end{,l}", },
+      { "nedl", "endl", },
       { "ot", "to", },
       { "sdt", "std", },
       { "shitf", "shift", },

@@ -1,8 +1,8 @@
-# if status is-login
-#     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-#         exec Hyprland
-#     end
-# end
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec Hyprland
+    end
+end
 
 if status is-interactive
     fish_add_path ~/bin
@@ -10,12 +10,15 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     set -U fish_greeting
 
-    set --global --export EDITOR nvim
-
     set --global --export ANI "/mnt/slowlinuxstorage/anime/"
     abbr --add ani "cd $ANI"
 
+    set --global --export MOV "/mnt/linuxstorage/movies/"
+    abbr --add mov "cd $MOV"
+
+    set --global --export EDITOR nvim
     alias vim=nvim
+    alias nvconf="$EDITOR +'cd ~/.config/nvim/' ~/.config/nvim/init.lua"
 
     # alias's {{{
     alias ls='ls --color'
@@ -26,39 +29,30 @@ if status is-interactive
     alias rm='rm --interactive'
     alias cp='cp --interactive'
 
-    alias fd='fd --hidden'
+    alias fd='fd --hidden --one-file-system'
     alias rg='rg --hidden --one-file-system'
 
     alias df='df --human'
     alias free='free --human'
     alias xsel='xsel --clipboard'
 
-    # alias dirs='dirs -v'
-
     alias duf='duf -hide special'
 
-    # alias ssh='TERM=xterm-color ssh'
     alias tree='tree -C --filelimit 20 --dirsfirst'
     alias gdb='gdb --quiet'
     alias info='info --vi-keys'
     alias lsblk='lsblk --output name,size,fstype,mountpoint'
     alias bat='bat --paging never --style plain --wrap character --color auto'
-    alias ytop='ytop --per-cpu --minimal '
     alias radeontop='radeontop  --color'
     alias tty-clock='tty-clock -t -c -C 5'
+    alias clock='tty-clock'
     alias unimatrix='unimatrix --character-list=k --speed=90'
 
-    alias navi='navi --print'
-
-    alias clock='tty-clock'
     alias jj='journalctl'
     alias py='python'
-    alias ipy='ipython'
     alias job='jobs'
-    # dir is ls but with different options https://askubuntu.com/questions/103913/
-    alias dir='dirs'
-    alias zn='znotes'
 
+    # misspelling {{{
     alias sl='ls'
     alias lk='ls'
     alias vm='mv'
@@ -66,24 +60,14 @@ if status is-interactive
     alias gti='git'
     alias mvp='mpv'
     alias tuch='touch'
-
     alias vi='vim'
     alias cim='vim'
     alias vom='vim'
-
-    # alias's for EDITOR {{{
-    alias ficonf="$EDITOR ~/.config/fish/config.fish"
-    alias hyconf="$EDITOR ~/.config/hypr/hyprland.conf"
-    alias ewconf="$EDITOR ~/.config/eww/eww.yuck"
-    alias kiconf="$EDITOR ~/.config/kitty/kitty.conf"
-    alias nvconf="$EDITOR +'cd ~/.config/nvim/' ~/.config/nvim/init.lua"
     # }}}
 
-    # lol {{{
     alias ':w'='printf "%blol what are you saving? %b\n" "\e[31m" "\e[0m"'
     alias ':wq'='printf "%blol wat %b\n" "\033[31m" "\e[0m"'
     alias ':q'='printf "%bdo you even know where you are %b\n" "\033[31m" "\e[0m"'
-    # }}}
     # }}}
 
     # abbr {{{
@@ -121,12 +105,14 @@ if status is-interactive
         command man $argv
     end
 
-    starship init fish | source
-
     # why is this not a built in option, god damn
     function disown_on_exit --on-event fish_exit
         disown (jobs -p)
     end
+
+    dircolors ~/.dir_colors -c | source
+
+    starship init fish | source
 end
 
 # vim: foldmethod=marker

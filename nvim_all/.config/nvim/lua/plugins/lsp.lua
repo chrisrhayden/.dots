@@ -1,3 +1,5 @@
+local set_key = require("util").set_key
+
 -- only show diagnostics if there isn't a popup window
 function ShowLineDiagnostics()
   local wins = vim.api.nvim_list_wins()
@@ -16,12 +18,10 @@ function ShowLineDiagnostics()
 end
 
 local function on_attach(client, bufnr)
-  -- client.server_capabilities.semanticTokensProvider = nil
   client.server_capabilities.semanticTokensProvider = nil
 
   vim.opt.formatexpr = ""
 
-  local set_key = require("util").set_key
 
   set_key {
     "<leader>n",
@@ -42,15 +42,10 @@ local function on_attach(client, bufnr)
   set_key { "<leader>rn", vim.lsp.buf.rename, desc = "rename with lsp" }
   set_key { "<leader>ca", vim.lsp.buf.code_action, desc = "code action" }
 
-  -- set_key {"<leader>q", vim.diagnostic.set_loclist, desc = ""}
-  -- set_key {"gD", vim.lsp.buf.declaration, desc = ""}
-  -- set_key {"<leader>D", vim.lsp.buf.type_definition, desc = ""}
-  -- set_key {"gi", vim.lsp.buf.implementation, desc = ""}
-  -- set_key {"gr", vim.lsp.buf.references, desc = ""}
-
   -- auto format files on save/write
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
+    -- idk why i have to wrap this function
     callback = function() vim.lsp.buf.format() end,
     group = vim.api.nvim_create_augroup("AutoFormater", {}),
   })
@@ -61,6 +56,36 @@ local function on_attach(client, bufnr)
     callback = ShowLineDiagnostics,
     group = vim.api.nvim_create_augroup("HoldForDiagnostics", {}),
   })
+end
+
+local function c_on_attach(client, bufnr)
+  on_attach(client, bufnr)
+
+  set_key {
+    "<leader><bs>",
+    ":ClangdSwitchSourceHeader<cr>", desc = "switch sourve and header"
+  }
+end
+
+local function mk_rust_settings()
+  local rust_analyzer_cmd = vim.fn.system { "rustup", "which", "rust-analyzer" }
+
+  rust_analyzer_cmd = rust_analyzer_cmd:gsub("[\r\n]", "")
+
+  if rust_analyzer_cmd == "" or rust_analyzer_cmd == nil then
+    error("did not find rust-analyzer")
+  end
+
+  return {
+    cmd = { rust_analyzer_cmd },
+    settings = {
+      ["rust-analyzer"] = {
+        check = {
+          command = "clippy"
+        }
+      }
+    }
+  }
 end
 
 vim.diagnostic.config {
@@ -82,25 +107,24 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 -- technically DiagnosticSign's are not lsp specific
 -- but this is as good a place as any to set them
 vim.fn.sign_define("DiagnosticSignError", {
-  text = "E",
+  text = "",
   texthl = "DiagnosticSignError",
 })
 
 vim.fn.sign_define("DiagnosticSignWarn", {
-  text = "W",
+  text = "",
   texthl = "DiagnosticSignWarn",
 })
 
 vim.fn.sign_define("DiagnosticSignInfo", {
-  text = "I",
+  text = "",
   texthl = "DiagnosticSignInfo",
 })
 
 vim.fn.sign_define("DiagnosticSignHint", {
-  text = "H",
+  text = "󰍉",
   texthl = "DiagnosticSignHint",
 })
-
 
 return {
   {
@@ -121,18 +145,22 @@ return {
             }
           }
         },
-        rust_analyzer = {},
-        clangd = {},
+        rust_analyzer = mk_rust_settings(),
+        clangd = {
+          on_attach = c_on_attach
+        },
       }
     },
     config = function(_, opts)
       local lsp = require("lspconfig")
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      for server_name, server_opts in pairs(opts.servers) do
+        local server_setup = vim.tbl_deep_extend("force", {
+          on_attach = on_attach,
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        }, server_opts)
 
-      for k, v in pairs(opts.servers) do
-        lsp[k].setup(vim.tbl_deep_extend("force",
-          { on_attach = on_attach, capabilities = capabilities }, v))
+        lsp[server_name].setup(server_setup)
       end
     end
   },

@@ -9,34 +9,6 @@ local function expand_or_jump()
   end
 end
 
--- local kind_icons = {
---   Text = "",
---   Method = "",
---   Function = "",
---   Constructor = "",
---   Field = "",
---   Variable = "",
---   Class = "ﴯ",
---   Interface = "",
---   Module = "",
---   Property = "ﰠ",
---   Unit = "",
---   Value = "",
---   Enum = "",
---   Keyword = "",
---   Snippet = "",
---   Color = "",
---   File = "",
---   Reference = "",
---   Folder = "",
---   EnumMember = "",
---   Constant = "",
---   Struct = "",
---   Event = "",
---   Operator = "",
---   TypeParameter = ""
--- }
-
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -49,11 +21,10 @@ return {
     {
       "rafamadriz/friendly-snippets",
       config = function()
-        require "luasnip.loaders.from_vscode".lazy_load()
+        require("luasnip.loaders.from_vscode").lazy_load()
       end,
     }
   },
-  version = false,
   keys = {
     { "<C-y>", expand_or_jump, mode = { "i", "s" } }
   },
@@ -65,8 +36,6 @@ return {
 
     doc_window.winhighlight =
     "Normal:NormalFLoat,FloatBorder:NormalFLoat,CursorLine:Visual,Search:None"
-
-    -- vim.pretty_print(doc_window)
 
     return {
       sources = cmp.config.sources {
@@ -94,7 +63,6 @@ return {
         end
       },
       window = {
-        -- completion = doc_window,
         documentation = doc_window,
       },
       mapping = {
@@ -112,5 +80,4 @@ return {
       }
     }
   end,
-  config = true,
 }

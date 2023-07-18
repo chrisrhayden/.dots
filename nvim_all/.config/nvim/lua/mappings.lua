@@ -22,6 +22,51 @@ set_key { "<left>", "<nop>", mode = "", desc = "disable key left" }
 set_key { "<right>", "<nop>", mode = "", desc = "disable key right" }
 -- }}}
 
+local function add_blank_down()
+  -- local pos = vim.fn.getcurpos()
+  local lines = {}
+
+  for _ = 1, vim.v.count1 do
+    table.insert(lines, "")
+  end
+
+  vim.api.nvim_buf_set_lines(
+    0,
+    vim.fn.line("."),
+    vim.fn.line("."),
+    false,
+    lines
+  )
+end
+
+local function add_blank_up()
+  local lines = {}
+
+  for _ = 1, vim.v.count1 do
+    table.insert(lines, "")
+  end
+
+  vim.api.nvim_buf_set_lines(
+    0,
+    vim.fn.line(".") - 1,
+    vim.fn.line(".") - 1,
+    false,
+    lines
+  )
+end
+
+-- unimpaired like {{{
+set_key {
+  "]<space>",
+  add_blank_down
+}
+
+set_key {
+  "[<space>",
+  add_blank_up
+}
+-- }}}
+
 -- toggle things {{{
 set_key { "<leader>h", ":set hlsearch!<cr>", desc = "toggle highlighting" }
 
