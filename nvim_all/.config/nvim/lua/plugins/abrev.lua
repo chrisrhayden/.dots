@@ -37,6 +37,8 @@ return {
       { "hashamp", "hashMap", },
       { "rnage", "range", },
       { "javascrpt", "JavaScript", },
+      { "whlie", "while" },
+      { "seom", "some" },
     }
   },
 }

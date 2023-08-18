@@ -6,11 +6,10 @@ return {
       require("mini.comment").setup()
       -- highlight all the words in the buffer that the cursor in on
       require("mini.cursorword").setup()
-      -- highlight (not used) and remove trailing spaces
-      require("mini.trailspace").setup()
 
       require("mini.align").setup()
 
+      -- highlight (not used) and remove trailing spaces
       local trail = require("mini.trailspace")
 
       trail.setup()
@@ -18,7 +17,7 @@ return {
       require("util").set_key {
         "<leader>cw",
         trail.trim,
-        desc = "clear trainling white space"
+        desc = "clear trailing white space"
       }
     end
   }

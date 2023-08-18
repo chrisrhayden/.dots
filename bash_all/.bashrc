@@ -51,15 +51,15 @@ HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 # }}}
 
 # set prompt {{{
-pre_prompt() {
-    PS1=$(make_ps1 'bash')
-}
+# pre_prompt() {
+#     PS1=$(make_ps1 'bash')
+# }
 
-if hash make_ps1 2>/dev/null; then
-    PROMPT_COMMAND=pre_prompt
-else
-    PS1='\[\033[34m\]┌─╼\[\033[35m\] \w\n\[\033[34m\]└──▶\[\033[0m\] '
-fi
+# if hash make_ps1 2>/dev/null; then
+#     PROMPT_COMMAND=pre_prompt
+# else
+#     PS1='\[\033[34m\]┌─╼\[\033[35m\] \w\n\[\033[34m\]└──▶\[\033[0m\] '
+# fi
 # }}}
 
 # env varibals {{{
@@ -92,9 +92,9 @@ elif [[ -n $(command -v vim) ]]; then
     EDITOR='vim'
 fi
 
-if [[ $(hostname) == 'Monolith' ]]; then
-    export VAGRANT_HOME='/mnt/linuxstorage/vagrant.d'
-fi
+# if [[ $(hostname) == 'Monolith' ]]; then
+#     export VAGRANT_HOME='/mnt/linuxstorage/vagrant.d'
+# fi
 
 
 # color man pages

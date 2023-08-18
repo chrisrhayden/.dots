@@ -11,7 +11,8 @@ function LspStatus()
     if status and status ~= "" then
       ret = status
     else
-      ret = "[" .. lsp_client["name"] .. " | " .. lsp_client["id"] .. "]"
+      -- ret = "[" .. lsp_client["name"] .. " | " .. lsp_client["id"] .. "]"
+      ret = "[" .. lsp_client["name"] .. "]"
     end
   end
 
@@ -20,20 +21,19 @@ end
 
 local function my_status_line()
   return table.concat({
-    "", -- add padding
-    -- "%n", -- buffer number
-    -- "%{winnr()}", -- window number
-    "[%t]",    -- file name, only the tail
-    "%m",      -- buffer state
-    "%r",      -- if the buffer is read only
-    "%=",      -- separation
-    "%{v:lua.LspStatus()}",
-    "%=",      -- separation
-    "%y",      -- file type
-    "[%l/%L]", -- show current line out of all lines
-    "",        -- add padding
+    "",                     -- add padding
+    "[%t]",                 -- file name, only the tail
+    "%m",                   -- buffer state
+    "%r",                   -- if the buffer is read only
+    "%=",                   -- separation
+    "%{v:lua.LspStatus()}", -- lsp status if there is one
+    "%=",                   -- separation
+    "%y",                   -- file type
+    "[%l/%L]",              -- show current line out of all lines
+    "",                     -- add padding
   }, " ")
 end
+
 
 vim.opt.statusline = my_status_line()
 

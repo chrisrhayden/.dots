@@ -44,7 +44,7 @@ vim.opt.scrolloff = 4
 -- set colors to be very close to gui vim
 vim.opt.termguicolors = true
 -- set whether syntax with the conceal attribute is shown
--- vim.opt.conceallevel = 2
+vim.opt.conceallevel = 2
 -- list mode will display characters in certain places (e.g. <tab> in to >-)
 vim.opt.list = true
 -- the characters list mode will use
@@ -189,23 +189,23 @@ end
 local create_augroup = vim.api.nvim_create_augroup
 local create_autocmd = vim.api.nvim_create_autocmd
 
--- relativenumber {{{
--- from https://github.com/jeffkreeftmeijer/vim-numbertoggle/
+-- relative number {{{
 vim.g.use_relnumber = true
 
-function ToggleRelNumber()
-  if vim.g.use_relnumber == true then
-    vim.g.use_relnumber = false
+-- toggle relative number if undesired
+vim.api.nvim_create_user_command("ToggleRelNumber", function()
+    if vim.g.use_relnumber == true then
+      vim.g.use_relnumber = false
 
-    vim.opt.relativenumber = false
-  else
-    vim.g.use_relnumber = true
+      vim.opt.relativenumber = false
+    else
+      vim.g.use_relnumber = true
 
-    vim.opt.relativenumber = true
-  end
-end
-
-vim.api.nvim_create_user_command("ToggleRelNumber", ToggleRelNumber, {})
+      vim.opt.relativenumber = true
+    end
+  end,
+  {}
+)
 
 local relative_group = create_augroup("RelativeGroup", {})
 
@@ -247,8 +247,11 @@ create_autocmd(set_norelative, {
 -- how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
 local cursor_line_group = create_augroup("CursorLineGroup", {})
 
-local cursorline_envt = { "BufWinEnter", "WinEnter" }
-local nocursorline_envt = { "BufLeave", "WinLeave" }
+-- local cursorline_envt = { "BufWinEnter", "WinEnter" }
+-- local nocursorline_envt = { "BufLeave", "WinLeave" }
+
+local cursorline_envt = { "WinEnter" }
+local nocursorline_envt = { "WinLeave" }
 
 create_autocmd(cursorline_envt, {
   command = "setlocal cursorline",
@@ -261,66 +264,10 @@ create_autocmd(nocursorline_envt, {
 })
 -- }}}
 
--- -- auto save views {{{
--- -- https://vim.fandom.com/wiki/Make_views_automatic
--- -- this is sort of a last resort to ignore buffers that are special but still
--- -- are treated like normal files
--- local skip_filetypes = { "gitcommit" }
---
--- function SpecialBuffer()
---   -- if not empty then the buffer is a `special-buffer` like help and plugins
---   -- that use this as well like tagbar
---   if vim.bo.buftype ~= "" then
---     return true
---
---     -- if the buffer is not listed then its a special buffer
---     -- if a plugin doesn't use buftype well i doubt it will use buflisted
---   elseif vim.bo.buflisted == false then
---     return true
---
---     -- skip the given file types
---   elseif vim.tbl_contains(skip_filetypes, vim.bo.filetype) == true then
---     return true
---   end
---
---   -- else its a normal file
---   return false
--- end
---
--- local auto_save_view_group = create_augroup("AutoSaveView", {})
---
--- local save_view = {
---   "BufWritePost",
---   "BufLeave",
---   "WinLeave",
---   "InsertLeave",
--- }
---
--- create_autocmd(save_view, {
---   group = auto_save_view_group,
---   pattern = "*?",
---   callback = function()
---     if SpecialBuffer() == false then
---       vim.cmd "mkview"
---     end
---   end,
--- })
---
--- create_autocmd({ "BufWinEnter" }, {
---   group = auto_save_view_group,
---   pattern = "*?",
---   callback = function()
---     if SpecialBuffer() == false then
---       vim.cmd "silent! loadview"
---     end
---   end
--- })
--- -- }}}
-
 -- save cursor {{{
-
 local skip_filetypes = { "gitcommit" }
 
+-- this might not be necessary
 function SpecialBuffer()
   -- if not empty then the buffer is a `special-buffer` like help and plugins
   -- that use this as well like tagbar
@@ -347,9 +294,10 @@ create_autocmd("BufReadPost", {
   group = restore_cursor,
   pattern = "*",
   callback = function()
-    if vim.fn.line("'\"") >= 1 and vim.fn.line("'\"") <= vim.fn.line("$")
-      and not SpecialBuffer() then
-      vim.cmd([[normal! g`"]])
+    local row_col = vim.api.nvim_buf_get_mark(0, '"')
+    if SpecialBuffer() == false and
+      row_col ~= { 0, 0 } and row_col[1] <= vim.api.nvim_buf_line_count(0) then
+      vim.api.nvim_win_set_cursor(0, row_col)
     end
   end
 })
@@ -360,7 +308,7 @@ local file_type_group = create_augroup("ResetFileType", {})
 
 -- this is kinda bad but there isn't a better way
 -- a bunch of language files distributed with vim set formatoptions and more
--- so this will reset it, sigh it would be nice if they didn't
+-- so this will reset it, it would be nice if they didn't
 create_autocmd({ "FileType" }, {
   group = file_type_group,
   command = "set formatoptions<"

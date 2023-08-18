@@ -84,18 +84,29 @@ if status is-interactive
     end
 
     function man
+        # set -x MANROFFOPT "-c"
+
+        # LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        # LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        # LESS_TERMCAP_me=$(printf "\e[0m") \
+        # LESS_TERMCAP_se=$(printf "\e[0m") \
+        # LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        # LESS_TERMCAP_ue=$(printf "\e[0m") \
+        # LESS_TERMCAP_us=$(printf "\e[1;32m") \
+
         # start blinking
         # set -x LESS_TERMCAP_mb (set_color --bold magenta)
         # start bold
-        set -x LESS_TERMCAP_md (set_color --bold magenta)
+        set -lx LESS_TERMCAP_md (set_color --bold normal)
 
         # start stand out
-        set -x LESS_TERMCAP_so (set_color yellow)
+        set -lx LESS_TERMCAP_so (set_color yellow)
         # end stand out
         set -x LESS_TERMCAP_se (set_color normal)
 
         # start underline
-        set -x LESS_TERMCAP_us (set_color --underline cyan)
+        # set -x LESS_TERMCAP_us (printf '\\e[4;33m')
+        set -x LESS_TERMCAP_us (set_color --underline)
         # end underline
         set -x LESS_TERMCAP_ue (set_color normal)
 

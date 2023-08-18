@@ -22,48 +22,24 @@ set_key { "<left>", "<nop>", mode = "", desc = "disable key left" }
 set_key { "<right>", "<nop>", mode = "", desc = "disable key right" }
 -- }}}
 
-local function add_blank_down()
-  -- local pos = vim.fn.getcurpos()
-  local lines = {}
-
-  for _ = 1, vim.v.count1 do
-    table.insert(lines, "")
-  end
-
-  vim.api.nvim_buf_set_lines(
-    0,
-    vim.fn.line("."),
-    vim.fn.line("."),
-    false,
-    lines
-  )
-end
-
-local function add_blank_up()
-  local lines = {}
-
-  for _ = 1, vim.v.count1 do
-    table.insert(lines, "")
-  end
-
-  vim.api.nvim_buf_set_lines(
-    0,
-    vim.fn.line(".") - 1,
-    vim.fn.line(".") - 1,
-    false,
-    lines
-  )
-end
 
 -- unimpaired like {{{
+local add_blank_lines = require("util").add_blank_lines
+
 set_key {
   "]<space>",
-  add_blank_down
+  function()
+    add_blank_lines(0)
+  end,
+  desc = "add [count] blank lines after line"
 }
 
 set_key {
   "[<space>",
-  add_blank_up
+  function()
+    add_blank_lines(-1)
+  end,
+  desc = "add [count] blank line above line"
 }
 -- }}}
 
@@ -134,11 +110,7 @@ set_key { "N", "Nzzzv", desc = "center and open folds for next item" }
 -- }}}
 
 -- yank to clipboard {{{
--- this is basically enough
 set_key { "gy", '"+y', desc = "yank `motion` to clipboard" }
--- set_key { "<leader>yf", 'gg"+yG``', desc = "yank file to clipboard" }
--- set_key { "<leader>yy", '"+yy', desc = "yank line to clipboard" }
--- set_key { "<leader>yw", '"+yw', desc = "yank word to clipboard" }
 -- }}}
 
 -- fold {{{

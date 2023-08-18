@@ -22,7 +22,6 @@ local function on_attach(client, bufnr)
 
   vim.opt.formatexpr = ""
 
-
   set_key {
     "<leader>n",
     vim.diagnostic.goto_next,
@@ -38,7 +37,7 @@ local function on_attach(client, bufnr)
   }
 
   set_key { "gd", vim.lsp.buf.definition, desc = "go to definition" }
-  set_key { "K", vim.lsp.buf.hover, desc = "open hove window" }
+  set_key { "K", vim.lsp.buf.hover, desc = "open hover window" }
   set_key { "<leader>rn", vim.lsp.buf.rename, desc = "rename with lsp" }
   set_key { "<leader>ca", vim.lsp.buf.code_action, desc = "code action" }
 
@@ -58,12 +57,16 @@ local function on_attach(client, bufnr)
   })
 end
 
-local function c_on_attach(client, bufnr)
-  on_attach(client, bufnr)
+local function mk_c_settings()
+  return {
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
 
-  set_key {
-    "<leader><bs>",
-    ":ClangdSwitchSourceHeader<cr>", desc = "switch sourve and header"
+      set_key {
+        "<leader><bs>",
+        ":ClangdSwitchSourceHeader<cr>", desc = "switch sourve and header"
+      }
+    end
   }
 end
 
@@ -82,6 +85,23 @@ local function mk_rust_settings()
       ["rust-analyzer"] = {
         check = {
           command = "clippy"
+        }
+      }
+    }
+  }
+end
+
+local function mk_lua_settings()
+  return {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = {
+            "vim"
+          },
+          needdedFileStatus = {
+            ["codestyle-check"] = "Any"
+          }
         }
       }
     }
@@ -131,24 +151,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = {
-                  "vim"
-                },
-                needdedFileStatus = {
-                  ["codestyle-check"] = "Any"
-                }
-              }
-            }
-          }
-        },
+        lua_ls = mk_lua_settings(),
         rust_analyzer = mk_rust_settings(),
-        clangd = {
-          on_attach = c_on_attach
-        },
+        clangd = mk_c_settings(),
       }
     },
     config = function(_, opts)

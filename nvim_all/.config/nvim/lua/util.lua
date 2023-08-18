@@ -41,7 +41,6 @@ function M.setup_lazy()
           "tohtml",
           "tutor",
           "zipPlugin",
-          "logiPat",
         }
       }
     }
@@ -75,6 +74,22 @@ function M.set_key(keymap)
   end
 
   vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+function M.add_blank_lines(offset)
+  local lines = {}
+
+  for _ = 1, vim.v.count1 do
+    table.insert(lines, "")
+  end
+
+  vim.api.nvim_buf_set_lines(
+    0,
+    vim.fn.line(".") + offset,
+    vim.fn.line(".") + offset,
+    false,
+    lines
+  )
 end
 
 return M

@@ -1,13 +1,13 @@
-local function expand_or_jump()
-  local cmp = require("cmp")
-  local luasnip = require("luasnip")
-
-  if cmp.visible() then
-    cmp.confirm()
-  elseif luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
-  end
-end
+-- local function expand_or_jump()
+--   local cmp = require("cmp")
+--   local luasnip = require("luasnip")
+--
+--   if cmp.visible() then
+--     cmp.confirm()
+--   elseif luasnip.expand_or_jumpable() then
+--     luasnip.expand_or_jump()
+--   end
+-- end
 
 return {
   "hrsh7th/nvim-cmp",
@@ -15,19 +15,21 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-nvim-lua",
-    "saadparwaiz1/cmp_luasnip",
+    -- "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
     -- "hrsh7th/cmp-path",
-    {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    }
+    -- {
+    --   "rafamadriz/friendly-snippets",
+    --   config = function()
+    --     require("luasnip.loaders.from_vscode").lazy_load()
+    --     require("luasnip.loaders.from_snipmate")
+    --       .lazy_load { paths = "~/.config/nvim/snippets" }
+    --   end,
+    -- }
   },
-  keys = {
-    { "<C-y>", expand_or_jump, mode = { "i", "s" } }
-  },
+  -- keys = {
+  --   { "<C-y>", expand_or_jump, mode = { "i", "s" } }
+  -- },
   event = "InsertEnter",
   opts = function()
     local cmp = require("cmp")
@@ -40,9 +42,9 @@ return {
     return {
       sources = cmp.config.sources {
         { name = "nvim_lsp" },
-        { name = "buffer" },
+        { name = "buffer", },
         { name = "nvim_lua" },
-        { name = "luasnip" },
+        -- { name = "luasnip" },
         { name = "orgmode" },
       },
       formatting = {
@@ -73,11 +75,11 @@ return {
         completeopt = "menuone,noselect",
       },
       preselect = cmp.PreselectMode.None,
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end
-      }
+      -- snippet = {
+      --   expand = function(args)
+      --     require("luasnip").lsp_expand(args.body)
+      --   end
+      -- }
     }
   end,
 }

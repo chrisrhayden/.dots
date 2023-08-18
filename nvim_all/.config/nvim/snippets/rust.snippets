@@ -1,0 +1,11 @@
+snippet run_main make a main and run function
+    use std::error::Error;
+    fn run() -> Result<(), Box<dyn Error>>  {
+        Ok(())
+    }
+
+    fn main() {
+        if let Err(err) = run() {
+            eprintln!("{err}");
+        }
+    }

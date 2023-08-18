@@ -93,7 +93,7 @@ function SourceryColor()
 
   -- }}}
 
-  -- internal {{{
+  -- highlights {{{
   -- nvim ui {{{
   hl_all {
     { "Normal",       bg = colors.grey_2,   fg = colors.grey_5 },
@@ -235,21 +235,23 @@ function SourceryColor()
     { "DiffLine",            fg = colors.teal_1 },
     { "DiffRemoved",         fg = colors.red_1 },
     -- }}}
+
     -- debug {{{
     { "debugBreakpoint",     bg = colors.teal_1,   fg = colors.grey_1 },
     { "debugPC",             bg = colors.teal_1,   fg = colors.grey_1 },
     -- }}}
+
     -- spelling {{{
     { "SpellBad",            sy = "undercurl",     sp = colors.red_1 },
     { "clear",               "SpellLocal" },
     { "clear",               "SpellCap" },
     { "clear",               "SpellRare" },
     -- }}}
+
     -- misc {{{
     -- most hl-Nvim* highlights are linked to something
     { "NvimInternalError",   fg = colors.red_1 },
     -- }}}
-
 
     -- plugins {{{
     -- telescope {{{

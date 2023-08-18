@@ -30,7 +30,7 @@ return {
   -- work with variants of words for abbreviations
   -- "tpope/vim-abolish",
   -- readline bindings in insert mode
-  "tpope/vim-rsi",
+  -- "tpope/vim-rsi",
   -- a git wrapper
   { "tpope/vim-fugitive", keys = { { "<leader>gs", ":Git<cr>" } } },
   -- }}}
@@ -68,4 +68,6 @@ return {
 
   "elkowar/yuck.vim",
   "NoahTheDuke/vim-just",
+
+  "sophacles/vim-processing",
 }
