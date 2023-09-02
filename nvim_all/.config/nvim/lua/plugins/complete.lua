@@ -1,13 +1,33 @@
--- local function expand_or_jump()
---   local cmp = require("cmp")
---   local luasnip = require("luasnip")
---
---   if cmp.visible() then
---     cmp.confirm()
---   elseif luasnip.expand_or_jumpable() then
---     luasnip.expand_or_jump()
---   end
--- end
+local function expand_or_jump()
+  local cmp = require("cmp")
+  local luasnip = require("luasnip")
+
+  -- if completion menu is visible
+  if cmp.visible() then
+    cmp.confirm()
+  elseif luasnip.expand_or_locally_jumpable() then
+    luasnip.expand_or_jump()
+  end
+end
+
+local function next_or_complete()
+  local cmp = require("cmp")
+  if cmp.visible() then
+    cmp.select_next_item()
+  else
+    cmp.complete()
+  end
+end
+
+
+local function prev_or_complete()
+  local cmp = require("cmp")
+  if cmp.visible() then
+    cmp.select_prev_item()
+  else
+    cmp.complete()
+  end
+end
 
 return {
   "hrsh7th/nvim-cmp",
@@ -15,23 +35,19 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-nvim-lua",
-    -- "saadparwaiz1/cmp_luasnip",
+    "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
-    -- "hrsh7th/cmp-path",
-    -- {
-    --   "rafamadriz/friendly-snippets",
-    --   config = function()
-    --     require("luasnip.loaders.from_vscode").lazy_load()
-    --     require("luasnip.loaders.from_snipmate")
-    --       .lazy_load { paths = "~/.config/nvim/snippets" }
-    --   end,
-    -- }
+    {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+        require("luasnip.loaders.from_snipmate")
+          .lazy_load { paths = "~/.config/nvim/snippets" }
+      end,
+    }
   },
-  -- keys = {
-  --   { "<C-y>", expand_or_jump, mode = { "i", "s" } }
-  -- },
   event = "InsertEnter",
-  opts = function()
+  config = function()
     local cmp = require("cmp")
 
     local doc_window = cmp.config.window.bordered()
@@ -39,28 +55,19 @@ return {
     doc_window.winhighlight =
     "Normal:NormalFLoat,FloatBorder:NormalFLoat,CursorLine:Visual,Search:None"
 
-    return {
+    cmp.setup {
       sources = cmp.config.sources {
-        { name = "nvim_lsp" },
         { name = "buffer", },
         { name = "nvim_lua" },
-        -- { name = "luasnip" },
+        { name = "luasnip" },
         { name = "orgmode" },
+        { name = "nvim_lsp", },
       },
       formatting = {
-        -- fields = { "abbr", "kind" },
-        -- see following ...
-        -- `:h complete-items`
-        -- https://github.com/hrsh7th/nvim-cmp/issues/88#issuecomment-906585635
-        -- https://github.com/hrsh7th/nvim-cmp/issues/1154
-        -- format = function(entry, vim_item)
         format = function(_, vim_item)
           vim_item.menu = nil
-          -- vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
-          -- match all none space characters and get the first match
-          -- effectively getting the first word in a `abbr`
-          vim_item.abbr = string.gmatch(vim_item.abbr, "%S*")()
 
+          vim_item.abbr = string.sub(vim_item.abbr, 1, 25)
           return vim_item
         end
       },
@@ -68,18 +75,19 @@ return {
         documentation = doc_window,
       },
       mapping = {
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-p>"] = cmp.mapping(prev_or_complete),
+        ["<C-n>"] = cmp.mapping(next_or_complete),
+        ["<C-y>"] = cmp.mapping(expand_or_jump, { "i", "c" }),
       },
       completion = {
         completeopt = "menuone,noselect",
       },
       preselect = cmp.PreselectMode.None,
-      -- snippet = {
-      --   expand = function(args)
-      --     require("luasnip").lsp_expand(args.body)
-      --   end
-      -- }
+      snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end
+      }
     }
   end,
 }

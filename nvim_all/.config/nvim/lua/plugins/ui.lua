@@ -11,5 +11,3 @@ return {
     config = true,
   },
 }
-
--- return {}

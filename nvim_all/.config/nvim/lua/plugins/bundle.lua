@@ -38,15 +38,6 @@ return {
   { "elihunter173/dirbuf.nvim", config = true, },
 
   {
-    dir = "~/proj/sourcery",
-    config = function()
-      vim.cmd.colorscheme "sourcery"
-    end
-  },
-
-  "rust-lang/rust.vim",
-
-  {
     "NvChad/nvim-colorizer.lua",
     opts = {
       filetypes = {
@@ -57,17 +48,14 @@ return {
     },
   },
 
-  {
-    "eraserhd/parinfer-rust",
-    build = "cargo build --release"
-  },
-
-  "rafcamlet/nvim-luapad",
-
   "rust-lang/rust.vim",
-
   "elkowar/yuck.vim",
   "NoahTheDuke/vim-just",
 
-  "sophacles/vim-processing",
+  {
+    dir = "~/proj/sourcery",
+    config = function()
+      vim.cmd.colorscheme "sourcery"
+    end
+  },
 }

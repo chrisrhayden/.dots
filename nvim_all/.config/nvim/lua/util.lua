@@ -5,7 +5,7 @@ function M.setup_lazy()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
   if not vim.loop.fs_stat(lazypath) then
-    print "downloading lazy"
+    print("downloading lazy")
 
     vim.fn.system {
       "git",
@@ -19,7 +19,7 @@ function M.setup_lazy()
 
   vim.opt.rtp:prepend(lazypath)
 
-  require "lazy".setup("plugins", {
+  require("lazy").setup("plugins", {
     change_detection = {
       enable = true,
       notify = false,
@@ -33,13 +33,13 @@ function M.setup_lazy()
     performance = {
       rtp = {
         disabled_plugins = {
-          "gzip",
           -- "matchit",
           -- "matchparen",
           -- "netrwPlugin",
+          -- "tohtml",
+          -- "tutor",
+          "gzip",
           "tarPlugin",
-          "tohtml",
-          "tutor",
           "zipPlugin",
         }
       }
