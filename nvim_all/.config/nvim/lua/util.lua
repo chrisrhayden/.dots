@@ -1,4 +1,4 @@
--- all these are pretty useless but whatever
+-- all these are pretty useless to have here but whatever
 local M = {}
 
 function M.setup_lazy()
@@ -12,7 +12,7 @@ function M.setup_lazy()
       "clone",
       "--filter=blob:none",
       "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
+      "--branch=stable",
       lazypath,
     }
   end
@@ -63,10 +63,13 @@ function M.set_key(keymap)
   local lhs = keymap[1]
   local rhs = keymap[2]
 
+  -- honestly defaulting to noremap and normal mode
+  -- is the only justifications for this function
   local mode = keymap["mode"] or "n"
 
   local opts = { noremap = true, silent = true }
 
+  -- filter options and override defaults
   for k, v in pairs(keymap) do
     if key_opts[k] then
       opts[k] = v
@@ -76,6 +79,7 @@ function M.set_key(keymap)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
+-- kinda dumb to have here
 function M.add_blank_lines(offset)
   local lines = {}
 

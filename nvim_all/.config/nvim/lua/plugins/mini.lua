@@ -6,10 +6,10 @@ return {
       require("mini.comment").setup()
       -- highlight all the words in the buffer that the cursor in on
       require("mini.cursorword").setup()
-
+      -- align based on certain characters like `=`
       require("mini.align").setup()
 
-      -- highlight (not used) and remove trailing spaces
+      -- highlight and remove trailing spaces
       local trail = require("mini.trailspace")
 
       trail.setup()

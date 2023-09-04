@@ -31,13 +31,32 @@ return {
   -- "tpope/vim-abolish",
   -- readline bindings in insert mode
   -- "tpope/vim-rsi",
-  -- a git wrapper
-  { "tpope/vim-fugitive", keys = { { "<leader>gs", ":Git<cr>" } } },
+  { -- a git wrapper
+    "tpope/vim-fugitive",
+    keys = { { "<leader>gs", ":Git<cr>", desc = "open fugitive" } }
+  },
   -- }}}
 
+  -- hasn't been getting updates
   { "elihunter173/dirbuf.nvim", config = true, },
 
   {
+    "mbbill/undotree",
+    keys = {
+      { "<F5>", vim.cmd.UndotreeToggle, desc = "toggle undo tree" }
+    }
+  },
+
+  {
+    "folke/which-key.nvim",
+    opts = {
+      window = {
+        border = "rounded",
+      }
+    },
+  },
+
+  { -- kinda nice sometimes
     "NvChad/nvim-colorizer.lua",
     opts = {
       filetypes = {
@@ -49,7 +68,6 @@ return {
   },
 
   "rust-lang/rust.vim",
-  "elkowar/yuck.vim",
   "NoahTheDuke/vim-just",
 
   {

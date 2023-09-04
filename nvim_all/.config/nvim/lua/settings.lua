@@ -2,22 +2,15 @@
 --- settings.lua
 --------------------------------------------------------------------------------
 
--- security {{{
--- mode lines allow per-file settings to be embedded in the file
-vim.opt.modeline = true
-
--- don't run non standard vimrc, off by default
-vim.opt.exrc = false
--- end security }}}
-
 -- setup paths {{{
 -- make backup files to ~/.local/state/nvim/backup/ and not to $PWD
 vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup//"
 
--- use ~/.config/nvim/words for spelling a thesaurus files
+-- use ~/.config/nvim/words for spelling and thesaurus files
 local word_dir = vim.fn.stdpath("config") .. "/words"
 vim.fn.mkdir(word_dir, "p")
 
+-- where words added with `zg` are add to, default is $PWD
 vim.opt.spellfile = word_dir .. "/code-en.utf-8.add"
 vim.opt.thesaurus = word_dir .. "/en_thesaurus.txt"
 -- end setup paths }}}
@@ -31,23 +24,29 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- visually show potential changes
 vim.opt.inccommand = "split"
--- do not highlight search things
+-- whether or not vim will highlight search items
 vim.opt.hlsearch = false
--- visually break lines according to `breakat` instead of the last fitting char
+-- visually break lines according to `breakat` instead of the last fitting chara
+-- cter
 vim.opt.linebreak = true
--- whether to wrap long lines, i cant decide whether I like this or not
+-- whether to wrap long lines, i cant decide whether I like this on or not
 vim.opt.wrap = false
--- underline or highlight the line the cursor is on
-vim.opt.cursorline = true
 -- minimum lines to keep above and below the cursor when next to the edge
 vim.opt.scrolloff = 4
 -- set colors to be very close to gui vim
 vim.opt.termguicolors = true
 -- set whether syntax with the conceal attribute is shown
 vim.opt.conceallevel = 2
+-- highlight the line the cursor is on
+vim.opt.cursorline = true
+-- highlight columns at the given column number
+vim.opt.colorcolumn = {
+  "81",
+  "101",
+}
 -- list mode will display characters in certain places (e.g. <tab> in to >-)
 vim.opt.list = true
--- the characters list mode will use
+-- the characters that `list` will use
 vim.opt.listchars = {
   tab = ">-",
   trail = "·",
@@ -64,18 +63,13 @@ vim.opt.fillchars = {
   foldsep = "│",
   diff = "-",
 }
--- highlight columns at the given column number
--- i keep forgetting i set this to 81 and not 80
-vim.opt.colorcolumn = {
-  "81",
-  "101",
-}
 -- end ui }}}
 
 -- feel / editing {{{
-vim.opt.smoothscroll = true
 -- disable mouse support
 vim.opt.mouse = nil
+-- use screen lines when `wrap` is on
+vim.opt.smoothscroll = true
 -- how completions work in insert mode
 vim.opt.completeopt = {
   "menuone",
@@ -93,7 +87,7 @@ vim.opt.spell = true
 vim.opt.spellcapcheck = nil
 -- search case insensitive
 vim.opt.ignorecase = true
--- override `ignorecase` when an upper case letter is used
+-- override `ignorecase` when an upper case letter is used in search
 vim.opt.smartcase = true
 -- always insert spaces instead of a tab
 vim.opt.expandtab = true
@@ -103,7 +97,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 -- indent to the same level as the surrounding text
 vim.opt.smartindent = true
--- physically break lines as 80 characters
+-- add lines breaks at 80 characters
 vim.opt.textwidth = 80
 -- text folding method
 vim.opt.foldmethod = "indent"
@@ -130,18 +124,94 @@ vim.opt.sessionoptions = {
 }
 -- define how vim will format text
 -- from tjdevries
--- vim.opt.formatoptions = vim.opt.formatoptions
 vim.opt.formatoptions = vim.opt.formatoptions
-  - "a" -- Auto formatting is BAD.
-  - "t" -- Don't auto format my code. I got linters for that.
-  + "c" -- In general, I like it when comments respect textwidth
-  + "q" -- Allow formatting comments w/ gq
-  - "o" -- O and o, don't continue comments
-  + "r" -- But do continue when pressing enter.
-  + "n" -- Indent past the formatlistpat, not underneath it.
-  + "j" -- Auto-remove comments if possible.
-  - "2" -- I'm not in gradeschool anymore
+    - "a" -- Auto formatting is BAD.
+    - "t" -- Don't auto format my code. I got linter's for that.
+    + "c" -- In general, I like it when comments respect textwidth
+    + "q" -- Allow formatting comments w/ gq
+    - "o" -- O and o, don't continue comments
+    + "r" -- But do continue when pressing enter.
+    + "n" -- Indent past the formatlistpat, not underneath it.
+    + "j" -- Auto-remove comments if possible.
+    - "2" -- I'm not in grade school anymore
 -- end feel /editing }}}
+
+-- diagnostics {{{
+-- might add these to lua/mappings.lua
+local set_key = require("util").set_key
+
+set_key {
+  "<leader>n",
+  vim.diagnostic.goto_next,
+  desc = "go to next diagnostic",
+}
+
+set_key {
+  "<leader>N",
+  vim.diagnostic.goto_prev,
+  desc = "go to prev diagnostic",
+}
+
+set_key {
+  "<leader>dl",
+  vim.diagnostic.setloclist,
+  desc = "set local list with diagnostics"
+}
+
+-- how diagnostics will be shown
+vim.diagnostic.config {
+  virtual_text = false,
+  underline = false,
+  signs = true,
+  update_in_insert = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    border = "rounded",
+  }
+}
+
+vim.fn.sign_define("DiagnosticSignError", {
+  text = "",
+  texthl = "DiagnosticSignError",
+})
+
+vim.fn.sign_define("DiagnosticSignWarn", {
+  text = "",
+  texthl = "DiagnosticSignWarn",
+})
+
+vim.fn.sign_define("DiagnosticSignInfo", {
+  text = "",
+  texthl = "DiagnosticSignInfo",
+})
+
+vim.fn.sign_define("DiagnosticSignHint", {
+  text = "󰍉",
+  texthl = "DiagnosticSignHint",
+})
+
+-- show diagnostics on cursor hold
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = vim.api.nvim_create_augroup("HoldForDiagnostics", {}),
+  -- only show diagnostics if there isn't a popup window
+  callback = function()
+    local wins = vim.api.nvim_list_wins()
+
+    for _, win in pairs(wins) do
+      local win_type = vim.fn.win_gettype(win)
+
+      if win_type == "popup" then
+        return
+      end
+    end
+
+    vim.diagnostic.open_float(nil, {
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter" },
+    })
+  end,
+})
+-- end diagnostics }}}
 
 -- language settings {{{
 -- C {{{
@@ -174,14 +244,14 @@ vim.g.loaded_perl_provider = 0
 -- built in pkgs {{{
 -- use a wide layout for termdebug
 vim.g.termdebug_wide = 1
--- }}}
+-- end built in pkgs }}}
 
 -- ripgrep instead of grep {{{
 -- https://www.wezm.net/technical/2016/09/ripgrep-with-vim/
 if vim.fn.executable("rg") == 1 then
   vim.opt.grepprg = "rg --vimgrep --no-heading"
   vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-  vim.cmd [[cnoreabbrev rg grep]]
+  vim.cmd.cnoreabbrev "rg grep"
 end
 -- }}}
 
@@ -247,30 +317,24 @@ create_autocmd(set_norelative, {
 -- how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
 local cursor_line_group = create_augroup("CursorLineGroup", {})
 
--- local cursorline_envt = { "BufWinEnter", "WinEnter" }
--- local nocursorline_envt = { "BufLeave", "WinLeave" }
-
-local cursorline_envt = { "WinEnter" }
-local nocursorline_envt = { "WinLeave" }
-
-create_autocmd(cursorline_envt, {
+create_autocmd({ "WinEnter" }, {
+  group = cursor_line_group,
   command = "setlocal cursorline",
-  group = cursor_line_group
 })
 
-create_autocmd(nocursorline_envt, {
+create_autocmd({ "WinLeave" }, {
+  group = cursor_line_group,
   command = "setlocal nocursorline",
-  group = cursor_line_group
 })
 -- }}}
 
 -- save cursor {{{
-local skip_filetypes = { "gitcommit" }
-
--- this might not be necessary
+-- if a buffer is special, (i.e. `help`, `gitcommit`)
+-- this feels like something i would use in other places but i don't
 function SpecialBuffer()
-  -- if not empty then the buffer is a `special-buffer` like help and plugins
-  -- that use this as well like tagbar
+  local skip_filetypes = { "gitcommit" }
+
+  -- if not empty then the buffer is a `special-buffer` like help
   if vim.bo.buftype ~= "" then
     return true
 
@@ -280,7 +344,7 @@ function SpecialBuffer()
     return true
 
     -- skip the given file types
-  elseif vim.tbl_contains(skip_filetypes, vim.bo.filetype) == true then
+  elseif vim.list_contains(skip_filetypes, vim.bo.filetype) then
     return true
   end
 
@@ -290,13 +354,18 @@ end
 
 local restore_cursor = create_augroup("RestoreCursor", {})
 
-create_autocmd("BufReadPost", {
+create_autocmd("BufWinEnter", {
   group = restore_cursor,
-  pattern = "*",
   callback = function()
     local row_col = vim.api.nvim_buf_get_mark(0, '"')
-    if SpecialBuffer() == false and
-      row_col ~= { 0, 0 } and row_col[1] <= vim.api.nvim_buf_line_count(0) then
+
+    -- nvim errors on setting row grater then the last line
+    -- but column is fine to set to whatever is guess
+    if row_col[1] > vim.api.nvim_buf_line_count(0) then
+      row_col[1] = vim.api.nvim_buf_line_count(0)
+    end
+
+    if not SpecialBuffer() and row_col ~= { 0, 0 } then
       vim.api.nvim_win_set_cursor(0, row_col)
     end
   end
@@ -306,9 +375,9 @@ create_autocmd("BufReadPost", {
 -- force file type options {{{
 local file_type_group = create_augroup("ResetFileType", {})
 
--- this is kinda bad but there isn't a better way
--- a bunch of language files distributed with vim set formatoptions and more
--- so this will reset it, it would be nice if they didn't
+-- this is kinda bad but there isn't a better way a bunch of language files
+-- distributed with vim set formatoptions and more so this will reset it
+-- it would be nice if they didn't
 create_autocmd({ "FileType" }, {
   group = file_type_group,
   command = "set formatoptions<"

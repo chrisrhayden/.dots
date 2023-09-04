@@ -2,6 +2,9 @@
 -- treesitter
 --------------------------------------------------------------------------------
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -38,12 +41,12 @@ return {
       },
       incremental_selection = {
         enable = false,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
+        -- keymaps = {
+        --   init_selection = "gnn",
+        --   node_incremental = "grn",
+        --   scope_incremental = "grc",
+        --   node_decremental = "grm",
+        -- },
       },
       textobjects = {
         move = {
@@ -51,22 +54,14 @@ return {
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
             ["]]"] = "@function.outer",
-            -- ["]m"] = "@function.outer",
             -- ["]]"] = "@class.outer",
-          },
-          goto_next_end = {
-            -- ["]M"] = "@function.outer",
-            -- ["]["] = "@class.outer",
           },
           goto_previous_start = {
             ["[["] = "@function.outer",
-            -- ["[m"] = "@function.outer",
             -- ["[["] = "@class.outer",
           },
-          goto_previous_end = {
-            -- ["[M"] = "@function.outer",
-            -- ["[]"] = "@class.outer",
-          },
+          -- goto_next_end = { },
+          -- goto_previous_end = { },
         },
         select = {
           enable = true,
@@ -77,17 +72,8 @@ return {
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
             ["ic"] = "@class.inner",
-            ["ib"] = "@block.inner",
             ["ab"] = "@block.outer",
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>s"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<leader>S"] = "@parameter.inner",
+            ["ib"] = "@block.inner",
           },
         },
       },

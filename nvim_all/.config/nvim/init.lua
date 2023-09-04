@@ -6,14 +6,13 @@
 
 vim.g.mapleader = " "
 
-require("util").setup_lazy()
-
 require("settings")
 
 require("mappings")
 
 require("status_line")
 
+require("util").setup_lazy()
 
 -- }}}
 

@@ -22,7 +22,6 @@ set_key { "<left>", "<nop>", mode = "", desc = "disable key left" }
 set_key { "<right>", "<nop>", mode = "", desc = "disable key right" }
 -- }}}
 
-
 -- unimpaired like {{{
 local add_blank_lines = require("util").add_blank_lines
 
@@ -49,7 +48,7 @@ set_key { "<leader>h", ":set hlsearch!<cr>", desc = "toggle highlighting" }
 set_key {
   "<leader>tc",
   function()
-    if vim.wo.conceallevel == 2 then
+    if vim.wo.conceallevel > 0 then
       vim.wo.conceallevel = 0
     else
       vim.wo.conceallevel = 2
@@ -65,14 +64,14 @@ set_key {
   "j",
   '(v:count > 5 ? "m\'" . v:count : "") . \'j\'',
   expr = true,
-  desc = "add movement to jump list of more then 5"
+  desc = "add movement to jump list if more then 5"
 }
 
 set_key {
   "k",
   '(v:count > 5 ? "m\'" . v:count : "") . \'k\'',
   expr = true,
-  desc = "add movement to jump list of more then 5"
+  desc = "add movement to jump list if more then 5"
 }
 -- }}}
 
@@ -83,7 +82,6 @@ set_key {
   desc = "keep cursor at the same place when joining lines"
 }
 
--- move lines around in normal mode
 set_key { "<leader>[", ":m .-2<cr>==", desc = "move line up" }
 set_key { "<leader>]", ":m .+1<cr>==", desc = "move line down" }
 set_key { "<leader>k", ":m .+1<cr>==", desc = "move line up" }
@@ -105,12 +103,12 @@ set_key {
 
 -- search {{{
 set_key { "n", "nzzzv", desc = "center and open folds for next item" }
-set_key { "N", "Nzzzv", desc = "center and open folds for next item" }
+set_key { "N", "Nzzzv", desc = "center and open folds for prev item" }
 -- }}}
 -- }}}
 
 -- yank to clipboard {{{
-set_key { "gy", '"+y', desc = "yank `motion` to clipboard" }
+set_key { "gy", '"+y', desc = "yank [motion] to clipboard" }
 -- }}}
 
 -- fold {{{
@@ -130,34 +128,27 @@ set_key {
 -- switch buffer
 set_key { "<bs>", "<C-^>", desc = "switch to last buffer" }
 
--- list buffers
-set_key { "<leader>ls", ":ls<cr>" }
-set_key { "<Leader>bd", ":bdelete<CR>" }
-set_key { "<Leader>bf", ":bfirst<CR>" }
-set_key { "<Leader>bl", ":blast<CR>" }
-set_key { "<Leader>bn", ":bnext<CR>" }
-set_key { "<Leader>bp", ":bprevious<CR>" }
-set_key { "<leader>bb", ":ls<cr>:buffer " }
+set_key { "<Leader>bd", ":bdelete<CR>", desc = "delete a buffer from list" }
+set_key { "<Leader>bn", ":bnext<CR>", desc = "switch to next buffer" }
+set_key { "<Leader>bp", ":bprevious<CR>", desc = "switch to prev buffer" }
 -- }}}
 
--- Window {{{
+-- window {{{
+-- better then i though it would be
 set_key { "<C-J>", ":silent wincmd j<cr>", desc = "move down a window" }
 set_key { "<C-K>", ":silent wincmd k<cr>", desc = "move up a window" }
 set_key { "<C-L>", ":silent wincmd l<cr>", desc = "move left a window" }
 set_key { "<C-H>", ":silent wincmd h<cr>", desc = "move right a window" }
-
 set_key {
   "<M-h>",
   ":vertical resize -10<cr>",
   desc = "shrink window vertically"
 }
-
 set_key {
   "<M-k>",
   ":resize -10<cr>",
   desc = "shrink window horizontally"
 }
-
 set_key {
   "<M-l>",
   ":vertical resize +10<cr>",
@@ -173,15 +164,16 @@ set_key { "<M-=>", "<C-W><C-=>", desc = "equalize window" }
 
 set_key { "<leader>C", ":close<CR>", desc = "close current window" }
 set_key { "<leader>O", ":only<CR>", desc = "show only current window" }
+-- }}}
 
--- quickfix
+-- quickfix/local list {{{
+-- i need to use these more
 set_key { "<leader>co", ":copen<CR>", desc = "open quickfix" }
 set_key { "<leader>cc", ":cclose<CR>", desc = "close quickfix" }
 set_key { "<leader>cl", ":colder<CR>", desc = "go to older error" }
 set_key { "<leader>cn", ":cnext<CR>", desc = "go to next error" }
 set_key { "<leader>cP", ":cprevious<CR>", desc = "go to prev error" }
 
--- local list
 set_key { "<leader>lo", ":lopen<CR>", desc = "open local list" }
 set_key { "<leader>lc", ":lclose<CR>", desc = "close local list" }
 set_key { "<leader>ll", ":lolder<CR>", desc = "go to older item" }
@@ -189,6 +181,7 @@ set_key { "<leader>ln", ":lnewer<CR>", desc = "go to new item" }
 -- }}}
 
 -- tab {{{
+-- i never use tabs so idk if this is nice
 set_key { "<leader>tp", ":tabprevious<cr>", desc = "go to prev tab" }
 set_key { "<leader>tn", ":tabnext<cr>", desc = "go to next tab" }
 set_key { "<leader>tN", ":tabnew<cr>", desc = "open new tab" }
@@ -205,6 +198,7 @@ set_key { "<leader>`", ":split <bar> terminal<cr>", desc = "open a terminal" }
 -- }}}
 
 -- gdb term debug debugging {{{
+-- i should use gdb more
 set_key { "<leader>d<cr>", ":Break<cr>", desc = "set a breakpoint" }
 set_key { "<leader>dx", ":Clear<cr>", desc = "delete a breakpoint" }
 set_key { "<leader>dc", ":Continue<cr>", desc = "continue cmd" }

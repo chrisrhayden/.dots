@@ -1,7 +1,7 @@
 -- get lsp info and lsp server name to show in the last status
 function LspStatus()
   -- TODO: maybe handle multiple servers
-  local lsp_client = vim.lsp.get_active_clients { bufnr = 0 }[1]
+  local lsp_client = vim.lsp.get_clients { bufnr = 0 }[1]
 
   local ret = ""
 
@@ -11,7 +11,6 @@ function LspStatus()
     if status and status ~= "" then
       ret = status
     else
-      -- ret = "[" .. lsp_client["name"] .. " | " .. lsp_client["id"] .. "]"
       ret = "[" .. lsp_client["name"] .. "]"
     end
   end
