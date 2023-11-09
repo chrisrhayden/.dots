@@ -10,7 +10,7 @@ vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup//"
 local word_dir = vim.fn.stdpath("config") .. "/words"
 vim.fn.mkdir(word_dir, "p")
 
--- where words added with `zg` are add to, default is $PWD
+-- where words added with `zg` are appended to
 vim.opt.spellfile = word_dir .. "/code-en.utf-8.add"
 vim.opt.thesaurus = word_dir .. "/en_thesaurus.txt"
 -- end setup paths }}}
@@ -108,33 +108,79 @@ vim.opt.foldnestmax = 5
 -- split below or right by default
 vim.opt.splitbelow = true
 vim.opt.splitright = true
--- save these settings when making views
-vim.opt.viewoptions = {
-  "folds",
-  "cursor",
-}
--- save these settings when making sessions
-vim.opt.sessionoptions = {
-  "buffers",
-  "folds",
-  "help",
-  "tabpages",
-  "winsize",
-  "sesdir",
-}
--- define how vim will format text
--- from tjdevries
+-- define how vim will format text, from tjdevries
 vim.opt.formatoptions = vim.opt.formatoptions
-    - "a" -- Auto formatting is BAD.
-    - "t" -- Don't auto format my code. I got linter's for that.
-    + "c" -- In general, I like it when comments respect textwidth
-    + "q" -- Allow formatting comments w/ gq
-    - "o" -- O and o, don't continue comments
-    + "r" -- But do continue when pressing enter.
-    + "n" -- Indent past the formatlistpat, not underneath it.
-    + "j" -- Auto-remove comments if possible.
-    - "2" -- I'm not in grade school anymore
--- end feel /editing }}}
+  - "a" -- Auto formatting is BAD.
+  - "t" -- Don't auto format my code. I got linter's for that.
+  + "c" -- In general, I like it when comments respect textwidth
+  + "q" -- Allow formatting comments w/ gq
+  - "o" -- O and o, don't continue comments
+  + "r" -- But do continue when pressing enter.
+  + "n" -- Indent past the formatlistpat, not underneath it.
+  + "j" -- Auto-remove comments if possible.
+  - "2" -- I'm not in grade school anymore
+-- end feel / editing }}}
+
+-- language settings {{{
+-- C {{{
+-- make vim treat *.h files like c not cpp
+-- TODO: this could probably be set somewhere else to also use cpp
+vim.g.c_syntax_for_h = 1
+-- }}}
+
+-- rust {{{
+-- we have rustfmt so let me just type the way i want
+vim.g.rust_recommended_style = 0
+-- }}}
+-- end language settings }}}
+
+-- interpreters {{{
+-- turn off support for unneeded interpreters
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+-- end interpreters }}}
+
+-- built in pkgs {{{
+-- use a wide layout for termdebug
+vim.g.termdebug_wide = 1
+-- end built in pkgs }}}
+
+-- ripgrep instead of grep {{{
+-- https://www.wezm.net/technical/2016/09/ripgrep-with-vim/
+if vim.fn.executable("rg") == 1 then
+  vim.opt.grepprg = "rg --vimgrep --no-heading"
+  vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
+end
+-- }}}
+
+-- fold text {{{1
+-- just display the first folded line
+function MyFoldText()
+  local line = vim.fn.getline(vim.v.foldstart)
+
+  -- taken from `help fold-foldtext`, cant be bothered to use gsub
+  -- `line` should never be a list
+  ---@cast line string
+  local sub = vim.fn.substitute(line, [[/\*\|\*/\|{{{\d\=]], " ", "g") or ""
+
+  local start = sub:match("^%s+") or ""
+
+  if start ~= "" then
+    start = start:gsub("%s", vim.opt.fillchars:get()["fold"])
+
+    start = start:sub(1, #start - 1) .. " "
+  end
+
+  sub = sub:match("^%s*(.-)%s*$") or ""
+
+  return start .. sub .. " "
+end
+
+vim.opt.foldtext = "v:lua.MyFoldText()"
+-- end fold text }}}1
 
 -- diagnostics {{{
 -- might add these to lua/mappings.lua
@@ -190,18 +236,22 @@ vim.fn.sign_define("DiagnosticSignHint", {
   text = "󰍉",
   texthl = "DiagnosticSignHint",
 })
+-- end diagnostics }}}
 
--- show diagnostics on cursor hold
-vim.api.nvim_create_autocmd("CursorHold", {
-  group = vim.api.nvim_create_augroup("HoldForDiagnostics", {}),
+-- augroups {{{
+local create_augroup = vim.api.nvim_create_augroup
+local create_autocmd = vim.api.nvim_create_autocmd
+
+-- show diagnostics on cursor hold {{{
+create_autocmd("CursorHold", {
+  group = create_augroup("HoldForDiagnostics", {}),
   -- only show diagnostics if there isn't a popup window
+  -- i fucking hate diagnostics taking the spot for docs
   callback = function()
     local wins = vim.api.nvim_list_wins()
 
     for _, win in pairs(wins) do
-      local win_type = vim.fn.win_gettype(win)
-
-      if win_type == "popup" then
+      if vim.fn.win_gettype(win) == "popup" then
         return
       end
     end
@@ -211,53 +261,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
     })
   end,
 })
--- end diagnostics }}}
-
--- language settings {{{
--- C {{{
--- make vim treat *.h files like c not cpp
--- TODO: this could probably be set somewhere else to also use cpp
-vim.g.c_syntax_for_h = 1
 -- }}}
---
--- rust {{{
--- we have rustfmt so let me just type the way i want
-vim.g.rust_recommended_style = 0
--- }}}
--- end language settings }}}
-
--- interpreters {{{
--- use the VIRTUAL_ENV path if it exists else just use the system default
-if vim.env.VIRTUAL_ENV then
-  vim.g.python3_host_prog = vim.env.VIRTUAL_ENV .. "/bin/python3"
-else
-  vim.g.python3_host_prog = "/usr/bin/python3"
-end
-
--- turn off support for unneeded interpreters
-vim.g.loaded_python_provider = 0
-vim.g.loaded_node_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
--- end interpreters }}}
-
--- built in pkgs {{{
--- use a wide layout for termdebug
-vim.g.termdebug_wide = 1
--- end built in pkgs }}}
-
--- ripgrep instead of grep {{{
--- https://www.wezm.net/technical/2016/09/ripgrep-with-vim/
-if vim.fn.executable("rg") == 1 then
-  vim.opt.grepprg = "rg --vimgrep --no-heading"
-  vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-  vim.cmd.cnoreabbrev "rg grep"
-end
--- }}}
-
--- augroups {{{
-local create_augroup = vim.api.nvim_create_augroup
-local create_autocmd = vim.api.nvim_create_autocmd
 
 -- relative number {{{
 vim.g.use_relnumber = true
@@ -279,7 +283,6 @@ vim.api.nvim_create_user_command("ToggleRelNumber", function()
 
 local relative_group = create_augroup("RelativeGroup", {})
 
--- toggle relativenumber
 local set_relative = {
   "BufEnter",
   "InsertLeave",
@@ -317,12 +320,12 @@ create_autocmd(set_norelative, {
 -- how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
 local cursor_line_group = create_augroup("CursorLineGroup", {})
 
-create_autocmd({ "WinEnter" }, {
+create_autocmd("WinEnter", {
   group = cursor_line_group,
   command = "setlocal cursorline",
 })
 
-create_autocmd({ "WinLeave" }, {
+create_autocmd("WinLeave", {
   group = cursor_line_group,
   command = "setlocal nocursorline",
 })
@@ -332,7 +335,7 @@ create_autocmd({ "WinLeave" }, {
 -- if a buffer is special, (i.e. `help`, `gitcommit`)
 -- this feels like something i would use in other places but i don't
 function SpecialBuffer()
-  local skip_filetypes = { "gitcommit" }
+  local special_filetypes = { "gitcommit" }
 
   -- if not empty then the buffer is a `special-buffer` like help
   if vim.bo.buftype ~= "" then
@@ -343,8 +346,8 @@ function SpecialBuffer()
   elseif vim.bo.buflisted == false then
     return true
 
-    -- skip the given file types
-  elseif vim.list_contains(skip_filetypes, vim.bo.filetype) then
+    -- the given file types are special
+  elseif vim.list_contains(special_filetypes, vim.bo.filetype) then
     return true
   end
 
@@ -352,15 +355,13 @@ function SpecialBuffer()
   return false
 end
 
-local restore_cursor = create_augroup("RestoreCursor", {})
-
 create_autocmd("BufWinEnter", {
-  group = restore_cursor,
+  group = create_augroup("RestoreCursor", {}),
   callback = function()
     local row_col = vim.api.nvim_buf_get_mark(0, '"')
 
     -- nvim errors on setting row grater then the last line
-    -- but column is fine to set to whatever is guess
+    -- but its fine to set column to whatever I guess
     if row_col[1] > vim.api.nvim_buf_line_count(0) then
       row_col[1] = vim.api.nvim_buf_line_count(0)
     end
@@ -375,9 +376,9 @@ create_autocmd("BufWinEnter", {
 -- force file type options {{{
 local file_type_group = create_augroup("ResetFileType", {})
 
--- this is kinda bad but there isn't a better way a bunch of language files
--- distributed with vim set formatoptions and more so this will reset it
--- it would be nice if they didn't
+-- this is kinda bad but there isn't a better way
+-- a bunch of language files distributed with vim set formatoptions.
+-- so this will reset it. it would be nice if they didn't.
 create_autocmd({ "FileType" }, {
   group = file_type_group,
   command = "set formatoptions<"

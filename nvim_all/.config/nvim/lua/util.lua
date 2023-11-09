@@ -33,14 +33,14 @@ function M.setup_lazy()
     performance = {
       rtp = {
         disabled_plugins = {
-          -- "matchit",
-          -- "matchparen",
-          -- "netrwPlugin",
-          -- "tohtml",
-          -- "tutor",
-          "gzip",
-          "tarPlugin",
-          "zipPlugin",
+          "matchit",
+          "matchparen",
+          "netrwPlugin",
+          "tohtml",
+          "tutor",
+          -- "gzip",
+          -- "tarPlugin",
+          -- "zipPlugin",
         }
       }
     }
@@ -63,7 +63,7 @@ function M.set_key(keymap)
   local lhs = keymap[1]
   local rhs = keymap[2]
 
-  -- honestly defaulting to noremap and normal mode
+  -- honestly defaulting to noremap, normal mode and silent
   -- is the only justifications for this function
   local mode = keymap["mode"] or "n"
 

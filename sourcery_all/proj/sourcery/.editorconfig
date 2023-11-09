@@ -2,7 +2,7 @@
 # optional space/tab
 indent_style = space
 # if indent_style is space, this is valid
-indent_size = 2
+indent_size = 4
 # none/single/double
 quote_style = double
 max_line_length = 80

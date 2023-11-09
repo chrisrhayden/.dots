@@ -8,6 +8,7 @@ local command = vim.api.nvim_create_user_command
 command("W", "w", {})
 command("WQ", "wq", {})
 command("Q", "q", {})
+vim.cmd.cnoreabbrev "rg grep"
 -- }}}
 
 -- set keys {{{
@@ -115,12 +116,12 @@ set_key { "gy", '"+y', desc = "yank [motion] to clipboard" }
 set_key {
   "<Leader>f0",
   ":set foldlevel=0<CR>",
-  desc = "set fold level to num"
+  desc = "open all folds"
 }
 set_key {
   "<Leader>f9",
   ":set foldlevel=9<CR>",
-  desc = "set fold level to num"
+  desc = "close all folds"
 }
 -- }}}
 

@@ -1,11 +1,15 @@
 local set_key = require("util").set_key
 
-vim.lsp.handlers["textDocument/hover"] =
-  vim.lsp.with(vim.lsp.handlers.hover,
-    { focusable = false, border = "rounded" })
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, { focusable = false, border = "rounded" }
+)
 
 local function on_attach(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
+
+  -- don't use the lsp formatter
+  -- this is nice as not all lsp formatters work well with comments
+  vim.bo[bufnr].formatexpr = nil
 
   set_key {
     "gd",
@@ -21,12 +25,6 @@ local function on_attach(client, bufnr)
     desc = "show implementations in quick fix"
   }
 
-  set_key {
-    "K",
-    vim.lsp.buf.hover,
-    buffer = bufnr,
-    desc = "open hover window"
-  }
   set_key {
     "<leader>rn",
     vim.lsp.buf.rename,
@@ -75,6 +73,37 @@ local function mk_rust_settings()
   }
 end
 
+local function mk_lua_settings()
+  return {
+    settings = {
+      Lua = {
+        diagnostics = {
+          neededFileStatus = {
+            ["codestyle-check"] = "Any"
+          }
+        },
+        telemetry = {
+          enable = false
+        }
+      }
+    }
+  }
+end
+
+local function mk_clang_settings()
+  return {
+    on_attach = function(client, bufnr)
+      set_key {
+        "<leader><bs>",
+        ":ClangdSwitchSourceHeader<cr>",
+        buffer = bufnr,
+        desc = "switch to source or header files"
+      }
+
+      on_attach(client, bufnr)
+    end
+  }
+end
 
 return {
   {
@@ -85,24 +114,12 @@ return {
         config = true,
       }
     },
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       servers = {
-        lua_ls = {},
         rust_analyzer = mk_rust_settings(),
-        clangd = {
-          {
-            on_attach = function(client, bufnr)
-              on_attach(client, bufnr)
-
-              set_key {
-                "<leader><bs>",
-                ":ClangdSwitchSourceHeader<cr>",
-                buffer = bufnr,
-                desc = "switch to source or header files"
-              }
-            end
-          }
-        },
+        lua_ls = mk_lua_settings(),
+        clangd = mk_clang_settings(),
       }
     },
     config = function(_, opts)

@@ -18,6 +18,5 @@ return {
         layout_strategy = "flex",
       }
     },
-    config = true,
   }
 }

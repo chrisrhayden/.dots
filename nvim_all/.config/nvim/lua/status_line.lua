@@ -36,7 +36,7 @@ end
 
 vim.opt.statusline = my_status_line()
 
-vim.api.nvim_create_autocmd("LspProgress ", {
+vim.api.nvim_create_autocmd("LspProgress", {
   group = vim.api.nvim_create_augroup("RedrawStatus", {}),
   command = "redrawstatus"
 })
