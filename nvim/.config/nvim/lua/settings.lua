@@ -385,6 +385,59 @@ create_autocmd({ "FileType" }, {
 })
 -- }}}
 
+local get_kitty_bg = function()
+  local kitty_color_cmd = {
+    "kitty", "@", "get-colors", "--to=" .. vim.env.KITTY_LISTEN_ON
+  }
+
+  local kitty_out = vim.system(kitty_color_cmd, { text = true }):wait().stdout
+
+  if not kitty_out or type(kitty_out) ~= "string" then
+    return
+  end
+
+  return string.match(kitty_out, "background%s-#(%d+)")
+end
+
+local get_nvim_bg = function()
+  local normal_color = vim.api.nvim_get_hl(0, {
+    name = "Normal"
+  })
+
+  return string.format("%06x", normal_color.bg)
+end
+
+local set_kitty_bg = function(color)
+  assert(type(color) == "string")
+
+  vim.system {
+    "kitty", "@", "set-colors",
+    "--to=" .. vim.env.KITTY_LISTEN_ON,
+    "background=#" .. color }
+    :wait()
+end
+
+local set_kitty_color = create_augroup("SetKittyColor", {})
+
+create_autocmd({ "UIEnter" }, {
+  pattern = "*",
+  group = set_kitty_color,
+  callback = function()
+    vim.g.kitty_bg = get_kitty_bg()
+    local new_color = get_nvim_bg()
+    set_kitty_bg(new_color)
+  end,
+})
+
+create_autocmd({ "UILeave" }, {
+  pattern = "*",
+  group = set_kitty_color,
+  callback = function()
+    set_kitty_bg(vim.g.kitty_bg)
+  end
+})
+
+
 -- end augroups }}}
 
 -- vim: foldmethod=marker

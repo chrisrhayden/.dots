@@ -9,7 +9,9 @@ set $text_colors         #d8dee8
 
 # focused work space, the one your using
 set $foc_text_color      #1F1F1F
-set $foc_window_bg       #b7b7b7
+set $foc_window_bg       #311B92
+# set $foc_window_bg       #e3b4b4
+# set $foc_window_bg       #b7b7b7
 
 set $foc_inac_window     #1F1F1F
 
@@ -28,7 +30,7 @@ set $act_text_color      #1F1F1F
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
-font pango:Hack Regular 10
+# font pango:Hack Regular 10
 
 # window colors         border             background         text            indicator
 client.focused          $foc_window_bg     $foc_window_bg     $foc_text_color    #555555
@@ -38,9 +40,7 @@ client.urgent           $urgent_window_bg  $urgent_window_bg  $text_colors    #0
 
 
 # borders
-new_window 1pixel
-for_window [class="^.*"] border pixel 2
-# for_window [class="^.*"] border pixel 0
+default_border pixel 2
 # }}}
 
 # windowing {{{
@@ -223,8 +223,7 @@ mode "$mode_gaps_outer" {
 # }}}
 # }}}
 
-# keybindings {{{
-# system {{{
+# other keybindings {{{
 # kill focused window
 bindsym $mod+w kill
 
@@ -236,17 +235,8 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-# }}}
 
-# bindsym $mod+Return exec alacritty
-# bindsym $mod+Return exec wezterm
 bindsym $mod+Return exec kitty
-
-# bindsym $mod+Shift+grave move scratchpad
-# bindsym $mod+grave scratchpad show
-
-# for_window [class="scratchpad"] floating enable, move scratchpad, scratchpad show
-# for_window [class="scratchpad"] fullscreen enable
 
 bindsym $mod+F1 exec --no-startup-id firefox
 bindsym $mod+F2 exec --no-startup-id firefox 'https://www.youtube.com/'
@@ -258,17 +248,23 @@ bindsym $mod+Tab exec --no-startup-id ~/.dots/scripts/rofi/menu
 
 # bar {{{
 bar {
-    colors {
-        background #191919
-    }
+    status_command i3blocks
 
     mode hide
-    status_command i3blocks
+    font pango:FiraCode Nerd Font 14
+    workspace_min_width 40
+
+    colors {
+        background #191919
+
+        # <colorclass>      <border> <background> <text>
+        focused_workspace   #311B92  #311B92      #ffffff
+    }
 }
 # }}}
 
 # startup {{{
-exec --no-startup-id "~/.dots/scripts/startup_cmds.sh"
+exec --no-startup-id feh --bg-scale "/home/chris/Pictures/floral.jpg"
 # }}}
 # }}}
 

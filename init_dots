@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+all=(
+    bash
+    bin
+    fish
+    git
+    i3
+    kitty
+    mpv
+    nvim
+    redshift
+    skel
+    sourcery
+    starship
+)
+
+monolith=(
+    eww
+    hyprland
+)
+
+odimm=()
+
+printf '\033[32mlinking dots\033[0m\n'
+for dir in ${all[@]}; do
+    printf -- '    %s\n' "$dir"
+    stow "$dir"
+done
+
+
+hname="$(hostnamectl hostname)"
+to_exp=$hname[@]
+printf '\n\033[32mlinking computer specific dots\033[0m\n'
+
+# see manual for the indirection introduced by ${!var}
+# www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+for dir in ${!to_exp}; do
+    printf -- '    %s\n' "$dir"
+    stow "$dir"
+done
