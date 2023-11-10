@@ -1,7 +1,5 @@
-# set up user env by sourcing xsession if it exists
-# [[ -f ~/.xsession ]] && source ~/.xsession
+xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' 'libinput Accel Speed' -0.9
 
-# exec bspwm
+setxkbmap -option caps:escape
+
 exec i3
-
-# vim: filetype=sh

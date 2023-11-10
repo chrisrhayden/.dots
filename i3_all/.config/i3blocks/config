@@ -1,0 +1,10 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+[time]
+command=date '+%Y-%m-%d %l:%M %P'
+interval=5

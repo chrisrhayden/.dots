@@ -31,7 +31,7 @@
 #
 # # run scripts or commands {{{
 if command -v feh @>/dev/null && [[ -f "/home/chris/Pictures/floral.jpg" ]]; then
-	feh --bg-scale "/home/chris/Pictures/floral.jpg" 
+    feh --bg-scale "/home/chris/Pictures/floral.jpg" 
 fi
 #
 # # if [[ -x ~/.dots/scripts/run_polybar.sh ]]; then
