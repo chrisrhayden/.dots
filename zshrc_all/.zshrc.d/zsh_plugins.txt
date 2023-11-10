@@ -1,8 +1,0 @@
-hlissner/zsh-autopair
-michaelxmcbride/zsh-dircycle
-zsh-users/zsh-autosuggestions
-zdharma-continuum/fast-syntax-highlighting
-# kevinywlui/zlong_alert.zsh
-# zdharma/fast-syntax-highlighting
-# zsh-users/zsh-syntax-highlighting
-# chrisrhayden/zlong_alert.zsh

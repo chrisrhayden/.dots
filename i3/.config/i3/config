@@ -104,20 +104,6 @@ bindsym $mod+p focus parent
 # }}}
 
 # workspace {{{
-# set $workspace1 "1"
-# set $workspace2 "2"
-# set $workspace3 "3"
-# set $workspace4 "4"
-# set $workspace5 "5"
-# set $workspace6 "6"
-# set $workspace7 "7"
-# set $workspace8 "8"
-# set $workspace9 "9"
-# set $workspace10 "10"
-
-# to switch back to workspace by hitting same number
-workspace_auto_back_and_forth yes
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -142,23 +128,14 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# cycle through active workspaces
-# https://faq.i3wm.org/question/4979/
-# cycling-through-active-workspaces/index.html
-# bindsym $mod+Tab workspace next_on_output
+# to switch back to workspace by hitting same number
+workspace_auto_back_and_forth yes
 
 # can essential cycle right
 bindsym $mod+Shift+m move workspace to output right
 
-# mod z to switch
-# bindsym $mod+z workspace back_and_forth
-
-### ASSIGN WORKSPACE
-assign [class="Steam"] 10
-
-#### WORKSPACE SCREEN
-# workspace $workspace10 output HDMI-0
-# workspace $workspace9 output HDMI-0
+# workspace rules
+assign [class="steam"] 10
 
 # }}}
 

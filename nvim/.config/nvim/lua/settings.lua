@@ -67,7 +67,7 @@ vim.opt.fillchars = {
 
 -- feel / editing {{{
 -- disable mouse support
-vim.opt.mouse = nil
+vim.opt.mouse = ""
 -- use screen lines when `wrap` is on
 vim.opt.smoothscroll = true
 -- how completions work in insert mode
