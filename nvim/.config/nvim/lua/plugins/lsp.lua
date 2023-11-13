@@ -126,13 +126,18 @@ return {
       local lsp = require("lspconfig")
 
       for server_name, server_opts in pairs(opts.servers) do
+
         local server_setup =
           vim.tbl_deep_extend("force", {
             on_attach = on_attach,
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
           }, server_opts)
 
-        lsp[server_name].setup(server_setup)
+        local cmd_name = lsp[server_name].document_config.default_config.cmd[1]
+
+        if vim.fn.executable(cmd_name) ~= 0 then
+          lsp[server_name].setup(server_setup)
+        end
       end
     end
   },
