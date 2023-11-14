@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+xorg_clip() {
+    xsel --clipboard
+}
+
 wayland_clip() {
     if [[ -t 0 ]]; then
         wl-paste
@@ -12,8 +16,7 @@ main() {
     if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
         wayland_clip
     else
-        echo "xorg not supported"
-        return 1
+        xorg_clip
     fi
 }
 
