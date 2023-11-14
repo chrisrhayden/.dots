@@ -407,7 +407,7 @@ local get_nvim_bg = function()
   return string.format("%06x", normal_color.bg)
 end
 
-local set_kitty_bg = function(color)
+local set_kitty_bg = function(color, opacity)
   assert(type(color) == "string")
 
   vim.system {
@@ -415,6 +415,11 @@ local set_kitty_bg = function(color)
     "--to=" .. vim.env.KITTY_LISTEN_ON,
     "background=#" .. color }
     :wait()
+
+  vim.system {
+    "kitty", "@", "set-background-opacity",
+    "--to=" .. vim.env.KITTY_LISTEN_ON,
+    opacity }:wait()
 end
 
 local set_kitty_color = create_augroup("SetKittyColor", {})
@@ -425,7 +430,7 @@ create_autocmd({ "UIEnter" }, {
   callback = function()
     vim.g.kitty_bg = get_kitty_bg()
     local new_color = get_nvim_bg()
-    set_kitty_bg(new_color)
+    set_kitty_bg(new_color, 1)
   end,
 })
 
@@ -433,7 +438,7 @@ create_autocmd({ "UILeave" }, {
   pattern = "*",
   group = set_kitty_color,
   callback = function()
-    set_kitty_bg(vim.g.kitty_bg)
+    set_kitty_bg(vim.g.kitty_bg, 0.9)
   end
 })
 

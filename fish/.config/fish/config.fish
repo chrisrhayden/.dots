@@ -1,8 +1,8 @@
-if status is-login
-    if test \( -z "$DISPLAY"  \) -a \( "$XDG_VTNR" -eq "1" \)
-        # exec Hyprland
-    end
-end
+# if status is-login
+#     if test \( -z "$DISPLAY"  \) -a \( "$XDG_VTNR" -eq "1" \)
+#         exec Hyprland
+#     end
+# end
 
 if status is-interactive
     fish_add_path ~/bin
