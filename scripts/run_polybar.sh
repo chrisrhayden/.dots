@@ -11,4 +11,4 @@ done
 
 echo "launching polybar"
 polybar -c ~/.config/polybar/config.ini main &
-polybar -c ~/.config/polybar/config.ini secondary &
+# polybar -c ~/.config/polybar/config.ini secondary &

@@ -244,6 +244,9 @@ bindsym $mod+Shift+F2 exec  --no-startup-id \
     firefox --new-window 'https://www.youtube.com/'
 
 bindsym $mod+Tab exec --no-startup-id ~/.dots/scripts/rofi/menu
+
+
+# bindsym $mod+Shift+s exec polybar-msg cmd toggle
 # }}}
 
 # bar {{{

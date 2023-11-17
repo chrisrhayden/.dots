@@ -53,6 +53,7 @@ vim.opt.listchars = {
   extends = "ᐳ",
   precedes = "ᐸ",
   nbsp = "+",
+  -- leadmultispace="┊ "
 }
 -- characters for certain parts of the ui
 vim.opt.fillchars = {
@@ -442,6 +443,22 @@ create_autocmd({ "UILeave" }, {
   end
 })
 
+local cmd_hight_change = create_augroup("CmdHightChange", {})
+
+vim.opt.cmdheight = 0
+
+create_autocmd("CmdlineEnter", {
+  group = cmd_hight_change,
+  callback = function()
+    vim.opt.cmdheight = 1
+  end
+})
+create_autocmd("CmdlineLeave", {
+  group = cmd_hight_change,
+  callback = function()
+    vim.opt.cmdheight = 0
+  end
+})
 
 -- end augroups }}}
 

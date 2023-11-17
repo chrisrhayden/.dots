@@ -2,4 +2,8 @@ xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' 'libinput A
 
 setxkbmap -option caps:escape
 
+if [[ -f ~/.xbindkeysrc ]]; then
+    xbindkeys
+fi
+
 exec i3

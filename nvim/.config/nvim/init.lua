@@ -7,6 +7,7 @@
 
 vim.g.mapleader = " "
 
+
 require("settings")
 require("mappings")
 require("status_line")
