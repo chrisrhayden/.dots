@@ -3,19 +3,16 @@ function LspStatus()
   -- TODO: maybe handle multiple servers
   local lsp_client = vim.lsp.get_clients { bufnr = 0 }[1]
 
-  local ret = ""
-
   if lsp_client then
     local status = vim.lsp.status()
 
     if status and status ~= "" then
-      ret = status
+      vim.print(lsp_client["progress"])
+      return status
     else
-      ret = "[" .. lsp_client["name"] .. "]"
+      return "[" .. lsp_client["name"] .. "]"
     end
   end
-
-  return ret
 end
 
 local function my_status_line()
@@ -32,7 +29,6 @@ local function my_status_line()
     "",                     -- add padding
   }, " ")
 end
-
 
 vim.opt.statusline = my_status_line()
 

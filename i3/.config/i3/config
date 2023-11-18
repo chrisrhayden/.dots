@@ -136,6 +136,7 @@ bindsym $mod+Shift+m move workspace to output right
 
 # workspace rules
 assign [class="steam"] 10
+assign [class="Steam"] 10
 
 # }}}
 

@@ -10,9 +10,9 @@ vim.g.mapleader = " "
 
 require("settings")
 require("mappings")
+require("autocmds")
 require("status_line")
 require("util").setup_lazy()
-
 
 --- }}}
 

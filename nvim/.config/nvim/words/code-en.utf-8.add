@@ -77,3 +77,5 @@ ignorecase
 textwidth
 gq
 noremap
+cmdheight
+cmds

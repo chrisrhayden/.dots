@@ -1,18 +1,16 @@
 --------------------------------------------------------------------------------
 -- mappings.lua
 --------------------------------------------------------------------------------
-
--- commands {{{
+local set_key = require("util").set_key
 local command = vim.api.nvim_create_user_command
 
+-- commands {{{
 command("W", "w", {})
 command("WQ", "wq", {})
 command("Q", "q", {})
-vim.cmd.cnoreabbrev "rg grep"
 -- }}}
 
 -- set keys {{{
-local set_key = require("util").set_key
 
 -- disable things  {{{
 set_key { "<help>", "<nop>", mode = "", desc = "disable help" }

@@ -33,8 +33,8 @@ function M.setup_lazy()
     performance = {
       rtp = {
         disabled_plugins = {
-          "matchit",
-          "matchparen",
+          -- "matchit",
+          -- "matchparen",
           "netrwPlugin",
           "tohtml",
           "tutor",
