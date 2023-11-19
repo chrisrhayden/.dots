@@ -7,7 +7,6 @@ function LspStatus()
     local status = vim.lsp.status()
 
     if status and status ~= "" then
-      vim.print(lsp_client["progress"])
       return status
     else
       return "[" .. lsp_client["name"] .. "]"
