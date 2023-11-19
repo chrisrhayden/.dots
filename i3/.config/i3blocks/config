@@ -5,6 +5,12 @@
 #
 #     https://vivien.github.io/i3blocks
 
+separator=false
+
 [time]
-command=date '+%Y-%m-%d %l:%M %P'
-interval=5
+command=date +'%-l:%M %P'
+interval=1
+
+[battery]
+command=./battery.sh "$button"
+interval=10

@@ -11,6 +11,8 @@ function LspStatus()
     else
       return "[" .. lsp_client["name"] .. "]"
     end
+  else
+    return ""
   end
 end
 
