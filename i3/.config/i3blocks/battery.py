@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import math
+import math, socket
 
 
 levels = {
@@ -60,7 +60,7 @@ def main():
 
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and socket.gethostname() == "Odimm":
     ret = main()
 
     exit(ret)
