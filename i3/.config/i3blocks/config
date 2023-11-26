@@ -12,5 +12,5 @@ command=date +'%-l:%M %P'
 interval=10
 
 [battery]
-command=./battery.sh
+command=./battery.py
 interval=10
