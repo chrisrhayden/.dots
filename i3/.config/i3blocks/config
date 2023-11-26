@@ -9,8 +9,8 @@ separator=false
 
 [time]
 command=date +'%-l:%M %P'
-interval=1
+interval=10
 
 [battery]
-command=./battery.sh "$button"
+command=./battery.sh
 interval=10
