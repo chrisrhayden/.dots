@@ -33,6 +33,7 @@ return {
         "rust",
         "toml",
         "typescript",
+        "javascript",
         "vim",
       },
       highlight = {

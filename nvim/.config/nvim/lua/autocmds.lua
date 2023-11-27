@@ -146,23 +146,23 @@ create_autocmd("FileType", {
 
 
 -- cmdheight 0 {{{
-local cmd_hight_change = create_augroup("CmdHightChange", {})
-
-vim.opt.cmdheight = 0
-vim.cmd.cnoreabbrev "w silent write"
-
-create_autocmd("CmdlineEnter", {
-  group = cmd_hight_change,
-  callback = function()
-    vim.opt.cmdheight = 1
-  end
-})
-create_autocmd("CmdlineLeave", {
-  group = cmd_hight_change,
-  callback = function()
-    vim.opt.cmdheight = 0
-  end
-})
+-- local cmd_hight_change = create_augroup("CmdHightChange", {})
+--
+-- vim.opt.cmdheight = 0
+-- vim.cmd.cnoreabbrev "w silent write"
+--
+-- create_autocmd("CmdlineEnter", {
+--   group = cmd_hight_change,
+--   callback = function()
+--     vim.opt.cmdheight = 1
+--   end
+-- })
+-- create_autocmd("CmdlineLeave", {
+--   group = cmd_hight_change,
+--   callback = function()
+--     vim.opt.cmdheight = 0
+--   end
+-- })
 -- }}}
 
 -- kitty bg change {{{

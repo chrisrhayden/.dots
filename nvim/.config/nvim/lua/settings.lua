@@ -17,7 +17,7 @@ vim.opt.thesaurus = word_dir .. "/en_thesaurus.txt"
 
 -- ui {{{
 -- avoid hit enter prompts and shorten certain messages
-vim.opt.shortmess = "aTWcCF"
+-- vim.opt.shortmess = "aTWcCF"
 -- use the number column
 vim.opt.number = true
 -- use relative numbers for the number column
