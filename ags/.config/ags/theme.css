@@ -1,0 +1,25 @@
+* {
+  all: unset;
+  font-size: 16px;
+  font-family: "Cartograph CF"; }
+
+.can-hover:hover {
+  color: #000000;
+  background-color: #df6a88;
+  border-radius: 5px; }
+
+.hyprland:first-child {
+  margin-left: 15px; }
+
+.hypr-ws {
+  min-width: 2em; }
+
+.hypr-ws-focus {
+  min-width: 2em;
+  color: #df6a88; }
+
+.right-box {
+  margin-right: 15px; }
+
+.box {
+  padding: 0px 5px 0px 5px; }

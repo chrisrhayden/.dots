@@ -1,0 +1,48 @@
+$font-size: 16px;
+$font-family: "Cartograph CF";
+
+$ws-focus-color: #df6a88;
+
+
+* {
+    all: unset;
+    font-size: $font-size;
+    font-family: $font-family;
+}
+
+.can-hover {
+    &:hover {
+        color: #000000;
+        background-color: $ws-focus-color;
+        border-radius: 5px;
+    }
+}
+
+.hyprland {
+    &:first-child {
+        margin-left: 15px;
+    }
+}
+
+.hypr-ws {
+    min-width: 2em;
+}
+
+.hypr-ws-focus {
+    min-width: 2em;
+    color: $ws-focus-color;
+}
+
+.right-box {
+    margin-right: 15px;
+}
+
+.box  {
+    padding: 0px 5px 0px 5px;
+}
+
+.icons {
+    // background-color: #000000;
+    // color: #000000;
+    // filter: invert(1);
+}

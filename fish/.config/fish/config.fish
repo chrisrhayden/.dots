@@ -4,6 +4,8 @@ if status is-login
 
         if test (hostnamectl hostname) = "Odimm";
             startx
+        else
+            Hyprland
         end
     end
 end

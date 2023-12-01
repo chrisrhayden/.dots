@@ -39,6 +39,7 @@ return {
       { "javascrpt", "JavaScript", },
       { "whlie", "while" },
       { "seom", "some" },
+      { "lable", "label" },
     }
   },
 }

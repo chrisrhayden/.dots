@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+
+import argparse
+from subprocess import run
+
+
+def get_volume():
+    vol = run(["wpctl", "get-volume", "@DEFAULT_AUDIO_SINK@"],
+              capture_output=True, text=True)
+
+    vol.check_returncode()
+
+    vol = vol.stdout.split(" ")
+
+
+    mute = False
+    # Volume: 1.00 [MUTED]
+    if len(vol) == 3:
+        mute = True
+
+    return float(vol[1].strip()), mute
+
+
+def set_volume(new_vol, mute):
+    run(["wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", f"{new_vol}"])
+
+    cmd = ["notify-send", f"volume {int(new_vol * 100)}%"]
+
+    if mute:
+        cmd[-1] += " Mute"
+
+    run(cmd)
+
+
+def volume_mute(vol, mute):
+    run(["wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle"]),
+
+    cmd = ["notify-send", f"volume {int(vol * 100)}%"]
+
+    if mute == False:
+        cmd[-1] += " Mute"
+
+    run(cmd)
+
+
+action = {
+    "mute": volume_mute,
+    "full": lambda _vol, m: set_volume(1.0, m),
+    "up": lambda v, m: set_volume(min(v + 0.05, 1.0), m),
+    "down": lambda v, m: set_volume(max(v - 0.05, 0.0), m),
+}
+
+def get_args():
+    parser = argparse.ArgumentParser(description="volume control")
+
+    p = parser.add_mutually_exclusive_group()
+    p.add_argument("--mute", "-m", action="store_true", required=False)
+    p.add_argument("--up", "-u", action="store_true", required=False)
+    p.add_argument("--down", "-d", action="store_true", required=False)
+    p.add_argument("--full", "-f", action="store_true", required=False)
+
+    return parser.parse_args()
+
+
+def main():
+    args = get_args()
+
+    vol, mute = get_volume()
+
+    found = False
+    for k, v in vars(args).items():
+        if v == True:
+            action[k](vol, mute)
+            found = True
+            break
+
+    if not found:
+        action["full"](vol, mute)
+
+
+if __name__ == "__main__":
+    main()

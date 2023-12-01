@@ -41,7 +41,8 @@ local function on_attach(client, bufnr)
 
   -- auto format files on save/write
   vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
+    -- pattern = "*",
+    buffer = bufnr,
     group = vim.api.nvim_create_augroup("AutoFormater", {}),
     -- idk why i have to wrap this function
     callback = function() vim.lsp.buf.format() end,

@@ -28,8 +28,8 @@ return {
           view = "cmdline",
           icon = "/",
         },
-
-      }
+      },
+      view = "cmdline",
     },
     routes = {
       {

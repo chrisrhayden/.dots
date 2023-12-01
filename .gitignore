@@ -3,6 +3,8 @@
 **/packer_compiled.lua
 **/lazy
 nvim_all/.config/nvim/lazy-lock.json
+**/node_modules/
+**/ags/types/
 
 wall_M/
 # Created by https://www.gitignore.io/api/vim
