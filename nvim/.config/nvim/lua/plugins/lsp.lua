@@ -106,12 +106,6 @@ local function mk_clang_settings()
   }
 end
 
-local function mk_tsserver_settings()
-  return {
-    on_attach = on_attach,
-  }
-end
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -127,7 +121,7 @@ return {
         rust_analyzer = mk_rust_settings(),
         lua_ls = mk_lua_settings(),
         clangd = mk_clang_settings(),
-        tsserver = mk_tsserver_settings(),
+        tsserver = {},
       }
     },
     config = function(_, opts)

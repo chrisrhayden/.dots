@@ -1,5 +1,5 @@
 -- info {{{
--- based ~~stolen from~~ on Apprentice and Sorcerer:
+-- ~~stolen from~~ based on Apprentice and Sorcerer:
 -- https://github.com/romainl/Apprentice
 -- https://www.vim.org/scripts/script.php?script_id=3299
 -- }}}
@@ -94,174 +94,158 @@ function SourceryColor()
     -- }}}
 
     -- highlights {{{
-    -- nvim ui {{{
     hl_all {
-        { "Normal",       bg = colors.grey_2,   fg = colors.grey_5 },
-        { "LineNr",       bg = colors.grey_1,   fg = colors.grey_4 },
-        { "Folded",       bg = colors.grey_1,   fg = colors.grey_4 },
-        { "FoldColumn",   bg = colors.grey_1,   fg = colors.grey_4 },
-        { "StatusLine",   bg = colors.purple_1, fg = colors.teal_2 },
-        { "StatusLineNC", bg = colors.grey_3,   fg = colors.grey_4 },
-        {
-            "Cursor",
-            bg = colors.grey_5,
-            fg = colors.grey_2,
-            sy = "nocombine,bold"
-        },
-        { "CursorLine",   bg = colors.grey_1, },
-        { "CursorLineNr", bg = colors.grey_1, fg = colors.teal_2 },
-        { "ColorColumn",  bg = colors.grey_1, },
-        { "CursorColumn", bg = colors.grey_1, },
-        { "SignColumn",   bg = colors.grey_1, fg = colors.grey_4 },
-        { "Visual",       bg = colors.blue_1, fg = colors.grey_1,   sy = "bold" },
-        { "VisualNOS",    fg = colors.red_1 },
-        { "VertSplit",    bg = colors.grey_1, fg = colors.grey_1 },
-        { "WinSeparator", bg = colors.grey_1, fg = colors.purple_1 },
-        { "TabLine",      bg = colors.grey_1, fg = colors.grey_4 },
-        { "TabLineFill",  bg = colors.grey_1, fg = colors.grey_4 },
-        { "TabLineSel",   bg = colors.grey_1, fg = colors.teal_1 },
-        { "Pmenu",        bg = colors.grey_1, fg = colors.purple_2, sy = "italic" },
-        {
-            "PmenuSel",
-            bg = colors.grey_5,
-            fg = colors.grey_1,
-            sy = "nocombine,bold",
-        },
-        { "PmenuSbar",    bg = colors.grey_1, },
-        { "PmenuThumb",   bg = colors.grey_5, sy = "nocombine,NONE" },
-        { "WildMenu",     bg = colors.grey_1, fg = colors.purple_2 },
-        { "NormalFloat",  bg = colors.grey_1, fg = colors.grey_5 },
-        { "FloatBorder",  bg = colors.grey_1, fg = colors.grey_4 },
-        { "ErrorMsg",     bg = colors.red_1,  fg = colors.grey_2 },
-        { "ModeMsg",      fg = colors.green_1 },
-        { "MoreMsg",      fg = colors.green_1 },
-        { "WarningMsg",   fg = colors.red_1 },
-        { "Question",     fg = colors.teal_1 },
-        { "Title",        fg = colors.teal_1 },
-        { "Bold",         sy = "bold" },
-        { "Italic",       sy = "italic" },
-        { "Underlined",   sy = "underline" },
-        { "Search",       bg = colors.blue_1, fg = colors.grey_1 },
-        { "Substitute",   bg = colors.blue_1, fg = colors.grey_1,   sy = "bold" },
-        { "IncSearch",    bg = colors.blue_1, fg = colors.grey_1 },
-        { "Directory",    fg = colors.blue_2 },
-        { "SpecialKey",   fg = colors.grey_4 },
-        { "Conceal",      fg = colors.blue_2 },
-        { "NonText",      fg = colors.grey_4 },
-        { "QuickFixLine", bg = colors.grey_1, },
-        {
-            "MatchParen",
-            bg = colors.grey_4,
-            fg = colors.grey_1,
-            sy = "bold"
-        },
+        -- nvim ui {{{
+        { "Normal",                  bg = colors.grey_2,   fg = colors.grey_5 },
+        { "LineNr",                  bg = colors.grey_1,   fg = colors.grey_4 },
+        { "Folded",                  bg = colors.grey_1,   fg = colors.grey_4 },
+        { "FoldColumn",              bg = colors.grey_1,   fg = colors.grey_4 },
+        { "StatusLine",              bg = colors.purple_1, fg = colors.teal_2 },
+        { "StatusLineNC",            bg = colors.grey_3,   fg = colors.grey_4 },
+        { "Cursor",                  bg = colors.grey_5,   fg = colors.grey_2,   sy = "nocombine,bold" },
+        { "CursorLine",              bg = colors.grey_1 },
+        { "CursorLineNr",            bg = colors.grey_1,   fg = colors.teal_2 },
+        { "ColorColumn",             bg = colors.grey_1 },
+        { "CursorColumn",            bg = colors.grey_1 },
+        { "SignColumn",              bg = colors.grey_1,   fg = colors.grey_4 },
+        { "Visual",                  bg = colors.blue_1,   fg = colors.grey_1,   sy = "bold" },
+        { "VisualNOS",               fg = colors.red_1 },
+        { "VertSplit",               bg = colors.grey_1,   fg = colors.grey_1 },
+        { "WinSeparator",            bg = colors.grey_1,   fg = colors.purple_1 },
+        { "TabLine",                 bg = colors.grey_1,   fg = colors.grey_4 },
+        { "TabLineFill",             bg = colors.grey_1,   fg = colors.grey_4 },
+        { "TabLineSel",              bg = colors.grey_1,   fg = colors.teal_1 },
+        { "Pmenu",                   bg = colors.grey_1,   fg = colors.purple_2, sy = "italic" },
+        { "PmenuSel",                bg = colors.grey_5,   fg = colors.grey_1,   sy = "nocombine,bold" },
+        { "PmenuSbar",               bg = colors.grey_1 },
+        { "PmenuThumb",              bg = colors.grey_5,   sy = "nocombine,NONE" },
+        { "WildMenu",                bg = colors.grey_1,   fg = colors.purple_2 },
+        { "NormalFloat",             bg = colors.grey_1,   fg = colors.grey_5 },
+        -- { "FloatBorder",            bg = colors.grey_1,   fg = colors.grey_4 },
+        { "FloatBorder",             bg = colors.grey_1,   fg = colors.teal_2 },
+        { "ErrorMsg",                bg = colors.red_1,    fg = colors.grey_2 },
+        { "ModeMsg",                 fg = colors.green_1 },
+        { "MoreMsg",                 fg = colors.green_1 },
+        { "WarningMsg",              fg = colors.red_1 },
+        { "Question",                fg = colors.teal_1 },
+        { "Title",                   fg = colors.teal_1 },
+        { "Bold",                    sy = "bold" },
+        { "Italic",                  sy = "italic" },
+        { "Underlined",              sy = "underline" },
+        { "Search",                  bg = colors.blue_1,   fg = colors.grey_1 },
+        { "Substitute",              bg = colors.blue_1,   fg = colors.grey_1,   sy = "bold" },
+        { "IncSearch",               bg = colors.blue_1,   fg = colors.grey_1 },
+        { "Directory",               fg = colors.blue_2 },
+        { "SpecialKey",              fg = colors.grey_4 },
+        { "Conceal",                 fg = colors.blue_2 },
+        { "NonText",                 fg = colors.grey_4 },
+        { "QuickFixLine",            bg = colors.grey_1 },
+        { "MatchParen",              bg = colors.grey_4,   fg = colors.grey_1,   sy = "bold" },
+        -- most hl-Nvim* highlights are linked to something
+        { "NvimInternalError",       fg = colors.red_1 },
         -- }}}
 
         -- syntax highlighting {{{
-        -- :help group-name -- for the syntax groups
-        { "Comment",             fg = colors.olive },
+        -- `:help group-name` -- for the syntax groups
+        -- Comment group
+        { "Comment",                 fg = colors.olive },
 
         -- Constant group
-        { "Constant",            fg = colors.orange },
-        { "String",              fg = colors.green_2 },
-        { "Character",           fg = colors.red_1 },
-
-        -- Statement group
-        { "Statement",           fg = colors.red_2 },
-        { "Operator",            fg = colors.grey_5 },
-        { "Keyword",             fg = colors.blue_1 },
+        { "Constant",                fg = colors.orange },
+        { "String",                  fg = colors.green_2 },
+        { "Character",               fg = colors.red_1 },
 
         -- Identifier group
-        { "Identifier",          fg = colors.purple_3 },
-        { "Function",            fg = colors.teal_1 },
+        { "Identifier",              fg = colors.purple_3 },
+        { "Function",                fg = colors.teal_1 },
+
+        -- Statement group
+        { "Statement",               fg = colors.red_2 },
+        { "Operator",                fg = colors.grey_5 },
+        { "Keyword",                 fg = colors.blue_1 },
 
         -- PreProc group
-        { "PreProc",             fg = colors.grey_4 },
-        { "Macro",               fg = colors.teal_1 },
+        { "PreProc",                 fg = colors.grey_4 },
+        -- { "Macro",                  fg = colors.teal_1 },
+        { "link",                    "Macro",              "Function" },
 
         -- Type group
-        { "Type",                fg = colors.purple_2 },
+        { "Type",                    fg = colors.purple_2 },
 
         -- Special group
-        { "Special",             fg = colors.blue_2 },
-        { "SpecialChar",         fg = colors.grey_4 },
-        { "link",                "SpecialComment",     "SpecialChar" },
+        { "Special",                 fg = colors.blue_2 },
+        { "SpecialChar",             fg = colors.grey_4 },
+        { "link",                    "SpecialComment",     "SpecialChar" },
 
-        { "Error",               fg = colors.red_1 },
+        { "Error",                   fg = colors.red_1 },
 
-        { "Todo",                fg = colors.yellow },
+        { "Todo",                    fg = colors.yellow },
         -- }}}
 
         -- diagnostics {{{
-        { "DiagnosticError",     fg = colors.red_1 },
-        { "DiagnosticHint",      fg = colors.grey_4 },
-        { "DiagnosticInfo",      fg = colors.teal_2 },
-        { "DiagnosticWarn",      fg = colors.orange },
+        { "DiagnosticError",         fg = colors.red_1 },
+        { "DiagnosticHint",          fg = colors.grey_4 },
+        { "DiagnosticInfo",          fg = colors.teal_2 },
+        { "DiagnosticWarn",          fg = colors.orange },
 
-        { "DiagnosticSignHint",  bg = colors.grey_1,   fg = colors.grey_4 },
-        { "DiagnosticSignError", bg = colors.grey_1,   fg = colors.red_1 },
-        { "DiagnosticSignInfo",  bg = colors.grey_1,   fg = colors.teal_2 },
-        { "DiagnosticSignWarn",  bg = colors.grey_1,   fg = colors.orange },
+        { "DiagnosticSignHint",      bg = colors.grey_1,   fg = colors.grey_4 },
+        { "DiagnosticSignError",     bg = colors.grey_1,   fg = colors.red_1 },
+        { "DiagnosticSignInfo",      bg = colors.grey_1,   fg = colors.teal_2 },
+        { "DiagnosticSignWarn",      bg = colors.grey_1,   fg = colors.orange },
+
+        { "DiagnosticFloatingError", fg = colors.red_1 },
+        { "DiagnosticFloatingWarn",  fg = colors.orange },
+        { "DiagnosticFloatingInfo",  fg = colors.blue_2 },
+        { "DiagnosticFloatingHint",  fg = colors.yellow },
+        { "DiagnosticFloatingOk",    fg = colors.green_1 },
+
         -- }}}
 
         -- treesitter {{{
         -- treesitter links to appropriate groups
-        -- hl { "@comment", fg = colors.grey_1 }
-        -- }}}
-
-        -- lsp {{{
-        -- { "@documentation",      fg = colors.grey_4 },
-        -- { "@documentation", fg = colors.purple_1 },
+        { "@punctuation.bracket",    fg = colors.blue_2 },
+        { "@punctuation.delimiter",  fg = colors.blue_2 },
+        { "link",                    "@variable",          "Identifier" },
         -- }}}
 
         -- diff {{{
         -- this is better for sure
-        { "DiffAdd",             fg = colors.green_1 },
-        { "DiffChange",          fg = colors.grey_4 },
-        { "DiffDelete",          fg = colors.red_1 },
-        { "DiffText",            fg = colors.teal_1 },
-        { "DiffAdded",           fg = colors.green_1 },
-        { "DiffFile",            fg = colors.red_1 },
-        { "DiffNewFile",         fg = colors.green_1 },
-        { "DiffLine",            fg = colors.teal_1 },
-        { "DiffRemoved",         fg = colors.red_1 },
+        { "DiffAdd",                 fg = colors.green_1 },
+        { "DiffChange",              fg = colors.grey_4 },
+        { "DiffDelete",              fg = colors.red_1 },
+        { "DiffText",                fg = colors.teal_1 },
+        { "DiffAdded",               fg = colors.green_1 },
+        { "DiffFile",                fg = colors.red_1 },
+        { "DiffNewFile",             fg = colors.green_1 },
+        { "DiffLine",                fg = colors.teal_1 },
+        { "DiffRemoved",             fg = colors.red_1 },
         -- }}}
 
         -- debug {{{
-        { "debugBreakpoint",     bg = colors.teal_1,   fg = colors.grey_1 },
-        { "debugPC",             bg = colors.teal_1,   fg = colors.grey_1 },
+        { "debugBreakpoint",         bg = colors.teal_1,   fg = colors.grey_1 },
+        { "debugPC",                 bg = colors.teal_1,   fg = colors.grey_1 },
         -- }}}
 
         -- spelling {{{
-        { "SpellBad",            sy = "undercurl",     sp = colors.red_1 },
-        { "clear",               "SpellLocal" },
-        { "clear",               "SpellCap" },
-        { "clear",               "SpellRare" },
-        -- }}}
-
-        -- misc {{{
-        -- most hl-Nvim* highlights are linked to something
-        { "NvimInternalError",   fg = colors.red_1 },
+        { "SpellBad",                sy = "undercurl",     sp = colors.red_1 },
+        { "clear",                   "SpellLocal" },
+        { "clear",                   "SpellCap" },
+        { "clear",                   "SpellRare" },
         -- }}}
 
         -- plugins {{{
         -- telescope {{{
-        { "TelescopeSelection",  fg = colors.orange,   sy = "bold" },
-        { "TelescopeNormal",     bg = colors.grey_1 },
-        { "TelescopeBorder",     bg = colors.grey_1,   fg = colors.grey_5 },
+        { "TelescopeSelection",      fg = colors.orange,   sy = "bold" },
+        { "TelescopeNormal",         bg = colors.grey_1 },
+        { "TelescopeBorder",         bg = colors.grey_1,   fg = colors.grey_5 },
         -- }}}
 
         -- mini {{{
-        { "MiniCursorword",      bg = colors.grey_3, },
-        { "MiniTrailspace",      fg = "nocombine,NONE" },
+        { "MiniCursorword",          bg = colors.grey_3 },
+        { "MiniTrailspace",          fg = "nocombine,NONE" },
         -- }}}
         -- }}}
     }
-
-    vim.api.nvim_create_autocmd("TextYankPost", {
-        group = vim.api.nvim_create_augroup("HighlightYanked", {}),
-        callback = function() require("vim.highlight").on_yank() end
-    })
 
     -- terminal colors {{{
     -- see terminal-configuration

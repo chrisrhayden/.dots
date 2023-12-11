@@ -27,7 +27,6 @@ create_autocmd("CursorHold", {
 -- relative number {{{
 vim.g.use_relnumber = true
 
--- toggle relative number if undesired
 vim.api.nvim_create_user_command("ToggleRelNumber", function()
     if vim.g.use_relnumber == true then
       vim.g.use_relnumber = false
@@ -51,6 +50,7 @@ local set_relative = {
   "CmdlineLeave",
   "FocusGained",
 }
+
 local set_norelative = {
   "BufLeave",
   "InsertEnter",
@@ -127,6 +127,7 @@ create_autocmd("BufWinEnter", {
       row_col[1] = vim.api.nvim_buf_line_count(0)
     end
 
+    -- vim errors on row 0
     if not SpecialBuffer() and row_col ~= { 0, 0 } then
       vim.api.nvim_win_set_cursor(0, row_col)
     end
@@ -134,88 +135,64 @@ create_autocmd("BufWinEnter", {
 })
 -- }}}
 
--- force file type options {{{
--- this is kinda bad but there isn't a better way
--- a bunch of language files distributed with vim set formatoptions.
--- so this will reset it. it would be nice if they didn't.
-create_autocmd("FileType", {
-  group = create_augroup("ResetFileType", {}),
-  command = "set formatoptions<"
-})
--- }}}
-
-
--- cmdheight 0 {{{
--- local cmd_hight_change = create_augroup("CmdHightChange", {})
---
--- vim.opt.cmdheight = 0
--- vim.cmd.cnoreabbrev "w silent write"
---
--- create_autocmd("CmdlineEnter", {
---   group = cmd_hight_change,
---   callback = function()
---     vim.opt.cmdheight = 1
---   end
--- })
--- create_autocmd("CmdlineLeave", {
---   group = cmd_hight_change,
---   callback = function()
---     vim.opt.cmdheight = 0
---   end
--- })
--- }}}
-
 -- kitty bg change {{{
-local get_kitty_bg = function()
-  local kitty_color_cmd = {
-    "kitty", "@", "get-colors", "--to=" .. vim.env.KITTY_LISTEN_ON
-  }
 
-  local kitty_out = vim.system(kitty_color_cmd, { text = true }):wait().stdout
+---get background and opacity from currently running kitty terminal
+---
+---@return string[]
+local get_kitty_data = function()
+  local kitty_py = [[
+from kitty.cli import create_default_opts
 
-  if not kitty_out or type(kitty_out) ~= "string" then
-    return
-  end
+opts = create_default_opts()
+bg = opts.background.as_sharp
+opacity = opts.background_opacity
 
-  -- get just the hex numbers without the `#` symbol
-  return string.match(kitty_out, "background%s-#(%d+)")
+print(bg + '\n' + str(opacity), end="")
+]]
+
+  local data = vim.system { "kitty", "+runpy", kitty_py }:wait()
+
+  assert(data.code < 1, data.stderr)
+
+  local out = vim.split(data.stdout, "\n")
+
+  assert(out[1], out[2])
+
+  return out
 end
 
 local get_nvim_bg = function()
-  local normal_color = vim.api.nvim_get_hl(0, {
-    name = "Normal"
-  })
+  local normal_color = vim.api.nvim_get_hl(0, { name = "Normal" })
 
-  return string.format("%06x", normal_color.bg)
+  return "#" .. string.format("%06x", normal_color.bg)
 end
 
 local set_kitty_bg = function(settings)
   vim.system {
     "kitty", "@", "set-colors",
     "--to=" .. vim.env.KITTY_LISTEN_ON,
-    "background=#" .. settings.color }
-    :wait()
+    "background=" .. settings.color
+  }:wait()
 
   vim.system {
     "kitty", "@", "set-background-opacity",
     "--to=" .. vim.env.KITTY_LISTEN_ON,
-    settings.opacity }
-    :wait()
+    settings.opacity
+  }:wait()
 end
 
-local function setup_kitty_bg()
-  if vim.env.KITTY_LISTEN_ON == "" or vim.env.KITTY_LISTEN_ON == nil then
-    return
-  end
-
+if vim.env.KITTY_LISTEN_ON then
   local set_kitty_color = create_augroup("SetKittyColor", {})
 
   create_autocmd("UIEnter", {
     group = set_kitty_color,
     callback = function()
-      vim.g.kitty_bg = get_kitty_bg()
-      local new_color = get_nvim_bg()
+      local data = get_kitty_data()
+      vim.g.kitty_bg = data[1]
+      vim.g.kitty_opacity = data[2]
 
+      local new_color = get_nvim_bg()
       set_kitty_bg { color = new_color, opacity = 1 }
     end,
   })
@@ -223,12 +200,15 @@ local function setup_kitty_bg()
   create_autocmd("UILeave", {
     group = set_kitty_color,
     callback = function()
-      set_kitty_bg { color = vim.g.kitty_bg, opacity = 0.9 }
+      set_kitty_bg { color = vim.g.kitty_bg, opacity = vim.g.kitty_opacity }
     end
   })
 end
-
-setup_kitty_bg()
 -- }}}
+
+create_autocmd("TextYankPost", {
+  group = create_augroup("HighlightYanked", {}),
+  callback = function() require("vim.highlight").on_yank() end
+})
 
 -- end augroups }}}

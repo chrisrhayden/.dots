@@ -10,18 +10,14 @@ $ws-focus-color: #df6a88;
     font-family: $font-family;
 }
 
-.can-hover {
-    &:hover {
-        color: #000000;
-        background-color: $ws-focus-color;
-        border-radius: 5px;
-    }
+.can-hover:hover {
+    color: #000000;
+    background-color: $ws-focus-color;
+    border-radius: 5px;
 }
 
-.hyprland {
-    &:first-child {
-        margin-left: 15px;
-    }
+.hyprland:first-child {
+    margin-left: 15px;
 }
 
 .hypr-ws {

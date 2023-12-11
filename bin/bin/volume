@@ -3,6 +3,8 @@
 import argparse
 from subprocess import run
 
+mute_str = " [MUTE]"
+
 
 def get_volume():
     vol = run(["wpctl", "get-volume", "@DEFAULT_AUDIO_SINK@"],
@@ -27,7 +29,7 @@ def set_volume(new_vol, mute):
     cmd = ["notify-send", f"volume {int(new_vol * 100)}%"]
 
     if mute:
-        cmd[-1] += " Mute"
+        cmd[-1] += mute_str
 
     run(cmd)
 
@@ -38,7 +40,7 @@ def volume_mute(vol, mute):
     cmd = ["notify-send", f"volume {int(vol * 100)}%"]
 
     if mute == False:
-        cmd[-1] += " Mute"
+        cmd[-1] += mute_str
 
     run(cmd)
 

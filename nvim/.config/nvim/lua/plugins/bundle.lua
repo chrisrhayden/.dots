@@ -39,7 +39,7 @@ return {
   -- }}}
 
   -- hasn't been getting updates
-  { "elihunter173/dirbuf.nvim", config = true, },
+  -- { "elihunter173/dirbuf.nvim", config = true, },
 
   {
     "mbbill/undotree",

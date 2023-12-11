@@ -1,3 +1,5 @@
+local set_key = require("util").set_key
+
 return {
   {
     "echasnovski/mini.nvim",
@@ -9,12 +11,21 @@ return {
       -- align based on certain characters like `=`
       require("mini.align").setup()
 
+      local files = require("mini.files")
+
+      files.setup()
+
+      set_key {
+        "-",
+        files.open,
+      }
+
       -- highlight and remove trailing spaces
       local trail = require("mini.trailspace")
 
       trail.setup()
 
-      require("util").set_key {
+      set_key {
         "<leader>cw",
         trail.trim,
         desc = "clear trailing white space"

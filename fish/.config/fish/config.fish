@@ -53,6 +53,7 @@ if status is-interactive
     alias tty-clock='tty-clock -t -c -C 5'
     alias clock='tty-clock'
     alias unimatrix='unimatrix --character-list=k --speed=90'
+    alias matrix='unimatrix'
 
     alias jj='journalctl'
     alias py='python'
@@ -74,6 +75,7 @@ if status is-interactive
     alias ':w'='printf "%blol what are you saving? %b\n" "\e[31m" "\e[0m"'
     alias ':wq'='printf "%blol wat %b\n" "\033[31m" "\e[0m"'
     alias ':q'='printf "%bdo you even know where you are %b\n" "\033[31m" "\e[0m"'
+    alias fuck='echo "fuck"'
     # }}}
 
     # abbr {{{

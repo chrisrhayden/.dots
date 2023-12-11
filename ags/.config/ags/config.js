@@ -1,51 +1,61 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
 import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
-import { Variable } from 'resource:///com/github/Aylur/ags/variable.js';
+// import { Variable } from 'resource:///com/github/Aylur/ags/variable.js';
 import { Widget } from 'resource:///com/github/Aylur/ags/widget.js';
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
 import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
 
-const hostname = Utils.exec("hostnamectl hostname")
-const scss = App.configDir + "/theme.scss"
-const style = App.configDir + "/theme.css"
-Utils.exec(`sassc ${scss} ${style}`)
-
-
 // right box {{{
 
-const new_time = () => new Date().toLocaleTimeString(
-    "en-us", { hour: "numeric", minute: "2-digit" }
-)
+const short_time = {
+    hour: "numeric",
+    minute: "2-digit",
+}
 
-const time = () => Widget.EventBox({
-    class_name: "can-hover",
-    child: Widget.Label({
-        class_name: "box",
-        binds: [["label", new Variable('', { poll: [1000, new_time], })]]
-    })
+const long_time = {
+    month: "short",
+    weekday: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+}
+
+const new_time = with_date => {
+    const opts = with_date ? long_time : short_time
+    return new Date().toLocaleTimeString("en-us", opts)
+}
+
+const time = () => Widget.Button({
+    class_name: "box can-hover",
+    properties: [["with_date", false]],
+    on_primary_click: button => {
+        button._with_date = !button._with_date
+    },
+    label: new_time(false),
+    connections: [
+        [1000, button => button.label = new_time(button._with_date)],
+        ["clicked", button => button.label = new_time(button._with_date)],
+    ]
 })
 
 const audio_str = () => {
     let icon = Audio.speaker?.stream?.is_muted ? "󰝟" : "󰕾"
 
-    // .speaker. can be undefined
     const vol_num = Audio.speaker?.volume ? Audio.speaker?.volume : 0
     const percent = Math.round(vol_num * 100)
     return `${icon} ${percent}%`
 }
 
-const vol_change = vol => Utils
-    .execAsync(`wpctl set-volume @DEFAULT_AUDIO_SINK@ ${vol}`)
+const vol_change = arg => Utils.execAsync(`volume ${arg}`)
 
-const audio = () => Widget.EventBox({
-    class_name: "can-hover",
-    on_secondary_click: () => Audio.speaker.is_muted = !Audio.speaker.is_muted,
-    on_scroll_up: () => vol_change("0.049+"),
-    on_scroll_down: () => vol_change("0.049-"),
+const audio = () => Widget.Button({
+    class_name: "box can-hover",
+    on_secondary_click: () => vol_change("--mute"),
+    on_scroll_up: () => vol_change("--up"),
+    on_scroll_down: () => vol_change("--down"),
     child: Widget.Label({
-        class_name: "box",
         label: audio_str(),
         connections: [
             [Audio, self => {
@@ -55,21 +65,16 @@ const audio = () => Widget.EventBox({
     })
 })
 
-const sys_tray_item = item => {
-    return Widget.EventBox({
-        class_name: "can-hover",
-        child: Widget.Button({
-            class_name: "box",
-            child: Widget.Icon({
-                class_name: "icons",
-                binds: [["icon", item, "icon"]]
-            }),
-            binds: [["tooltip-markup", item, "tooltip-markup"]],
-            on_primary_click: (_, event) => item.activate(event),
-            on_secondary_click: (_, event) => item.openMenu(event),
-        })
-    })
-}
+const sys_tray_item = item => Widget.Button({
+    class_name: "box can-hover",
+    child: Widget.Icon({
+        class_name: "icons",
+        binds: [["icon", item, "icon"]]
+    }),
+    binds: [["tooltip-markup", item, "tooltip-markup"]],
+    on_primary_click: (_, event) => item.activate(event),
+    on_secondary_click: (_, event) => item.openMenu(event),
+})
 
 const sys_tray = () => Widget.Box({
     binds: [[
@@ -90,7 +95,6 @@ const battery_progress = () => Widget.CircularProgress({
         ['className', Battery, 'charging', c => c ? 'charging' : ''],
     ],
 });
-
 
 const right_box = () => {
     let children = [sys_tray(), audio()];
@@ -134,7 +138,7 @@ const hypr_ws_buttons = (mon_id, box) => {
         btn.class_name = "can-hover hypr-ws"
 
         for (let ws of Hyprland.workspaces) {
-            if (mon_name === ws["monitor"] && ws["id"] === btn["id"]) {
+            if (ws["monitor"] === mon_name && ws["id"] === btn["id"]) {
                 btn.visible = true
 
                 if (ws["id"] === active_ws) {
@@ -157,12 +161,10 @@ const hypr_ws_setup = () => {
         }))
 }
 
-const hyprland = monitor => Widget.EventBox({
-    child: Widget.Box({
-        class_name: "hyprland",
-        children: hypr_ws_setup(),
-        connections: [[Hyprland, box => hypr_ws_buttons(monitor, box)]]
-    })
+const hyprland = monitor => Widget.Box({
+    class_name: "hyprland",
+    children: hypr_ws_setup(),
+    connections: [[Hyprland, box => hypr_ws_buttons(monitor, box)]]
 })
 // end hyprland }}}
 
@@ -178,6 +180,10 @@ const Bar = monitor => Widget.Window({
     })
 })
 
+const hostname = Utils.exec("hostnamectl hostname")
+const scss = App.configDir + "/theme.scss"
+const style = App.configDir + "/theme.css"
+Utils.exec(`sassc ${scss} ${style}`)
 
 export default {
     style,
