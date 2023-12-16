@@ -17,6 +17,7 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     opts = {
       ensure_installed = {
+        "vimdoc",
         "bash",
         "c",
         "cmake",

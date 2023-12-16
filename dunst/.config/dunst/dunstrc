@@ -104,7 +104,8 @@
 
     # Defines color of the frame around the notification window.
     # frame_color = "#aaaaaa"
-    frame_color = "#2b242e"
+    # frame_color = "#2b242e"
+    frame_color = "#df6a88"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -141,7 +142,7 @@
 
     ### Text ### {{{
 
-    font = Cartograph CF 14
+    font = Cartograph CF 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.

@@ -17,7 +17,7 @@ vim.opt.thesaurus = word_dir .. "/en_thesaurus.txt"
 
 -- ui {{{
 -- avoid hit enter prompts and shorten certain messages
--- vim.opt.shortmess = "aTWcCF"
+vim.opt.shortmess = "aTWcCF"
 -- use the number column
 vim.opt.number = true
 -- use relative numbers for the number column
@@ -31,7 +31,7 @@ vim.opt.hlsearch = false
 vim.opt.linebreak = true
 -- visually indent wrapped lines
 vim.opt.breakindent = true
--- whether to wrap long lines, i cant decide whether I like this on or not
+-- whether to wrap long lines
 vim.opt.wrap = false
 -- minimum lines to keep above and below the cursor when next to the edge
 vim.opt.scrolloff = 4
@@ -55,15 +55,11 @@ vim.opt.listchars = {
   extends = "ᐳ",
   precedes = "ᐸ",
   nbsp = "+",
-  -- leadmultispace="┊ "
 }
 -- characters for certain parts of the ui
 vim.opt.fillchars = {
   eob = "~",
   fold = "-",
-  foldopen = "┌",
-  foldclose = "+",
-  foldsep = "│",
   diff = "-",
 }
 -- end ui }}}
@@ -164,7 +160,7 @@ end
 
 -- fold text {{{1
 -- just display the first folded line
-function MyFoldText()
+function _G.my_fold_text()
   local line = vim.fn.getline(vim.v.foldstart)
 
   -- taken from `help fold-foldtext`, cant be bothered to use gsub
@@ -185,8 +181,8 @@ function MyFoldText()
   return start .. sub .. " "
 end
 
-vim.opt.foldtext = "v:lua.MyFoldText()"
--- end fold text }}}1
+vim.opt.foldtext = "v:lua.my_fold_text()"
+-- }}}1
 
 -- diagnostics {{{
 -- might add these to lua/mappings.lua
@@ -243,5 +239,15 @@ vim.fn.sign_define("DiagnosticSignHint", {
   texthl = "DiagnosticSignHint",
 })
 -- end diagnostics }}}
+
+-- force file type options {{{
+-- this is kinda bad but there isn't a better way
+-- a bunch of language files distributed with vim set formatoptions.
+-- so this will reset it. it would be nice if they didn't.
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("ResetFileType", {}),
+  command = "set formatoptions<"
+})
+-- }}}
 
 -- vim: foldmethod=marker
