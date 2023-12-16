@@ -2,7 +2,6 @@
 **/zsh_plugins.sh
 **/packer_compiled.lua
 **/lazy
-nvim_all/.config/nvim/lazy-lock.json
 **/node_modules/
 **/ags/types/
 
@@ -35,3 +34,5 @@ nvim_all/.config/nvim/.netrwhist
 
 zshrc_all/.zshrc.d/.zcompdump
 zshrc_all/.zshrc.d/.zcompcache
+
+lazy-lock.json

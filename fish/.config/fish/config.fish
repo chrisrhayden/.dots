@@ -58,6 +58,7 @@ if status is-interactive
     alias jj='journalctl'
     alias py='python'
     alias job='jobs'
+    alias tii='tii --color magenta'
 
     # misspelling {{{
     alias sl='ls'
@@ -82,6 +83,10 @@ if status is-interactive
     abbr --add --position anywhere trlu tr '[:lower:]' '[:upper:]'
     abbr --add --position anywhere trul tr '[:upper:]' '[:lower:]'
     # }}}
+
+    function bak
+        mv "$argv"{,.bak}
+    end
 
     function get_pacman_mirrors
         reflector --country us --fastest 20  --protocol https --sort rate
