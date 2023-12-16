@@ -269,6 +269,8 @@ bar {
 
 # startup {{{
 exec --no-startup-id feh --bg-scale "/home/chris/Pictures/floral.jpg"
+exec --no-startup-id dunst
+exec --no-startup-id xbindkeys
 # }}}
 # }}}
 

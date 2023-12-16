@@ -30,7 +30,6 @@ def round_to_10(num):
     return int(math.ceil(num / 10.0) * 10)
 
 
-
 def main():
     status = get_text("/sys/class/power_supply/BAT1/status")
 
