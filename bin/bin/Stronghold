@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-gamescope -- gamemoderun /mnt/big_storage/gog_games/Stronghold\ HD/Stronghold.exe
