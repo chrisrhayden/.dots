@@ -171,7 +171,7 @@ set_key { "<leader>co", ":copen<CR>", desc = "open quickfix" }
 set_key { "<leader>cc", ":cclose<CR>", desc = "close quickfix" }
 set_key { "<leader>cl", ":colder<CR>", desc = "go to older error" }
 set_key { "<leader>cn", ":cnext<CR>", desc = "go to next error" }
-set_key { "<leader>cP", ":cprevious<CR>", desc = "go to prev error" }
+set_key { "<leader>cp", ":cprevious<CR>", desc = "go to prev error" }
 
 set_key { "<leader>lo", ":lopen<CR>", desc = "open local list" }
 set_key { "<leader>lc", ":lclose<CR>", desc = "close local list" }
