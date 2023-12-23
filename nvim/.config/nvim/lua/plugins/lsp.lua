@@ -43,7 +43,7 @@ local function on_attach(client, bufnr)
   vim.api.nvim_create_autocmd("BufWritePre", {
     -- pattern = "*",
     buffer = bufnr,
-    group = vim.api.nvim_create_augroup("AutoFormater", {}),
+    group = vim.api.nvim_create_augroup("AutoFormater", { clear = false }),
     -- idk why i have to wrap this function
     callback = function() vim.lsp.buf.format() end,
   })
