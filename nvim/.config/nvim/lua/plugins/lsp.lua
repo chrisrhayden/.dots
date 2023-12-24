@@ -39,6 +39,12 @@ local function on_attach(client, bufnr)
     desc = "code action"
   }
 
+  set_key {
+    "<leader>df",
+    function() vim.lsp.buf.format() end,
+    desc = "do format",
+  }
+
   -- auto format files on save/write
   vim.api.nvim_create_autocmd("BufWritePre", {
     -- pattern = "*",
