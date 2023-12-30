@@ -173,13 +173,13 @@ local set_kitty_bg = function(settings)
     "kitty", "@", "set-colors",
     "--to=" .. vim.env.KITTY_LISTEN_ON,
     "background=" .. settings.color
-  }:wait()
+  }
 
   vim.system {
     "kitty", "@", "set-background-opacity",
     "--to=" .. vim.env.KITTY_LISTEN_ON,
     settings.opacity
-  }:wait()
+  }
 end
 
 if vim.env.KITTY_LISTEN_ON then

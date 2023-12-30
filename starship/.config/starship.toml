@@ -1,7 +1,8 @@
 # see link for formating and module info
 # https://starship.rs/config/#prompt
 
-format = '''[┌─╼](blue) $directory$jobs$git_status$git_branch$nodejs$python
+# format = '''[┌─╼](blue) $directory$jobs$git_status$git_branch$nodejs$python
+format = '''[┌─╼](blue) $directory$jobs$git_status$git_branch
 [└──▶](blue) '''
 
 add_newline = false
@@ -17,11 +18,3 @@ format = '([\[$all_status$ahead_behind\] ]($style))'
 [git_branch]
 format = '[$symbol$branch]($style) '
 style = 'cyan'
-
-[python]
-format = '[${symbol} ]($style)[${version} ](green)[${virtualenv} ]($style)'
-symbol = ''
-style = 'green bold'
-
-[nodejs]
-format = '[$symbol](green bold)[$version ](green)'

@@ -17,7 +17,10 @@ return {
 
       set_key {
         "-",
-        files.open,
+        function()
+          MiniFiles.open(vim.api.nvim_buf_get_name(0))
+        end,
+        desc = "open pwd in mini.files"
       }
 
       -- highlight and remove trailing spaces
