@@ -10,7 +10,27 @@ if status is-login
     end
 end
 
+# function show_startup_msg
+#     set -l first_start ~/.cache/first_start
+#
+#     set -l cache_file (stat --printf '%Y' "$first_start")
+#
+#     if test $status -gt 0
+#         touch "$first_start"
+#         return
+#     end
+#
+#     set -l boot_time (cat /proc/stat | rg 'btime' | cut -d' ' -f2)
+#
+#     if test $boot_time -gt $cache_file
+#         neofetch
+#     end
+#     touch "$first_start"
+# end
+
 if status is-interactive
+    # show_startup_msg
+
     fish_add_path ~/bin
 
     # Commands to run in interactive sessions can go here
