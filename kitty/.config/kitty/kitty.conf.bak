@@ -15,10 +15,12 @@
 # font_family       Hasklug Nerd Font Mono
 # font_family       Monoid
 # font_family       Fira Code
+# font_family       Fira Code Nerd Font
 font_family       Fira Code Nerd Font Mono
-# font_family       Iosevka Nerd Font Medium
+# # font_family       Iosevka Nerd Font Medium
 # font_family       Iosevka Medium Nerd Font Complete
 # font_family       Iosevka Medium Nerd Font
+# font_family         League Mono
 # bold_font         auto
 # italic_font       auto
 italic_font       Fira Mono Regular Italic
@@ -192,12 +194,10 @@ disable_ligatures cursor
 #: }}}
 
 #: Cursor customization {{{
-
-cursor #cccccc
+# cursor #cccccc
 
 #: Default cursor color
-
-cursor_text_color #111111
+# cursor_text_color #111111
 
 #: Choose the color of text under the cursor. If you want it rendered
 #: with the background color of the cell underneath instead, use the
@@ -299,8 +299,7 @@ mouse_hide_wait 3.0
 #: typing text. Disabled by default on macOS as getting it to work
 #: robustly with the ever-changing sea of bugs that is Cocoa is too
 #: much effort.
-
-url_color #0087bd
+# url_color #0087bd
 url_style curly
 
 #: The color and style for highlighting URLs on mouse-over. url_style
@@ -596,7 +595,8 @@ single_window_margin_width -1
 #: values set top, horizontal and bottom. Four values set top, right,
 #: bottom and left.
 
-window_padding_width 0 0
+# window_padding_width 0 0
+# window_padding_width 5 5
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -611,17 +611,14 @@ placement_strategy center
 #: this option. Using a value of center means the cell area will be
 #: placed centrally. A value of top-left means the padding will be on
 #: only the bottom and right edges.
-
-active_border_color #00ff00
+# active_border_color #00ff00
 
 #: The color for the border of the active window. Set this to none to
 #: not draw borders around the active window.
-
-inactive_border_color #cccccc
+# inactive_border_color #cccccc
 
 #: The color for the border of inactive windows
-
-bell_border_color #ff5a00
+# bell_border_color #ff5a00
 
 #: The color for the border of inactive windows in which a bell has
 #: occurred
@@ -646,7 +643,7 @@ resize_debounce_time 0.1
 #: operating system sends events corresponding to the start and end of
 #: a resize, this number is ignored.
 
-resize_draw_strategy static
+# resize_draw_strategy static
 
 #: Choose how kitty draws a window while a resize is in progress. A
 #: value of static means draw the current window contents, mostly
@@ -767,27 +764,25 @@ active_tab_title_template none
 
 #: Template to use for active tabs, if not specified falls back to
 #: tab_title_template.
-
-active_tab_foreground   #000
-active_tab_background   #eee
+# active_tab_foreground   #000
+# active_tab_background   #eee
 active_tab_font_style   bold-italic
-inactive_tab_foreground #444
-inactive_tab_background #999
+# inactive_tab_foreground #444
+# inactive_tab_background #999
 inactive_tab_font_style normal
 
 #: Tab bar colors and styles
-
-tab_bar_background none
+# tab_bar_background none
 
 #: Background color for the tab bar. Defaults to using the terminal
 #: background color.
 
 #: }}}
 
-# # Base16 Isotope - kitty color config {{{
-# background_opacity 0.8
-#
-# # Scheme by Jan T. Sott
+# Base16 Isotope - kitty color config {{{
+background_opacity 0.8
+
+# Scheme by Jan T. Sott
 # background #000000
 # foreground #d0d0d0
 # selection_background #d0d0d0
@@ -801,39 +796,39 @@ tab_bar_background none
 # inactive_tab_background #404040
 # inactive_tab_foreground #c0c0c0
 # tab_bar_background #404040
-#
-# # normal
+
+# normal
 # color0 #000000
 # color1 #ff0000
 # color2 #33ff00
 # color3 #ff0099
-# # color3 #ffcc00
+# color3 #ffcc00
 # color4 #0066ff
 # color5 #cc00ff
 # color6 #00ffff
 # color7 #d0d0d0
-#
-# # bright
+
+# bright
 # color8 #808080
 # color9 #ff0000
 # color10 #33ff00
 # color11 #ff0099
-# # color11 #ffcc00
+# color11 #ffcc00
 # color12 #0066ff
 # color13 #cc00ff
 # color14 #00ffff
 # color15 #ffffff
-#
-# # extended base16 colors
+
+# extended base16 colors
 # color16 #ff9900
 # color17 #3300ff
 # color18 #404040
 # color19 #606060
 # color20 #c0c0c0
 # color21 #e0e0e0
-# # }}}
+# }}}
 
-include rose-pine.config
+# include rose-pine.config
 
 # # catppuccin {{{
 # background_opacity 0.8
@@ -920,7 +915,7 @@ include rose-pine.config
 # #: When background image is scaled, whether linear interpolation
 # #: should be used.
 #
-# dynamic_background_opacity no
+dynamic_background_opacity yes
 #
 # #: Allow changing of the background_opacity dynamically, using either
 # #: keyboard shortcuts (increase_background_opacity and
@@ -1056,7 +1051,7 @@ close_on_child_death no
 #: to yes means that any background processes still using the terminal
 #: can fail silently because their stdout/stderr/stdin no longer work.
 
-allow_remote_control no
+allow_remote_control yes
 
 #: Allow other programs to control kitty. If you turn this on other
 #: programs can control all aspects of kitty, including sending text
@@ -1070,7 +1065,7 @@ allow_remote_control no
 #: from controlling kitty. Reloading the config will not affect this
 #: setting.
 
-listen_on none
+listen_on unix:/tmp/mykitty
 
 #: Tell kitty to listen to the specified unix/tcp socket for remote
 #: control connections. Note that this will apply to all kitty
@@ -1150,16 +1145,14 @@ term xterm-kitty
 #: }}}
 
 #: OS specific tweaks {{{
-
-wayland_titlebar_color system
+# wayland_titlebar_color system
 
 #: Change the color of the kitty window's titlebar on Wayland systems
 #: with client side window decorations such as GNOME. A value of
 #: system means to use the default system color, a value of background
 #: means to use the background color of the currently active window
 #: and finally you can use an arbitrary color, such as #12af59 or red.
-
-macos_titlebar_color system
+# macos_titlebar_color system
 
 #: Change the color of the kitty window's titlebar on macOS. A value
 #: of system means to use the default system color, a value of
@@ -1630,3 +1623,9 @@ map kitty_mod+f6 debug_config
 #: }}}
 
 # vim:fileencoding=utf-8:foldmethod=marker
+
+
+# BEGIN_KITTY_THEME
+# Rosé Pine Dawn
+include current-theme.conf
+# END_KITTY_THEME

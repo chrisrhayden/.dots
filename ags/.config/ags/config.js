@@ -185,13 +185,14 @@ const scss = App.configDir + "/theme.scss"
 const style = App.configDir + "/theme.css"
 Utils.exec(`sassc ${scss} ${style}`)
 
-let windows = [Bar(0)]
+let bars = [Bar(0)]
 
 if (hostname != "Odimm") {
-    windows.append(Bar(1))
+    bars.push(Bar(1))
+    // bars.append(Bar(1))
 }
 
 export default {
     style,
-    windows,
+    bars,
 }
