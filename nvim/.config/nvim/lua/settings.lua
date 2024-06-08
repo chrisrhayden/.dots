@@ -158,31 +158,31 @@ if vim.fn.executable("rg") == 1 then
 end
 -- }}}
 
--- fold text {{{1
--- just display the first folded line
-function _G.my_fold_text()
-  local line = vim.fn.getline(vim.v.foldstart)
-
-  -- taken from `help fold-foldtext`, cant be bothered to use gsub
-  -- `line` should never be a list
-  ---@cast line string
-  local sub = vim.fn.substitute(line, [[/\*\|\*/\|{{{\d\=]], " ", "g") or ""
-
-  local start = sub:match("^%s+") or ""
-
-  if start ~= "" then
-    start = start:gsub("%s", vim.opt.fillchars:get()["fold"])
-
-    start = start:sub(1, #start - 1) .. " "
-  end
-
-  sub = sub:match("^%s*(.-)%s*$") or ""
-
-  return start .. sub .. " "
-end
-
-vim.opt.foldtext = "v:lua.my_fold_text()"
--- }}}1
+-- -- fold text {{{1
+-- -- just display the first folded line
+-- function _G.my_fold_text()
+--   local line = vim.fn.getline(vim.v.foldstart)
+--
+--   -- taken from `help fold-foldtext`, cant be bothered to use gsub
+--   -- `line` should never be a list
+--   ---@cast line string
+--   local sub = vim.fn.substitute(line, [[/\*\|\*/\|{{{\d\=]], " ", "g") or ""
+--
+--   local start = sub:match("^%s+") or ""
+--
+--   if start ~= "" then
+--     start = start:gsub("%s", vim.opt.fillchars:get()["fold"])
+--
+--     start = start:sub(1, #start - 1) .. " "
+--   end
+--
+--   sub = sub:match("^%s*(.-)%s*$") or ""
+--
+--   return start .. sub .. " "
+-- end
+--
+-- vim.opt.foldtext = "v:lua.my_fold_text()"
+-- -- }}}1
 
 -- diagnostics {{{
 -- might add these to lua/mappings.lua

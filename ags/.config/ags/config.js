@@ -1,7 +1,7 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
 import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
 // import { Variable } from 'resource:///com/github/Aylur/ags/variable.js';
-import { Widget } from 'resource:///com/github/Aylur/ags/widget.js';
+import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
