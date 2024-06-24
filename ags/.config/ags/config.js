@@ -1,11 +1,9 @@
 import App from 'resource:///com/github/Aylur/ags/app.js';
-import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
-// import { Variable } from 'resource:///com/github/Aylur/ags/variable.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
-import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
-import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
-import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
-import * as Utils from 'resource:///com/github/Aylur/ags/utils.js';
+
+const audio = await Service.import("audio")
+const systemtray = await Service.import("systemtray")
+const hyprland = await Service.import("hyprland")
 
 // right box {{{
 
@@ -29,81 +27,47 @@ const new_time = with_date => {
 
 const time = () => Widget.Button({
     class_name: "box can-hover",
-    properties: [["with_date", false]],
+    attribute: [["with_date", false]],
     on_primary_click: button => {
         button._with_date = !button._with_date
     },
-    label: new_time(false),
-    connections: [
-        [1000, button => button.label = new_time(button._with_date)],
-        ["clicked", button => button.label = new_time(button._with_date)],
-    ]
-})
+}).on("clicked", self => self.label = new_time(self._with_date))
+    .poll(1000, self => self.label = new_time(self._with_date))
 
 const audio_str = () => {
-    let icon = Audio.speaker?.stream?.is_muted ? "󰝟" : "󰕾"
+    let icon = audio.speaker.stream.is_muted ? "󰝟" : "󰕾"
 
-    const vol_num = Audio.speaker?.volume ? Audio.speaker?.volume : 0
+    const vol_num = audio.speaker.volume ? audio.speaker.volume : 0
     const percent = Math.round(vol_num * 100)
     return `${icon} ${percent}%`
 }
 
 const vol_change = arg => Utils.execAsync(`volume ${arg}`)
 
-const audio = () => Widget.Button({
+const audio_button = () => Widget.Button({
     class_name: "box can-hover",
     on_secondary_click: () => vol_change("--mute"),
     on_scroll_up: () => vol_change("--up"),
     on_scroll_down: () => vol_change("--down"),
-    child: Widget.Label({
-        label: audio_str(),
-        connections: [
-            [Audio, self => {
-                self.label = audio_str()
-            }, "speaker-changed"],
-        ]
+    child: Widget.Label({ label: "100" }).hook(audio.speaker, self => {
+        self.label = audio_str()
     })
 })
 
 const sys_tray_item = item => Widget.Button({
     class_name: "box can-hover",
-    child: Widget.Icon({
-        class_name: "icons",
-        binds: [["icon", item, "icon"]]
-    }),
-    binds: [["tooltip-markup", item, "tooltip-markup"]],
+    child: Widget.Icon().bind("icon", item, "icon"),
+    tooltipMarkup: item.bind("tooltip-markup"),
     on_primary_click: (_, event) => item.activate(event),
-    on_secondary_click: (_, event) => item.openMenu(event),
+    on_secondary_click: (_, event) => item.openMenu(event)
 })
 
 const sys_tray = () => Widget.Box({
-    binds: [[
-        "children",
-        SystemTray,
-        "items",
-        items => items.map(sys_tray_item)
-    ]]
+    children: systemtray.bind("items").as(i => i.map(sys_tray_item)),
 })
 
-const battery_progress = () => Widget.CircularProgress({
-    className: 'progress',
-    child: Widget.Icon({
-        binds: [['icon', Battery, 'icon-name']],
-    }),
-    binds: [
-        ['value', Battery, 'percent', p => p > 0 ? p / 100 : 0],
-        ['className', Battery, 'charging', c => c ? 'charging' : ''],
-    ],
-});
-
 const right_box = () => {
-    let children = [sys_tray(), audio()];
-
-    if (hostname === "Odimm") {
-        children.push(battery_progress())
-    }
-
-    children.push(time())
+    let children = [sys_tray(), audio_button(), time()];
 
     return Widget.Box({
         class_name: "right-box",
@@ -115,57 +79,39 @@ const right_box = () => {
 // end right box }}}
 
 // hyprland {{{
-const dispatch = (ws) => Utils.execAsync(`hyprctl dispatch workspace ${ws}`)
+const dispatch = (ws) => hyprland.messageAsync(`dispatch workspace ${ws}`)
 
-const hypr_ws_buttons = (mon_id, box) => {
-    let active_ws = null
-    let mon_name = null
+function hypr_ws_buttons(monitor_id, btns) {
+    const active_ws = hyprland.monitors.find(mon => mon["id"] === monitor_id)["activeWorkspace"]["id"]
 
-    for (let mon of Hyprland.monitors) {
-        if (mon_id === mon["id"]) {
-            mon_name = mon["name"]
-            active_ws = mon["activeWorkspace"]["id"]
-            break
-        }
-    }
-
-    if (!active_ws || !mon_name) {
-        return
-    }
-
-    const ws_data = btn => {
+    btns.forEach(btn => {
         btn.visible = false
-        btn.class_name = "can-hover hypr-ws"
 
-        for (let ws of Hyprland.workspaces) {
-            if (ws["monitor"] === mon_name && ws["id"] === btn["id"]) {
+        for (let ws of hyprland.workspaces) {
+            if (ws["monitorID"] === monitor_id && ws["id"] === btn.attribute) {
                 btn.visible = true
-
-                if (ws["id"] === active_ws) {
-                    btn.class_name = "can-hover hypr-ws-focus"
-                }
+                btn.class_name = ws["id"] === active_ws
+                    ? "can-hover hypr-ws-focus"
+                    : "can-hover hypr-ws"
             }
         }
-    }
-
-    box.children.forEach(ws_data)
+    })
 }
 
-const hypr_ws_setup = () => {
-    return Array.from({ length: 10 }, (_, i) => i + 1)
-        .map(i => Widget.Button({
-            class_name: "can-hover hypr-ws",
-            setup: btn => btn["id"] = i,
+function hyprland_setup(monitor_id) {
+    return Widget.Box({
+        class_name: "hyprland",
+        children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
+            attribute: i,
             label: `${i}`,
             on_clicked: () => dispatch(i),
-        }))
+            visible: false,
+        })),
+        setup: self => self
+            .hook(hyprland, () => hypr_ws_buttons(monitor_id, self.children))
+    })
 }
 
-const hyprland = monitor => Widget.Box({
-    class_name: "hyprland",
-    children: hypr_ws_setup(),
-    connections: [[Hyprland, box => hypr_ws_buttons(monitor, box)]]
-})
 // end hyprland }}}
 
 const Bar = monitor => Widget.Window({
@@ -175,24 +121,15 @@ const Bar = monitor => Widget.Window({
     anchor: ['bottom', 'left', 'right'],
     exclusivity: "ignore",
     child: Widget.CenterBox({
-        start_widget: hyprland(monitor),
+        start_widget: hyprland_setup(monitor),
         end_widget: right_box(),
     })
 })
 
-const hostname = Utils.exec("hostnamectl hostname")
 const scss = App.configDir + "/theme.scss"
 const style = App.configDir + "/theme.css"
 Utils.exec(`sassc ${scss} ${style}`)
 
-let bars = [Bar(0)]
+let bars = [Bar(0), Bar(1)]
 
-if (hostname != "Odimm") {
-    bars.push(Bar(1))
-    // bars.append(Bar(1))
-}
-
-export default {
-    style,
-    bars,
-}
+App.config({ windows: bars, style: style })
