@@ -158,45 +158,23 @@ if vim.fn.executable("rg") == 1 then
 end
 -- }}}
 
--- -- fold text {{{1
--- -- just display the first folded line
--- function _G.my_fold_text()
---   local line = vim.fn.getline(vim.v.foldstart)
---
---   -- taken from `help fold-foldtext`, cant be bothered to use gsub
---   -- `line` should never be a list
---   ---@cast line string
---   local sub = vim.fn.substitute(line, [[/\*\|\*/\|{{{\d\=]], " ", "g") or ""
---
---   local start = sub:match("^%s+") or ""
---
---   if start ~= "" then
---     start = start:gsub("%s", vim.opt.fillchars:get()["fold"])
---
---     start = start:sub(1, #start - 1) .. " "
---   end
---
---   sub = sub:match("^%s*(.-)%s*$") or ""
---
---   return start .. sub .. " "
--- end
---
--- vim.opt.foldtext = "v:lua.my_fold_text()"
--- -- }}}1
-
 -- diagnostics {{{
 -- might add these to lua/mappings.lua
 local set_key = require("util").set_key
 
 set_key {
   "<leader>n",
-  vim.diagnostic.goto_next,
+  function()
+    vim.diagnostic.jump { count = 1 }
+  end,
   desc = "go to next diagnostic",
 }
 
 set_key {
   "<leader>N",
-  vim.diagnostic.goto_prev,
+  function()
+    vim.diagnostic.jump { count = -1 }
+  end,
   desc = "go to prev diagnostic",
 }
 
@@ -210,34 +188,21 @@ set_key {
 vim.diagnostic.config {
   virtual_text = false,
   underline = false,
-  signs = true,
   update_in_insert = true,
   severity_sort = true,
   float = {
     focusable = false,
     border = "rounded",
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "󰍉",
+    },
   }
 }
-
-vim.fn.sign_define("DiagnosticSignError", {
-  text = "",
-  texthl = "DiagnosticSignError",
-})
-
-vim.fn.sign_define("DiagnosticSignWarn", {
-  text = "",
-  texthl = "DiagnosticSignWarn",
-})
-
-vim.fn.sign_define("DiagnosticSignInfo", {
-  text = "",
-  texthl = "DiagnosticSignInfo",
-})
-
-vim.fn.sign_define("DiagnosticSignHint", {
-  text = "󰍉",
-  texthl = "DiagnosticSignHint",
-})
 -- end diagnostics }}}
 
 -- force file type options {{{

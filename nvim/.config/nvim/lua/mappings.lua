@@ -83,8 +83,8 @@ set_key {
 
 set_key { "<leader>[", ":m .-2<cr>==", desc = "move line up" }
 set_key { "<leader>]", ":m .+1<cr>==", desc = "move line down" }
-set_key { "<leader>k", ":m .+1<cr>==", desc = "move line up" }
-set_key { "<leader>j", ":m .-2<cr>==", desc = "move line down" }
+set_key { "<leader>k", ":m .-2<cr>==", desc = "move line up" }
+set_key { "<leader>j", ":m .+1<cr>==", desc = "move line down" }
 
 set_key {
   "J",

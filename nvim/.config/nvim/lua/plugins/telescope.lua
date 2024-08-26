@@ -5,18 +5,40 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
-    cmd = "Telescope",
-    keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
-      { "<leader>fs", "<cmd>Telescope grep_string<cr>" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
-    },
+    -- cmd = "Telescope",
     opts = {
       defaults = {
         layout_strategy = "flex",
       }
     },
+    config = function(_, opts)
+      local telescope = require("telescope")
+
+      telescope.setup(opts)
+
+      local builtin = require("telescope.builtin")
+      local set_key = require("util").set_key
+
+      set_key { "<leader>ff",
+        builtin.find_files,
+        desc = "find file in dir"
+      }
+      set_key { "<leader>fb",
+        builtin.buffers,
+        desc = "find buffer"
+      }
+      set_key { "<leader>fg",
+        builtin.live_grep,
+        desc = "live grep"
+      }
+      set_key { "<leader>fs",
+        builtin.grep_string,
+        desc = "search for string under cursor"
+      }
+      set_key { "<leader>fh",
+        builtin.help_tags,
+        desc = "find help tags"
+      }
+    end,
   }
 }

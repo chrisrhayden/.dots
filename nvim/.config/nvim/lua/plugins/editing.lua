@@ -22,6 +22,7 @@ end
 
 local function prev_or_complete()
   local cmp = require("cmp")
+
   if cmp.visible() then
     cmp.select_prev_item()
   else
@@ -29,7 +30,7 @@ local function prev_or_complete()
   end
 end
 
-return {
+local cmp = {
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
@@ -42,7 +43,7 @@ return {
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip.loaders.from_snipmate")
-          .lazy_load { paths = "~/.config/nvim/snippets" }
+          .lazy_load { paths = { "~/.config/nvim/snippets" } }
       end,
     }
   },
@@ -64,6 +65,8 @@ return {
         { name = "nvim_lsp", },
       },
       formatting = {
+        expandable_indicator = true,
+        fields = { "abbr", "kind", "menu" },
         format = function(_, vim_item)
           vim_item.menu = nil
 
@@ -91,3 +94,22 @@ return {
     }
   end,
 }
+
+local auto_pairs = {
+  -- auto pair plugin
+  "windwp/nvim-autopairs",
+  event = "InsertEnter",
+  config = function()
+    local npairs = require("nvim-autopairs")
+    local Rule = require("nvim-autopairs.rule")
+    local cond = require("nvim-autopairs.conds")
+
+    npairs.setup()
+
+    npairs.add_rule(
+      Rule("<", ">", "rust"):with_pair(cond.before_regex("%a"))
+    )
+  end,
+}
+
+return { cmp, auto_pairs }
