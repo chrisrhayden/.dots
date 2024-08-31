@@ -6,7 +6,7 @@ dirs = [
 files = []
 
 build = """
-git init
+git init {{root}}
 """
 
 [[templates]]
