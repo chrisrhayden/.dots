@@ -11,6 +11,7 @@ require("settings")
 require("mappings")
 require("autocmds")
 require("status_line")
+
 require("util").setup_lazy()
 
 --- }}}
@@ -20,7 +21,7 @@ require("util").setup_lazy()
 -- * security:
 --   `modeline` should not be set but there really isn't a good replacement
 --   for this functionality without annoying setup and/or config
---   NOTE: actually nvim added `editorconfig` support so this might not be as
+--   NOTE: actually vim added `editorconfig` support so this might not be as
 --   necessary, though it still wont help for individual files that want
 --   different settings
 --
@@ -90,14 +91,8 @@ require("util").setup_lazy()
 --   vim-search-and-highlight-but-do-not-jump
 -- * a call tree
 --   https://github.com/ldelossa/calltree.nvim
--- * a bunch of neovim stuff
---   https://www.reddit.com/r/neovim/comments/o20w3z/
---   what_are_your_favorite_neovim_plugins_exclusive/
 -- * improve increment/decrement
 --   https://github.com/monaqa/dial.nvim
--- * auto pair plugins
---   https://github.com/hrsh7th/nvim-insx
---   https://github.com/altermo/ultimate-autopair.nvim
 -- * better % match
 --   https://github.com/andymass/vim-matchup
 -- }}}

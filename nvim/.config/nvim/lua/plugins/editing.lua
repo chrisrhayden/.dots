@@ -76,6 +76,9 @@ local cmp = {
       },
       window = {
         documentation = doc_window,
+        completion = {
+          border = "rounded"
+        },
       },
       mapping = {
         ["<C-p>"] = cmp.mapping(prev_or_complete),

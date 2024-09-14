@@ -1,15 +1,23 @@
 -- get lsp info and lsp server name to show in the last status
 function LspStatus()
-  -- TODO: maybe handle multiple servers
-  local lsp_client = vim.lsp.get_clients { bufnr = 0 }[1]
+  local lsp_clients = vim.lsp.get_clients { bufnr = 0 }
 
-  if lsp_client then
+  if #lsp_clients > 0 then
     local status = vim.lsp.status()
 
     if status and status ~= "" then
       return status
     else
-      return "[" .. lsp_client["name"] .. "]"
+      local names = ""
+
+      for _, lsp_c in pairs(lsp_clients) do
+        names = names .. lsp_c["name"] .. ", "
+      end
+
+      -- remove trailing `,\s`
+      names = names:sub(1, string.len(names) - 2)
+
+      return "[" .. names .. "]"
     end
   else
     return ""
@@ -34,8 +42,22 @@ end
 vim.opt.statusline = my_status_line()
 
 if vim.fn.exists("#LspProgress#") then
+  local lsp_redraw_status = vim.api.nvim_create_augroup("RedrawStatus", {})
   vim.api.nvim_create_autocmd("LspProgress", {
-    group = vim.api.nvim_create_augroup("RedrawStatus", {}),
+    group = lsp_redraw_status,
+    pattern = "begin,report",
     command = "redrawstatus"
+  })
+
+  vim.api.nvim_create_autocmd("LspProgress", {
+    group = lsp_redraw_status,
+    pattern = "end",
+    callback = function()
+      vim.cmd.redrawstatus()
+
+      vim.defer_fn(function()
+        vim.cmd.redrawstatus()
+      end, 1000)
+    end,
   })
 end

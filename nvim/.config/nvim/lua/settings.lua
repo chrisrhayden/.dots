@@ -3,16 +3,17 @@
 --------------------------------------------------------------------------------
 
 -- setup paths {{{
--- make backup files to ~/.local/state/nvim/backup/ and not to $PWD
-vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup//"
+-- remove PWD from `backupdir`
+vim.opt.backupdir:remove(".")
 
 -- use ~/.config/nvim/words for spelling and thesaurus files
-local word_dir = vim.fn.stdpath("config") .. "/words"
+---@diagnostic disable-next-line: param-type-mismatch
+local word_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "words")
 vim.fn.mkdir(word_dir, "p")
 
 -- where words added with `zg` are appended to
-vim.opt.spellfile = word_dir .. "/code-en.utf-8.add"
-vim.opt.thesaurus = word_dir .. "/en_thesaurus.txt"
+vim.opt.spellfile = vim.fs.joinpath(word_dir, "code-en.utf-8.add")
+vim.opt.thesaurus = vim.fs.joinpath(word_dir, "en_thesaurus.txt")
 -- end setup paths }}}
 
 -- ui {{{

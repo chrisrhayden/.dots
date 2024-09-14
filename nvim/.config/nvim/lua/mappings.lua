@@ -22,7 +22,21 @@ set_key { "<right>", "<nop>", mode = "", desc = "disable key right" }
 -- }}}
 
 -- unimpaired like {{{
-local add_blank_lines = require("util").add_blank_lines
+local function add_blank_lines(offset)
+  local lines = {}
+
+  for _ = 1, vim.v.count1 do
+    table.insert(lines, "")
+  end
+
+  vim.api.nvim_buf_set_lines(
+    0,
+    vim.fn.line(".") + offset,
+    vim.fn.line(".") + offset,
+    false,
+    lines
+  )
+end
 
 set_key {
   "]<space>",
