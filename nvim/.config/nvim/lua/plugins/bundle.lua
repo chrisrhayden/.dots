@@ -30,15 +30,7 @@ return {
 
   {
     "folke/which-key.nvim",
-<<<<<<< HEAD
     config = true,
-    -- opts = {
-    -- window = {
-    -- border = "rounded",
-    -- }
-    -- },
-=======
-    preset = "modern",
     opts = {
       icons = {
         mappings = false
@@ -48,7 +40,6 @@ return {
         border = "rounded",
       }
     },
->>>>>>> refs/remotes/origin/development
   },
 
   { -- kinda nice sometimes
@@ -72,12 +63,5 @@ return {
     config = function()
       vim.cmd.colorscheme "sourcery"
     end
-  },
-
-  {
-    "folke/tokyonight.nvim",
-    -- config = function()
-    --   vim.cmd.colorscheme = "tokyonight"
-    -- end
   },
 }
