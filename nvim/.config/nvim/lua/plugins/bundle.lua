@@ -50,11 +50,12 @@ return {
 
   {
     "folke/which-key.nvim",
-    opts = {
-      window = {
-        border = "rounded",
-      }
-    },
+    config = true,
+    -- opts = {
+    -- window = {
+    -- border = "rounded",
+    -- }
+    -- },
   },
 
   { -- kinda nice sometimes
