@@ -1,13 +1,13 @@
 -- info {{{
 -- ~~stolen from~~ based on Apprentice and Sorcerer:
 -- https://github.com/romainl/Apprentice
--- https://www.vim.org/scripts/script.php?script_id=3299
+-- https://www.vim.org/scripts/script.php?script_id           = 3299
 -- }}}
 
 -- TODO: do something with term colors
 function SourceryColor()
     -- colors {{{
-    local colors = {
+    local colors        = {
         grey_1   = "#0f0f0f", -- darker grey, line number background
         grey_2   = "#191919", -- dark grey, normal background
         grey_3   = "#232323", -- less dark grey, for statuslinenc
@@ -30,219 +30,244 @@ function SourceryColor()
     }
     -- }}}
 
-    -- reset highlighting {{{
-    -- despite these settings vim can mess up colors when switching color schemes
-    vim.o.background = "dark"
-    -- reset all highlighting to the defaults
-    vim.cmd.highlight "clear"
-
-    -- if syntax has been enabled reset to defaults
-    if vim.fn.exists("syntax_on") then
-        vim.cmd.syntax "reset"
-    end
-    -- }}}
+    vim.o.background    = "dark"
+    vim.o.termguicolors = true
 
     -- highlight function {{{
-
     ---call `highlight` for a given group
     ---
     ---@param objects table a table of highlights
     local function hl_all(objects)
-        assert(type(objects) == "table", "did not get a table to hi_all")
-
-        for _, object in ipairs(objects) do
-            assert(type(object) == "table", "did not get a table in hl objects")
-
-            if object[1] == "link" then
-                vim.cmd("highlight link " .. object[2] .. " " .. object[3])
-                goto continue
-            elseif object[1] == "clear" then
-                vim.cmd("highlight clear " .. object[2])
-                goto continue
-            end
-
-            local group = object[1] .. " "
-            local background = "guibg=NONE "
-            local forground = "guifg=NONE "
-            local style = "gui=NONE "
-            local special = "guisp=NONE "
-
-            if object.bg then
-                background = "guibg=" .. object.bg .. " "
-            end
-
-            if object.fg then
-                forground = "guifg=" .. object.fg .. " "
-            end
-
-            if object.sy then
-                style = "gui=" .. object.sy .. " "
-            end
-
-            if object.sp then
-                special = "guisp=" .. object.sp .. " "
-            end
-
-            vim.cmd("highlight " ..
-                group .. background .. forground .. special .. style)
-
-            ::continue::
+        for group, hl in pairs(objects) do
+            vim.api.nvim_set_hl(0, group, hl)
         end
     end
-
-
     -- }}}
 
     -- highlights {{{
     hl_all {
         -- nvim ui {{{
-        { "Normal",                  bg = colors.grey_2,   fg = colors.grey_5 },
-        { "LineNr",                  bg = colors.grey_1,   fg = colors.grey_4 },
-        { "Folded",                  bg = colors.grey_1,   fg = colors.grey_4 },
-        { "FoldColumn",              bg = colors.grey_1,   fg = colors.grey_4 },
-        { "StatusLine",              bg = colors.purple_1, fg = colors.teal_2 },
-        { "StatusLineNC",            bg = colors.grey_3,   fg = colors.grey_4 },
-        { "Cursor",                  bg = colors.grey_5,   fg = colors.grey_2,   sy = "nocombine,bold" },
-        { "CursorLine",              bg = colors.grey_1 },
-        { "CursorLineNr",            bg = colors.grey_1,   fg = colors.teal_2 },
-        { "ColorColumn",             bg = colors.grey_1 },
-        { "CursorColumn",            bg = colors.grey_1 },
-        { "SignColumn",              bg = colors.grey_1,   fg = colors.grey_4 },
-        { "Visual",                  bg = colors.blue_1,   fg = colors.grey_1,   sy = "bold" },
-        { "VisualNOS",               fg = colors.red_1 },
-        { "VertSplit",               bg = colors.grey_1,   fg = colors.grey_1 },
-        { "WinSeparator",            bg = colors.grey_1,   fg = colors.purple_1 },
-        { "TabLine",                 bg = colors.grey_1,   fg = colors.grey_4 },
-        { "TabLineFill",             bg = colors.grey_1,   fg = colors.grey_4 },
-        { "TabLineSel",              bg = colors.grey_1,   fg = colors.teal_1 },
-        { "Pmenu",                   bg = colors.grey_1,   fg = colors.purple_2, sy = "italic" },
-        { "PmenuSel",                bg = colors.grey_5,   fg = colors.grey_1,   sy = "nocombine,bold" },
-        { "PmenuSbar",               bg = colors.grey_1 },
-        { "PmenuThumb",              bg = colors.grey_5,   sy = "nocombine,NONE" },
-        { "WildMenu",                bg = colors.grey_1,   fg = colors.purple_2 },
-        { "NormalFloat",             bg = colors.grey_1,   fg = colors.grey_5 },
-        -- { "FloatBorder",            bg = colors.grey_1,   fg = colors.grey_4 },
-        { "FloatBorder",             bg = colors.grey_1,   fg = colors.teal_2 },
-        { "ErrorMsg",                bg = colors.red_1,    fg = colors.grey_2 },
-        { "ModeMsg",                 fg = colors.green_1 },
-        { "MoreMsg",                 fg = colors.green_1 },
-        { "WarningMsg",              fg = colors.red_1 },
-        { "Question",                fg = colors.teal_1 },
-        { "Title",                   fg = colors.teal_1 },
-        { "Bold",                    sy = "bold" },
-        { "Italic",                  sy = "italic" },
-        { "Underlined",              sy = "underline" },
-        { "Search",                  bg = colors.blue_1,   fg = colors.grey_1 },
-        { "Substitute",              bg = colors.blue_1,   fg = colors.grey_1,   sy = "bold" },
-        { "IncSearch",               bg = colors.blue_1,   fg = colors.grey_1 },
-        { "Directory",               fg = colors.blue_2 },
-        { "SpecialKey",              fg = colors.grey_4 },
-        { "Conceal",                 fg = colors.blue_2 },
-        { "NonText",                 fg = colors.grey_4 },
-        { "QuickFixLine",            bg = colors.grey_1 },
-        { "MatchParen",              bg = colors.grey_4,   fg = colors.grey_1,   sy = "bold" },
-        -- most hl-Nvim* highlights are linked to something
-        { "NvimInternalError",       fg = colors.red_1 },
+        Normal                                     = { bg = colors.grey_2, fg = colors.grey_5 },
+        NormalFloat                                = { bg = colors.grey_1, fg = colors.grey_5 },
+        FloatBorder                                = { bg = colors.grey_1, fg = colors.teal_2 },
+        FloatTitle                                 = { link = "FloatBorder" },
+        FloatFooter                                = { link = "FloatBorder" },
+        Whitespace                                 = { fg = colors.grey_4 },
+        SpecialKey                                 = { fg = colors.grey_4 },
+        NonText                                    = { fg = colors.grey_4 },
+        EndOfBuffer                                = { link = "NonText" },
+
+        Visual                                     = { bg = colors.blue_1, fg = colors.grey_1, bold = true },
+
+        Search                                     = { bg = colors.blue_1, fg = colors.grey_1, bold = true },
+        CurSearch                                  = { bg = colors.yellow, fg = colors.grey_1, bold = true },
+        Substitute                                 = { link = "Search" },
+        IncSearch                                  = { link = "Search" },
+
+        LineNr                                     = { bg = colors.grey_1, fg = colors.grey_4 },
+        SignColumn                                 = { bg = colors.grey_1, fg = colors.grey_4 },
+
+        StatusLine                                 = { bg = colors.purple_1, fg = colors.teal_2 },
+        StatusLineNC                               = { bg = colors.grey_3, fg = colors.grey_4 },
+
+        Cursor                                     = { bg = colors.grey_5, fg = colors.grey_2, bold = true },
+        CursorLine                                 = { bg = colors.grey_1 },
+        CursorLineNr                               = { bg = colors.grey_1, fg = colors.teal_2 },
+        ColorColumn                                = { bg = colors.grey_1 },
+        CursorColumn                               = { bg = colors.grey_1 },
+
+        Folded                                     = { bg = colors.grey_1, fg = colors.grey_4 },
+        FoldColumn                                 = { bg = colors.grey_1, fg = colors.grey_4 },
+
+        WinSeparator                               = { bg = colors.grey_1, fg = colors.purple_1 },
+
+        TabLine                                    = { bg = colors.grey_1, fg = colors.grey_4 },
+        TabLineFill                                = { bg = colors.grey_1, fg = colors.grey_4 },
+        TabLineSel                                 = { bg = colors.grey_1, fg = colors.teal_1 },
+
+        WildMenu                                   = { bg = colors.grey_1, fg = colors.purple_2 },
+
+        Pmenu                                      = { bg = colors.grey_1, fg = colors.purple_2, italic = true },
+        PmenuSel                                   = { bg = colors.grey_5, fg = colors.grey_1, bold = true },
+        PmenuSbar                                  = { bg = colors.grey_1 },
+        PmenuThumb                                 = { bg = colors.grey_5, },
+
+        QuickFixLine                               = { bg = colors.grey_1 },
+
+        WarningMsg                                 = { fg = colors.orange },
+        ErrorMsg                                   = { fg = colors.red_1 },
+        ModeMsg                                    = { fg = colors.green_1 },
+        MoreMsg                                    = { fg = colors.green_1 },
+        Question                                   = { fg = colors.teal_1 },
+
+        Title                                      = { fg = colors.teal_1 },
+        Conceal                                    = { fg = colors.blue_2 },
+        MatchParen                                 = { bg = colors.grey_4, fg = colors.grey_1, bold = true },
+        Directory                                  = { fg = colors.blue_2 },
+
+        SpellBad                                   = { undercurl = true, sp = colors.red_1 },
+        SpellLocal                                 = {},
+        SpellCap                                   = {},
+        SpellRare                                  = {},
+
+        DiffAdd                                    = { fg = colors.green_1 },
+        DiffChange                                 = { fg = colors.grey_4 },
+        DiffDelete                                 = { fg = colors.red_1 },
+        DiffText                                   = { fg = colors.teal_1 },
+        DiffAdded                                  = { fg = colors.green_1 },
+        DiffFile                                   = { fg = colors.red_1 },
+        DiffNewFile                                = { fg = colors.green_1 },
+        DiffLine                                   = { fg = colors.teal_1 },
+        DiffRemoved                                = { fg = colors.red_1 },
+
+        -- Bold
+        -- Italic
+        -- Underlined
         -- }}}
 
         -- syntax highlighting {{{
         -- `:help group-name` -- for the syntax groups
         -- Comment group
-        { "Comment",                 fg = colors.olive },
+        Comment                                    = { fg = colors.olive },
 
-        -- Constant group
-        { "Constant",                fg = colors.orange },
-        { "String",                  fg = colors.green_2 },
-        { "Character",               fg = colors.red_1 },
+        -- Constant group {{{
+        Constant                                   = { fg = colors.orange },
+        String                                     = { fg = colors.green_2 },
+        Character                                  = { fg = colors.red_1 },
+        -- Number
+        -- Boolean
+        -- Float
+        -- }}}
 
-        -- Identifier group
-        { "Identifier",              fg = colors.purple_3 },
-        { "Function",                fg = colors.teal_1 },
+        -- Identifier group {{{
+        Identifier                                 = { fg = colors.purple_3 },
+        Function                                   = { fg = colors.teal_1 },
+        -- }}}
 
-        -- Statement group
-        { "Statement",               fg = colors.red_2 },
-        { "Operator",                fg = colors.grey_5 },
-        { "Keyword",                 fg = colors.blue_1 },
+        -- Statement group {{{
+        Statement                                  = { fg = colors.red_2 },
+        -- Conditional
+        -- Repeat
+        -- Label
+        Operator                                   = { fg = colors.grey_5 },
+        Keyword                                    = { fg = colors.blue_1 },
+        -- Exception
+        -- }}}
 
-        -- PreProc group
-        { "PreProc",                 fg = colors.grey_4 },
-        -- { "Macro",                  fg = colors.teal_1 },
-        { "link",                    "Macro",              "Function" },
+        -- PreProc group {{{
+        PreProc                                    = { fg = colors.grey_4 },
+        -- Include
+        -- Define
+        Macro                                      = { link = "Function" },
+        -- PreCondit
+        -- }}}
 
-        -- Type group
-        { "Type",                    fg = colors.purple_2 },
+        -- Type group {{{
+        Type                                       = { fg = colors.purple_2 },
+        -- StorageClass
+        -- Structure
+        -- Typedef
+        -- }}}
 
-        -- Special group
-        { "Special",                 fg = colors.blue_2 },
-        { "SpecialChar",             fg = colors.grey_4 },
-        { "link",                    "SpecialComment",     "SpecialChar" },
+        -- Special group {{{
+        Special                                    = { fg = colors.blue_2 },
+        -- SpecialChar
+        -- Tag
+        -- Delimiter
+        SpecialComment                             = { fg = colors.grey_4 },
+        -- Debug
+        -- }}}
 
-        { "Error",                   fg = colors.red_1 },
-
-        { "Todo",                    fg = colors.yellow },
+        -- Underlined
+        -- Ignore
+        -- Error
+        -- Todo
+        -- Added
+        -- Changed
+        -- Removed
         -- }}}
 
         -- diagnostics {{{
-        { "DiagnosticError",         fg = colors.red_1 },
-        { "DiagnosticHint",          fg = colors.grey_4 },
-        { "DiagnosticInfo",          fg = colors.teal_2 },
-        { "DiagnosticWarn",          fg = colors.orange },
+        DiagnosticError                            = { fg = colors.red_1 },
+        DiagnosticHint                             = { fg = colors.grey_4 },
+        DiagnosticInfo                             = { fg = colors.teal_2 },
+        DiagnosticWarn                             = { fg = colors.orange },
+        DiagnosticOk                               = { fg = colors.green_1 },
 
-        { "DiagnosticSignHint",      bg = colors.grey_1,   fg = colors.grey_4 },
-        { "DiagnosticSignError",     bg = colors.grey_1,   fg = colors.red_1 },
-        { "DiagnosticSignInfo",      bg = colors.grey_1,   fg = colors.teal_2 },
-        { "DiagnosticSignWarn",      bg = colors.grey_1,   fg = colors.orange },
+        DiagnosticSignHint                         = { bg = colors.grey_1, fg = colors.grey_4 },
+        DiagnosticSignError                        = { bg = colors.grey_1, fg = colors.red_1 },
+        DiagnosticSignInfo                         = { bg = colors.grey_1, fg = colors.teal_2 },
+        DiagnosticSignWarn                         = { bg = colors.grey_1, fg = colors.orange },
+        DiagnosticSignOk                           = { fg = colors.green_1 },
 
-        { "DiagnosticFloatingError", fg = colors.red_1 },
-        { "DiagnosticFloatingWarn",  fg = colors.orange },
-        { "DiagnosticFloatingInfo",  fg = colors.blue_2 },
-        { "DiagnosticFloatingHint",  fg = colors.yellow },
-        { "DiagnosticFloatingOk",    fg = colors.green_1 },
+        DiagnosticFloatingError                    = { fg = colors.red_1 },
+        DiagnosticFloatingWarn                     = { fg = colors.orange },
+        DiagnosticFloatingInfo                     = { fg = colors.blue_2 },
+        DiagnosticFloatingHint                     = { fg = colors.yellow },
+        DiagnosticFloatingOk                       = { fg = colors.green_1 },
+        -- }}}
 
+        -- lsp {{
+        -- most of these are linked well
+        -- "@lsp.type.class"
+        -- "@lsp.type.comment"
+        -- "@lsp.type.decorator"
+        -- "@lsp.type.enum"
+        -- "@lsp.type.enumMember"
+        -- "@lsp.type.event"
+        -- "@lsp.type.function"
+        -- "@lsp.type.interface"
+        -- "@lsp.type.keyword"
+        ["@lsp.type.macro"]                        = { link = "Function" },
+        -- "@lsp.type.method"
+        -- "@lsp.type.modifier"
+        -- "@lsp.type.namespace"
+        -- "@lsp.type.number"
+        -- "@lsp.type.operator"
+        -- "@lsp.type.parameter"
+        -- "@lsp.type.property"
+        ["@lsp.type.punctuation"]                  = { fg = colors.blue_2 },
+        -- "@lsp.type.regexp"
+        -- "@lsp.type.string"
+        -- "@lsp.type.struct"
+        -- "@lsp.type.type"
+        -- "@lsp.type.typeParameter"
+        -- "@lsp.type.variable"
+        ["@lsp.mod.documentation"]                 = { link = "SpecialComment" },
+
+        -- rust {{{
+        -- for the `?` operator
+        ["@lsp.typemod.operator.controlFlow.rust"] = { fg = colors.orange },
+        -- }}}
+
+        -- lua {{{
+        ["@lsp.typemod.keyword.documentation.lua"] = { fg = colors.grey_4 },
+        -- }}}
         -- }}}
 
         -- treesitter {{{
         -- treesitter links to appropriate groups
-        { "@punctuation.bracket",    fg = colors.blue_2 },
-        { "@punctuation.delimiter",  fg = colors.blue_2 },
-        { "link",                    "@variable",          "Identifier" },
+        ["@punctuation"]                           = { fg = colors.blue_2 },
+        ["@variable"]                              = { link = "Identifier" },
         -- }}}
 
-        -- diff {{{
-        -- this is better for sure
-        { "DiffAdd",                 fg = colors.green_1 },
-        { "DiffChange",              fg = colors.grey_4 },
-        { "DiffDelete",              fg = colors.red_1 },
-        { "DiffText",                fg = colors.teal_1 },
-        { "DiffAdded",               fg = colors.green_1 },
-        { "DiffFile",                fg = colors.red_1 },
-        { "DiffNewFile",             fg = colors.green_1 },
-        { "DiffLine",                fg = colors.teal_1 },
-        { "DiffRemoved",             fg = colors.red_1 },
-        -- }}}
 
         -- debug {{{
-        { "debugBreakpoint",         bg = colors.teal_1,   fg = colors.grey_1 },
-        { "debugPC",                 bg = colors.teal_1,   fg = colors.grey_1 },
+        debugBreakpoint = { bg = colors.teal_1, fg = colors.grey_1 },
+        debugPC         = { bg = colors.teal_1, fg = colors.grey_1 },
         -- }}}
 
-        -- spelling {{{
-        { "SpellBad",                sy = "undercurl",     sp = colors.red_1 },
-        { "clear",                   "SpellLocal" },
-        { "clear",                   "SpellCap" },
-        { "clear",                   "SpellRare" },
-        -- }}}
 
         -- plugins {{{
         -- telescope {{{
-        { "TelescopeSelection",      fg = colors.orange,   sy = "bold" },
-        { "TelescopeNormal",         bg = colors.grey_1 },
-        { "TelescopeBorder",         bg = colors.grey_1,   fg = colors.grey_5 },
+        TelescopeSelection = { fg = colors.orange, bold = true },
+        TelescopeNormal    = { bg = colors.grey_1 },
+        TelescopeBorder    = { bg = colors.grey_1, fg = colors.grey_5 },
         -- }}}
 
         -- mini {{{
-        { "MiniCursorword",          bg = colors.grey_3 },
-        { "MiniTrailspace",          fg = "nocombine,NONE" },
+        MiniCursorword     = { bg = colors.grey_3 },
+        MiniTrailspace     = { nocombine = true },
         -- }}}
         -- }}}
     }

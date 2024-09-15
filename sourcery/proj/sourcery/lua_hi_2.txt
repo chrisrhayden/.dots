@@ -1,0 +1,505 @@
+
+
+SpecialKey     xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c
+EndOfBuffer    xxx links to NonText
+TermCursor     xxx cterm=reverse gui=reverse
+TermCursorNC   xxx cleared
+NonText        xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c
+Directory      xxx ctermfg=0 ctermbg=0 guifg=#50789f
+ErrorMsg       xxx ctermfg=0 ctermbg=0 guifg=#af5f5f guibg=#191919
+IncSearch      xxx ctermfg=0 ctermbg=0 guifg=#0f0f0f guibg=#819cbe
+Search         xxx ctermfg=0 ctermbg=0 guifg=#0f0f0f guibg=#819cbe
+CurSearch      xxx ctermfg=0 ctermbg=11 guifg=NvimDarkGrey1
+                   guibg=NvimLightYellow
+MoreMsg        xxx ctermfg=0 ctermbg=0 guifg=#5f875f
+ModeMsg        xxx ctermfg=0 ctermbg=0 guifg=#5f875f
+LineNr         xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#0f0f0f
+LineNrAbove    xxx links to LineNr
+LineNrBelow    xxx links to LineNr
+CursorLineNr   xxx ctermfg=0 ctermbg=0 guifg=#5fafaf guibg=#0f0f0f
+CursorLineSign xxx links to SignColumn
+CursorLineFold xxx links to FoldColumn
+Question       xxx ctermfg=0 ctermbg=0 guifg=#6a9696
+StatusLine     xxx ctermfg=0 ctermbg=0 guifg=#5fafaf guibg=#2b242e
+StatusLineNC   xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#232323
+WinSeparator   xxx ctermfg=0 ctermbg=0 guifg=#2b242e guibg=#0f0f0f
+VertSplit      xxx ctermfg=0 ctermbg=0 guifg=#0f0f0f guibg=#0f0f0f
+Title          xxx ctermfg=0 ctermbg=0 guifg=#6a9696
+Visual         xxx ctermfg=0 ctermbg=0 gui=bold guifg=#0f0f0f
+                   guibg=#819cbe
+VisualNC       xxx cleared
+WarningMsg     xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+WildMenu       xxx ctermfg=0 ctermbg=0 guifg=#785d92 guibg=#0f0f0f
+Folded         xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#0f0f0f
+FoldColumn     xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#0f0f0f
+DiffAdd        xxx ctermfg=0 ctermbg=0 guifg=#5f875f
+DiffChange     xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c
+DiffDelete     xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+DiffText       xxx ctermfg=0 ctermbg=0 guifg=#6a9696
+SignColumn     xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#0f0f0f
+Conceal        xxx ctermfg=0 ctermbg=0 guifg=#50789f
+SpellBad       xxx ctermfg=0 ctermbg=0 gui=undercurl guisp=#af5f5f
+SpellCap       xxx cleared
+SpellRare      xxx cleared
+SpellLocal     xxx cleared
+Pmenu          xxx ctermfg=0 ctermbg=0 gui=italic guifg=#785d92
+                   guibg=#0f0f0f
+PmenuSel       xxx ctermfg=0 ctermbg=0 gui=bold,nocombine guifg=#0f0f0f
+                   guibg=#bcbcbc blend=0
+PmenuMatch     xxx links to Pmenu
+PmenuMatchSel  xxx links to PmenuSel
+PmenuKind      xxx links to Pmenu
+PmenuKindSel   xxx links to PmenuSel
+PmenuExtra     xxx links to Pmenu
+PmenuExtraSel  xxx links to PmenuSel
+PmenuSbar      xxx ctermfg=0 ctermbg=0 guibg=#0f0f0f
+PmenuThumb     xxx ctermfg=0 ctermbg=0 gui=nocombine guibg=#bcbcbc
+TabLine        xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#0f0f0f
+TabLineSel     xxx ctermfg=0 ctermbg=0 guifg=#6a9696 guibg=#0f0f0f
+TabLineFill    xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#0f0f0f
+CursorColumn   xxx ctermfg=0 ctermbg=0 guibg=#0f0f0f
+CursorLine     xxx ctermfg=0 ctermbg=0 guibg=#0f0f0f
+ColorColumn    xxx ctermfg=0 ctermbg=0 guibg=#0f0f0f
+QuickFixLine   xxx ctermfg=0 ctermbg=0 guibg=#0f0f0f
+Whitespace     xxx links to NonText
+NormalNC       xxx cleared
+MsgSeparator   xxx links to StatusLine
+NormalFloat    xxx ctermfg=0 ctermbg=0 guifg=#bcbcbc guibg=#0f0f0f
+MsgArea        xxx cleared
+FloatBorder    xxx ctermfg=0 ctermbg=0 guifg=#5fafaf guibg=#0f0f0f
+WinBar         xxx cterm=bold gui=bold guifg=NvimLightGrey4
+                   guibg=NvimDarkGrey1
+WinBarNC       xxx cterm=bold guifg=NvimLightGrey4 guibg=NvimDarkGrey1
+Cursor         xxx ctermfg=0 ctermbg=0 gui=bold,nocombine guifg=#191919
+                   guibg=#bcbcbc
+FloatTitle     xxx links to Title
+FloatFooter    xxx links to FloatTitle
+StatusLineTerm xxx links to StatusLine
+StatusLineTermNC xxx links to StatusLineNC
+RedrawDebugNormal xxx cterm=reverse gui=reverse
+Underlined     xxx ctermfg=0 ctermbg=0 gui=underline
+lCursor        xxx guifg=bg guibg=fg
+CursorIM       xxx links to Cursor
+Substitute     xxx ctermfg=0 ctermbg=0 gui=bold guifg=#0f0f0f
+                   guibg=#819cbe
+VisualNOS      xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+Normal         xxx ctermfg=0 ctermbg=0 guifg=#bcbcbc guibg=#191919
+Character      xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+Constant       xxx ctermfg=0 ctermbg=0 guifg=#d88527
+Number         xxx links to Constant
+Boolean        xxx links to Constant
+Float          xxx links to Number
+Conditional    xxx links to Statement
+Statement      xxx ctermfg=0 ctermbg=0 guifg=#af5f87
+Repeat         xxx links to Statement
+Label          xxx links to Statement
+Keyword        xxx ctermfg=0 ctermbg=0 guifg=#819cbe
+Exception      xxx links to Statement
+Include        xxx links to PreProc
+PreProc        xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c
+Define         xxx links to PreProc
+Macro          xxx links to Function
+PreCondit      xxx links to PreProc
+StorageClass   xxx links to Type
+Type           xxx ctermfg=0 ctermbg=0 guifg=#785d92
+Structure      xxx links to Type
+Typedef        xxx links to Type
+Tag            xxx links to Special
+Special        xxx ctermfg=0 ctermbg=0 guifg=#50789f
+SpecialChar    xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c
+SpecialComment xxx links to SpecialChar
+Debug          xxx links to Special
+Ignore         xxx links to Normal
+LspCodeLens    xxx links to NonText
+LspCodeLensSeparator xxx links to LspCodeLens
+LspInlayHint   xxx links to NonText
+LspReferenceRead xxx links to LspReferenceText
+LspReferenceText xxx links to Visual
+LspReferenceWrite xxx links to LspReferenceText
+LspSignatureActiveParameter xxx links to Visual
+SnippetTabstop xxx links to Visual
+DiagnosticFloatingError xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+DiagnosticError xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+DiagnosticFloatingWarn xxx ctermfg=0 ctermbg=0 guifg=#d88527
+DiagnosticWarn xxx ctermfg=0 ctermbg=0 guifg=#d88527
+DiagnosticFloatingInfo xxx ctermfg=0 ctermbg=0 guifg=#50789f
+DiagnosticInfo xxx ctermfg=0 ctermbg=0 guifg=#5fafaf
+DiagnosticFloatingHint xxx ctermfg=0 ctermbg=0 guifg=#ffffaf
+DiagnosticHint xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c
+DiagnosticFloatingOk xxx ctermfg=0 ctermbg=0 guifg=#5f875f
+DiagnosticOk   xxx ctermfg=10 guifg=NvimLightGreen
+DiagnosticVirtualTextError xxx links to DiagnosticError
+DiagnosticVirtualTextWarn xxx links to DiagnosticWarn
+DiagnosticVirtualTextInfo xxx links to DiagnosticInfo
+DiagnosticVirtualTextHint xxx links to DiagnosticHint
+DiagnosticVirtualTextOk xxx links to DiagnosticOk
+DiagnosticSignError xxx ctermfg=0 ctermbg=0 guifg=#af5f5f guibg=#0f0f0f
+DiagnosticSignWarn xxx ctermfg=0 ctermbg=0 guifg=#d88527 guibg=#0f0f0f
+DiagnosticSignInfo xxx ctermfg=0 ctermbg=0 guifg=#5fafaf guibg=#0f0f0f
+DiagnosticSignHint xxx ctermfg=0 ctermbg=0 guifg=#6c6c6c guibg=#0f0f0f
+DiagnosticSignOk xxx links to DiagnosticOk
+DiagnosticUnnecessary xxx links to Comment
+Comment        xxx ctermfg=0 ctermbg=0 guifg=#686858
+@variable      xxx guifg=NvimLightGrey2
+@variable.builtin xxx links to Special
+@variable.parameter.builtin xxx links to Special
+@constant      xxx links to Constant
+@constant.builtin xxx links to Special
+@module        xxx links to Structure
+@module.builtin xxx links to Special
+@label         xxx links to Label
+@string        xxx links to String
+String         xxx ctermfg=0 ctermbg=0 guifg=#7aa37a
+@string.regexp xxx links to @string.special
+@string.special xxx links to SpecialChar
+@string.escape xxx links to @string.special
+@string.special.url xxx links to Underlined
+@character     xxx links to Character
+@character.special xxx links to SpecialChar
+@boolean       xxx links to Boolean
+@number        xxx links to Number
+@number.float  xxx links to Float
+@type          xxx links to Type
+@type.builtin  xxx links to Special
+@attribute     xxx links to Macro
+@attribute.builtin xxx links to Special
+@property      xxx links to Identifier
+Identifier     xxx ctermfg=0 ctermbg=0 guifg=#896680
+@function      xxx links to Function
+Function       xxx ctermfg=0 ctermbg=0 guifg=#6a9696
+@function.builtin xxx links to Special
+@constructor   xxx links to Special
+@operator      xxx links to Operator
+Operator       xxx ctermfg=0 ctermbg=0 guifg=#bcbcbc
+@keyword       xxx links to Keyword
+@punctuation   xxx links to Delimiter
+Delimiter      xxx guifg=NvimLightGrey2
+@punctuation.special xxx links to Special
+@comment       xxx links to Comment
+@comment.error xxx links to DiagnosticError
+@comment.warning xxx links to DiagnosticWarn
+@comment.note  xxx links to DiagnosticInfo
+@comment.todo  xxx links to Todo
+Todo           xxx ctermfg=0 ctermbg=0 guifg=#ffffaf
+@markup        xxx links to Special
+@markup.strong xxx cterm=bold gui=bold
+@markup.italic xxx cterm=italic gui=italic
+@markup.strikethrough xxx cterm=strikethrough gui=strikethrough
+@markup.underline xxx cterm=underline gui=underline
+@markup.heading xxx links to Title
+@markup.link   xxx links to Underlined
+@diff          xxx cleared
+@diff.plus     xxx links to Added
+Added          xxx ctermfg=10 guifg=NvimLightGreen
+@diff.minus    xxx links to Removed
+Removed        xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+@diff.delta    xxx links to Changed
+Changed        xxx ctermfg=14 guifg=NvimLightCyan
+@tag           xxx links to Tag
+@tag.builtin   xxx links to Special
+@lsp           xxx cleared
+@lsp.type.class xxx links to @type
+@lsp.type.comment xxx links to @comment
+@lsp.type.decorator xxx links to @attribute
+@lsp.type.enum xxx links to @type
+@lsp.type.enumMember xxx links to @constant
+@lsp.type.event xxx links to @type
+@lsp.type.function xxx links to @function
+@lsp.type.interface xxx links to @type
+@lsp.type.keyword xxx links to @keyword
+@lsp.type.macro xxx links to Function
+@lsp.type.method xxx links to @function.method
+@lsp.type.modifier xxx links to @type.qualifier
+@lsp.type.namespace xxx links to @module
+@lsp.type.number xxx links to @number
+@lsp.type.operator xxx links to @operator
+@lsp.type.parameter xxx links to @variable.parameter
+@lsp.type.property xxx links to @property
+@lsp.type.regexp xxx links to @string.regexp
+@lsp.type.string xxx links to @string
+@lsp.type.struct xxx links to @type
+@lsp.type.type xxx links to @type
+@lsp.type.typeParameter xxx links to @type.definition
+@lsp.type.variable xxx links to @variable
+@lsp.mod.deprecated xxx links to DiagnosticDeprecated
+DiagnosticDeprecated xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+                   guisp=NvimLightRed
+FloatShadow    xxx ctermbg=0 guibg=NvimDarkGrey4 blend=80
+FloatShadowThrough xxx ctermbg=0 guibg=NvimDarkGrey4 blend=100
+MatchParen     xxx ctermfg=0 ctermbg=0 gui=bold guifg=#0f0f0f
+                   guibg=#6c6c6c
+RedrawDebugClear xxx ctermfg=0 ctermbg=11 guibg=NvimDarkYellow
+RedrawDebugComposed xxx ctermfg=0 ctermbg=10 guibg=NvimDarkGreen
+RedrawDebugRecompose xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+Error          xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+DiagnosticUnderlineError xxx cterm=underline gui=underline
+                   guisp=NvimLightRed
+DiagnosticUnderlineWarn xxx cterm=underline gui=underline
+                   guisp=NvimLightYellow
+DiagnosticUnderlineInfo xxx cterm=underline gui=underline
+                   guisp=NvimLightCyan
+DiagnosticUnderlineHint xxx cterm=underline gui=underline
+                   guisp=NvimLightBlue
+DiagnosticUnderlineOk xxx cterm=underline gui=underline
+                   guisp=NvimLightGreen
+NvimInternalError xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+NvimAssignment xxx links to Operator
+NvimPlainAssignment xxx links to NvimAssignment
+NvimAugmentedAssignment xxx links to NvimAssignment
+NvimAssignmentWithAddition xxx links to NvimAugmentedAssignment
+NvimAssignmentWithSubtraction xxx links to NvimAugmentedAssignment
+NvimAssignmentWithConcatenation xxx links to NvimAugmentedAssignment
+NvimOperator   xxx links to Operator
+NvimUnaryOperator xxx links to NvimOperator
+NvimUnaryPlus  xxx links to NvimUnaryOperator
+NvimUnaryMinus xxx links to NvimUnaryOperator
+NvimNot        xxx links to NvimUnaryOperator
+NvimBinaryOperator xxx links to NvimOperator
+NvimComparison xxx links to NvimBinaryOperator
+NvimComparisonModifier xxx links to NvimComparison
+NvimBinaryPlus xxx links to NvimBinaryOperator
+NvimBinaryMinus xxx links to NvimBinaryOperator
+NvimConcat     xxx links to NvimBinaryOperator
+NvimConcatOrSubscript xxx links to NvimConcat
+NvimOr         xxx links to NvimBinaryOperator
+NvimAnd        xxx links to NvimBinaryOperator
+NvimMultiplication xxx links to NvimBinaryOperator
+NvimDivision   xxx links to NvimBinaryOperator
+NvimMod        xxx links to NvimBinaryOperator
+NvimTernary    xxx links to NvimOperator
+NvimTernaryColon xxx links to NvimTernary
+NvimParenthesis xxx links to Delimiter
+NvimLambda     xxx links to NvimParenthesis
+NvimNestingParenthesis xxx links to NvimParenthesis
+NvimCallingParenthesis xxx links to NvimParenthesis
+NvimSubscript  xxx links to NvimParenthesis
+NvimSubscriptBracket xxx links to NvimSubscript
+NvimSubscriptColon xxx links to NvimSubscript
+NvimCurly      xxx links to NvimSubscript
+NvimContainer  xxx links to NvimParenthesis
+NvimDict       xxx links to NvimContainer
+NvimList       xxx links to NvimContainer
+NvimIdentifier xxx links to Identifier
+NvimIdentifierScope xxx links to NvimIdentifier
+NvimIdentifierScopeDelimiter xxx links to NvimIdentifier
+NvimIdentifierName xxx links to NvimIdentifier
+NvimIdentifierKey xxx links to NvimIdentifier
+NvimColon      xxx links to Delimiter
+NvimComma      xxx links to Delimiter
+NvimArrow      xxx links to Delimiter
+NvimRegister   xxx links to SpecialChar
+NvimNumber     xxx links to Number
+NvimFloat      xxx links to NvimNumber
+NvimNumberPrefix xxx links to Type
+NvimOptionSigil xxx links to Type
+NvimOptionName xxx links to NvimIdentifier
+NvimOptionScope xxx links to NvimIdentifierScope
+NvimOptionScopeDelimiter xxx links to NvimIdentifierScopeDelimiter
+NvimEnvironmentSigil xxx links to NvimOptionSigil
+NvimEnvironmentName xxx links to NvimIdentifier
+NvimString     xxx links to String
+NvimStringBody xxx links to NvimString
+NvimStringQuote xxx links to NvimString
+NvimStringSpecial xxx links to SpecialChar
+NvimSingleQuote xxx links to NvimStringQuote
+NvimSingleQuotedBody xxx links to NvimStringBody
+NvimSingleQuotedQuote xxx links to NvimStringSpecial
+NvimDoubleQuote xxx links to NvimStringQuote
+NvimDoubleQuotedBody xxx links to NvimStringBody
+NvimDoubleQuotedEscape xxx links to NvimStringSpecial
+NvimFigureBrace xxx links to NvimInternalError
+NvimSingleQuotedUnknownEscape xxx links to NvimInternalError
+NvimSpacing    xxx links to Normal
+NvimInvalidSingleQuotedUnknownEscape xxx links to NvimInternalError
+NvimInvalid    xxx links to Error
+NvimInvalidAssignment xxx links to NvimInvalid
+NvimInvalidPlainAssignment xxx links to NvimInvalidAssignment
+NvimInvalidAugmentedAssignment xxx links to NvimInvalidAssignment
+NvimInvalidAssignmentWithAddition xxx links to NvimInvalidAugmentedAssignment
+NvimInvalidAssignmentWithSubtraction xxx links to NvimInvalidAugmentedAssignment
+NvimInvalidAssignmentWithConcatenation xxx links to NvimInvalidAugmentedAssignment
+NvimInvalidOperator xxx links to NvimInvalid
+NvimInvalidUnaryOperator xxx links to NvimInvalidOperator
+NvimInvalidUnaryPlus xxx links to NvimInvalidUnaryOperator
+NvimInvalidUnaryMinus xxx links to NvimInvalidUnaryOperator
+NvimInvalidNot xxx links to NvimInvalidUnaryOperator
+NvimInvalidBinaryOperator xxx links to NvimInvalidOperator
+NvimInvalidComparison xxx links to NvimInvalidBinaryOperator
+NvimInvalidComparisonModifier xxx links to NvimInvalidComparison
+NvimInvalidBinaryPlus xxx links to NvimInvalidBinaryOperator
+NvimInvalidBinaryMinus xxx links to NvimInvalidBinaryOperator
+NvimInvalidConcat xxx links to NvimInvalidBinaryOperator
+NvimInvalidConcatOrSubscript xxx links to NvimInvalidConcat
+NvimInvalidOr  xxx links to NvimInvalidBinaryOperator
+NvimInvalidAnd xxx links to NvimInvalidBinaryOperator
+NvimInvalidMultiplication xxx links to NvimInvalidBinaryOperator
+NvimInvalidDivision xxx links to NvimInvalidBinaryOperator
+NvimInvalidMod xxx links to NvimInvalidBinaryOperator
+NvimInvalidTernary xxx links to NvimInvalidOperator
+NvimInvalidTernaryColon xxx links to NvimInvalidTernary
+NvimInvalidDelimiter xxx links to NvimInvalid
+NvimInvalidParenthesis xxx links to NvimInvalidDelimiter
+NvimInvalidLambda xxx links to NvimInvalidParenthesis
+NvimInvalidNestingParenthesis xxx links to NvimInvalidParenthesis
+NvimInvalidCallingParenthesis xxx links to NvimInvalidParenthesis
+NvimInvalidSubscript xxx links to NvimInvalidParenthesis
+NvimInvalidSubscriptBracket xxx links to NvimInvalidSubscript
+NvimInvalidSubscriptColon xxx links to NvimInvalidSubscript
+NvimInvalidCurly xxx links to NvimInvalidSubscript
+NvimInvalidContainer xxx links to NvimInvalidParenthesis
+NvimInvalidDict xxx links to NvimInvalidContainer
+NvimInvalidList xxx links to NvimInvalidContainer
+NvimInvalidValue xxx links to NvimInvalid
+NvimInvalidIdentifier xxx links to NvimInvalidValue
+NvimInvalidIdentifierScope xxx links to NvimInvalidIdentifier
+NvimInvalidIdentifierScopeDelimiter xxx links to NvimInvalidIdentifier
+NvimInvalidIdentifierName xxx links to NvimInvalidIdentifier
+NvimInvalidIdentifierKey xxx links to NvimInvalidIdentifier
+NvimInvalidColon xxx links to NvimInvalidDelimiter
+NvimInvalidComma xxx links to NvimInvalidDelimiter
+NvimInvalidArrow xxx links to NvimInvalidDelimiter
+NvimInvalidRegister xxx links to NvimInvalidValue
+NvimInvalidNumber xxx links to NvimInvalidValue
+NvimInvalidFloat xxx links to NvimInvalidNumber
+NvimInvalidNumberPrefix xxx links to NvimInvalidNumber
+NvimInvalidOptionSigil xxx links to NvimInvalidIdentifier
+NvimInvalidOptionName xxx links to NvimInvalidIdentifier
+NvimInvalidOptionScope xxx links to NvimInvalidIdentifierScope
+NvimInvalidOptionScopeDelimiter xxx links to NvimInvalidIdentifierScopeDelimiter
+NvimInvalidEnvironmentSigil xxx links to NvimInvalidOptionSigil
+NvimInvalidEnvironmentName xxx links to NvimInvalidIdentifier
+NvimInvalidString xxx links to NvimInvalidValue
+NvimInvalidStringBody xxx links to NvimStringBody
+NvimInvalidStringQuote xxx links to NvimInvalidString
+NvimInvalidStringSpecial xxx links to NvimStringSpecial
+NvimInvalidSingleQuote xxx links to NvimInvalidStringQuote
+NvimInvalidSingleQuotedBody xxx links to NvimInvalidStringBody
+NvimInvalidSingleQuotedQuote xxx links to NvimInvalidStringSpecial
+NvimInvalidDoubleQuote xxx links to NvimInvalidStringQuote
+NvimInvalidDoubleQuotedBody xxx links to NvimInvalidStringBody
+NvimInvalidDoubleQuotedEscape xxx links to NvimInvalidStringSpecial
+NvimInvalidDoubleQuotedUnknownEscape xxx links to NvimInvalidValue
+NvimInvalidFigureBrace xxx links to NvimInvalidDelimiter
+NvimInvalidSpacing xxx links to ErrorMsg
+NvimDoubleQuotedUnknownEscape xxx links to NvimInvalidValue
+Bold           xxx ctermfg=0 ctermbg=0 gui=bold
+Italic         xxx ctermfg=0 ctermbg=0 gui=italic
+NvimLightRed   xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+@lsp.typemod.operator.controlFlow.rust xxx ctermfg=0 ctermbg=0
+                   guifg=#d88527
+@punctuation.bracket xxx ctermfg=0 ctermbg=0 guifg=#50789f
+@punctuation.delimiter xxx ctermfg=0 ctermbg=0 guifg=#50789f
+DiffAdded      xxx ctermfg=0 ctermbg=0 guifg=#5f875f
+DiffFile       xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+DiffNewFile    xxx ctermfg=0 ctermbg=0 guifg=#5f875f
+DiffLine       xxx ctermfg=0 ctermbg=0 guifg=#6a9696
+DiffRemoved    xxx ctermfg=0 ctermbg=0 guifg=#af5f5f
+debugBreakpoint xxx ctermfg=0 ctermbg=0 guifg=#0f0f0f guibg=#6a9696
+debugPC        xxx ctermfg=0 ctermbg=0 guifg=#0f0f0f guibg=#6a9696
+TelescopeSelection xxx ctermfg=0 ctermbg=0 gui=bold guifg=#d88527
+TelescopeNormal xxx ctermfg=0 ctermbg=0 guibg=#0f0f0f
+TelescopeBorder xxx ctermfg=0 ctermbg=0 guifg=#bcbcbc guibg=#0f0f0f
+MiniCursorword xxx ctermfg=0 ctermbg=0 guibg=#232323
+MiniTrailspace xxx ctermfg=0 ctermbg=0
+MiniCursorwordCurrent xxx links to MiniCursorword
+MiniSurround   xxx links to IncSearch
+MiniFilesBorder xxx links to FloatBorder
+MiniFilesBorderModified xxx links to DiagnosticFloatingWarn
+MiniFilesCursorLine xxx links to CursorLine
+MiniFilesDirectory xxx links to Directory
+MiniFilesFile  xxx cleared
+MiniFilesNormal xxx links to NormalFloat
+MiniFilesTitle xxx links to FloatTitle
+MiniFilesTitleFocused xxx links to FloatTitle
+TelescopeResultsIdentifier xxx links to Identifier
+TelescopeResultsLineNr xxx links to LineNr
+TelescopeResultsVariable xxx links to SpecialChar
+TelescopeResultsStruct xxx links to Struct
+Struct         xxx cleared
+TelescopeResultsOperator xxx links to Operator
+TelescopeResultsMethod xxx links to Method
+Method         xxx cleared
+TelescopeResultsFunction xxx links to Function
+TelescopeResultsField xxx links to Function
+TelescopeResultsConstant xxx links to Constant
+TelescopeResultsClass xxx links to Function
+TelescopePreviewMessageFillchar xxx links to TelescopePreviewMessage
+TelescopePreviewMessage xxx links to TelescopePreviewNormal
+TelescopePreviewNormal xxx links to TelescopeNormal
+TelescopePreviewDate xxx links to Directory
+TelescopePreviewGroup xxx links to Constant
+TelescopeResultsDiffUntracked xxx links to NonText
+TelescopeResultsDiffDelete xxx links to DiffDelete
+TelescopeResultsDiffAdd xxx links to DiffAdd
+TelescopeResultsDiffChange xxx links to DiffChange
+TelescopeResultsSpecialComment xxx links to SpecialComment
+TelescopeResultsComment xxx links to Comment
+TelescopeResultsNumber xxx links to Number
+TelescopePreviewWrite xxx links to Statement
+TelescopePreviewRead xxx links to Constant
+TelescopePreviewSocket xxx links to Statement
+TelescopePreviewLink xxx links to Special
+TelescopePreviewBlock xxx links to Constant
+TelescopePreviewDirectory xxx links to Directory
+TelescopePreviewCharDev xxx links to Constant
+TelescopePreviewTitle xxx links to TelescopeTitle
+TelescopeTitle xxx links to TelescopeBorder
+TelescopeResultsTitle xxx links to TelescopeTitle
+TelescopePromptTitle xxx links to TelescopeTitle
+TelescopePreviewBorder xxx links to TelescopeBorder
+TelescopePromptBorder xxx links to TelescopeBorder
+TelescopeResultsNormal xxx links to TelescopeNormal
+TelescopePromptNormal xxx links to TelescopeNormal
+TelescopeMultiIcon xxx links to Identifier
+TelescopeMultiSelection xxx links to Type
+TelescopeSelectionCaret xxx links to TelescopeSelection
+TelescopePreviewExecute xxx links to String
+TelescopePreviewUser xxx links to Constant
+TelescopePreviewSize xxx links to String
+TelescopePreviewSticky xxx links to Keyword
+TelescopePreviewHyphen xxx links to NonText
+TelescopePreviewPipe xxx links to Constant
+TelescopePreviewMatch xxx links to Search
+TelescopePreviewLine xxx links to Visual
+TelescopePromptPrefix xxx links to Identifier
+TelescopeMatching xxx links to Special
+TelescopePromptCounter xxx links to NonText
+TelescopeResultsBorder xxx links to TelescopeBorder
+LspInfoFiletype xxx links to Type
+LspInfoTitle   xxx links to Title
+LspInfoTip     xxx links to Comment
+LspInfoList    xxx links to Function
+LspInfoBorder  xxx links to Label
+TSPlaygroundLang xxx links to String
+TSQueryLinterError xxx links to Error
+TSPlaygroundFocus xxx links to Visual
+@spell         xxx cleared
+WhichKeyGroup  xxx links to Keyword
+WhichKeySeparator xxx links to Comment
+WhichKeyIconYellow xxx links to DiagnosticWarn
+WhichKeyIconRed xxx links to DiagnosticError
+WhichKeyIconPurple xxx links to Constant
+WhichKeyIconOrange xxx links to DiagnosticWarn
+WhichKeyTitle  xxx links to FloatTitle
+WhichKeyIconGreen xxx links to DiagnosticOk
+WhichKeyNormal xxx links to NormalFloat
+WhichKeyIconCyan xxx links to DiagnosticHint
+WhichKey       xxx links to Function
+WhichKeyIconGrey xxx links to Normal
+WhichKeyIconAzure xxx links to Function
+WhichKeyIconBlue xxx links to DiagnosticInfo
+WhichKeyIcon   xxx links to @markup.link
+WhichKeyValue  xxx links to Comment
+WhichKeyBorder xxx links to FloatBorder
+WhichKeyDesc   xxx links to Identifier
+MiniIconsYellow xxx cleared
+MiniIconsRed   xxx cleared
+MiniIconsPurple xxx cleared
+MiniIconsOrange xxx cleared
+MiniIconsGreen xxx cleared
+MiniIconsCyan  xxx cleared
+MiniIconsGrey  xxx cleared
+MiniIconsAzure xxx cleared
+MiniIconsBlue  xxx cleared
+MiniIcons      xxx clearedrecording @Z
+E354: Invalid register name: '^@'recording @Z

@@ -2,32 +2,15 @@ return {
   -- self manage lazy.nvim
   { "folke/lazy.nvim", version = "*" },
 
-  {
-    -- auto pair plugin
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function()
-      local npairs = require("nvim-autopairs")
-      local Rule = require("nvim-autopairs.rule")
-      local cond = require("nvim-autopairs.conds")
-
-      npairs.setup()
-
-      npairs.add_rule(
-        Rule("<", ">", "rust"):with_pair(cond.before_regex("%a"))
-      )
-    end,
-  },
-
   -- the tpope collection {{{
   -- a set of good key bindings
-  -- "tpope/vim-unimpaired",
   -- change surrounding object in a very vim like way (e.g. cs<from><to> cs"')
-  "tpope/vim-surround",
+  -- "tpope/vim-unimpaired",
+  -- "tpope/vim-surround",
   -- add ending keywords where it can, (e.g. fi and endif)
   -- "tpope/vim-endwise",
   -- repeat plugin commands like surround
-  "tpope/vim-repeat",
+  -- "tpope/vim-repeat",
   -- work with variants of words for abbreviations
   -- "tpope/vim-abolish",
   -- readline bindings in insert mode
@@ -38,9 +21,6 @@ return {
   },
   -- }}}
 
-  -- hasn't been getting updates
-  -- { "elihunter173/dirbuf.nvim", config = true, },
-
   {
     "mbbill/undotree",
     keys = {
@@ -50,12 +30,25 @@ return {
 
   {
     "folke/which-key.nvim",
+<<<<<<< HEAD
     config = true,
     -- opts = {
     -- window = {
     -- border = "rounded",
     -- }
     -- },
+=======
+    preset = "modern",
+    opts = {
+      icons = {
+        mappings = false
+      },
+      win = {
+        title = false,
+        border = "rounded",
+      }
+    },
+>>>>>>> refs/remotes/origin/development
   },
 
   { -- kinda nice sometimes
@@ -64,15 +57,14 @@ return {
       filetypes = {
         "scss",
         "css",
-        "html",
       },
+      "html",
       user_default_options = {
         names = false
       },
     },
   },
 
-  "rust-lang/rust.vim",
   "NoahTheDuke/vim-just",
 
   {
@@ -83,14 +75,9 @@ return {
   },
 
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    opts = {
-      disable_italics = true,
-    },
-    config = function(_, opts)
-      require("rose-pine").setup(opts)
-      -- vim.cmd.colorscheme "rose-pine"
-    end
+    "folke/tokyonight.nvim",
+    -- config = function()
+    --   vim.cmd.colorscheme = "tokyonight"
+    -- end
   },
 }

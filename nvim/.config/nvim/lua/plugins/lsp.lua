@@ -4,56 +4,66 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover, { focusable = false, border = "rounded" }
 )
 
-local function on_attach(client, bufnr)
-  client.server_capabilities.semanticTokensProvider = nil
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-  -- don't use the lsp formatter
-  -- this is nice as not all lsp formatters work well with comments
-  vim.bo[bufnr].formatexpr = nil
+    if client == nil then
+      return
+    end
 
-  set_key {
-    "gd",
-    vim.lsp.buf.definition,
-    buffer = bufnr,
-    desc = "go to definition"
-  }
+    local bufnr = args.buf
 
-  set_key {
-    "gi",
-    vim.lsp.buf.implementation,
-    buffer = bufnr,
-    desc = "show implementations in quick fix"
-  }
+    -- client.server_capabilities.semanticTokensProvider = nil
 
-  set_key {
-    "<leader>rn",
-    vim.lsp.buf.rename,
-    buffer = bufnr,
-    desc = "rename with lsp"
-  }
+    -- don't use the lsp formatter
+    -- this is nice as not all lsp formatters work well with comments
+    vim.bo[bufnr].formatexpr = nil
 
-  set_key {
-    "<leader>ca",
-    vim.lsp.buf.code_action,
-    buffer = bufnr,
-    desc = "code action"
-  }
+    set_key {
+      "gd",
+      vim.lsp.buf.definition,
+      buffer = bufnr,
+      desc = "go to definition"
+    }
 
-  set_key {
-    "<leader>df",
-    function() vim.lsp.buf.format() end,
-    desc = "do format",
-  }
+    set_key {
+      "gi",
+      vim.lsp.buf.implementation,
+      buffer = bufnr,
+      desc = "show implementations in quick fix"
+    }
 
-  -- auto format files on save/write
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    -- pattern = "*",
-    buffer = bufnr,
-    group = vim.api.nvim_create_augroup("AutoFormater", { clear = false }),
-    -- idk why i have to wrap this function
-    callback = function() vim.lsp.buf.format() end,
-  })
-end
+    set_key {
+      "<leader>rn",
+      vim.lsp.buf.rename,
+      buffer = bufnr,
+      desc = "rename with lsp"
+    }
+
+    set_key {
+      "<leader>ca",
+      vim.lsp.buf.code_action,
+      buffer = bufnr,
+      desc = "code action"
+    }
+
+    set_key {
+      "<leader>df",
+      function() vim.lsp.buf.format() end,
+      desc = "do format",
+    }
+
+    -- auto format files on save/write
+    if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        group = vim.api.nvim_create_augroup("AutoFormater", { clear = false }),
+        callback = function() vim.lsp.buf.format() end,
+      })
+    end
+  end
+})
 
 local function mk_rust_settings()
   local rust_analyzer_cmd = vim.fn.system { "rustup", "which", "rust-analyzer" }
@@ -99,18 +109,38 @@ end
 
 local function mk_clang_settings()
   return {
-    on_attach = function(client, bufnr)
+    on_attach = function(_, bufnr)
       set_key {
         "<leader><bs>",
         ":ClangdSwitchSourceHeader<cr>",
         buffer = bufnr,
         desc = "switch to source or header files"
       }
-
-      on_attach(client, bufnr)
     end
   }
 end
+
+local function mk_harper_settings()
+  return {
+    autostart = false,
+    settings = {
+      ["harper-ls"] = {
+        linters = {
+          sentence_capitalization = false,
+          long_sentences = false,
+        }
+      }
+    }
+  }
+end
+
+local servers = {
+  rust_analyzer = mk_rust_settings(),
+  lua_ls = mk_lua_settings(),
+  clangd = mk_clang_settings(),
+  harper_ls = mk_harper_settings(),
+  ts_ls = {},
+}
 
 return {
   {
@@ -122,28 +152,23 @@ return {
       }
     },
     event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      servers = {
-        rust_analyzer = mk_rust_settings(),
-        lua_ls = mk_lua_settings(),
-        clangd = mk_clang_settings(),
-        tsserver = {},
-      }
-    },
-    config = function(_, opts)
+    config = function()
       local lsp = require("lspconfig")
+      local default_capabilities = require("cmp_nvim_lsp").default_capabilities
 
-      for server_name, server_opts in pairs(opts.servers) do
-        local server_setup =
-          vim.tbl_deep_extend("force", {
-            on_attach = on_attach,
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          }, server_opts)
+      for server_name, server_setup in pairs(servers) do
+        table.insert(server_setup, default_capabilities())
 
-        local cmd_name = lsp[server_name].document_config.default_config.cmd[1]
+        local cmd_name = server_setup["cmd"] and server_setup["cmd"][1] or
+          lsp[server_name].document_config.default_config.cmd[1]
 
-        if vim.fn.executable(cmd_name) ~= 0 then
+        -- cmd_name = cmd_name:sub(0, #cmd_name - 1)
+
+        if vim.fn.executable(cmd_name) == 1 then
           lsp[server_name].setup(server_setup)
+        else
+          vim.notify("LSP error cant find cmd for " ..
+            server_name .. ":\ncmd: " .. cmd_name, vim.log.levels.WARN)
         end
       end
     end

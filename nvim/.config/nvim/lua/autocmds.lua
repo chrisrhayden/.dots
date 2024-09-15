@@ -116,6 +116,7 @@ function SpecialBuffer()
   return false
 end
 
+-- this doesn't interfere with `vim.lsp.buf.definition()` idk why
 create_autocmd("BufWinEnter", {
   group = create_augroup("RestoreCursor", {}),
   callback = function()
@@ -140,7 +141,7 @@ create_autocmd("BufWinEnter", {
 ---get background and opacity from currently running kitty terminal
 ---
 ---@return string[]
-local get_kitty_data = function()
+local function get_kitty_data()
   local kitty_py = [[
 from kitty.cli import create_default_opts
 
@@ -162,13 +163,13 @@ print(bg + '\n' + str(opacity), end="")
   return out
 end
 
-local get_nvim_bg = function()
+local function get_nvim_bg()
   local normal_color = vim.api.nvim_get_hl(0, { name = "Normal" })
 
   return "#" .. string.format("%06x", normal_color.bg)
 end
 
-local set_kitty_bg = function(settings)
+local function set_kitty_bg(settings)
   vim.system {
     "kitty", "@", "set-colors",
     "--to=" .. vim.env.KITTY_LISTEN_ON,
@@ -208,7 +209,7 @@ end
 
 create_autocmd("TextYankPost", {
   group = create_augroup("HighlightYanked", {}),
-  callback = function() require("vim.highlight").on_yank() end
+  callback = function() vim.highlight.on_yank() end
 })
 
 -- end augroups }}}

@@ -31,7 +31,7 @@ end
 if status is-interactive
     # show_startup_msg
 
-    fish_add_path ~/bin
+    fish_add_path ~/bin ~/.cargo/bin
 
     # Commands to run in interactive sessions can go here
     set -U fish_greeting
