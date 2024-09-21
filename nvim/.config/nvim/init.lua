@@ -89,8 +89,6 @@ require("util").setup_lazy()
 -- * don't jump to the first search with `n_*`
 --   https://stackoverflow.com/questions/4256697/
 --   vim-search-and-highlight-but-do-not-jump
--- * a call tree
---   https://github.com/ldelossa/calltree.nvim
 -- * improve increment/decrement
 --   https://github.com/monaqa/dial.nvim
 -- * better % match

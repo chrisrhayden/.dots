@@ -151,7 +151,7 @@ return {
         config = true,
       }
     },
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
     config = function()
       local lsp = require("lspconfig")
       local default_capabilities = require("cmp_nvim_lsp").default_capabilities
@@ -162,13 +162,8 @@ return {
         local cmd_name = server_setup["cmd"] and server_setup["cmd"][1] or
           lsp[server_name].document_config.default_config.cmd[1]
 
-        -- cmd_name = cmd_name:sub(0, #cmd_name - 1)
-
         if vim.fn.executable(cmd_name) == 1 then
           lsp[server_name].setup(server_setup)
-        else
-          vim.notify("LSP error cant find cmd for " ..
-            server_name .. ":\ncmd: " .. cmd_name, vim.log.levels.WARN)
         end
       end
     end
