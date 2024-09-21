@@ -148,10 +148,10 @@ set_key { "<Leader>bp", ":bprevious<CR>", desc = "switch to prev buffer" }
 
 -- window {{{
 -- better then i though it would be
-set_key { "<C-J>", ":silent wincmd j<cr>", desc = "move down a window" }
-set_key { "<C-K>", ":silent wincmd k<cr>", desc = "move up a window" }
-set_key { "<C-L>", ":silent wincmd l<cr>", desc = "move left a window" }
-set_key { "<C-H>", ":silent wincmd h<cr>", desc = "move right a window" }
+set_key { "<C-j>", ":silent wincmd j<cr>", desc = "move down a window" }
+set_key { "<C-k>", ":silent wincmd k<cr>", desc = "move up a window" }
+set_key { "<C-l>", ":silent wincmd l<cr>", desc = "move left a window" }
+set_key { "<C-h>", ":silent wincmd h<cr>", desc = "move right a window" }
 set_key {
   "<M-h>",
   ":vertical resize -10<cr>",
@@ -191,13 +191,6 @@ set_key { "<leader>lo", ":lopen<CR>", desc = "open local list" }
 set_key { "<leader>lc", ":lclose<CR>", desc = "close local list" }
 set_key { "<leader>ll", ":lolder<CR>", desc = "go to older item" }
 set_key { "<leader>ln", ":lnewer<CR>", desc = "go to new item" }
--- }}}
-
--- tab {{{
--- i never use tabs so idk if this is nice
-set_key { "<leader>tp", ":tabprevious<cr>", desc = "go to prev tab" }
-set_key { "<leader>tn", ":tabnext<cr>", desc = "go to next tab" }
-set_key { "<leader>tN", ":tabnew<cr>", desc = "open new tab" }
 -- }}}
 
 -- terminal {{{

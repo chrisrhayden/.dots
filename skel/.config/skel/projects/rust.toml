@@ -2,7 +2,6 @@ build_first = true
 
 build = """
 cargo new {{root}}
-git init {{root}}
 """
 
 [[templates]]
