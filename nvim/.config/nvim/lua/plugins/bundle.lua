@@ -30,7 +30,7 @@ return {
 
   {
     "folke/which-key.nvim",
-    preset = "modern",
+    config = true,
     opts = {
       icons = {
         mappings = false
@@ -63,12 +63,5 @@ return {
     config = function()
       vim.cmd.colorscheme "sourcery"
     end
-  },
-
-  {
-    "folke/tokyonight.nvim",
-    -- config = function()
-    --   vim.cmd.colorscheme = "tokyonight"
-    -- end
   },
 }
