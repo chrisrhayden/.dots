@@ -68,11 +68,13 @@ vim.opt.fillchars = {
 -- feel / editing {{{
 -- disable mouse support
 vim.opt.mouse = ""
--- use screen lines when `wrap` is on
+-- use screen lines to scroll when `wrap` is on
 vim.opt.smoothscroll = true
 -- how completions work in insert mode
 vim.opt.completeopt = {
+  -- use menu even when there is only one match
   "menuone",
+  -- do not select anything until i do the thing
   "noselect",
 }
 -- disable the swapfile
@@ -133,6 +135,12 @@ vim.g.c_syntax_for_h = 1
 -- rust {{{
 -- we have rustfmt so let me just type the way i want
 vim.g.rust_recommended_style = 0
+-- }}}
+
+-- python {{{
+-- pleas just leave me alone
+vim.g.python_recommended_style = 0
+-- vim.g.no_python_maps = 1
 -- }}}
 -- end language settings }}}
 
@@ -208,7 +216,7 @@ vim.diagnostic.config {
 
 -- force file type options {{{
 -- this is kinda bad but there isn't a better way
--- a bunch of language files distributed with vim set formatoptions.
+-- a bunch of  files distributed with vim set formatoptions.
 -- so this will reset it. it would be nice if they didn't.
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("ResetFileType", {}),
