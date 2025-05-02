@@ -5,7 +5,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
-    -- cmd = "Telescope",
     opts = {
       defaults = {
         layout_strategy = "flex",

@@ -209,7 +209,7 @@ end
 
 create_autocmd("TextYankPost", {
   group = create_augroup("HighlightYanked", {}),
-  callback = function() vim.highlight.on_yank() end
+  callback = function() vim.hl.on_yank() end
 })
 
 -- end augroups }}}

@@ -13,15 +13,26 @@ command("Q", "q", {})
 -- set keys {{{
 
 -- disable things  {{{
+
 set_key { "<help>", "<nop>", mode = "", desc = "disable help" }
 set_key { "<f1>", "<nop>", mode = { "", "i" }, desc = "disable help" }
-set_key { "<up>", "<nop>", mode = "", desc = "disable key up" }
-set_key { "<down>", "<nop>", mode = "", desc = "disable key down" }
-set_key { "<left>", "<nop>", mode = "", desc = "disable key left" }
-set_key { "<right>", "<nop>", mode = "", desc = "disable key right" }
+set_key { "<up>", "<nop>", desc = "disable key up" }
+set_key { "<down>", "<nop>", desc = "disable key down" }
+set_key { "<left>", "<nop>", desc = "disable key left" }
+set_key { "<right>", "<nop>", desc = "disable key right" }
 -- }}}
 
--- unimpaired like {{{
+set_key {
+  "K",
+  function()
+    vim.lsp.buf.hover {
+      border = "rounded"
+    }
+  end,
+  desc = "open hover window for context under cursor",
+}
+
+-- add blank lines {{{
 local function add_blank_lines(offset)
   local lines = {}
 
@@ -95,23 +106,25 @@ set_key {
   desc = "keep cursor at the same place when joining lines"
 }
 
+
 set_key { "<leader>[", ":m .-2<cr>==", desc = "move line up" }
 set_key { "<leader>]", ":m .+1<cr>==", desc = "move line down" }
 set_key { "<leader>k", ":m .-2<cr>==", desc = "move line up" }
 set_key { "<leader>j", ":m .+1<cr>==", desc = "move line down" }
 
 set_key {
-  "J",
-  ":m '>+1<cr>gv=gv",
-  mode = "v",
-  desc = "move selected text down"
-}
-set_key {
   "K",
   ":m '<-2<cr>gv=gv",
   mode = "v",
   desc = "move selected text up"
 }
+set_key {
+  "J",
+  ":m '>+1<cr>gv=gv",
+  mode = "v",
+  desc = "move selected text down"
+}
+
 -- }}}
 
 -- search {{{
@@ -121,7 +134,7 @@ set_key { "N", "Nzzzv", desc = "center and open folds for prev item" }
 -- }}}
 
 -- yank to clipboard {{{
-set_key { "gy", '"+y', desc = "yank [motion] to clipboard" }
+set_key { "gy", '"+y', mode = { "" }, desc = "yank [motion] to clipboard" }
 -- }}}
 
 -- fold {{{
