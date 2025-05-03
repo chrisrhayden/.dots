@@ -4,6 +4,7 @@
 **/lazy
 **/node_modules/
 **/ags/types/
+fish/.config/fish/fish_variables
 
 wall_M/
 # Created by https://www.gitignore.io/api/vim
