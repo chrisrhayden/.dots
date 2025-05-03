@@ -6,5 +6,7 @@ function ping_google
         set count (math $count + 1)
         sleep 10
     end
+
+    printf "now connected\n"
 end
 

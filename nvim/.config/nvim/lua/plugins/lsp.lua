@@ -1,9 +1,5 @@
 local set_key = require("util").set_key
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, { focusable = false, border = "rounded" }
-)
-
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -22,7 +18,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     set_key {
       "gd",
-      vim.lsp.buf.definition,
+      function()
+        vim.lsp.buf.definition()
+      end,
       buffer = bufnr,
       desc = "go to definition"
     }
@@ -55,7 +53,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     }
 
     -- auto format files on save/write
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
         group = vim.api.nvim_create_augroup("AutoFormater", { clear = false }),
@@ -120,26 +118,11 @@ local function mk_clang_settings()
   }
 end
 
-local function mk_harper_settings()
-  return {
-    autostart = false,
-    settings = {
-      ["harper-ls"] = {
-        linters = {
-          sentence_capitalization = false,
-          long_sentences = false,
-        }
-      }
-    }
-  }
-end
-
 local servers = {
   rust_analyzer = mk_rust_settings(),
   lua_ls = mk_lua_settings(),
   clangd = mk_clang_settings(),
-  harper_ls = mk_harper_settings(),
-  ts_ls = {},
+  -- ts_ls = {},
 }
 
 return {
@@ -147,24 +130,31 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
-        "folke/neodev.nvim",
-        config = true,
-      }
+        "folke/lazydev.nvim",
+        opts = {},
+      },
+      {
+        "pmizio/typescript-tools.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim"
+        },
+        opts = {
+          settings = {
+            jsx_close_tag = {
+              enable = true,
+              filetypes = { "javascriptreact", "typescriptreact" },
+            }
+          }
+        }
+      },
     },
-    -- event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local lsp = require("lspconfig")
       local default_capabilities = require("cmp_nvim_lsp").default_capabilities
 
       for server_name, server_setup in pairs(servers) do
         table.insert(server_setup, default_capabilities())
-
-        local cmd_name = server_setup["cmd"] and server_setup["cmd"][1] or
-          lsp[server_name].document_config.default_config.cmd[1]
-
-        if vim.fn.executable(cmd_name) == 1 then
-          lsp[server_name].setup(server_setup)
-        end
+        vim.lsp.config(server_name, server_setup)
+        vim.lsp.enable(server_name)
       end
     end
   },

@@ -1,0 +1,103 @@
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+$fg-color: #ffffff;
+$bg-color: transparent;
+
+$bg-hover: #df6a88;
+$fg-hover: #000;
+
+$fg-focused: #df6a88;
+$fg-focused-hover: #fff;
+
+$fg-active: #808080;
+
+
+* {
+  all: unset;
+}
+
+window.Bar {
+  background: $bg-color;
+  color: $fg-color;
+  font-size: 16px;
+  font-family: "Cartograph CF"; 
+
+
+  centerbox {
+    margin-left: 15px;
+    margin-right: 15px;
+
+    workspaces {
+      * {
+        min-width: 2em;
+      }
+
+      .focused {
+        color: $fg-focused;
+        &:hover {
+          color: $fg-focused-hover;
+        }
+      }
+
+      .active {
+        color: $fg-active;
+      }
+    }
+
+
+    time-box {
+      .time-btn {
+        padding: 0px 8px 0px 8px;
+      }
+
+      .fuck {
+        background: $bg-hover;
+      }
+
+      calendar.view {
+        color: $fg-hover;
+        background: $bg-hover;
+        padding: 0px 8px 0px 8px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+
+        .today {
+          background: #fff;
+          border-radius: 5px;
+        }
+
+        .other-month {
+          color: $fg-active;
+        }
+
+      }
+    }
+
+    .volume-icon {
+        padding: 0px 4px 0px 4px;
+    }
+
+    sys-tray {
+      .tray-item {
+        padding: 0px 4px 0px 4px;
+      }
+
+      popover {
+        color: $fg-hover;
+        background: $bg-hover;
+        padding: 0px 8px 0px 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+
+        modelbutton:hover {
+          color: $fg-focused-hover;
+        }
+      }
+    }
+
+    .can-hover:hover {
+      color: $fg-hover;
+      background: $bg-hover;
+      border-radius: 5px;
+    }
+  }
+}

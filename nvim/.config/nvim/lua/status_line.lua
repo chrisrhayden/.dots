@@ -24,22 +24,19 @@ function LspStatus()
   end
 end
 
-local function my_status_line()
-  return table.concat({
-    "",                     -- add padding
-    "[%t]",                 -- file name, only the tail
-    "%m",                   -- buffer state
-    "%r",                   -- if the buffer is read only
-    "%=",                   -- separation
-    "%{v:lua.LspStatus()}", -- lsp status if there is one
-    "%=",                   -- separation
-    "%y",                   -- file type
-    "[%l/%L]",              -- show current line out of all lines
-    "",                     -- add padding
-  }, " ")
-end
+vim.opt.statusline = table.concat({
+  "",                     -- add padding
+  "[%t]",                 -- file name, only the tail
+  "%m",                   -- buffer state
+  "%r",                   -- if the buffer is read only
+  "%=",                   -- separation
+  "%{v:lua.LspStatus()}", -- lsp status if there is one
+  "%=",                   -- separation
+  "%y",                   -- file type
+  "[%l/%L]",              -- show current line out of all lines
+  "",                     -- add padding
+}, " ")
 
-vim.opt.statusline = my_status_line()
 
 if vim.fn.exists("#LspProgress#") then
   local lsp_redraw_status = vim.api.nvim_create_augroup("RedrawStatus", {})
@@ -55,6 +52,8 @@ if vim.fn.exists("#LspProgress#") then
     callback = function()
       vim.cmd.redrawstatus()
 
+      -- wait a second then redraw the status since LspProgress will stop
+      -- triggering after the end pattern and the last message will hang there
       vim.defer_fn(function()
         vim.cmd.redrawstatus()
       end, 1000)

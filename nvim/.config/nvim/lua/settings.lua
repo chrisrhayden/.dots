@@ -7,7 +7,6 @@
 vim.opt.backupdir:remove(".")
 
 -- use ~/.config/nvim/words for spelling and thesaurus files
----@diagnostic disable-next-line: param-type-mismatch
 local word_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "words")
 vim.fn.mkdir(word_dir, "p")
 
@@ -57,12 +56,6 @@ vim.opt.listchars = {
   precedes = "ᐸ",
   nbsp = "+",
 }
--- characters for certain parts of the ui
-vim.opt.fillchars = {
-  eob = "~",
-  fold = "-",
-  diff = "-",
-}
 -- end ui }}}
 
 -- feel / editing {{{
@@ -87,6 +80,8 @@ vim.opt.updatetime = 500
 vim.opt.spell = true
 -- don't flag uncapitalised words as misspelled
 vim.opt.spellcapcheck = nil
+-- treat CamelCase as separate words
+vim.opt.spelloptions = "camel"
 -- search case insensitive
 vim.opt.ignorecase = true
 -- override `ignorecase` when an upper case letter is used in search
@@ -101,7 +96,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 -- indent to the same level as the surrounding text
 vim.opt.smartindent = true
--- add lines breaks at 80 characters
+-- add line breaks at 80 characters
 vim.opt.textwidth = 80
 -- text folding method
 vim.opt.foldmethod = "indent"
@@ -193,6 +188,7 @@ set_key {
   desc = "set local list with diagnostics"
 }
 
+
 -- how diagnostics will be shown
 vim.diagnostic.config {
   virtual_text = false,
@@ -216,7 +212,7 @@ vim.diagnostic.config {
 
 -- force file type options {{{
 -- this is kinda bad but there isn't a better way
--- a bunch of  files distributed with vim set formatoptions.
+-- a bunch of files distributed with vim set formatoptions.
 -- so this will reset it. it would be nice if they didn't.
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("ResetFileType", {}),

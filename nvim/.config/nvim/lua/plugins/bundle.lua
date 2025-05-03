@@ -4,8 +4,8 @@ return {
 
   -- the tpope collection {{{
   -- a set of good key bindings
-  -- change surrounding object in a very vim like way (e.g. cs<from><to> cs"')
   -- "tpope/vim-unimpaired",
+  -- change surrounding object in a very vim like way (e.g. cs<from><to> cs"')
   -- "tpope/vim-surround",
   -- add ending keywords where it can, (e.g. fi and endif)
   -- "tpope/vim-endwise",
@@ -48,8 +48,8 @@ return {
       filetypes = {
         "scss",
         "css",
+        "html",
       },
-      "html",
       user_default_options = {
         names = false
       },
