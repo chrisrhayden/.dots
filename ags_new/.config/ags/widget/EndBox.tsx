@@ -38,11 +38,26 @@ function Volume(): JSX.Element {
 
     speaker.bind_property("volume-icon", icon, "icon-name", SYNC)
 
-    return <box
-        cssClasses={["volume-icon", "can-hover"]}
+    const adj = new Gtk.Adjustment({ upper: 1, lower: 0, step_increment: 0.5 })
+    adj.bind_property("value", speaker, "volume", SYNC)
+    adj.set_value(1)
+
+    return <menubutton
+        direction={Gtk.ArrowType.NONE}
+        cssClasses={["volume-box", "can-hover"]}
+        icon_name={bind(speaker, "volume-icon")}
     >
-        {icon}
-    </box>
+        <popover
+            hasArrow={false}
+        >
+            <Gtk.Scale
+                inverted={true}
+                orientation={Gtk.Orientation.VERTICAL}
+                adjustment={adj}
+                height_request={100}
+            />
+        </popover>
+    </menubutton>
 
 }
 
