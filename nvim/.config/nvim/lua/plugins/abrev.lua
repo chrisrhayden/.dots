@@ -40,6 +40,7 @@ return {
       { "whlie", "while" },
       { "seom", "some" },
       { "lable", "label" },
+      { "SOme", "Some" },
     }
   },
 }

@@ -27,6 +27,7 @@ if status is-interactive
     alias nvconf="$EDITOR +'cd ~/.config/nvim/' ~/.config/nvim/init.lua"
 
     # alias's {{{
+    alias ',,'="cd .."
     alias ls='ls --color'
     alias grep='grep --color'
     alias diff='diff --color'

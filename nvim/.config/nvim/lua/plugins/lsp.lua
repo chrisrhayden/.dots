@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- don't use the lsp formatter
     -- this is nice as not all lsp formatters work well with comments
     vim.bo[bufnr].formatexpr = nil
+    vim.bo[bufnr].formatprg = nil
 
     set_key {
       "gd",
