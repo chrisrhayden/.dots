@@ -12,7 +12,10 @@ create_autocmd("CursorHold", {
     local wins = vim.api.nvim_list_wins()
 
     for _, win in pairs(wins) do
-      if vim.fn.win_gettype(win) == "popup" then
+      local c = vim.fn.getwininfo(win)
+
+      if c[1].variables and c[1].variables["textDocument/hover"] then
+        -- if vim.fn.win_gettype(win) == "popup" then
         return
       end
     end

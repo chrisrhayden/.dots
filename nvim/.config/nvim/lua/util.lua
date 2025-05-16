@@ -1,49 +1,20 @@
 -- all these are pretty useless to have here but whatever
 local M = {}
 
-function M.setup_lazy()
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+function M.add_blank_lines(offset)
+  local lines = {}
 
-  if not vim.loop.fs_stat(lazypath) then
-    print("downloading lazy")
-
-    vim.fn.system {
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable",
-      lazypath,
-    }
+  for _ = 1, vim.v.count1 do
+    table.insert(lines, "")
   end
 
-  vim.opt.rtp:prepend(lazypath)
-
-  require("lazy").setup("plugins",
-    {
-      change_detection = {
-        enable = true,
-        notify = false,
-      },
-      install = { colorscheme = { "sourcery" } },
-      ui = {
-        border = "rounded"
-      },
-      performance = {
-        rtp = {
-          disabled_plugins = {
-            "matchit",
-            "netrwPlugin",
-            "tohtml",
-            "tutor",
-            -- "matchparen",
-            -- "tarPlugin",
-            -- "zipPlugin",
-            -- "gzip",
-          }
-        }
-      }
-    })
+  vim.api.nvim_buf_set_lines(
+    0,
+    vim.fn.line(".") + offset,
+    vim.fn.line(".") + offset,
+    false,
+    lines
+  )
 end
 
 local key_opts = {
@@ -76,6 +47,12 @@ function M.set_key(keymap)
   end
 
   vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+function M.set_keys(keys)
+  for _, v in pairs(keys) do
+    M.set_key(v)
+  end
 end
 
 return M

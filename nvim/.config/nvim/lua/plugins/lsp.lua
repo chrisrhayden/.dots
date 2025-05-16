@@ -4,6 +4,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
+    vim.bo[args.buf].formatexpr = nil
+    vim.bo[args.buf].omnifunc = nil
+
     if client == nil then
       return
     end
@@ -150,11 +153,12 @@ return {
       },
     },
     config = function()
-      local default_capabilities = require("cmp_nvim_lsp").default_capabilities
+      -- local default_capabilities = require("cmp_nvim_lsp").default_capabilities
+      local default_capabilities = require("blink.cmp").get_lsp_capabilities
 
       for server_name, server_setup in pairs(servers) do
-        table.insert(server_setup, default_capabilities())
-        vim.lsp.config(server_name, server_setup)
+        local setup = default_capabilities(server_setup)
+        vim.lsp.config(server_name, setup)
         vim.lsp.enable(server_name)
       end
     end

@@ -38,25 +38,23 @@ vim.opt.statusline = table.concat({
 }, " ")
 
 
-if vim.fn.exists("#LspProgress#") then
-  local lsp_redraw_status = vim.api.nvim_create_augroup("RedrawStatus", {})
-  vim.api.nvim_create_autocmd("LspProgress", {
-    group = lsp_redraw_status,
-    pattern = "begin,report",
-    command = "redrawstatus"
-  })
+local lsp_redraw_status = vim.api.nvim_create_augroup("RedrawStatus", {})
+vim.api.nvim_create_autocmd("LspProgress", {
+  group = lsp_redraw_status,
+  pattern = "begin,report",
+  command = "redrawstatus"
+})
 
-  vim.api.nvim_create_autocmd("LspProgress", {
-    group = lsp_redraw_status,
-    pattern = "end",
-    callback = function()
+vim.api.nvim_create_autocmd("LspProgress", {
+  group = lsp_redraw_status,
+  pattern = "end",
+  callback = function()
+    vim.cmd.redrawstatus()
+
+    -- wait a second then redraw the status since LspProgress will stop
+    -- triggering after the end pattern and the last message will hang there
+    vim.defer_fn(function()
       vim.cmd.redrawstatus()
-
-      -- wait a second then redraw the status since LspProgress will stop
-      -- triggering after the end pattern and the last message will hang there
-      vim.defer_fn(function()
-        vim.cmd.redrawstatus()
-      end, 1000)
-    end,
-  })
-end
+    end, 1000)
+  end,
+})

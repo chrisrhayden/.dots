@@ -98,6 +98,42 @@ local cmp = {
   end,
 }
 
+local blink_cmp = {
+  "saghen/blink.cmp",
+  dependencies = { "rafamadriz/friendly-snippets" },
+  version = "1.*",
+  opts = {
+    completion = {
+      menu = {
+        auto_show = true,
+        draw = {
+          align_to = "cursor",
+          columns = { { "label" }, { "kind" } },
+          components = {
+            label = {
+              width = { fill = false },
+              text = function(ctx) return ctx.label end
+            }
+          }
+        }
+      },
+      list = {
+        selection = {
+          preselect = false,
+        }
+      },
+      accept = {
+        auto_brackets = {
+          enabled = false,
+        },
+      },
+      documentation = {
+        auto_show = true
+      }
+    },
+  }
+}
+
 local auto_pairs = {
   -- auto pair plugin
   "windwp/nvim-autopairs",
@@ -115,4 +151,4 @@ local auto_pairs = {
   end,
 }
 
-return { cmp, auto_pairs }
+return { auto_pairs, blink_cmp }

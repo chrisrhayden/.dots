@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-printf 'escap code `\\033[NUMm`\n'
+printf 'escap code `\\033[${BG};${FGm}`\n'
 printf 'reset code `\\033[0m`\n'
 printf 'example for green `printf "\\033[32mGreen\\033[0m"`\n\n'
 

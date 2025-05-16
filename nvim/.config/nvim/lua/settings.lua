@@ -16,6 +16,7 @@ vim.opt.thesaurus = vim.fs.joinpath(word_dir, "en_thesaurus.txt")
 -- end setup paths }}}
 
 -- ui {{{
+vim.opt.winborder = "rounded"
 -- avoid hit enter prompts and shorten certain messages
 vim.opt.shortmess = "aTWcCF"
 -- use the number column
@@ -197,7 +198,6 @@ vim.diagnostic.config {
   severity_sort = true,
   float = {
     focusable = false,
-    border = "rounded",
   },
   signs = {
     text = {

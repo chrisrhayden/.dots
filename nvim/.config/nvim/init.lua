@@ -4,15 +4,13 @@
 
 --- settings {{{
 --------------------------------------------------------------------------------
-
 vim.g.mapleader = " "
 
+require("setup_plugins")
 require("settings")
 require("mappings")
 require("autocmds")
 require("status_line")
-
-require("util").setup_lazy()
 
 --- }}}
 

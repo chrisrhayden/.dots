@@ -25,7 +25,6 @@ return {
         "lua",
         "make",
         "markdown",
-        "org",
         "python",
         "regex",
         "rust",
@@ -36,16 +35,9 @@ return {
       },
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = { "org" },
       },
       incremental_selection = {
         enable = false,
-        -- keymaps = {
-        --   init_selection = "gnn",
-        --   node_incremental = "grn",
-        --   scope_incremental = "grc",
-        --   node_decremental = "grm",
-        -- },
       },
       textobjects = {
         move = {
@@ -53,14 +45,10 @@ return {
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
             ["]]"] = "@function.outer",
-            -- ["]]"] = "@class.outer",
           },
           goto_previous_start = {
             ["[["] = "@function.outer",
-            -- ["[["] = "@class.outer",
           },
-          -- goto_next_end = { },
-          -- goto_previous_end = { },
         },
         select = {
           enable = true,
@@ -69,10 +57,10 @@ return {
           keymaps = {
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
             ["ab"] = "@block.outer",
             ["ib"] = "@block.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
           },
         },
       },
@@ -83,8 +71,5 @@ return {
         enable = true,
       },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end
   },
 }
