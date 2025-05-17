@@ -1,3 +1,4 @@
+local set_keys = require("util").set_keys
 local set_key = require("util").set_key
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -20,40 +21,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.bo[bufnr].formatexpr = nil
     vim.bo[bufnr].formatprg = nil
 
-    set_key {
-      "gd",
-      function()
-        vim.lsp.buf.definition()
-      end,
-      buffer = bufnr,
-      desc = "go to definition"
-    }
-
-    set_key {
-      "gi",
-      vim.lsp.buf.implementation,
-      buffer = bufnr,
-      desc = "show implementations in quick fix"
-    }
-
-    set_key {
-      "<leader>rn",
-      vim.lsp.buf.rename,
-      buffer = bufnr,
-      desc = "rename with lsp"
-    }
-
-    set_key {
-      "<leader>ca",
-      vim.lsp.buf.code_action,
-      buffer = bufnr,
-      desc = "code action"
-    }
-
-    set_key {
-      "<leader>df",
-      function() vim.lsp.buf.format() end,
-      desc = "do format",
+    set_keys {
+      {
+        "gd",
+        function() vim.lsp.buf.definition() end,
+        buffer = bufnr,
+        desc = "go to definition"
+      },
+      {
+        "gi",
+        vim.lsp.buf.implementation,
+        buffer = bufnr,
+        desc = "show implementations in quick fix"
+      },
+      {
+        "<leader>rn",
+        vim.lsp.buf.rename,
+        buffer = bufnr,
+        desc = "rename with lsp"
+      },
+      {
+        "<leader>ca",
+        vim.lsp.buf.code_action,
+        buffer = bufnr,
+        desc = "code action"
+      },
+      {
+        "<leader>df",
+        function() vim.lsp.buf.format() end,
+        desc = "do format",
+      },
     }
 
     -- auto format files on save/write
@@ -126,7 +123,6 @@ local servers = {
   rust_analyzer = mk_rust_settings(),
   lua_ls = mk_lua_settings(),
   clangd = mk_clang_settings(),
-  -- ts_ls = {},
 }
 
 return {
@@ -153,7 +149,6 @@ return {
       },
     },
     config = function()
-      -- local default_capabilities = require("cmp_nvim_lsp").default_capabilities
       local default_capabilities = require("blink.cmp").get_lsp_capabilities
 
       for server_name, server_setup in pairs(servers) do

@@ -1,6 +1,5 @@
 return {
   "chrisrhayden/abrev.nvim",
-  -- dir = "~/proj/abrev.nvim",
   opts = {
     abrevs = {
       { "b{r,ra,re,rea,ear}k{,e}", "break", },

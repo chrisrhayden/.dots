@@ -36,13 +36,11 @@ return {
       highlight = {
         enable = true,
       },
-      incremental_selection = {
-        enable = false,
-      },
+      -- incremental_selection = { enable = false, },
       textobjects = {
         move = {
           enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
+          set_jumps = true,
           goto_next_start = {
             ["]]"] = "@function.outer",
           },
@@ -71,5 +69,8 @@ return {
         enable = true,
       },
     },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end
   },
 }
