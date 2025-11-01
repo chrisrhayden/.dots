@@ -8,7 +8,7 @@ return {
     opts = {
       defaults = {
         layout_strategy = "flex",
-        border = false,
+        border = true,
       }
     },
     config = function(_, opts)

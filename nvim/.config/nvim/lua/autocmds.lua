@@ -15,7 +15,6 @@ create_autocmd("CursorHold", {
       local c = vim.fn.getwininfo(win)
 
       if c[1].variables and c[1].variables["textDocument/hover"] then
-        -- if vim.fn.win_gettype(win) == "popup" then
         return
       end
     end
@@ -157,7 +156,7 @@ print(bg + '\n' + str(opacity), end="")
 
   local data = vim.system { "kitty", "+runpy", kitty_py }:wait()
 
-  assert(data.code < 1, data.stderr)
+  assert(data.code == 0, data.stderr)
 
   local out = vim.split(data.stdout, "\n")
 

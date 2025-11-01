@@ -5,8 +5,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-    vim.bo[args.buf].formatexpr = nil
-    vim.bo[args.buf].omnifunc = nil
 
     if client == nil then
       return
@@ -14,12 +12,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local bufnr = args.buf
 
-    -- client.server_capabilities.semanticTokensProvider = nil
-
     -- don't use the lsp formatter
     -- this is nice as not all lsp formatters work well with comments
-    vim.bo[bufnr].formatexpr = nil
+    vim.bo[args.buf].formatexpr = nil
     vim.bo[bufnr].formatprg = nil
+    vim.bo[args.buf].omnifunc = nil
 
     set_keys {
       {

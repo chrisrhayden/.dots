@@ -1,27 +1,18 @@
 -- get lsp info and lsp server name to show in the last status
 function LspStatus()
-  local lsp_clients = vim.lsp.get_clients { bufnr = 0 }
+  local status = vim.lsp.status()
 
-  if #lsp_clients > 0 then
-    local status = vim.lsp.status()
-
-    if status and status ~= "" then
-      return status
-    else
-      local names = ""
-
-      for _, lsp_c in pairs(lsp_clients) do
-        names = names .. lsp_c["name"] .. ", "
-      end
-
-      -- remove trailing `,\s`
-      names = names:sub(1, string.len(names) - 2)
-
-      return "[" .. names .. "]"
-    end
-  else
-    return ""
+  if status ~= "" then
+    return "[" .. status .. "]"
   end
+
+  -- thanks neovim
+  local names = vim.iter(vim.lsp.get_clients())
+    :map(function(client) return client["name"] end)
+    :join(", ")
+
+  -- this is so dumb
+  return ((names ~= "") and "[" .. names .. "]" or "")
 end
 
 vim.opt.statusline = table.concat({
