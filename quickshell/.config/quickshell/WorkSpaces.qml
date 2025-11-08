@@ -4,9 +4,9 @@ import QtQuick
 Row {
     id: ws
 
-    required property var screen
-
     anchors.fill: parent
+
+    required property var screen
 
     Repeater {
         model: Hyprland.workspaces.values.filter(ws => {

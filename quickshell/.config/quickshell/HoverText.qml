@@ -4,7 +4,7 @@ import qs
 Rectangle {
     id: root
 
-    required property string message
+    required property string text
     property var onClick: null
 
     color: Style.bg
@@ -25,7 +25,7 @@ Rectangle {
         id: innerText
         anchors.centerIn: parent
         font: Style.barFont
-        text: root.message
+        text: root.text
         color: Style.fontDefault
 
         states: [

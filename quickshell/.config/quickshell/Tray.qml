@@ -6,8 +6,10 @@ import QtQuick
 import qs
 
 Row {
-    height: parent.height
-    anchors.right: parent.right
+    Rectangle {
+        width: parent.height
+        height: parent.height
+    }
 
     Repeater {
         model: SystemTray.items

@@ -6,6 +6,7 @@ import qs
 
 Rectangle {
     id: clockRect
+
     anchors.centerIn: parent
 
     height: parent.height

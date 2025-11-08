@@ -8,13 +8,12 @@ RowLayout {
 
     anchors.fill: parent
 
-    Rectangle {
+    Item {
         Layout.alignment: Qt.AlignLeft
         Layout.fillHeight: true
 
         RowLayout {
-            id: ws_item
-            anchors.fill: parent
+            height: parent.height
 
             Item {
                 Layout.fillHeight: true
@@ -32,17 +31,18 @@ RowLayout {
         }
     }
     Item {
-        id: clock_item
-
         Layout.alignment: Qt.AlignHCenter
         Layout.fillHeight: true
+        // Layout.fillWidth: true
+        // Layout.horizontalStretchFactor: 1
 
         Clock {}
     }
-
     Item {
         Layout.alignment: Qt.AlignRight
         Layout.fillHeight: true
+        // Layout.fillWidth: true
+        // Layout.horizontalStretchFactor: 1
 
         Tray {}
     }
