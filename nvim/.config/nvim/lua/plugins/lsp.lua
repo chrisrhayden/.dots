@@ -16,7 +16,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- this is nice as not all lsp formatters work well with comments
     vim.bo[args.buf].formatexpr = nil
     vim.bo[bufnr].formatprg = nil
-    vim.bo[args.buf].omnifunc = nil
+    -- vim.bo[args.buf].omnifunc = nil
+
 
     set_keys {
       {
@@ -120,6 +121,9 @@ local servers = {
   rust_analyzer = mk_rust_settings(),
   lua_ls = mk_lua_settings(),
   clangd = mk_clang_settings(),
+  qmlls = {
+    cmd = { "qmlls6" }
+  },
 }
 
 return {
@@ -151,6 +155,7 @@ return {
       for server_name, server_setup in pairs(servers) do
         local setup = default_capabilities(server_setup)
         vim.lsp.config(server_name, setup)
+        -- vim.lsp.config(server_name, server_setup)
         vim.lsp.enable(server_name)
       end
     end

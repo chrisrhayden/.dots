@@ -209,9 +209,11 @@ if vim.env.KITTY_LISTEN_ON then
 end
 -- }}}
 
+-- misc {{{
 create_autocmd("TextYankPost", {
   group = create_augroup("HighlightYanked", {}),
   callback = function() vim.hl.on_yank() end
 })
 
+-- }}}
 -- end augroups }}}

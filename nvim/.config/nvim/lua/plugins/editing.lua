@@ -54,3 +54,4 @@ local blink_cmp = {
 }
 
 return { auto_pairs, blink_cmp }
+-- return { auto_pairs }

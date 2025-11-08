@@ -55,4 +55,26 @@ function M.set_keys(keys)
   end
 end
 
+---delete a buffer fully
+---@param bufnr number|nil
+---@param force boolean|nil
+---@return boolean
+function M.delete_buffer(bufnr, force)
+  bufnr = bufnr or 0
+  force = force or false
+
+  -- buffer does not exist
+  if not vim.api.nvim_buf_is_valid(bufnr) then
+    return false
+  end
+
+  if not force and vim.bo[bufnr].modified then
+    vim.notify("buffer has unsaved changes", vim.log.levels.WARN)
+    return false
+  end
+
+  vim.api.nvim_buf_delete(bufnr, { force = force })
+  return true
+end
+
 return M

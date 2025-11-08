@@ -127,9 +127,13 @@ set_keys {
   -- buffer {{{
   -- switch buffer
   { "<bs>", "<C-^>", desc = "switch to last buffer" },
-  { "<Leader>bd", ":bdelete<CR>", desc = "delete a buffer from list" },
+  -- { "<Leader>bd", ":bdelete<CR>", desc = "delete a buffer from list" },
   { "<Leader>bn", ":bnext<CR>", desc = "switch to next buffer" },
   { "<Leader>bp", ":bprevious<CR>", desc = "switch to prev buffer" },
+  {
+    "<Leader>bd", require("util").delete_buffer,
+    desc = "delete a buffer from the list"
+  },
   -- }}}
   -- tabs {{{
   -- switch buffer

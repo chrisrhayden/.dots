@@ -4,9 +4,6 @@ return {
     config = function()
       local set_key = require("util").set_key
 
-      -- require("mini.icons").setup()
-      -- add/remove comments with vim actions
-      require("mini.comment").setup()
       -- highlight all the words in the buffer that the cursor in on
       require("mini.cursorword").setup()
       -- align based on certain characters like `=`
