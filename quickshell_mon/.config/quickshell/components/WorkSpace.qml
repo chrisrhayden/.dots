@@ -53,7 +53,6 @@ Rectangle {
         hoverEnabled: true
         onClicked: mouse => {
             if (mouse.button === 1) {
-                console.log(`workspace ${ws_box.modelData.id}`);
                 Hyprland.dispatch(`workspace ${ws_box.modelData.id}`);
             }
         }

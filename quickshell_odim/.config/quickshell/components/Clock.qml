@@ -5,7 +5,7 @@ import QtQuick
 import qs
 
 Rectangle {
-    id: clock_rect
+    id: clockRect
     anchors.centerIn: parent
 
     height: parent.height
@@ -14,12 +14,23 @@ Rectangle {
     color: Style.bg
     radius: Style.radius
 
+    states: [
+        State {
+            when: clockArea.containsMouse
+            PropertyChanges {
+                clockRect {
+                    color: Style.bgHover
+                }
+            }
+        }
+    ]
+
     Text {
         id: clock
         anchors.centerIn: parent
 
-        leftPadding: 8
-        rightPadding: 8
+        leftPadding: Style.padding
+        rightPadding: Style.padding
 
         readonly property string short_time: "hh:mm AP"
         readonly property string long_time: "MMM ddd yy-MM-dd hh:mm AP"
@@ -35,21 +46,22 @@ Rectangle {
 
         text: Qt.formatDateTime(sys_clock.date, short_bool ? short_time : long_time)
 
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
+        states: [
+            State {
+                when: clockArea.containsMouse
+                PropertyChanges {
+                    clock {
+                        color: Style.fontHover
+                    }
+                }
+            }
+        ]
+    }
 
-            onEntered: () => {
-                console.log(">>>>", clock.width, clock.height, parent.width, parent.height);
-                console.log(">>>>", clock.width, clock.height, clock_rect.width, clock_rect.height);
-                clock_rect.color = Style.bgHover;
-                clock.color = Style.fontHover;
-            }
-            onExited: () => {
-                clock_rect.color = Style.bg;
-                clock.color = Style.fontDefault;
-            }
-            onClicked: _ => clock.short_bool = !clock.short_bool
-        }
+    MouseArea {
+        id: clockArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: _ => clock.short_bool = !clock.short_bool
     }
 }
