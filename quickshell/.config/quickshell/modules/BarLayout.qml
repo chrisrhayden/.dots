@@ -4,16 +4,21 @@ import QtQuick.Layouts
 
 RowLayout {
     id: bar
+
     required property ShellScreen screen
 
     anchors.fill: parent
 
+    // uniformCellSizes: true
+
     Item {
-        Layout.alignment: Qt.AlignLeft
+        // Layout.alignment: Qt.AlignLeft
         Layout.fillHeight: true
 
         RowLayout {
-            height: parent.height
+            anchors.fill: parent
+            uniformCellSizes: false
+            spacing: 0
 
             Item {
                 Layout.fillHeight: true
@@ -23,6 +28,7 @@ RowLayout {
             }
             Item {
                 Layout.fillHeight: true
+                Layout.minimumWidth: childrenRect.width
 
                 WorkSpaces {
                     screen: bar.screen
@@ -34,7 +40,6 @@ RowLayout {
         Layout.alignment: Qt.AlignHCenter
         Layout.fillHeight: true
         // Layout.fillWidth: true
-        // Layout.horizontalStretchFactor: 1
 
         Clock {}
     }
@@ -42,8 +47,28 @@ RowLayout {
         Layout.alignment: Qt.AlignRight
         Layout.fillHeight: true
         // Layout.fillWidth: true
-        // Layout.horizontalStretchFactor: 1
+        // Layout.minimumWidth: childrenRect.width
 
-        Tray {}
+        RowLayout {
+            anchors.fill: parent
+            // anchors.left: parent.left
+            // height: parent.height
+            layoutDirection: Qt.RightToLeft
+            spacing: 0
+
+            Item {
+                Layout.fillHeight: true
+                Layout.minimumWidth: childrenRect.width
+
+                Tray {}
+            }
+
+            Item {
+                Layout.fillHeight: true
+                Layout.minimumWidth: childrenRect.width
+
+                Power {}
+            }
+        }
     }
 }

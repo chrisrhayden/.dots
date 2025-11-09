@@ -59,6 +59,11 @@ return {
   "NoahTheDuke/vim-just",
 
   {
+    "fladson/vim-kitty",
+    ft = "kitty",
+  },
+
+  {
     "saxon1964/neovim-tips",
     dependencies = {
       "MunifTanjim/nui.nvim",

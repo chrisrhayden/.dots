@@ -1,5 +1,6 @@
 pragma Singleton
 import QtQuick
+// import QtQuick.Font
 
 import Quickshell
 
@@ -9,6 +10,7 @@ Singleton {
             family: "Cartograph CF",
             pointSize: 14
         })
+
     property color fontDefault: "white"
     property color fontHover: "black"
 
@@ -21,6 +23,7 @@ Singleton {
     property color bg: "transparent"
     property color bgHover: "#df6a88"
     property int padding: 8
+    // 03
 
     property color separator: "white"
 }

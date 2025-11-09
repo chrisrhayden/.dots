@@ -5,34 +5,25 @@ import Quickshell.Hyprland
 import QtQuick
 
 import qs
+import qs.components
 
-Rectangle {
+StyleRect {
     id: ws_box
 
     required property var modelData
 
-    radius: 5
-
     width: parent.height
     height: parent.height
-    color: Style.bg
 
-    states: [
-        State {
-            when: mouseArea.containsMouse
-            PropertyChanges {
-                ws_box {
-                    color: Style.bgHover
-                }
-            }
-        }
-    ]
+    hovered: mouseArea.containsMouse
 
     Text {
         id: ws_text
         anchors.centerIn: parent
-        color: ws_box.modelData.focused ? Style.wsFocused : (ws_box.modelData.active ? Style.wsActive : Style.fontDefault)
+
         font: Style.barFont
+
+        color: ws_box.modelData.focused ? Style.wsFocused : (ws_box.modelData.active ? Style.wsActive : Style.fontDefault)
         text: ws_box.modelData.name
 
         states: [

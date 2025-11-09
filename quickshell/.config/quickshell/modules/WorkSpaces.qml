@@ -3,7 +3,6 @@ import QtQuick
 
 Row {
     id: ws
-
     anchors.fill: parent
 
     required property var screen
