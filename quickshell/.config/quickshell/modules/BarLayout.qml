@@ -2,17 +2,17 @@ import Quickshell
 import QtQuick
 import QtQuick.Layouts
 
+import qs.components
+
 RowLayout {
     id: bar
 
     required property ShellScreen screen
+    required property PersistentProperties menuVisible
 
     anchors.fill: parent
 
-    // uniformCellSizes: true
-
     Item {
-        // Layout.alignment: Qt.AlignLeft
         Layout.fillHeight: true
 
         RowLayout {
@@ -24,7 +24,32 @@ RowLayout {
                 Layout.fillHeight: true
                 Layout.minimumWidth: childrenRect.width
 
-                Start {}
+                StyleRect {
+                    id: root
+
+                    property bool startWindow: false
+
+                    anchors.centerIn: parent
+
+                    width: parent.height
+                    height: parent.height
+
+                    hovered: mouseArea.containsMouse
+
+                    StyleText {
+                        anchors.centerIn: parent
+                        hovered: mouseArea.containsMouse
+
+                        text: "󰣇"
+                    }
+
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onClicked: bar.menuVisible.start = !bar.menuVisible.start
+                    }
+                }
             }
             Item {
                 Layout.fillHeight: true

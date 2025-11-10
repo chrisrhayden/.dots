@@ -5,6 +5,8 @@ import QtQuick
 import Quickshell
 
 Singleton {
+    property color pink: "#965B6D"
+    // property color pink: "#836179"
     // font style
     property font barFont: ({
             family: "Cartograph CF",
@@ -22,6 +24,7 @@ Singleton {
     property int radius: 5
     property color bg: "transparent"
     property color bgHover: "#df6a88"
+    // property color bgHover: pink
     property int padding: 8
     // 03
 

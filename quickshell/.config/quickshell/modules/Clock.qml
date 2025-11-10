@@ -28,6 +28,9 @@ StyleRect {
 
         leftPadding: 4
         rightPadding: 4
+
+        font.weight: Font.Bold
+
         text: Qt.formatDateTime(sys_clock.date, clock.short_bool ? clock.short_time : clock.long_time)
     }
 
@@ -35,5 +38,6 @@ StyleRect {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
+        onClicked: clock.short_bool = !clock.short_bool
     }
 }
