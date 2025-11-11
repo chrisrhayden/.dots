@@ -27,29 +27,24 @@ Variants {
 
             // Keys.onPressed: console.log("PRESSSS")
 
-            anchors {
-                left: true
-                right: true
-                top: true
-                bottom: true
-            }
-
-            margins {
-                right: 14
-                left: 14
-            }
-
             mask: Region {
-                x: barLayout.x
-                y: barLayout.y
-                // width: barWin - barLayout.width
-                width: barLayout.width
-                height: barLayout.height
-                intersection: Intersection.Combine
-                // intersection: Intersection.Xor
+                x: 0
+                y: 0
+                width: barWin.width
+                height: barWin.height - barLayout.height
+                intersection: Intersection.Xor
 
                 regions: regions.instances
             }
+            // mask: Region {
+            //     x: barLayout.x
+            //     y: barLayout.y
+            //     width: barLayout.width
+            //     height: barLayout.height
+            //     intersection: Intersection.Combine
+            //
+            //     regions: regions.instances
+            // }
 
             Variants {
                 id: regions
@@ -63,9 +58,20 @@ Variants {
                     y: modelData.y
                     width: modelData.width
                     height: modelData.height
-
-                    onShapeChanged: console.log(x, y, width, height)
+                    intersection: Intersection.Subtract
                 }
+            }
+
+            anchors {
+                left: true
+                right: true
+                top: true
+                bottom: true
+            }
+
+            margins {
+                right: 14
+                left: 14
             }
 
             PersistentProperties {
@@ -75,26 +81,25 @@ Variants {
                 property bool start: false
             }
 
-            function isMenuVisible(): bool {
-                return menuVisible.start;
-            }
+            // Interactions {
+            //     id: interactions
+            //     anchors.fill: parent
+            //
+            //     menuVisible: menuVisible
 
-            HyprlandFocusGrab {
-                windows: [barWin]
-                active: barWin.isMenuVisible()
-                onCleared: {
-                    menuVisible.start = false;
-                }
-            }
+            // Menus {
+            //     id: menus
+            //     menuVisible: menuVisible
+            //
+            //     anchors.top: parent.top
+            //     anchors.left: parent.left
+            //     anchors.right: parent.right
+            //     anchors.bottom: barLayout.top
+            // }
 
-            Menus {
-                id: menus
-                bar: barLayout
-                menuVisible: menuVisible
-            }
-
-            Item {
+            BarLayout {
                 id: barLayout
+                height: 26
 
                 anchors {
                     left: parent.left
@@ -102,13 +107,10 @@ Variants {
                     bottom: parent.bottom
                 }
 
-                height: 26
-
-                BarLayout {
-                    screen: barWin.screen
-                    menuVisible: menuVisible
-                }
+                screen: barWin.screen
+                menuVisible: menuVisible
             }
         }
     }
 }
+// }

@@ -10,8 +10,6 @@ RowLayout {
     required property ShellScreen screen
     required property PersistentProperties menuVisible
 
-    anchors.fill: parent
-
     Item {
         Layout.fillHeight: true
 
