@@ -1,16 +1,66 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
+import Quickshell.Hyprland
+import Quickshell.Wayland
+
 import QtQuick
 
-Scope {
-    Variants {
-        model: Quickshell.screens
+Variants {
+    model: Quickshell.screens
+
+    Scope {
+        id: scope
+
+        required property ShellScreen modelData
 
         PanelWindow {
             id: barWin
+            focusable: true
 
-            required property var modelData
+            // required property ShellScreen modelData
 
-            screen: modelData
+            screen: scope.modelData
+            color: "transparent"
+            exclusionMode: ExclusionMode.Ignore
+            WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
+
+            // Keys.onPressed: console.log("PRESSSS")
+
+            mask: Region {
+                x: 0
+                y: 0
+                width: barWin.width
+                height: barWin.height - barLayout.height
+                intersection: Intersection.Xor
+
+                regions: regions.instances
+            }
+            // mask: Region {
+            //     x: barLayout.x
+            //     y: barLayout.y
+            //     width: barLayout.width
+            //     height: barLayout.height
+            //     intersection: Intersection.Combine
+            //
+            //     regions: regions.instances
+            // }
+
+            Variants {
+                id: regions
+
+                model: menus.children
+
+                Region {
+                    required property Item modelData
+
+                    x: modelData.x
+                    y: modelData.y
+                    width: modelData.width
+                    height: modelData.height
+                    intersection: Intersection.Subtract
+                }
+            }
 
             anchors {
                 left: true
@@ -24,26 +74,43 @@ Scope {
                 left: 14
             }
 
-            mask: Region {
-                item: barLaout
+            PersistentProperties {
+                id: menuVisible
+                reloadableId: "menuVisible"
+
+                property bool start: false
             }
 
-            color: "transparent"
+            // Interactions {
+            //     id: interactions
+            //     anchors.fill: parent
+            //
+            //     menuVisible: menuVisible
 
-            Item {
-                id: barLaout
+            // Menus {
+            //     id: menus
+            //     menuVisible: menuVisible
+            //
+            //     anchors.top: parent.top
+            //     anchors.left: parent.left
+            //     anchors.right: parent.right
+            //     anchors.bottom: barLayout.top
+            // }
+
+            BarLayout {
+                id: barLayout
+                height: 26
+
                 anchors {
                     left: parent.left
                     right: parent.right
                     bottom: parent.bottom
                 }
 
-                implicitHeight: 26
-
-                BarLayout {
-                    screen: barWin.screen
-                }
+                screen: barWin.screen
+                menuVisible: menuVisible
             }
         }
     }
 }
+// }

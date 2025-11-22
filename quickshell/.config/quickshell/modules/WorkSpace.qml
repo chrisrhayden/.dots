@@ -21,7 +21,9 @@ StyleRect {
         id: ws_text
         anchors.centerIn: parent
 
-        font: Style.barFont
+        font.family: Style.barFont.family
+        font.pointSize: Style.barFont.pointSize
+        font.weight: Font.Bold
 
         color: ws_box.modelData.focused ? Style.wsFocused : (ws_box.modelData.active ? Style.wsActive : Style.fontDefault)
         text: ws_box.modelData.name
