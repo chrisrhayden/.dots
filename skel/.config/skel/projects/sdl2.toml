@@ -7,11 +7,11 @@ files = []
 
 [[templates]]
 path = "src/main.cpp"
-include = "{{config-dir}}/projects/cpp_basic/main.cpp"
+include = "{{config-dir}}/projects/cpp_sdl2/main.cpp"
 
 [[templates]]
 path = "Makefile"
-include = "{{config-dir}}/projects/cpp_basic/Makefile"
+include = "{{config-dir}}/projects/cpp_sdl2/Makefile"
 
 [[templates]]
 path = ".clang-format"

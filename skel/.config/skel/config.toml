@@ -21,3 +21,5 @@ cc.path                  = "{{config-dir}}/projects/cc.toml"
 cc.aliases               = ["cc"]
 react_type.path          = "{{config-dir}}/projects/react_type.toml"
 react_type.aliases       = ["rt"]
+sdl2.path          = "{{config-dir}}/projects/sdl2.toml"
+sdl2.aliases       = ["sdl2", "sdl"]

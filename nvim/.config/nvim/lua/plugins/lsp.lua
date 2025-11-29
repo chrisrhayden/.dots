@@ -54,11 +54,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- auto format files on save/write
     if client:supports_method("textDocument/formatting") then
       vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
         group = vim.api.nvim_create_augroup("AutoFormater", { clear = false }),
+        buffer = bufnr,
         callback = function() vim.lsp.buf.format() end,
       })
     end
+
+    -- vim.api.nvim_create_autocmd("LspTokenUpdate", {
+    --   -- group = vim.api.nvim_create_augroup("CppLowerTokenHI", {}),
+    --   callback = function(t_args)
+    --     vim.inspect(">>>>>>>>")
+    --     vim.inspect(t_args)
+    --
+    --     local token = t_args.data.token
+    --     if token.type == "macro" and not token.modifiers.readonly then
+    --       vim.lsp.semantic_tokens.highlight_token(
+    --         token, t_args.buf, t_args.data.client_id,
+    --         "@lsp.macro.cpp",
+    --         { priority = 90 }
+    --       )
+    --     end
+    --   end
+    -- })
   end
 })
 
@@ -104,23 +121,10 @@ local function mk_lua_settings()
   }
 end
 
-local function mk_clang_settings()
-  return {
-    on_attach = function(_, bufnr)
-      set_key {
-        "<leader><bs>",
-        ":ClangdSwitchSourceHeader<cr>",
-        buffer = bufnr,
-        desc = "switch to source or header files"
-      }
-    end
-  }
-end
-
 local servers = {
   rust_analyzer = mk_rust_settings(),
   lua_ls = mk_lua_settings(),
-  clangd = mk_clang_settings(),
+  clangd = {},
   qmlls = {
     cmd = { "qmlls6" }
   },

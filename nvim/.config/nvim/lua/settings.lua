@@ -51,7 +51,7 @@ vim.opt.colorcolumn = {
 vim.opt.list = true
 -- the characters that `list` will use
 vim.opt.listchars = {
-  tab = ">-",
+  tab = ">·",
   trail = "·",
   extends = "ᐳ",
   precedes = "ᐸ",

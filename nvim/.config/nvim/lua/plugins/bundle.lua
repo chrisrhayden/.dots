@@ -2,6 +2,16 @@ return {
   -- self manage lazy.nvim
   { "folke/lazy.nvim", version = "*" },
 
+  {
+    "jakemason/ouroboros",
+    requires = { { "nvim-lua/plenary.nvim" } },
+    config = function()
+      require("util").set_key {
+        "<leader><bs>", ":Ouroboros<cr>"
+      }
+    end
+  },
+
   -- the tpope collection {{{
   -- a set of good key bindings
   -- "tpope/vim-unimpaired",

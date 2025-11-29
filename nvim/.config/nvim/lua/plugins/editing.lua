@@ -37,12 +37,7 @@ local blink_cmp = {
         }
       },
 
-      sources = {
-        providers = {
-          -- defaults to `{ 'buffer' }`
-          lsp = { fallbacks = {} }
-        }
-      },
+
       list = {
         selection = {
           preselect = false,
@@ -55,6 +50,12 @@ local blink_cmp = {
       },
       documentation = {
         auto_show = true
+      }
+    },
+    sources = {
+      providers = {
+        -- defaults to `{ 'buffer' }`
+        lsp = { fallbacks = {} }
       }
     },
   }

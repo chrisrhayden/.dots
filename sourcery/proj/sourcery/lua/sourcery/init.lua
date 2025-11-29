@@ -158,7 +158,7 @@ function SourceryColor()
         PreProc                                    = { fg = colors.grey_4 },
         -- Include
         -- Define
-        Macro                                      = { link = "Function" },
+        -- Macro                                      = { link = "Function" },
         -- PreCondit
         -- }}}
 
@@ -212,13 +212,14 @@ function SourceryColor()
         -- "@lsp.type.class"
         -- "@lsp.type.comment"
         -- "@lsp.type.decorator"
+        -- ["@lsp.mod.declaration.cpp"]               = { link = "Function" },
         -- "@lsp.type.enum"
         -- "@lsp.type.enumMember"
         -- "@lsp.type.event"
         -- "@lsp.type.function"
         -- "@lsp.type.interface"
         -- "@lsp.type.keyword"
-        ["@lsp.type.macro"]                        = { link = "Function" },
+        -- ["@lsp.type.macro"]                        = { link = "Function" },
         -- "@lsp.type.method"
         -- "@lsp.type.modifier"
         -- "@lsp.type.namespace"
@@ -237,24 +238,27 @@ function SourceryColor()
 
         -- rust {{{
         -- for the `?` operator
+        ["@lsp.type.macro.rust"]                   = { link = "Function" },
         ["@lsp.typemod.operator.controlFlow.rust"] = { fg = colors.orange },
         -- }}}
 
         -- lua {{{
         ["@lsp.typemod.keyword.documentation.lua"] = { fg = colors.grey_4 },
         -- }}}
+
+        ["@lsp.typemod.macro.declaration.cpp"]     = { link = "Function" },
         -- }}}
 
         -- treesitter {{{
         -- treesitter links to appropriate groups
         ["@punctuation"]                           = { fg = colors.blue_2 },
         ["@variable"]                              = { link = "Identifier" },
+        ["@function.macro.cpp"]                    = { link = "Function" },
         -- }}}
 
-
         -- debug {{{
-        debugBreakpoint = { bg = colors.teal_1, fg = colors.grey_1 },
-        debugPC         = { bg = colors.teal_1, fg = colors.grey_1 },
+        debugBreakpoint                            = { bg = colors.teal_1, fg = colors.grey_1 },
+        debugPC                                    = { bg = colors.teal_1, fg = colors.grey_1 },
         -- }}}
 
 
