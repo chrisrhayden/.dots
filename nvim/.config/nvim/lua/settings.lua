@@ -125,7 +125,7 @@ vim.opt.formatoptions = vim.opt.formatoptions
 -- C {{{
 -- make vim treat *.h files like c not cpp
 -- TODO: this could probably be set somewhere else to also use cpp
-vim.g.c_syntax_for_h = 1
+-- vim.g.c_syntax_for_h = 1
 -- }}}
 
 -- rust {{{
