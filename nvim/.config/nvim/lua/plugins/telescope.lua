@@ -1,16 +1,17 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    tage = "v0.2.0",
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
-    opts = {
-      defaults = {
-        layout_strategy = "flex",
-        border = true,
-      }
-    },
+    opts = {},
+    -- opts = {
+    --   defaults = {
+    --     layout_strategy = "flex",
+    --     border = true,
+    --   }
+    -- },
     config = function(_, opts)
       local telescope = require("telescope")
 
@@ -23,21 +24,10 @@ return {
         builtin.find_files,
         desc = "find file in dir"
       }
-      set_key { "<leader>fb",
-        builtin.buffers,
-        desc = "find buffer"
-      }
+
       set_key { "<leader>fg",
         builtin.live_grep,
         desc = "live grep"
-      }
-      set_key { "<leader>fs",
-        builtin.grep_string,
-        desc = "search for string under cursor"
-      }
-      set_key { "<leader>fh",
-        builtin.help_tags,
-        desc = "find help tags"
       }
     end,
   }

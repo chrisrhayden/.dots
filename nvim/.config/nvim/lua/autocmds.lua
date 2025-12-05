@@ -217,3 +217,5 @@ create_autocmd("TextYankPost", {
 
 -- }}}
 -- end augroups }}}
+
+-- vim: foldmethod=marker

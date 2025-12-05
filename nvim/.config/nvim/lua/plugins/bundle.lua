@@ -2,17 +2,8 @@ return {
   -- self manage lazy.nvim
   { "folke/lazy.nvim", version = "*" },
 
-  {
-    "jakemason/ouroboros",
-    requires = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      require("util").set_key {
-        "<leader><bs>", ":Ouroboros<cr>"
-      }
-    end
-  },
-
   -- the tpope collection {{{
+  -- i cant bring myself to delete these
   -- a set of good key bindings
   -- "tpope/vim-unimpaired",
   -- change surrounding object in a very vim like way (e.g. cs<from><to> cs"')
@@ -53,7 +44,7 @@ return {
   },
 
   { -- kinda nice sometimes
-    "NvChad/nvim-colorizer.lua",
+    "catgoose/nvim-colorizer.lua",
     opts = {
       filetypes = {
         "scss",
@@ -66,7 +57,7 @@ return {
     },
   },
 
-  "NoahTheDuke/vim-just",
+  { "NoahTheDuke/vim-just" },
 
   {
     "fladson/vim-kitty",
@@ -74,33 +65,9 @@ return {
   },
 
   {
-    "saxon1964/neovim-tips",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL: Choose your preferred markdown renderer (or omit for raw markdown)
-      "MeanderingProgrammer/render-markdown.nvim", -- Clean rendering
-      -- OR: "OXY2DEV/markview.nvim", -- Rich rendering with advanced features
-    },
-    opts = {
-      -- OPTIONAL: Location of user defined tips (default value shown below)
-      user_file = vim.fn.stdpath("config") .. "/neovim_tips/user_tips.md",
-      -- OPTIONAL: Prefix for user tips to avoid conflicts (default: "[User] ")
-      user_tip_prefix = "[User] ",
-      -- OPTIONAL: Show warnings when user tips conflict with builtin (default: true)
-      warn_on_conflicts = true,
-      -- OPTIONAL: Daily tip mode (default: 1)
-      -- 0 = off, 1 = once per day, 2 = every startup
-      daily_tip = 0,
-      -- OPTIONAL: Bookmark symbol (default: "🌟 ")
-      -- bookmark_symbol = "🌟 ",
-    },
-  },
-
-
-  {
     dir = "~/proj/sourcery",
     config = function()
       vim.cmd.colorscheme "sourcery"
     end
-  },
+  }
 }

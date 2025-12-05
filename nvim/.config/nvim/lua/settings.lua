@@ -17,6 +17,7 @@ vim.opt.thesaurus = vim.fs.joinpath(word_dir, "en_thesaurus.txt")
 
 -- ui {{{
 vim.opt.winborder = "rounded"
+vim.opt.pumborder = "rounded"
 -- avoid hit enter prompts and shorten certain messages
 vim.opt.shortmess = "aTWcCF"
 -- use the number column
@@ -70,6 +71,14 @@ vim.opt.completeopt = {
   "menuone",
   -- do not select anything until i do the thing
   "noselect",
+  -- display popup menu for insert completions
+  "popup",
+  "fuzzy"
+}
+vim.opt.wildoptions = {
+  "pum",
+  "fuzzy",
+  "tagfile",
 }
 -- disable the swapfile
 vim.opt.swapfile = false

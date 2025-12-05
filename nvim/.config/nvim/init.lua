@@ -6,11 +6,12 @@
 --------------------------------------------------------------------------------
 vim.g.mapleader = " "
 
-require("setup_plugins")
 require("settings")
 require("mappings")
 require("autocmds")
 require("status_line")
+-- ./lua/plugins/
+require("setup_plugins")
 
 --- }}}
 
@@ -94,6 +95,8 @@ require("status_line")
 --   https://github.com/monaqa/dial.nvim
 -- * better % match
 --   https://github.com/andymass/vim-matchup
+-- * tpope like abolish stuff
+--   https://neovimcraft.com/plugin/gregorias/coerce.nvim/
 -- }}}
 
 -- vim: foldmethod=marker

@@ -1,7 +1,11 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fs.joinpath(
+  vim.fn.stdpath("data"),
+  "lazy",
+  "lazy.nvim"
+)
 
 if not vim.loop.fs_stat(lazypath) then
-  print("downloading lazy")
+  vim.notify("downloading lazy")
 
   vim.fn.system {
     "git",

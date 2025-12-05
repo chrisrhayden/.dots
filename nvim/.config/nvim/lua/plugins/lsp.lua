@@ -5,7 +5,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-
     if client == nil then
       return
     end
@@ -14,7 +13,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- don't use the lsp formatter
     -- this is nice as not all lsp formatters work well with comments
-    vim.bo[args.buf].formatexpr = nil
+    vim.bo[bufnr].formatexpr = nil
     vim.bo[bufnr].formatprg = nil
     -- vim.bo[args.buf].omnifunc = nil
 
@@ -59,6 +58,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
         callback = function() vim.lsp.buf.format() end,
       })
     end
+
+    -- if client:supports_method("textDocument/completion") then
+    --   vim.bo.completeopt = "menuone,popup"
+    --   vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    --
+    --   local function feedkeys(keys)
+    --     vim.api.nvim_feedkeys(
+    --       vim.api.nvim_replace_termcodes(keys, true, false, true), "n", true)
+    --   end
+    --
+    --   set_key {
+    --     "<C-n>",
+    --     function()
+    --       if tonumber(vim.fn.pumvisible()) ~= 0 then
+    --         feedkeys("<C-n>")
+    --       else
+    --         if next(vim.lsp.get_clients { bufnr = 0 }) then
+    --           vim.lsp.completion.get()
+    --         else
+    --           feedkeys("<C-x><C-o>")
+    --         end
+    --       end
+    --     end,
+    --     mode = { "i" }
+    --
+    --   }
+    -- end
+    -- vim.lsp.completion(true, client.id, bufnr, { autotrigger = true })
 
     -- vim.api.nvim_create_autocmd("LspTokenUpdate", {
     --   -- group = vim.api.nvim_create_augroup("CppLowerTokenHI", {}),
@@ -158,8 +185,8 @@ return {
 
       for server_name, server_setup in pairs(servers) do
         local setup = default_capabilities(server_setup)
-        vim.lsp.config(server_name, setup)
         -- vim.lsp.config(server_name, server_setup)
+        vim.lsp.config(server_name, setup)
         vim.lsp.enable(server_name)
       end
     end

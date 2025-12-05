@@ -1,5 +1,4 @@
 local auto_pairs = {
-  -- auto pair plugin
   "windwp/nvim-autopairs",
   event = "InsertEnter",
   config = function()
@@ -15,13 +14,36 @@ local auto_pairs = {
   end,
 }
 
+-- switch between header and not header files
+local ouroboros = {
+  "jakemason/ouroboros",
+  requires = { { "nvim-lua/plenary.nvim" } },
+  config = function()
+    require("util").set_key {
+      "<leader><bs>", ":Ouroboros<cr>"
+    }
+  end
+}
+
 local blink_cmp = {
   "saghen/blink.cmp",
   dependencies = {
     "rafamadriz/friendly-snippets"
   },
   version = "1.*",
+  ---@module "blink.cmp"
+  ---@type blink.cmp.Config
   opts = {
+    sources = {
+      providers = {
+        -- make blink add buffer comp even when lsp is active
+        -- defaults to `{ 'buffer' }`
+        lsp = { fallbacks = {} },
+        snippets = {
+          score_offset = -1,
+        }
+      }
+    },
     completion = {
       menu = {
         auto_show = true,
@@ -36,8 +58,6 @@ local blink_cmp = {
           }
         }
       },
-
-
       list = {
         selection = {
           preselect = false,
@@ -50,16 +70,12 @@ local blink_cmp = {
       },
       documentation = {
         auto_show = true
-      }
+      },
     },
-    sources = {
-      providers = {
-        -- defaults to `{ 'buffer' }`
-        lsp = { fallbacks = {} }
-      }
-    },
+    cmdline = {
+      enabled = false,
+    }
   }
 }
 
-return { auto_pairs, blink_cmp }
--- return { auto_pairs }
+return { auto_pairs, ouroboros, blink_cmp }
