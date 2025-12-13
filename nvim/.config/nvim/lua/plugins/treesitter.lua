@@ -13,6 +13,7 @@ local ts_langs = {
   "fish",
   "html",
   "json",
+  "just",
   "lua",
   "make",
   "markdown",

@@ -77,4 +77,34 @@ function M.delete_buffer(bufnr, force)
   return true
 end
 
+---@param cmd string
+---@return string|nil
+function M.justfile(cmd)
+  if not vim.fn.filereadable("justfile") then
+    vim.notify("no just file to use", vim.log.levels.INFO)
+    return nil
+  end
+
+
+  local out
+  if cmd and cmd ~= "" then
+    out = vim.system { "just", cmd }:wait(1000)
+  else
+    out = vim.system { "just" }:wait(1000)
+  end
+
+  if out == nil then
+    return nil
+  elseif out.code ~= 0 then
+    vim.notify("just error: " .. out.stderr, vim.log.levels.ERROR)
+    return nil
+  end
+
+  if out.stdout or out.stdout ~= "" then
+    return vim.trim(out.stdout)
+  else
+    return nil
+  end
+end
+
 return M

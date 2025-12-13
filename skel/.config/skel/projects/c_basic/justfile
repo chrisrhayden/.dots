@@ -1,0 +1,20 @@
+name := "rend"
+build_dir := "./build"
+prog := build_dir / name
+
+alias r := run
+alias b := build
+
+default: config build
+
+config:
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B {{build_dir}}
+
+build:
+    cmake --build {{build_dir}}
+
+run: build
+    {{prog}}
+
+val: build
+    valgrind --leak-check=full --track-origins=yes {{prog}}
