@@ -1,5 +1,5 @@
 local set_keys = require("util").set_keys
-local set_key = require("util").set_key
+-- local set_key = require("util").set_key
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -163,7 +163,11 @@ return {
     dependencies = {
       {
         "folke/lazydev.nvim",
-        opts = {},
+        opts = {
+          library = {
+            "nvim-dap-ui"
+          }
+        },
       },
       {
         "pmizio/typescript-tools.nvim",

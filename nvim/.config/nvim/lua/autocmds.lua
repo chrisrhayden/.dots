@@ -1,3 +1,33 @@
+local justfile = require("util").justfile
+
+-- user cmds {{{
+vim.api.nvim_create_user_command(
+  "Just",
+  function(opts)
+    local out = justfile(opts.args)
+    if out and out ~= "" then
+      vim.print(out)
+    end
+  end,
+  {
+    nargs = "?",
+    complete = function()
+      local out = justfile("--summary")
+      if out == nil then
+        return ""
+      end
+
+      local comp = {}
+      for v in string.gmatch(out, "[^%s]+") do
+        table.insert(comp, v)
+      end
+
+      return comp
+    end
+  }
+)
+
+-- }}}
 -- auto cmds {{{
 
 local create_augroup = vim.api.nvim_create_augroup

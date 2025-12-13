@@ -194,17 +194,17 @@ set_keys {
 
   { "<leader>`", ":split <bar> terminal<cr>", desc = "open a terminal" },
   -- }}}
-  -- gdb term debug debugging {{{
-  -- i should use gdb more
-  { "<leader>d<cr>", ":Break<cr>", desc = "set a breakpoint" },
-  { "<leader>dx", ":Clear<cr>", desc = "delete a breakpoint" },
-  { "<leader>dc", ":Continue<cr>", desc = "continue cmd" },
-  { "<leader>dm", ":Finish<cr>", desc = "finish cmd" },
-  { "<leader>dq", ":Over<cr>", desc = "next cmd" },
-  { "<leader>dr", ":Run<cr>", desc = "run the program" },
-  { "<leader>dQ", ":Step<cr>", desc = "step cmd" },
-  { "<leader>dC", ":Stop<cr>", desc = "interrupt the program" },
-  -- }}}
+  -- -- gdb term debug debugging {{{
+  -- -- i should use gdb more
+  -- { "<leader>d<cr>", ":Break<cr>", desc = "set a breakpoint" },
+  -- { "<leader>dx", ":Clear<cr>", desc = "delete a breakpoint" },
+  -- { "<leader>dc", ":Continue<cr>", desc = "continue cmd" },
+  -- { "<leader>dm", ":Finish<cr>", desc = "finish cmd" },
+  -- { "<leader>dq", ":Over<cr>", desc = "next cmd" },
+  -- { "<leader>dr", ":Run<cr>", desc = "run the program" },
+  -- { "<leader>dQ", ":Step<cr>", desc = "step cmd" },
+  -- { "<leader>dC", ":Stop<cr>", desc = "interrupt the program" },
+  -- -- }}}
 }
 -- }}}
 
