@@ -5,13 +5,13 @@ BinPackParameters: false
 IndentCaseLabels: true
 AllowAllParametersOfDeclarationOnNextLine: false
 AlignAfterOpenBracket: BlockIndent
+AllowShortFunctionsOnASingleLine: false
 # AlignAfterOpenBracket: AlwaysBreak
 # BraceWrapping:
 #   AfterFunction: true
 
 # BreakBeforeBraces: Attach
 # IndentCaseLabels: true
-# AllowShortFunctionsOnASingleLine: false
 # BinPackArguments: false
 # BinPackParameters: false
 # AlignAfterOpenBracket: BlockIndent

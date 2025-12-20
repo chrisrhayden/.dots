@@ -4,9 +4,9 @@ dirs = [
 
 [[templates]]
 path = "src/main.c"
-template = """#include <stdio>
+template = """#include <stdio.h>
 int main(void) {
-    printf("hello world")
+    printf("hello world");
 }
 """
 
