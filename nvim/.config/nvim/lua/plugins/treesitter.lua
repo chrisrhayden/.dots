@@ -25,6 +25,7 @@ local ts_langs = {
   "javascript",
   "vim",
   "hyprlang",
+  "just",
 }
 
 local treesitter = {
