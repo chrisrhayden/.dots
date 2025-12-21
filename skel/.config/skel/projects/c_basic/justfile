@@ -1,5 +1,5 @@
-name := "rend"
-build_dir := "./build"
+name := "{{name}}"
+build_dir := "build"
 prog := build_dir / name
 
 alias r := run
@@ -8,13 +8,13 @@ alias b := build
 default: config build
 
 config:
-    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B {{build_dir}}
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B {{{{raw}}}}{{build_dir}}{{{{/raw}}}}
 
 build:
-    cmake --build {{build_dir}}
+    cmake --build {{{{raw}}}}{{build_dir}}{{{{/raw}}}}
 
 run: build
-    {{prog}}
+    {{{{raw}}}}{{prog}}{{{{/raw}}}} 
 
 val: build
-    valgrind --leak-check=full --track-origins=yes {{prog}}
+    valgrind --leak-check=full --track-origins=yes {{{{raw}}}}{{prog}}{{{{/raw}}}}

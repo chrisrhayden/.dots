@@ -4,9 +4,13 @@ dirs = [
 
 [[templates]]
 path = "src/main.c"
-template = """#include <stdio>
-int main(void) {
-    printf("hello world")
+template = """#include <stdio.h>
+#include <stdlib.h>
+
+int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
+    printf("hello world");
+
+    return EXIT_SUCCESS;
 }
 """
 

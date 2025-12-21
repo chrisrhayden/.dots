@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 4.2.0)
 
-project(basic C)
+project({{name}} C)
 
 set(CMAKE_C_COMPILER clang)
 add_compile_options(
@@ -14,5 +14,5 @@ add_compile_options(
 )
 
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS ./src/*.c)
-add_executable(basic ${sources})
-target_include_directories(basic PRIVATE ${PROJECT_SOURCE_DIR})
+add_executable({{name}} ${sources})
+target_include_directories({{name}} PRIVATE ${PROJECT_SOURCE_DIR})
