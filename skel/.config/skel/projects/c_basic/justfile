@@ -15,6 +15,7 @@ build:
 
 run: build
     {{{{raw}}}}{{prog}}{{{{/raw}}}} 
+   {{{{raw}}}}{{prog}}{{{{/raw}}}}
 
 val: build
     valgrind --leak-check=full --track-origins=yes {{{{raw}}}}{{prog}}{{{{/raw}}}}
