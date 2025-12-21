@@ -1,0 +1,24 @@
+name := "{{name}}"
+build_dir := "build"
+prog := build_dir / name
+
+alias r := run
+alias b := build
+
+default: config build
+
+config:
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B {{{{raw}}}}{{build_dir}}{{{{/raw}}}}
+
+build:
+    cmake --build {{{{raw}}}}{{build_dir}}{{{{/raw}}}}
+
+run: build
+<<<<<<< HEAD
+    {{{{raw}}}}{{prog}}{{{{/raw}}}} 
+=======
+   {{{{raw}}}}{{prog}}{{{{/raw}}}}
+>>>>>>> refs/remotes/origin/development
+
+val: build
+    valgrind --leak-check=full --track-origins=yes {{{{raw}}}}{{prog}}{{{{/raw}}}}

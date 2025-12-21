@@ -1,0 +1,40 @@
+dirs = [
+    "src",
+]
+
+[[templates]]
+path = "src/main.c"
+template = """#include <stdio.h>
+<<<<<<< HEAD
+#include <stdlib.h>
+
+int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
+    printf("hello world");
+
+    return EXIT_SUCCESS;
+=======
+int main(void) {
+    printf("hello world");
+>>>>>>> refs/remotes/origin/development
+}
+"""
+
+[[templates]]
+path = "CMakeLists.txt"
+include = "{{config-dir}}/projects/c_basic/CMakeLists.txt"
+
+[[templates]]
+path = ".gitignore"
+include = "{{config-dir}}/projects/c_basic/gitignore"
+
+[[templates]]
+path = ".clang-format"
+include = "{{config-dir}}/projects/c_basic/clang-format"
+
+[[templates]]
+path = ".clangd"
+include = "{{config-dir}}/projects/c_basic/clangd"
+
+[[templates]]
+path = "justfile"
+include = "{{config-dir}}/projects/c_basic/justfile"
