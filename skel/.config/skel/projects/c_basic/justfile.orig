@@ -14,8 +14,11 @@ build:
     cmake --build {{{{raw}}}}{{build_dir}}{{{{/raw}}}}
 
 run: build
+<<<<<<< HEAD
     {{{{raw}}}}{{prog}}{{{{/raw}}}} 
+=======
    {{{{raw}}}}{{prog}}{{{{/raw}}}}
+>>>>>>> refs/remotes/origin/development
 
 val: build
     valgrind --leak-check=full --track-origins=yes {{{{raw}}}}{{prog}}{{{{/raw}}}}

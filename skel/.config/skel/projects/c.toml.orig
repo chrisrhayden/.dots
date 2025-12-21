@@ -5,12 +5,17 @@ dirs = [
 [[templates]]
 path = "src/main.c"
 template = """#include <stdio.h>
+<<<<<<< HEAD
 #include <stdlib.h>
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
     printf("hello world");
 
     return EXIT_SUCCESS;
+=======
+int main(void) {
+    printf("hello world");
+>>>>>>> refs/remotes/origin/development
 }
 """
 
