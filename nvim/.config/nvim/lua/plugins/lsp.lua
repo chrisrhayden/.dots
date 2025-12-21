@@ -155,9 +155,10 @@ local servers = {
   qmlls = {
     cmd = { "qmlls6" }
   },
+  pyright = {},
 }
 
-return {
+local lsp = {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -196,3 +197,18 @@ return {
     end
   },
 }
+
+local none = {
+  "nvimtools/none-ls.nvim",
+  config = function()
+    local null_ls = require("null-ls")
+
+    null_ls.setup {
+      sources = {
+        null_ls.builtins.formatting.black
+      }
+    }
+  end
+}
+
+return { lsp, none }
