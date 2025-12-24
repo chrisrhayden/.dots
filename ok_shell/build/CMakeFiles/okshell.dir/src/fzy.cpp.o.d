@@ -1,6 +1,6 @@
 CMakeFiles/okshell.dir/src/fzy.cpp.o: \
-  /home/chris/proj/ok_shell/src/fzy.cpp \
-  /home/chris/proj/ok_shell/src/fzy.hpp \
+  /home/chris/.dots/ok_shell/src/fzy.cpp \
+  /home/chris/.dots/ok_shell/src/fzy.hpp \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/string \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/bits/requires_hosted.h \
   /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \

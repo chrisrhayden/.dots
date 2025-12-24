@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Utility rule file for okshellplugin_autogen.
 
@@ -70,9 +70,9 @@ CMakeFiles/okshellplugin_autogen: okshellplugin_autogen/timestamp
 
 okshellplugin_autogen/timestamp: /usr/lib/qt6/moc
 okshellplugin_autogen/timestamp: CMakeFiles/okshellplugin_autogen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target okshellplugin"
-	/usr/bin/cmake -E cmake_autogen /home/chris/proj/ok_shell/build/CMakeFiles/okshellplugin_autogen.dir/AutogenInfo.json ""
-	/usr/bin/cmake -E touch /home/chris/proj/ok_shell/build/okshellplugin_autogen/timestamp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target okshellplugin"
+	/usr/bin/cmake -E cmake_autogen /home/chris/.dots/ok_shell/build/CMakeFiles/okshellplugin_autogen.dir/AutogenInfo.json ""
+	/usr/bin/cmake -E touch /home/chris/.dots/ok_shell/build/okshellplugin_autogen/timestamp
 
 CMakeFiles/okshellplugin_autogen.dir/codegen:
 .PHONY : CMakeFiles/okshellplugin_autogen.dir/codegen
@@ -91,6 +91,6 @@ CMakeFiles/okshellplugin_autogen.dir/clean:
 .PHONY : CMakeFiles/okshellplugin_autogen.dir/clean
 
 CMakeFiles/okshellplugin_autogen.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/okshellplugin_autogen.dir/DependInfo.cmake "--color=$(COLOR)" okshellplugin_autogen
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/okshellplugin_autogen.dir/DependInfo.cmake "--color=$(COLOR)" okshellplugin_autogen
 .PHONY : CMakeFiles/okshellplugin_autogen.dir/depend
 

@@ -212,7 +212,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is Clang, found in:
-        /home/chris/proj/ok_shell/build/CMakeFiles/4.2.1/CompilerIdCXX/a.out
+        /home/chris/.dots/ok_shell/build/CMakeFiles/4.2.1/CompilerIdCXX/a.out
       
   -
     kind: "find-v1"
@@ -1037,8 +1037,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl"
-      binary: "/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl"
+      source: "/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1"
+      binary: "/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/usr/bin/clang-scan-deps"
       CMAKE_CXX_FLAGS: ""
@@ -1049,13 +1049,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl'
+        Change Dir: '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ca11c/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_ca11c.dir/build.make CMakeFiles/cmTC_ca11c.dir/build
-        make[1]: Entering directory '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl'
-        Building CXX object CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_f9b58/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_f9b58.dir/build.make CMakeFiles/cmTC_f9b58.dir/build
+        make[1]: Entering directory '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1'
+        Building CXX object CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang version 21.1.6
         Target: x86_64-pc-linux-gnu
         Thread model: posix
@@ -1069,7 +1069,7 @@ events:
         Candidate multilib: 32;@m32
         Selected multilib: .;@m64
          (in-process)
-         "/usr/bin/clang++" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl -v -fcoverage-compilation-dir=/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl -resource-dir /usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1 -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/x86_64-pc-linux-gnu -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/backward -internal-isystem /usr/lib/clang/21/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -stack-protector 2 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/usr/bin/clang++" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1 -v -fcoverage-compilation-dir=/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1 -resource-dir /usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1 -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/x86_64-pc-linux-gnu -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/backward -internal-isystem /usr/lib/clang/21/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -stack-protector 2 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 21.1.6 based upon LLVM 21.1.6 default target x86_64-pc-linux-gnu
         ignoring nonexistent directory "/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include"
         ignoring nonexistent directory "/include"
@@ -1082,8 +1082,8 @@ events:
          /usr/local/include
          /usr/include
         End of search list.
-        Linking CXX executable cmTC_ca11c
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ca11c.dir/link.txt --verbose=1
+        Linking CXX executable cmTC_f9b58
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f9b58.dir/link.txt --verbose=1
         clang version 21.1.6
         Target: x86_64-pc-linux-gnu
         Thread model: posix
@@ -1096,10 +1096,10 @@ events:
         Candidate multilib: .;@m64
         Candidate multilib: 32;@m32
         Selected multilib: .;@m64
-         "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_ca11c /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64 -L/lib/../lib64 -L/usr/lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o
+         "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_f9b58 /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64 -L/lib/../lib64 -L/usr/lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o
         GNU ld (GNU Binutils) 2.45.1
-        /usr/bin/clang++ -v -Wl,-v CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_ca11c
-        make[1]: Leaving directory '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl'
+        /usr/bin/clang++ -v -Wl,-v CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_f9b58
+        make[1]: Leaving directory '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1'
         
       exitCode: 0
   -
@@ -1138,13 +1138,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl']
+        ignore line: [Change Dir: '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ca11c/fast]
-        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_ca11c.dir/build.make CMakeFiles/cmTC_ca11c.dir/build]
-        ignore line: [make[1]: Entering directory '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl']
-        ignore line: [Building CXX object CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_f9b58/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_f9b58.dir/build.make CMakeFiles/cmTC_f9b58.dir/build]
+        ignore line: [make[1]: Entering directory '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1']
+        ignore line: [Building CXX object CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang version 21.1.6]
         ignore line: [Target: x86_64-pc-linux-gnu]
         ignore line: [Thread model: posix]
@@ -1161,7 +1161,7 @@ events:
         ignore line: [Selected multilib: .]
         ignore line: [@m64]
         ignore line: [ (in-process)]
-        ignore line: [ "/usr/bin/clang++" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl -v -fcoverage-compilation-dir=/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-scJIIl -resource-dir /usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1 -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/x86_64-pc-linux-gnu -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/backward -internal-isystem /usr/lib/clang/21/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -stack-protector 2 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/usr/bin/clang++" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1 -v -fcoverage-compilation-dir=/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-BJ2Ic1 -resource-dir /usr/lib/clang/21 -dependency-file CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1 -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/x86_64-pc-linux-gnu -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../include/c++/15.2.1/backward -internal-isystem /usr/lib/clang/21/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -ferror-limit 19 -stack-protector 2 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 21.1.6 based upon LLVM 21.1.6 default target x86_64-pc-linux-gnu]
         ignore line: [ignoring nonexistent directory "/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../x86_64-pc-linux-gnu/include"]
         ignore line: [ignoring nonexistent directory "/include"]
@@ -1174,8 +1174,8 @@ events:
         ignore line: [ /usr/local/include]
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
-        ignore line: [Linking CXX executable cmTC_ca11c]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ca11c.dir/link.txt --verbose=1]
+        ignore line: [Linking CXX executable cmTC_f9b58]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f9b58.dir/link.txt --verbose=1]
         ignore line: [clang version 21.1.6]
         ignore line: [Target: x86_64-pc-linux-gnu]
         ignore line: [Thread model: posix]
@@ -1191,7 +1191,7 @@ events:
         ignore line: [@m32]
         ignore line: [Selected multilib: .]
         ignore line: [@m64]
-        link line: [ "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_ca11c /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64 -L/lib/../lib64 -L/usr/lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o]
+        link line: [ "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_f9b58 /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1 -L/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64 -L/lib/../lib64 -L/usr/lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o /usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crtn.o]
           arg [/usr/bin/ld] ==> ignore
           arg [--hash-style=gnu] ==> ignore
           arg [--build-id] ==> ignore
@@ -1202,7 +1202,7 @@ events:
           arg [-dynamic-linker] ==> ignore
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_ca11c] ==> ignore
+          arg [cmTC_f9b58] ==> ignore
           arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/Scrt1.o]
           arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib64/crti.o]
           arg [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o]
@@ -1213,7 +1213,7 @@ events:
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_ca11c.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_f9b58.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -1267,8 +1267,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-NJN1wd"
-      binary: "/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-NJN1wd"
+      source: "/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-O5FpMS"
+      binary: "/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-O5FpMS"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/usr/bin/clang-scan-deps"
       CMAKE_CXX_FLAGS: ""
@@ -1279,17 +1279,17 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-NJN1wd'
+        Change Dir: '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-O5FpMS'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_881ad/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_881ad.dir/build.make CMakeFiles/cmTC_881ad.dir/build
-        make[1]: Entering directory '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-NJN1wd'
-        Building CXX object CMakeFiles/cmTC_881ad.dir/src.cxx.o
-        /usr/bin/clang++ -DCMAKE_HAVE_LIBC_PTHREAD   -MD -MT CMakeFiles/cmTC_881ad.dir/src.cxx.o -MF CMakeFiles/cmTC_881ad.dir/src.cxx.o.d -o CMakeFiles/cmTC_881ad.dir/src.cxx.o -c /home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-NJN1wd/src.cxx
-        Linking CXX executable cmTC_881ad
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_881ad.dir/link.txt --verbose=1
-        /usr/bin/clang++ CMakeFiles/cmTC_881ad.dir/src.cxx.o -o cmTC_881ad
-        make[1]: Leaving directory '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-NJN1wd'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_a289b/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_a289b.dir/build.make CMakeFiles/cmTC_a289b.dir/build
+        make[1]: Entering directory '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-O5FpMS'
+        Building CXX object CMakeFiles/cmTC_a289b.dir/src.cxx.o
+        /usr/bin/clang++ -DCMAKE_HAVE_LIBC_PTHREAD   -MD -MT CMakeFiles/cmTC_a289b.dir/src.cxx.o -MF CMakeFiles/cmTC_a289b.dir/src.cxx.o.d -o CMakeFiles/cmTC_a289b.dir/src.cxx.o -c /home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-O5FpMS/src.cxx
+        Linking CXX executable cmTC_a289b
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a289b.dir/link.txt --verbose=1
+        /usr/bin/clang++ CMakeFiles/cmTC_a289b.dir/src.cxx.o -o cmTC_a289b
+        make[1]: Leaving directory '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-O5FpMS'
         
       exitCode: 0
   -
@@ -1308,8 +1308,8 @@ events:
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-ihqeIs"
-      binary: "/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-ihqeIs"
+      source: "/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-rvMGPT"
+      binary: "/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-rvMGPT"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "/usr/bin/clang-scan-deps"
       CMAKE_CXX_FLAGS: ""
@@ -1320,17 +1320,17 @@ events:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-ihqeIs'
+        Change Dir: '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-rvMGPT'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_3feb9/fast
-        /usr/bin/make  -f CMakeFiles/cmTC_3feb9.dir/build.make CMakeFiles/cmTC_3feb9.dir/build
-        make[1]: Entering directory '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-ihqeIs'
-        Building CXX object CMakeFiles/cmTC_3feb9.dir/src.cxx.o
-        /usr/bin/clang++ -DHAVE_STDATOMIC   -MD -MT CMakeFiles/cmTC_3feb9.dir/src.cxx.o -MF CMakeFiles/cmTC_3feb9.dir/src.cxx.o.d -o CMakeFiles/cmTC_3feb9.dir/src.cxx.o -c /home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-ihqeIs/src.cxx
-        Linking CXX executable cmTC_3feb9
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3feb9.dir/link.txt --verbose=1
-        /usr/bin/clang++ CMakeFiles/cmTC_3feb9.dir/src.cxx.o -o cmTC_3feb9
-        make[1]: Leaving directory '/home/chris/proj/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-ihqeIs'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_bb091/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_bb091.dir/build.make CMakeFiles/cmTC_bb091.dir/build
+        make[1]: Entering directory '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-rvMGPT'
+        Building CXX object CMakeFiles/cmTC_bb091.dir/src.cxx.o
+        /usr/bin/clang++ -DHAVE_STDATOMIC   -MD -MT CMakeFiles/cmTC_bb091.dir/src.cxx.o -MF CMakeFiles/cmTC_bb091.dir/src.cxx.o.d -o CMakeFiles/cmTC_bb091.dir/src.cxx.o -c /home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-rvMGPT/src.cxx
+        Linking CXX executable cmTC_bb091
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bb091.dir/link.txt --verbose=1
+        /usr/bin/clang++ CMakeFiles/cmTC_bb091.dir/src.cxx.o -o cmTC_bb091
+        make[1]: Leaving directory '/home/chris/.dots/ok_shell/build/CMakeFiles/CMakeScratch/TryCompile-rvMGPT'
         
       exitCode: 0
   -
@@ -1378,11 +1378,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6CoreToolsConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6CoreToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6coretools-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6coretools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -1481,11 +1481,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6CoreConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6CoreConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6core-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6core-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -1598,11 +1598,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlToolsConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmltools-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmltools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -1709,11 +1709,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlIntegrationConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlIntegrationConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlintegration-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlintegration-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -1796,11 +1796,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6NetworkConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6NetworkConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6network-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6network-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -1885,11 +1885,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlCompilerPlusPrivateToolsConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlCompilerPlusPrivateToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlcompilerplusprivatetools-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlcompilerplusprivatetools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2054,11 +2054,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6ConcurrentConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6ConcurrentConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6concurrent-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6concurrent-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2149,11 +2149,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6ExamplesAssetDownloaderPrivateConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6ExamplesAssetDownloaderPrivateConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6examplesassetdownloaderprivate-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6examplesassetdownloaderprivate-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2239,11 +2239,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlAssetDownloaderConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlAssetDownloaderConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlassetdownloader-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlassetdownloader-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2326,11 +2326,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qml-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qml-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2635,11 +2635,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QuickToolsConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QuickToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6quicktools-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6quicktools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4323,11 +4323,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6GuiToolsConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6GuiToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6guitools-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6guitools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4442,11 +4442,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6DBusToolsConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6DBusToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6dbustools-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6dbustools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4558,11 +4558,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6DBusConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6DBusConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6dbus-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6dbus-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4661,11 +4661,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6GuiConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6GuiConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6gui-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6gui-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4764,11 +4764,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlModelsConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlModelsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlmodels-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlmodels-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4864,11 +4864,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlWorkerScriptConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlWorkerScriptConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlworkerscript-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlworkerscript-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4959,11 +4959,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlMetaConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QmlMetaConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlmeta-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6qmlmeta-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -5054,11 +5054,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6OpenGLConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6OpenGLConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6opengl-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6opengl-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -5149,11 +5149,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QuickConfig.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6QuickConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6quick-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6quick-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -5886,11 +5886,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/Qt6Config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/Qt6Config.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/chris/proj/ok_shell/build/CMakeFiles/pkgRedirects/qt6-config.cmake"
+        path: "/home/chris/.dots/ok_shell/build/CMakeFiles/pkgRedirects/qt6-config.cmake"
         mode: "config"
         reason: "no_exist"
       -

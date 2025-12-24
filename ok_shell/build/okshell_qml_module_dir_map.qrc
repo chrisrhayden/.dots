@@ -1,6 +1,6 @@
 <RCC>
   <qresource prefix="/">
-    <file alias="/qt/qml/build">/home/chris/proj/ok_shell/build</file>
+    <file alias="/qt/qml/build">/home/chris/.dots/ok_shell/build</file>
 
   </qresource>
 </RCC>

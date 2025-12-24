@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/okshell.dir/depend.make
@@ -71,9 +71,9 @@ include CMakeFiles/okshell.dir/flags.make
 
 meta_types/qt6okshell_metatypes.json.gen: /usr/lib/qt6/moc
 meta_types/qt6okshell_metatypes.json.gen: meta_types/okshell_json_file_list.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running moc --collect-json for target okshell"
-	/usr/lib/qt6/moc -o /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen --collect-json @/home/chris/proj/ok_shell/build/meta_types/okshell_json_file_list.txt
-	/usr/bin/cmake -E copy_if_different /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running moc --collect-json for target okshell"
+	/usr/lib/qt6/moc -o /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen --collect-json @/home/chris/.dots/ok_shell/build/meta_types/okshell_json_file_list.txt
+	/usr/bin/cmake -E copy_if_different /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json
 
 okshell_qmltyperegistrations.cpp: qmltypes/okshell_foreign_types.txt
 okshell_qmltyperegistrations.cpp: meta_types/qt6okshell_metatypes.json
@@ -84,10 +84,10 @@ okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6network_metatypes.js
 okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6quick_metatypes.json
 okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6gui_metatypes.json
 okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6opengl_metatypes.json
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic QML type registration for target okshell"
-	/usr/lib/qt6/qmltyperegistrar --generate-qmltypes=/home/chris/proj/ok_shell/build/okshell.qmltypes --import-name=build --major-version=254 --minor-version=254 @/home/chris/proj/ok_shell/build/qmltypes/okshell_foreign_types.txt -o /home/chris/proj/ok_shell/build/okshell_qmltyperegistrations.cpp /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json
-	/usr/bin/cmake -E make_directory /home/chris/proj/ok_shell/build/.qt/qmltypes
-	/usr/bin/cmake -E touch /home/chris/proj/ok_shell/build/.qt/qmltypes/okshell.qmltypes
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic QML type registration for target okshell"
+	/usr/lib/qt6/qmltyperegistrar --generate-qmltypes=/home/chris/.dots/ok_shell/build/okshell.qmltypes --import-name=build --major-version=254 --minor-version=254 @/home/chris/.dots/ok_shell/build/qmltypes/okshell_foreign_types.txt -o /home/chris/.dots/ok_shell/build/okshell_qmltyperegistrations.cpp /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json
+	/usr/bin/cmake -E make_directory /home/chris/.dots/ok_shell/build/.qt/qmltypes
+	/usr/bin/cmake -E touch /home/chris/.dots/ok_shell/build/.qt/qmltypes/okshell.qmltypes
 
 okshell.qmltypes: okshell_qmltyperegistrations.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate okshell.qmltypes
@@ -95,16 +95,16 @@ okshell.qmltypes: okshell_qmltyperegistrations.cpp
 .qt/rcc/qrc_qmake_build.cpp: qmldir
 .qt/rcc/qrc_qmake_build.cpp: .qt/rcc/qmake_build.qrc
 .qt/rcc/qrc_qmake_build.cpp: /usr/lib/qt6/rcc
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running rcc for resource qmake_build"
-	/usr/lib/qt6/rcc --output /home/chris/proj/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp --name qmake_build /home/chris/proj/ok_shell/build/.qt/rcc/qmake_build.qrc
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running rcc for resource qmake_build"
+	/usr/lib/qt6/rcc --output /home/chris/.dots/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp --name qmake_build /home/chris/.dots/ok_shell/build/.qt/rcc/qmake_build.qrc
 
 meta_types/okshell_json_file_list.txt: /usr/lib/qt6/cmake_automoc_parser
 meta_types/okshell_json_file_list.txt: okshell_autogen/timestamp
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Running AUTOMOC file extraction for target okshell"
-	/usr/lib/qt6/cmake_automoc_parser --cmake-autogen-cache-file /home/chris/proj/ok_shell/build/CMakeFiles/okshell_autogen.dir/ParseCache.txt --cmake-autogen-info-file /home/chris/proj/ok_shell/build/CMakeFiles/okshell_autogen.dir/AutogenInfo.json --output-file-path /home/chris/proj/ok_shell/build/meta_types/okshell_json_file_list.txt --timestamp-file-path /home/chris/proj/ok_shell/build/meta_types/okshell_json_file_list.txt.timestamp --cmake-autogen-include-dir-path /home/chris/proj/ok_shell/build/okshell_autogen/include
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Running AUTOMOC file extraction for target okshell"
+	/usr/lib/qt6/cmake_automoc_parser --cmake-autogen-cache-file /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_autogen.dir/ParseCache.txt --cmake-autogen-info-file /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_autogen.dir/AutogenInfo.json --output-file-path /home/chris/.dots/ok_shell/build/meta_types/okshell_json_file_list.txt --timestamp-file-path /home/chris/.dots/ok_shell/build/meta_types/okshell_json_file_list.txt.timestamp --cmake-autogen-include-dir-path /home/chris/.dots/ok_shell/build/okshell_autogen/include
 
 meta_types/qt6okshell_metatypes.json: meta_types/qt6okshell_metatypes.json.gen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating meta_types/qt6okshell_metatypes.json"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating meta_types/qt6okshell_metatypes.json"
 	/usr/bin/cmake -E true
 
 CMakeFiles/okshell.dir/codegen:
@@ -113,72 +113,72 @@ CMakeFiles/okshell.dir/codegen:
 CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o: CMakeFiles/okshell.dir/flags.make
 CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o: okshell_autogen/mocs_compilation.cpp
 CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o: CMakeFiles/okshell.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o -MF CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o -c /home/chris/proj/ok_shell/build/okshell_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o -MF CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o -c /home/chris/.dots/ok_shell/build/okshell_autogen/mocs_compilation.cpp
 
 CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/proj/ok_shell/build/okshell_autogen/mocs_compilation.cpp > CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/.dots/ok_shell/build/okshell_autogen/mocs_compilation.cpp > CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/proj/ok_shell/build/okshell_autogen/mocs_compilation.cpp -o CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/.dots/ok_shell/build/okshell_autogen/mocs_compilation.cpp -o CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o: CMakeFiles/okshell.dir/flags.make
 CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o: okshell_qmltyperegistrations.cpp
 CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o: CMakeFiles/okshell.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o -MF CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o.d -o CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o -c /home/chris/proj/ok_shell/build/okshell_qmltyperegistrations.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o -MF CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o.d -o CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o -c /home/chris/.dots/ok_shell/build/okshell_qmltyperegistrations.cpp
 
 CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/proj/ok_shell/build/okshell_qmltyperegistrations.cpp > CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/.dots/ok_shell/build/okshell_qmltyperegistrations.cpp > CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.i
 
 CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/proj/ok_shell/build/okshell_qmltyperegistrations.cpp -o CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/.dots/ok_shell/build/okshell_qmltyperegistrations.cpp -o CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.s
 
 CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o: CMakeFiles/okshell.dir/flags.make
 CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o: .qt/rcc/qrc_qmake_build.cpp
 CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o: CMakeFiles/okshell.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o -MF CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o.d -o CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o -c /home/chris/proj/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o -MF CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o.d -o CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.o -c /home/chris/.dots/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp
 
 CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/proj/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp > CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/.dots/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp > CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.i
 
 CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/proj/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp -o CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/.dots/ok_shell/build/.qt/rcc/qrc_qmake_build.cpp -o CMakeFiles/okshell.dir/build/.qt/rcc/qrc_qmake_build.cpp.s
 
 CMakeFiles/okshell.dir/src/search.cpp.o: CMakeFiles/okshell.dir/flags.make
-CMakeFiles/okshell.dir/src/search.cpp.o: /home/chris/proj/ok_shell/src/search.cpp
+CMakeFiles/okshell.dir/src/search.cpp.o: /home/chris/.dots/ok_shell/src/search.cpp
 CMakeFiles/okshell.dir/src/search.cpp.o: CMakeFiles/okshell.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/okshell.dir/src/search.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/src/search.cpp.o -MF CMakeFiles/okshell.dir/src/search.cpp.o.d -o CMakeFiles/okshell.dir/src/search.cpp.o -c /home/chris/proj/ok_shell/src/search.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/okshell.dir/src/search.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/src/search.cpp.o -MF CMakeFiles/okshell.dir/src/search.cpp.o.d -o CMakeFiles/okshell.dir/src/search.cpp.o -c /home/chris/.dots/ok_shell/src/search.cpp
 
 CMakeFiles/okshell.dir/src/search.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/okshell.dir/src/search.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/proj/ok_shell/src/search.cpp > CMakeFiles/okshell.dir/src/search.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/.dots/ok_shell/src/search.cpp > CMakeFiles/okshell.dir/src/search.cpp.i
 
 CMakeFiles/okshell.dir/src/search.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/okshell.dir/src/search.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/proj/ok_shell/src/search.cpp -o CMakeFiles/okshell.dir/src/search.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/.dots/ok_shell/src/search.cpp -o CMakeFiles/okshell.dir/src/search.cpp.s
 
 CMakeFiles/okshell.dir/src/fzy.cpp.o: CMakeFiles/okshell.dir/flags.make
-CMakeFiles/okshell.dir/src/fzy.cpp.o: /home/chris/proj/ok_shell/src/fzy.cpp
+CMakeFiles/okshell.dir/src/fzy.cpp.o: /home/chris/.dots/ok_shell/src/fzy.cpp
 CMakeFiles/okshell.dir/src/fzy.cpp.o: CMakeFiles/okshell.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/okshell.dir/src/fzy.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/src/fzy.cpp.o -MF CMakeFiles/okshell.dir/src/fzy.cpp.o.d -o CMakeFiles/okshell.dir/src/fzy.cpp.o -c /home/chris/proj/ok_shell/src/fzy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/okshell.dir/src/fzy.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshell.dir/src/fzy.cpp.o -MF CMakeFiles/okshell.dir/src/fzy.cpp.o.d -o CMakeFiles/okshell.dir/src/fzy.cpp.o -c /home/chris/.dots/ok_shell/src/fzy.cpp
 
 CMakeFiles/okshell.dir/src/fzy.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/okshell.dir/src/fzy.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/proj/ok_shell/src/fzy.cpp > CMakeFiles/okshell.dir/src/fzy.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/.dots/ok_shell/src/fzy.cpp > CMakeFiles/okshell.dir/src/fzy.cpp.i
 
 CMakeFiles/okshell.dir/src/fzy.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/okshell.dir/src/fzy.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/proj/ok_shell/src/fzy.cpp -o CMakeFiles/okshell.dir/src/fzy.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/.dots/ok_shell/src/fzy.cpp -o CMakeFiles/okshell.dir/src/fzy.cpp.s
 
 # Object files for target okshell
 okshell_OBJECTS = \
@@ -207,7 +207,7 @@ libokshell.so: /usr/lib/libQt6Qml.so.6.10.1
 libokshell.so: /usr/lib/libQt6Network.so.6.10.1
 libokshell.so: /usr/lib/libQt6Core.so.6.10.1
 libokshell.so: CMakeFiles/okshell.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX shared library libokshell.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX shared library libokshell.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/okshell.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -224,6 +224,6 @@ CMakeFiles/okshell.dir/depend: meta_types/qt6okshell_metatypes.json
 CMakeFiles/okshell.dir/depend: meta_types/qt6okshell_metatypes.json.gen
 CMakeFiles/okshell.dir/depend: okshell.qmltypes
 CMakeFiles/okshell.dir/depend: okshell_qmltyperegistrations.cpp
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/okshell.dir/DependInfo.cmake "--color=$(COLOR)" okshell
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/okshell.dir/DependInfo.cmake "--color=$(COLOR)" okshell
 .PHONY : CMakeFiles/okshell.dir/depend
 

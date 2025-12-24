@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"/home/chris/proj/ok_shell/build/cmake_install.cmake"
+		"/home/chris/.dots/ok_shell/build/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

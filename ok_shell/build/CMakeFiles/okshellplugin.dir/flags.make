@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = -DQT_CORE_LIB -DQT_DEPRECATED_WARNINGS -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_PLUGIN -DQT_QMLINTEGRATION_LIB -DQT_QML_LIB -Dokshellplugin_EXPORTS
 
-CXX_INCLUDES = -isystem /home/chris/proj/ok_shell/build/okshellplugin_autogen/include -isystem /usr/include/qt6/QtQml -isystem /usr/include/qt6 -isystem /usr/include/qt6/QtCore -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtQmlIntegration -isystem /usr/include/qt6/QtNetwork
+CXX_INCLUDES = -isystem /home/chris/.dots/ok_shell/build/okshellplugin_autogen/include -isystem /usr/include/qt6/QtQml -isystem /usr/include/qt6 -isystem /usr/include/qt6/QtCore -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtQmlIntegration -isystem /usr/include/qt6/QtNetwork
 
 CXX_FLAGS = -fPIC -pedantic -Wall -Wextra -Wconversion -Werror=incompatible-pointer-types -O3 -fno-direct-access-external-data
 

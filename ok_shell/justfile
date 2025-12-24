@@ -1,5 +1,7 @@
 build_dir := "build"
 
+target_dir := justfile_directory()
+
 alias r := run
 
 default: config build
@@ -11,4 +13,4 @@ build:
     cmake --build {{build_dir}}
 
 run:
-    QML_IMPORT_PATH=~/proj/ok_shell/ quickshell -p ~/proj/ok_shell/
+    QML_IMPORT_PATH={{target_dir}} quickshell -p {{target_dir}}

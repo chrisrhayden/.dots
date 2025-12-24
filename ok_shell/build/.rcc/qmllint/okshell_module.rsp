@@ -1,8 +1,8 @@
 -I
-/home/chris/proj/ok_shell
+/home/chris/.dots/ok_shell
 -I
 /usr/lib/qt6/qml
 --resource
-/home/chris/proj/ok_shell/build/.qt/rcc/qmake_build.qrc
+/home/chris/.dots/ok_shell/build/.qt/rcc/qmake_build.qrc
 --module
 build

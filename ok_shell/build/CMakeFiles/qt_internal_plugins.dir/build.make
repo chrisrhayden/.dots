@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Utility rule file for qt_internal_plugins.
 
@@ -81,6 +81,6 @@ CMakeFiles/qt_internal_plugins.dir/clean:
 .PHONY : CMakeFiles/qt_internal_plugins.dir/clean
 
 CMakeFiles/qt_internal_plugins.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/qt_internal_plugins.dir/DependInfo.cmake "--color=$(COLOR)" qt_internal_plugins
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/qt_internal_plugins.dir/DependInfo.cmake "--color=$(COLOR)" qt_internal_plugins
 .PHONY : CMakeFiles/qt_internal_plugins.dir/depend
 

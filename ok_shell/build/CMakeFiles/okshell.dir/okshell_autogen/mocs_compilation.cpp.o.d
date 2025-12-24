@@ -1,7 +1,7 @@
 CMakeFiles/okshell.dir/okshell_autogen/mocs_compilation.cpp.o: \
-  /home/chris/proj/ok_shell/build/okshell_autogen/mocs_compilation.cpp \
-  /home/chris/proj/ok_shell/build/okshell_autogen/UVLADIE3JM/moc_search.cpp \
-  /home/chris/proj/ok_shell/build/okshell_autogen/UVLADIE3JM/../../../src/search.hpp \
+  /home/chris/.dots/ok_shell/build/okshell_autogen/mocs_compilation.cpp \
+  /home/chris/.dots/ok_shell/build/okshell_autogen/UVLADIE3JM/moc_search.cpp \
+  /home/chris/.dots/ok_shell/build/okshell_autogen/UVLADIE3JM/../../../src/search.hpp \
   /usr/include/qt6/QtCore/qobject.h \
   /usr/include/qt6/QtCore/qobjectdefs.h \
   /usr/include/qt6/QtCore/qnamespace.h /usr/include/qt6/QtCore/qglobal.h \

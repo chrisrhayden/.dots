@@ -1,5 +1,5 @@
 CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o: \
-  /home/chris/proj/ok_shell/build/okshellplugin_buildPlugin.cpp \
+  /home/chris/.dots/ok_shell/build/okshellplugin_buildPlugin.cpp \
   /usr/include/qt6/QtCore/qtsymbolmacros.h \
   /usr/include/qt6/QtCore/qcompilerdetection.h \
   /usr/include/qt6/QtCore/qprocessordetection.h \
@@ -394,6 +394,6 @@ CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o: \
   /usr/include/qt6/QtNetwork/qtnetwork-config.h \
   /usr/include/qt6/QtNetwork/qtnetworkexports.h \
   /usr/include/qt6/QtQml/qtqmlexports.h \
-  /home/chris/proj/ok_shell/build/okshellplugin_autogen/include/okshellplugin_buildPlugin.moc \
+  /home/chris/.dots/ok_shell/build/okshellplugin_autogen/include/okshellplugin_buildPlugin.moc \
   /usr/include/qt6/QtCore/qtmochelpers.h \
   /usr/include/qt6/QtCore/qtmocconstants.h

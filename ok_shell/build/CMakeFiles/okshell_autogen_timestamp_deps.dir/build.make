@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Utility rule file for okshell_autogen_timestamp_deps.
 
@@ -81,6 +81,6 @@ CMakeFiles/okshell_autogen_timestamp_deps.dir/clean:
 .PHONY : CMakeFiles/okshell_autogen_timestamp_deps.dir/clean
 
 CMakeFiles/okshell_autogen_timestamp_deps.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/okshell_autogen_timestamp_deps.dir/DependInfo.cmake "--color=$(COLOR)" okshell_autogen_timestamp_deps
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_autogen_timestamp_deps.dir/DependInfo.cmake "--color=$(COLOR)" okshell_autogen_timestamp_deps
 .PHONY : CMakeFiles/okshell_autogen_timestamp_deps.dir/depend
 

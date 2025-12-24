@@ -1,5 +1,5 @@
-/home/chris/proj/ok_shell/build/okshell_autogen/UVLADIE3JM/moc_search.cpp: /home/chris/proj/ok_shell/src/search.hpp \
-  /home/chris/proj/ok_shell/build/okshell_autogen/moc_predefs.h \
+/home/chris/.dots/ok_shell/build/okshell_autogen/UVLADIE3JM/moc_search.cpp: /home/chris/.dots/ok_shell/src/search.hpp \
+  /home/chris/.dots/ok_shell/build/okshell_autogen/moc_predefs.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \

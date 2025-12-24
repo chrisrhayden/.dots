@@ -1,5 +1,5 @@
 CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o: \
-  /home/chris/proj/ok_shell/build/okshell_qmltyperegistrations.cpp \
+  /home/chris/.dots/ok_shell/build/okshell_qmltyperegistrations.cpp \
   /usr/include/qt6/QtQml/qqml.h /usr/include/qt6/QtQml/qqmlprivate.h \
   /usr/include/qt6/QtQml/qjsprimitivevalue.h \
   /usr/include/qt6/QtQml/qtqmlglobal.h /usr/include/qt6/QtCore/qglobal.h \
@@ -393,4 +393,4 @@ CMakeFiles/okshell.dir/okshell_qmltyperegistrations.cpp.o: \
   /usr/include/qt6/QtQml/qqmlregistration.h \
   /usr/include/qt6/QtQmlIntegration/qqmlintegration.h \
   /usr/include/qt6/QtQml/qqmlmoduleregistration.h \
-  /home/chris/proj/ok_shell/src/search.hpp
+  /home/chris/.dots/ok_shell/src/search.hpp

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Utility rule file for okshell_copy_qml.
 
@@ -69,8 +69,8 @@ include CMakeFiles/okshell_copy_qml.dir/progress.make
 CMakeFiles/okshell_copy_qml: .qt/okshell_qml.txt
 
 .qt/okshell_qml.txt: /usr/lib/cmake/Qt6Qml/Qt6QmlCopyFiles.cmake
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Copying okshell qml sources into build dir"
-	/usr/bin/cmake -DFILES_INFO_PATH=/home/chris/proj/ok_shell/build/.qt/okshell_qml.cmake -P /usr/lib/cmake/Qt6Qml/Qt6QmlCopyFiles.cmake
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Copying okshell qml sources into build dir"
+	/usr/bin/cmake -DFILES_INFO_PATH=/home/chris/.dots/ok_shell/build/.qt/okshell_qml.cmake -P /usr/lib/cmake/Qt6Qml/Qt6QmlCopyFiles.cmake
 
 CMakeFiles/okshell_copy_qml.dir/codegen:
 .PHONY : CMakeFiles/okshell_copy_qml.dir/codegen
@@ -89,6 +89,6 @@ CMakeFiles/okshell_copy_qml.dir/clean:
 .PHONY : CMakeFiles/okshell_copy_qml.dir/clean
 
 CMakeFiles/okshell_copy_qml.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/okshell_copy_qml.dir/DependInfo.cmake "--color=$(COLOR)" okshell_copy_qml
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_copy_qml.dir/DependInfo.cmake "--color=$(COLOR)" okshell_copy_qml
 .PHONY : CMakeFiles/okshell_copy_qml.dir/depend
 

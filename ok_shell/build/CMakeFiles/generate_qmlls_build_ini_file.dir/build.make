@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Utility rule file for generate_qmlls_build_ini_file.
 
@@ -69,12 +69,12 @@ include CMakeFiles/generate_qmlls_build_ini_file.dir/progress.make
 CMakeFiles/generate_qmlls_build_ini_file: .qt/.qmlls.build.ini
 
 .qt/.qmlls.build.ini:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Populating .qmlls.ini file at /home/chris/proj/ok_shell/build/.qt/.qmlls.build.ini"
-	/usr/bin/cmake -E echo [General] > /home/chris/proj/ok_shell/build/.qt/.qmlls.build.ini
-	/usr/bin/cmake -E echo_append docDir= >> /home/chris/proj/ok_shell/build/.qt/.qmlls.build.ini
-	/usr/lib/qt6/bin/qtpaths --query QT_INSTALL_DOCS >> /home/chris/proj/ok_shell/build/.qt/.qmlls.build.ini
-	/usr/bin/cmake -E echo "[<SLASH>home<SLASH>chris<SLASH>proj<SLASH>ok_shell]" >> /home/chris/proj/ok_shell/build/.qt/.qmlls.build.ini
-	/usr/bin/cmake -E echo importPaths=\"/usr/lib/qt6/qml\" >> /home/chris/proj/ok_shell/build/.qt/.qmlls.build.ini
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Populating .qmlls.ini file at /home/chris/.dots/ok_shell/build/.qt/.qmlls.build.ini"
+	/usr/bin/cmake -E echo [General] > /home/chris/.dots/ok_shell/build/.qt/.qmlls.build.ini
+	/usr/bin/cmake -E echo_append docDir= >> /home/chris/.dots/ok_shell/build/.qt/.qmlls.build.ini
+	/usr/lib/qt6/bin/qtpaths --query QT_INSTALL_DOCS >> /home/chris/.dots/ok_shell/build/.qt/.qmlls.build.ini
+	/usr/bin/cmake -E echo "[<SLASH>home<SLASH>chris<SLASH>.dots<SLASH>ok_shell]" >> /home/chris/.dots/ok_shell/build/.qt/.qmlls.build.ini
+	/usr/bin/cmake -E echo importPaths=\"/usr/lib/qt6/qml\" >> /home/chris/.dots/ok_shell/build/.qt/.qmlls.build.ini
 
 CMakeFiles/generate_qmlls_build_ini_file.dir/codegen:
 .PHONY : CMakeFiles/generate_qmlls_build_ini_file.dir/codegen
@@ -93,6 +93,6 @@ CMakeFiles/generate_qmlls_build_ini_file.dir/clean:
 .PHONY : CMakeFiles/generate_qmlls_build_ini_file.dir/clean
 
 CMakeFiles/generate_qmlls_build_ini_file.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/generate_qmlls_build_ini_file.dir/DependInfo.cmake "--color=$(COLOR)" generate_qmlls_build_ini_file
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/generate_qmlls_build_ini_file.dir/DependInfo.cmake "--color=$(COLOR)" generate_qmlls_build_ini_file
 .PHONY : CMakeFiles/generate_qmlls_build_ini_file.dir/depend
 

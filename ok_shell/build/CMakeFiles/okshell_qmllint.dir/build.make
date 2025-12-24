@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Utility rule file for okshell_qmllint.
 
@@ -68,7 +68,7 @@ include CMakeFiles/okshell_qmllint.dir/progress.make
 
 CMakeFiles/okshell_qmllint: /usr/lib/qt6/bin/qmllint
 CMakeFiles/okshell_qmllint: .rcc/qmllint/okshell.rsp
-	cd /home/chris/proj/ok_shell && /usr/bin/cmake -E echo Nothing\ to\ do\ for\ target\ okshell_qmllint.
+	cd /home/chris/.dots/ok_shell && /usr/bin/cmake -E echo Nothing\ to\ do\ for\ target\ okshell_qmllint.
 
 CMakeFiles/okshell_qmllint.dir/codegen:
 .PHONY : CMakeFiles/okshell_qmllint.dir/codegen
@@ -86,6 +86,6 @@ CMakeFiles/okshell_qmllint.dir/clean:
 .PHONY : CMakeFiles/okshell_qmllint.dir/clean
 
 CMakeFiles/okshell_qmllint.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/okshell_qmllint.dir/DependInfo.cmake "--color=$(COLOR)" okshell_qmllint
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_qmllint.dir/DependInfo.cmake "--color=$(COLOR)" okshell_qmllint
 .PHONY : CMakeFiles/okshell_qmllint.dir/depend
 

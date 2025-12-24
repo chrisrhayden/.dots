@@ -1,5 +1,5 @@
-/home/chris/proj/ok_shell/build/okshellplugin_autogen/include/okshellplugin_buildPlugin.moc: /home/chris/proj/ok_shell/build/okshellplugin_buildPlugin.cpp \
-  /home/chris/proj/ok_shell/build/okshellplugin_autogen/moc_predefs.h \
+/home/chris/.dots/ok_shell/build/okshellplugin_autogen/include/okshellplugin_buildPlugin.moc: /home/chris/.dots/ok_shell/build/okshellplugin_buildPlugin.cpp \
+  /home/chris/.dots/ok_shell/build/okshellplugin_autogen/moc_predefs.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \

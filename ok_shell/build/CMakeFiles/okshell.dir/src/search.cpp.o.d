@@ -1,6 +1,6 @@
 CMakeFiles/okshell.dir/src/search.cpp.o: \
-  /home/chris/proj/ok_shell/src/search.cpp \
-  /home/chris/proj/ok_shell/src/search.hpp \
+  /home/chris/.dots/ok_shell/src/search.cpp \
+  /home/chris/.dots/ok_shell/src/search.hpp \
   /usr/include/qt6/QtCore/qobject.h \
   /usr/include/qt6/QtCore/qobjectdefs.h \
   /usr/include/qt6/QtCore/qnamespace.h /usr/include/qt6/QtCore/qglobal.h \
@@ -375,4 +375,4 @@ CMakeFiles/okshell.dir/src/search.cpp.o: \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
   /usr/include/qt6/QtCore/qalloc.h /usr/include/qt6/QtCore/q23utility.h \
   /usr/include/qt6/QtCore/q20utility.h \
-  /home/chris/proj/ok_shell/src/fzy.hpp
+  /home/chris/.dots/ok_shell/src/fzy.hpp

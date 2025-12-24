@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/okshellplugin.dir/depend.make
@@ -75,30 +75,30 @@ CMakeFiles/okshellplugin.dir/codegen:
 CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o: CMakeFiles/okshellplugin.dir/flags.make
 CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o: okshellplugin_autogen/mocs_compilation.cpp
 CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o: CMakeFiles/okshellplugin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o -MF CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o -c /home/chris/proj/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o -MF CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o -c /home/chris/.dots/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp
 
 CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/proj/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp > CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/.dots/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp > CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.i
 
 CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/proj/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp -o CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/.dots/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp -o CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o: CMakeFiles/okshellplugin.dir/flags.make
 CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o: okshellplugin_buildPlugin.cpp
 CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o: CMakeFiles/okshellplugin.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o -MF CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o.d -o CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o -c /home/chris/proj/ok_shell/build/okshellplugin_buildPlugin.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o -MF CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o.d -o CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o -c /home/chris/.dots/ok_shell/build/okshellplugin_buildPlugin.cpp
 
 CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/proj/ok_shell/build/okshellplugin_buildPlugin.cpp > CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chris/.dots/ok_shell/build/okshellplugin_buildPlugin.cpp > CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.i
 
 CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/proj/ok_shell/build/okshellplugin_buildPlugin.cpp -o CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chris/.dots/ok_shell/build/okshellplugin_buildPlugin.cpp -o CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.s
 
 # Object files for target okshellplugin
 okshellplugin_OBJECTS = \
@@ -117,7 +117,7 @@ libokshellplugin.so: /usr/lib/libQt6Qml.so.6.10.1
 libokshellplugin.so: /usr/lib/libQt6Network.so.6.10.1
 libokshellplugin.so: /usr/lib/libQt6Core.so.6.10.1
 libokshellplugin.so: CMakeFiles/okshellplugin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared module libokshellplugin.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared module libokshellplugin.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/okshellplugin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -129,6 +129,6 @@ CMakeFiles/okshellplugin.dir/clean:
 .PHONY : CMakeFiles/okshellplugin.dir/clean
 
 CMakeFiles/okshellplugin.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/okshellplugin.dir/DependInfo.cmake "--color=$(COLOR)" okshellplugin
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/okshellplugin.dir/DependInfo.cmake "--color=$(COLOR)" okshellplugin
 .PHONY : CMakeFiles/okshellplugin.dir/depend
 

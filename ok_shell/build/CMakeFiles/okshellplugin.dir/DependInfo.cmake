@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/chris/proj/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp" "CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o.d"
-  "/home/chris/proj/ok_shell/build/okshellplugin_buildPlugin.cpp" "CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o" "gcc" "CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o.d"
+  "/home/chris/.dots/ok_shell/build/okshellplugin_autogen/mocs_compilation.cpp" "CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/okshellplugin.dir/okshellplugin_autogen/mocs_compilation.cpp.o.d"
+  "/home/chris/.dots/ok_shell/build/okshellplugin_buildPlugin.cpp" "CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o" "gcc" "CMakeFiles/okshellplugin.dir/okshellplugin_buildPlugin.cpp.o.d"
   "" "libokshellplugin.so" "gcc" "CMakeFiles/okshellplugin.dir/link.d"
   )
 

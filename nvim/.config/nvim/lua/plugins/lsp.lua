@@ -1,5 +1,4 @@
 local set_keys = require("util").set_keys
--- local set_key = require("util").set_key
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -170,20 +169,20 @@ local lsp = {
           }
         },
       },
-      {
-        "pmizio/typescript-tools.nvim",
-        dependencies = {
-          "nvim-lua/plenary.nvim"
-        },
-        opts = {
-          settings = {
-            jsx_close_tag = {
-              enable = true,
-              filetypes = { "javascriptreact", "typescriptreact" },
-            }
-          }
-        }
-      },
+      -- {
+      --   "pmizio/typescript-tools.nvim",
+      --   dependencies = {
+      --     "nvim-lua/plenary.nvim"
+      --   },
+      --   opts = {
+      --     settings = {
+      --       jsx_close_tag = {
+      --         enable = true,
+      --         filetypes = { "javascriptreact", "typescriptreact" },
+      --       }
+      --     }
+      --   }
+      -- },
     },
     config = function()
       local default_capabilities = require("blink.cmp").get_lsp_capabilities

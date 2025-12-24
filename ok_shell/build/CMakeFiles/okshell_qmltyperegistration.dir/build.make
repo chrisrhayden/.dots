@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chris/proj/ok_shell
+CMAKE_SOURCE_DIR = /home/chris/.dots/ok_shell
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chris/proj/ok_shell/build
+CMAKE_BINARY_DIR = /home/chris/.dots/ok_shell/build
 
 # Utility rule file for okshell_qmltyperegistration.
 
@@ -78,34 +78,34 @@ okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6network_metatypes.js
 okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6quick_metatypes.json
 okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6gui_metatypes.json
 okshell_qmltyperegistrations.cpp: /usr/lib/qt6/metatypes/qt6opengl_metatypes.json
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic QML type registration for target okshell"
-	/usr/lib/qt6/qmltyperegistrar --generate-qmltypes=/home/chris/proj/ok_shell/build/okshell.qmltypes --import-name=build --major-version=254 --minor-version=254 @/home/chris/proj/ok_shell/build/qmltypes/okshell_foreign_types.txt -o /home/chris/proj/ok_shell/build/okshell_qmltyperegistrations.cpp /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json
-	/usr/bin/cmake -E make_directory /home/chris/proj/ok_shell/build/.qt/qmltypes
-	/usr/bin/cmake -E touch /home/chris/proj/ok_shell/build/.qt/qmltypes/okshell.qmltypes
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic QML type registration for target okshell"
+	/usr/lib/qt6/qmltyperegistrar --generate-qmltypes=/home/chris/.dots/ok_shell/build/okshell.qmltypes --import-name=build --major-version=254 --minor-version=254 @/home/chris/.dots/ok_shell/build/qmltypes/okshell_foreign_types.txt -o /home/chris/.dots/ok_shell/build/okshell_qmltyperegistrations.cpp /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json
+	/usr/bin/cmake -E make_directory /home/chris/.dots/ok_shell/build/.qt/qmltypes
+	/usr/bin/cmake -E touch /home/chris/.dots/ok_shell/build/.qt/qmltypes/okshell.qmltypes
 
 okshell.qmltypes: okshell_qmltyperegistrations.cpp
 	@$(CMAKE_COMMAND) -E touch_nocreate okshell.qmltypes
 
 meta_types/qt6okshell_metatypes.json: meta_types/qt6okshell_metatypes.json.gen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating meta_types/qt6okshell_metatypes.json"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating meta_types/qt6okshell_metatypes.json"
 	/usr/bin/cmake -E true
 
 meta_types/qt6okshell_metatypes.json.gen: /usr/lib/qt6/moc
 meta_types/qt6okshell_metatypes.json.gen: meta_types/okshell_json_file_list.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running moc --collect-json for target okshell"
-	/usr/lib/qt6/moc -o /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen --collect-json @/home/chris/proj/ok_shell/build/meta_types/okshell_json_file_list.txt
-	/usr/bin/cmake -E copy_if_different /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen /home/chris/proj/ok_shell/build/meta_types/qt6okshell_metatypes.json
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Running moc --collect-json for target okshell"
+	/usr/lib/qt6/moc -o /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen --collect-json @/home/chris/.dots/ok_shell/build/meta_types/okshell_json_file_list.txt
+	/usr/bin/cmake -E copy_if_different /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json.gen /home/chris/.dots/ok_shell/build/meta_types/qt6okshell_metatypes.json
 
 meta_types/okshell_json_file_list.txt: /usr/lib/qt6/cmake_automoc_parser
 meta_types/okshell_json_file_list.txt: okshell_autogen/timestamp
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Running AUTOMOC file extraction for target okshell"
-	/usr/lib/qt6/cmake_automoc_parser --cmake-autogen-cache-file /home/chris/proj/ok_shell/build/CMakeFiles/okshell_autogen.dir/ParseCache.txt --cmake-autogen-info-file /home/chris/proj/ok_shell/build/CMakeFiles/okshell_autogen.dir/AutogenInfo.json --output-file-path /home/chris/proj/ok_shell/build/meta_types/okshell_json_file_list.txt --timestamp-file-path /home/chris/proj/ok_shell/build/meta_types/okshell_json_file_list.txt.timestamp --cmake-autogen-include-dir-path /home/chris/proj/ok_shell/build/okshell_autogen/include
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Running AUTOMOC file extraction for target okshell"
+	/usr/lib/qt6/cmake_automoc_parser --cmake-autogen-cache-file /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_autogen.dir/ParseCache.txt --cmake-autogen-info-file /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_autogen.dir/AutogenInfo.json --output-file-path /home/chris/.dots/ok_shell/build/meta_types/okshell_json_file_list.txt --timestamp-file-path /home/chris/.dots/ok_shell/build/meta_types/okshell_json_file_list.txt.timestamp --cmake-autogen-include-dir-path /home/chris/.dots/ok_shell/build/okshell_autogen/include
 
 okshell_autogen/timestamp: /usr/lib/qt6/moc
 okshell_autogen/timestamp: CMakeFiles/okshell_qmltyperegistration.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/proj/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Automatic MOC and UIC for target okshell"
-	/usr/bin/cmake -E cmake_autogen /home/chris/proj/ok_shell/build/CMakeFiles/okshell_autogen.dir/AutogenInfo.json ""
-	/usr/bin/cmake -E touch /home/chris/proj/ok_shell/build/okshell_autogen/timestamp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/chris/.dots/ok_shell/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Automatic MOC and UIC for target okshell"
+	/usr/bin/cmake -E cmake_autogen /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_autogen.dir/AutogenInfo.json ""
+	/usr/bin/cmake -E touch /home/chris/.dots/ok_shell/build/okshell_autogen/timestamp
 
 CMakeFiles/okshell_qmltyperegistration.dir/codegen:
 .PHONY : CMakeFiles/okshell_qmltyperegistration.dir/codegen
@@ -129,6 +129,6 @@ CMakeFiles/okshell_qmltyperegistration.dir/clean:
 .PHONY : CMakeFiles/okshell_qmltyperegistration.dir/clean
 
 CMakeFiles/okshell_qmltyperegistration.dir/depend:
-	cd /home/chris/proj/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/proj/ok_shell /home/chris/proj/ok_shell /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build /home/chris/proj/ok_shell/build/CMakeFiles/okshell_qmltyperegistration.dir/DependInfo.cmake "--color=$(COLOR)" okshell_qmltyperegistration
+	cd /home/chris/.dots/ok_shell/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build /home/chris/.dots/ok_shell/build/CMakeFiles/okshell_qmltyperegistration.dir/DependInfo.cmake "--color=$(COLOR)" okshell_qmltyperegistration
 .PHONY : CMakeFiles/okshell_qmltyperegistration.dir/depend
 
