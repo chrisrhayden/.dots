@@ -1,0 +1,8 @@
+module build
+linktarget okshellplugin
+optional plugin okshellplugin
+classname buildPlugin
+typeinfo okshell.qmltypes
+prefer :/qt/qml/build/
+depends QtQuick
+

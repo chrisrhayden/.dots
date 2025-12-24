@@ -1,0 +1,14 @@
+build_dir := "build"
+
+alias r := run
+
+default: config build
+
+config:
+    cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B {{build_dir}}
+
+build:
+    cmake --build {{build_dir}}
+
+run:
+    QML_IMPORT_PATH=~/proj/ok_shell/ quickshell -p ~/proj/ok_shell/

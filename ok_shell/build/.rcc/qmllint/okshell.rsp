@@ -1,0 +1,7 @@
+--bare
+-I
+/home/chris/proj/ok_shell
+-I
+/usr/lib/qt6/qml
+--resource
+/home/chris/proj/ok_shell/build/.qt/rcc/qmake_build.qrc

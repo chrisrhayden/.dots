@@ -1,0 +1,28 @@
+---
+IndentWidth: 4
+BinPackArguments: false
+BinPackParameters: false
+IndentCaseLabels: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AlignAfterOpenBracket: BlockIndent
+AllowShortFunctionsOnASingleLine: false
+PointerAlignment: Left
+# AlignAfterOpenBracket: AlwaysBreak
+# BraceWrapping:
+#   AfterFunction: true
+
+# BreakBeforeBraces: Attach
+# IndentCaseLabels: true
+# BinPackArguments: false
+# BinPackParameters: false
+# AlignAfterOpenBracket: BlockIndent
+# # AlignAfterOpenBracket: AlwaysBreak
+#
+# # AllowAllArgumentsOnNextLine: true
+# # AllowAllParametersOfDeclarationOnNextLine: true
+# # AllowAllArgumentsOnNextLine: true
+# # AlignOperands: AlignAfterOperator
+# # BreakBinaryOperations: OnePerLine
+# # BreakBeforeBinaryOperators: NonAssignment
+#
+# # vim: set filetype=yaml:
