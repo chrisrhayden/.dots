@@ -87,8 +87,8 @@ Variants {
             }
 
             margins {
-                right: 14
-                left: 14
+                right: 8
+                left: 8
             }
 
             PersistentProperties {
@@ -121,7 +121,7 @@ Variants {
 
                 BarLayout {
                     id: barLayout
-                    height: 26
+                    height: 20
 
                     anchors {
                         left: parent.left

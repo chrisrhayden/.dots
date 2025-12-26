@@ -70,6 +70,13 @@ local dap = {
 
     set_keys {
       {
+        "<leader>DD",
+        function()
+          vim.b.mouse = ""
+          dap.continue()
+        end
+      },
+      {
         "<leader>db",
         dap.toggle_breakpoint,
         desc = "toggle break point",

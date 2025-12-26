@@ -1,0 +1,171 @@
+#!/usr/bin/env python
+
+import sys
+import fileinput
+from dataclasses import dataclass
+from typing import Iterable
+import itertools as it
+
+
+@dataclass
+class Color:
+    r: int
+    g: int
+    b: int
+    hex_str: str
+
+
+def bash_color_info():
+
+    print(
+        """see for more:
+https://misc.flogisoft.com/bash/tip_colors_and_formatting
+
+escap -> \\e[..m or \\x1b[..m
+print with echo -> echo -e '\\e[..'
+
+Attribute 1..=8
+\x1b[1m1   Bold/Bright\x1b[0m
+\x1b[2m2   Dim\x1b[0m
+\x1b[4m4   Underlined\x1b[0m
+\x1b[5m5   Blink\x1b[0m
+\x1b[7m7   Reverse\x1b[0m
+\x1b[8m8   Hidden\x1b[0m
+
+Resets 0,21..=28
+0   Reset all attributes
+21  Reset bold/bright
+22  Reset dim
+24  Reset underlined
+25  Reset blink
+27  Reset reverse
+28  Reset hidden
+
+Colors fg 39,30..=37,90..=97
+
+\x1b[39m39  Default foreground color\x1b[0m
+\x1b[30m30  Black\x1b[0m
+\x1b[31m31  Red\x1b[0m
+\x1b[32m32  Green\x1b[0m
+\x1b[33m33  Yellow\x1b[0m
+\x1b[34m34  Blue\x1b[0m
+\x1b[35m35  Magenta\x1b[0m
+\x1b[36m36  Cyan\x1b[0m
+\x1b[37m37  Light gray\x1b[0m
+\x1b[90m90  Dark gray\x1b[0m
+\x1b[91m91  Light red\x1b[0m
+\x1b[92m92  Light green\x1b[0m
+\x1b[93m93  Light yellow\x1b[0m
+\x1b[94m94  Light blue\x1b[0m
+\x1b[95m95  Light magenta\x1b[0m
+\x1b[96m96  Light cyan\x1b[0m
+\x1b[97m97  White\x1b[0m
+
+Colors bg 49,40..=47,100..=107
+
+\x1b[49;m49  Default background color\x1b[0m
+\x1b[40;m40  Black\x1b[0m
+\x1b[30;41m41  Red\x1b[0m
+\x1b[30;42m42  Green\x1b[0m
+\x1b[30;43m43  Yellow\x1b[0m
+\x1b[30;44m44  Blue\x1b[0m
+\x1b[30;45m45  Magenta\x1b[0m
+\x1b[30;46m46  Cyan\x1b[0m
+\x1b[30;47m47  Light gray\x1b[0m
+\x1b[30;100m100 Dark gray\x1b[0m
+\x1b[30;101m101 Light red\x1b[0m
+\x1b[30;102m102 Light green\x1b[0m
+\x1b[30;103m103 Light yellow\x1b[0m
+\x1b[30;104m104 Light blue\x1b[0m
+\x1b[30;105m105 Light magenta\x1b[0m
+\x1b[30;106m106 Light cyan\x1b[0m
+\x1b[30;107m107 White\x1b[0m
+
+Colors 256 0..=256 (see web site for values)
+fg  -> \\e[38;5;{NUM}m
+bg  -> \\e[48;5;{NUM}m
+
+
+Colors RGB values
+rgb -> \\e[{FG,BG};2;{R};{G};{B}m
+
+basic: att + bg + fg  -> \\e[1;45;32mtext here\\e[0m
+256:   att + bg + fg  -> \\e[1;48;5;100m\\e[38;200mtext here\\e[0m
+rgb:   att + bg + fg  -> \\e[1;48;2;247;114;216m\\e[38;2;114;216;247mtext here\\e0m
+          """
+    )
+
+
+def all_colors():
+    print("49 ", end="")
+    for bg in it.chain(range(40, 48), range(100, 108)):
+        pad = 6 - len(str(bg))
+        print(f"{bg}", " " * (pad - 1), end="")
+
+    print()
+    print("-" * 99, end="")
+    print()
+    for fg in it.chain(range(39, 40), range(30, 38), range(90, 98)):
+        print(f"{fg}|", end="")
+        for bg in it.chain(range(40, 48), range(100, 108)):
+            print(f"\x1b[{bg};{fg}m text \x1b[0m", end="")
+        print()
+
+
+def check_hex(color_str: str):
+    assert isinstance(color_str, str)
+
+    return len(color_str) == 7 and color_str.startswith("#") and color_str[1:].isalnum()
+
+
+def make_color(color_str: str):
+    assert isinstance(color_str, str)
+
+    r = int(color_str[1:3], 16)
+    g = int(color_str[3:5], 16)
+    b = int(color_str[5:7], 16)
+    return Color(r, g, b, color_str)
+
+
+def parse_input(lines: Iterable[str]) -> list[Color]:
+    assert isinstance(lines, Iterable)
+
+    colors = []
+    for raw_line in lines:
+        line = raw_line.strip()
+
+        if " " in line:
+            for part in line.split(" "):
+                if not part or not check_hex(part):
+                    continue
+                colors.append(make_color(part))
+        elif check_hex(line):
+            colors.append(make_color(line))
+
+    return colors
+
+
+def dump_colors(colors: list[Color]) -> None:
+    for c in colors:
+        print(f"██\x1b[38;2;{c.r};{c.g};{c.b}m{c.hex_str}")
+
+
+def run() -> int:
+    """main func"""
+    colors = None
+    if not sys.stdin.isatty():
+        colors = parse_input(fileinput.input())
+    elif len(sys.argv) > 1:
+        colors = parse_input(sys.argv)
+    else:
+        bash_color_info()
+        all_colors()
+
+    if colors:
+        dump_colors(colors)
+    return 0
+
+
+if __name__ == "__main__":
+    ret = run()
+    exit(ret)

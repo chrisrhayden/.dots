@@ -1,12 +1,6 @@
 if status is-login
     if test \( -z "$DISPLAY"  \) -a \( "$XDG_VTNR" -eq "1" \)
-        # exec Hyprland
-
-        if test (hostnamectl hostname) = "Odimm";
-            startx
-        else
-            Hyprland
-        end
+        Hyprland
     end
 end
 

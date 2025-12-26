@@ -10,21 +10,24 @@ Singleton {
     // font style
     property font barFont: ({
             family: "Cartograph CF",
-            pointSize: 14
+            pointSize: 12
         })
 
     property int startPtSize: 12
 
     property color fontDefault: "white"
+    // property color fontDefault: "black"
     property color fontHover: "black"
 
     property color wsFocused: "#df6a88"
+    // property color wsFocused: "black"
     property color wsHoverFocused: "white"
     property color wsActive: "#808080"
 
     // background style
     property int radius: 5
     property color bg: "transparent"
+    // property color bg: "#C36C68"
     property color bgHover: "#df6a88"
     // property color bgHover: pink
     property int padding: 8
