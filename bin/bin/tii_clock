@@ -1,0 +1,173 @@
+#!/usr/bin/env python3
+
+import curses
+import time
+from datetime import datetime
+
+
+time_width = 6 * 5
+time_height = 5
+
+draw_char = "█"
+
+# fmt: off
+number_list = [
+    # zero
+    [1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1],
+    # one
+    [0, 0, 1, 1, 0, 0,
+     0, 0, 1, 1, 0, 0,
+     0, 0, 1, 1, 0, 0,
+     0, 0, 1, 1, 0, 0,
+     0, 0, 1, 1, 0, 0],
+    # two
+    [1, 1, 1, 1, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 0, 0,
+     1, 1, 1, 1, 1, 1],
+    # three
+    [1, 1, 1, 1, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1],
+    # four
+    [1, 1, 0, 0, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     0, 0, 0, 0, 1, 1],
+    # five
+    [1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 0, 0,
+     1, 1, 1, 1, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1],
+    # six
+    [1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 0, 0,
+     1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1],
+    # seven
+    [1, 1, 1, 1, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     0, 0, 0, 0, 1, 1],
+    # eight
+    [1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1],
+    # nine
+    [1, 1, 1, 1, 1, 1,
+     1, 1, 0, 0, 1, 1,
+     1, 1, 1, 1, 1, 1,
+     0, 0, 0, 0, 1, 1,
+     0, 0, 0, 0, 1, 1],
+]
+
+colon = [
+    0, 0, 0, 0, 0, 0,
+    0, 0, 1, 1, 0, 0,
+    0, 0, 0, 0, 0, 0,
+    0, 0, 1, 1, 0, 0,
+    0, 0, 0, 0, 0, 0,
+]
+# fmt: on
+
+
+def num_to_list(num: int):
+    if num == 0:
+        return [0, 0]
+
+    mm = []
+    leftover = num
+    while leftover > 0:
+        n = leftover % 10
+        leftover = int(leftover / 10)
+        mm.insert(0, n)
+
+    if len(mm) == 1:
+        mm.insert(0, 0)
+
+    return mm
+
+
+def print_num(stdsrc: curses.window, start_x: int, start_y: int, nn: int, color: int):
+    for y in range(5):
+        for x in range(6):
+            idx = x + (y * 6)
+            ch = draw_char if number_list[nn][idx] else " "
+            stdsrc.addstr(y + start_y, start_x + x, ch, color)
+
+
+def print_colon(stdsrc: curses.window, start_x: int, start_h: int, color: int):
+    for y in range(5):
+        for x in range(6):
+            idx = x + (y * 6)
+            ch = draw_char if colon[idx] else " "
+            stdsrc.addstr(y + start_h, start_x + x, ch, color)
+
+
+def print_time(stdsrc: curses.window, now: datetime):
+    """"""
+    # n = datetime.now()
+    rows, cols = stdsrc.getmaxyx()
+    rows -= 1
+    cols -= 1
+    start_h = int((rows - time_height) / 2) - 1
+    start_w = int((cols - time_width) / 2) - 1
+
+    # color = curses.color_pair(1)
+    # color = curses.col(curses.COLOR_MAGENTA)
+    # color = curses.COLOR_MAGENTA
+    # color = 134
+    # color = curses.color_pair(5)
+    color = curses.color_pair(1)
+
+    hh = num_to_list(now.hour)
+    mm = num_to_list(now.minute)
+
+    for h in hh:
+        print_num(stdsrc, start_w, start_h, h, color)
+        start_w += 7
+
+    print_colon(stdsrc, start_w, start_h, color)
+    start_w += 7
+
+    for m in mm:
+        print_num(stdsrc, start_w, start_h, m, color)
+        start_w += 7
+
+
+def run(stdsrc: curses.window):
+    """"""
+    stdsrc.nodelay(True)
+    curses.curs_set(0)
+    curses.start_color()
+    curses.use_default_colors()
+    curses.init_pair(1, 5, 0)
+
+    while True:
+        now = datetime.now()
+        key = stdsrc.getch()
+        if key == ord("q"):
+            break
+        stdsrc.clear()
+
+        print_time(stdsrc, now)
+
+        stdsrc.refresh()
+        time.sleep(1)
+
+
+if "__main__" == __name__:
+    curses.wrapper(run)

@@ -8,6 +8,11 @@ Singleton {
     readonly property var workspaces: Hyprland.workspaces
     // readonly property var monitors: Hyprland.monitors
 
+    Component.onCompleted: {
+        Hyprland.refreshWorkspaces();
+        Hyprland.refreshMonitors();
+    }
+
     Connections {
         target: Hyprland
 
