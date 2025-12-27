@@ -8,7 +8,7 @@ Row {
     required property var screen
 
     Repeater {
-        model: Hyprland.workspaces.values.filter(ws => {
+        model: Hypr.workspaces.values.filter(ws => {
             return ws.monitor?.id == Hyprland.monitorFor(screen)?.id;
         })
 
