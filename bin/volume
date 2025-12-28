@@ -7,13 +7,13 @@ mute_str = " [MUTE]"
 
 
 def get_volume():
-    vol = run(["wpctl", "get-volume", "@DEFAULT_AUDIO_SINK@"],
-              capture_output=True, text=True)
+    vol = run(
+        ["wpctl", "get-volume", "@DEFAULT_AUDIO_SINK@"], capture_output=True, text=True
+    )
 
     vol.check_returncode()
 
     vol = vol.stdout.split(" ")
-
 
     mute = False
     # Volume: 1.00 [MUTED]
@@ -51,6 +51,7 @@ action = {
     "up": lambda v, m: set_volume(min(v + 0.05, 1.0), m),
     "down": lambda v, m: set_volume(max(v - 0.05, 0.0), m),
 }
+
 
 def get_args():
     parser = argparse.ArgumentParser(description="volume control")

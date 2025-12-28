@@ -34,4 +34,25 @@ Singleton {
     // 03
 
     property color separator: "white"
+
+    property var bat_dis_icons: ({
+            bat_0: "battery_0_bar",
+            bat_1: "battery_1_bar",
+            bat_2: "battery_2_bar",
+            bat_3: "battery_3_bar",
+            bat_4: "battery_4_bar",
+            bat_5: "battery_5_bar",
+            bat_6: "battery_6_bar",
+            bat_full: "battery_full"
+        })
+    property var bat_char_icons: ({
+            bat_0: "battery_charging_20",
+            bat_1: "battery_charging_30",
+            bat_2: "battery_charging_40",
+            bat_3: "battery_charging_50",
+            bat_4: "battery_charging_60",
+            bat_5: "battery_charging_70",
+            bat_6: "battery_charging_80",
+            bat_full: "battery_full"
+        })
 }

@@ -1,31 +1,27 @@
 import QtQuick
 
+import qs
 import qs.components
 
 StyleRect {
-    anchors.centerIn: parent
+    required property string icon_str
 
     width: parent.height
     height: parent.height
-    // width: text.width
-
     hovered: mouseArea.containsMouse
 
-    StyleText {
-        id: text
+    Text {
+        id: icon
         anchors.centerIn: parent
-
-        anchors.verticalCenterOffset: 1
-        // anchors.horizontalCenterOffset: -1
-
-        hovered: mouseArea.containsMouse
+        font.family: "Material Symbols Sharp"
+        font.pointSize: 12
 
         font.variableAxes: ({
                 wght: 700
             })
 
-        font.family: "Material Symbols Sharp"
-        text: "power_settings_new"
+        color: mouseArea.containsMouse ? Style.fontHover : Style.fontDefault
+        text: icon_str
     }
 
     MouseArea {
