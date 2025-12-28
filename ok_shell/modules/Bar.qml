@@ -87,10 +87,8 @@ Variants {
             }
 
             margins {
-                // right: 14
-                // left: 14
-                right: 8
-                left: 8
+                right: 14
+                left: 14
             }
 
             PersistentProperties {
