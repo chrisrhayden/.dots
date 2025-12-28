@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 
 
-time_width = 6 * 5
+time_width = (6 * 5) + 4
 time_height = 5
 
 draw_char = "█"
@@ -123,8 +123,8 @@ def print_time(stdsrc: curses.window, now: datetime):
     rows, cols = stdsrc.getmaxyx()
     rows -= 1
     cols -= 1
-    start_h = int((rows - time_height) / 2) - 1
-    start_w = int((cols - time_width) / 2) - 1
+    start_h = int((rows - time_height) / 2)
+    start_w = int((cols - time_width) / 2)
 
     # color = curses.color_pair(1)
     # color = curses.col(curses.COLOR_MAGENTA)
