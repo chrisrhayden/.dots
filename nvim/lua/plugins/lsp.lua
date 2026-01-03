@@ -152,7 +152,7 @@ local servers = {
   lua_ls = mk_lua_settings(),
   clangd = {},
   qmlls = {
-    cmd = { "qmlls6" }
+    cmd = { "qmlls6", "-E" }
   },
   pyright = {},
 }

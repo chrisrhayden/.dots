@@ -7,7 +7,6 @@ StyleRect {
 
     width: parent.height
     height: parent.height
-    // width: text.width
 
     hovered: mouseArea.containsMouse
 

@@ -1,8 +1,5 @@
-pragma ComponentBehavior: Bound
-
 import Quickshell
 import Quickshell.Hyprland
-import Quickshell.Wayland
 
 import QtQuick
 
@@ -44,24 +41,24 @@ Variants {
                 }
             }
 
-            mask: Region {
-                x: 0
-                y: 0
-                width: barWin.width
-                height: barWin.height - barLayout.height
-                intersection: Intersection.Xor
-
-                regions: regions.instances
-            }
             // mask: Region {
-            //     x: barLayout.x
-            //     y: barLayout.y
-            //     width: barLayout.width
-            //     height: barLayout.height
-            //     intersection: Intersection.Combine
+            //     x: 0
+            //     y: 0
+            //     width: barWin.width
+            //     height: barWin.height - barLayout.height
+            //     intersection: Intersection.Xor
             //
             //     regions: regions.instances
             // }
+            mask: Region {
+                x: barLayout.x
+                y: barLayout.y
+                width: barLayout.width
+                height: barLayout.height
+                intersection: Intersection.Combine
+
+                regions: regions.instances
+            }
 
             Variants {
                 id: regions
@@ -102,7 +99,6 @@ Variants {
                 anchors.fill: parent
 
                 focus: true
-                Keys.priority: Keys.BeforItem
                 Keys.onPressed: evt => {
                     if (evt.key === Qt.Key_Escape) {
                         menuVisible.start = false;
@@ -136,4 +132,3 @@ Variants {
         }
     }
 }
-// }

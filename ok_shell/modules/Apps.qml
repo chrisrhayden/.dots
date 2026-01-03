@@ -1,30 +1,77 @@
+import Quickshell
+import Quickshell.Widgets
 import QtQuick
-import qs.components
+import QtQuick.Controls
 
-StyleRect {
+import qs
+import build
+
+WrapperRectangle {
     id: root
+    property string input_text
+    required property PersistentProperties menuVisible
 
-    required property bool startWindow
+    margin: 8
 
-    anchors.centerIn: parent
+    radius: Style.radius
 
-    width: parent.height
-    height: parent.height
+    color: Style.bgHover
 
-    hovered: mouseArea.containsMouse
+    WrapperRectangle {
+        width: app_list.width
+        height: app_list.height
 
-    StyleText {
-        id: apps_icon
-        anchors.centerIn: parent
-        hovered: mouseArea.containsMouse
+        color: Style.bgHover
 
-        text: "󰣇"
-    }
+        Column {
+            id: app_list
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        hoverEnabled: true
-        onClicked: bar.menuVisible.start = !bar.menuVisible.start
+            TextField {
+                id: input
+                width: parent.width
+
+                background: null
+
+                font: Style.barFont
+
+                color: "white"
+
+                placeholderText: "apps"
+
+                onAccepted: {
+                    view.currentItem.modelData.execute();
+                    root.menuVisible.start = false;
+                }
+
+                Component.onCompleted: forceActiveFocus()
+
+                Keys.onDownPressed: {
+                    view.incrementCurrentIndex();
+                }
+
+                Keys.onUpPressed: {
+                    view.decrementCurrentIndex();
+                }
+            }
+            ListView {
+                id: view
+                width: 400
+                height: 460
+                clip: true
+
+                highlight: Rectangle {
+                    color: "white"
+                    radius: Style.radius
+                }
+
+                delegate: AppItem {}
+
+                model: ScriptModel {
+                    values: Search.search_entries(input.text)
+
+                    onValuesChanged: view.currentIndex = 0
+                }
+            }
+        }
     }
 }

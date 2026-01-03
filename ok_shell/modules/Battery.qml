@@ -4,14 +4,20 @@ import qs
 import qs.components
 
 StyleRect {
-    required property string icon_str
+    id: root
 
+    hovered: mouseArea.containsMouse
     width: parent.height
     height: parent.height
-    hovered: mouseArea.containsMouse
+
+    BatteryMon {
+        id: bat_man
+    }
+
+    // property string icon_str: bat_man.icon
 
     Text {
-        id: icon
+        id: icon_btn
         anchors.centerIn: parent
         font.family: "Material Symbols Sharp"
         font.pointSize: 12
@@ -21,7 +27,7 @@ StyleRect {
             })
 
         color: mouseArea.containsMouse ? Style.fontHover : Style.fontDefault
-        text: icon_str
+        text: bat_man.icon
     }
 
     MouseArea {

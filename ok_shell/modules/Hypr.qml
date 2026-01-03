@@ -5,12 +5,14 @@ import Quickshell
 import Quickshell.Hyprland
 
 Singleton {
-    readonly property var workspaces: Hyprland.workspaces
+    id: root
+    property var workspaces: Hyprland.workspaces
     // readonly property var monitors: Hyprland.monitors
 
-    Component.onCompleted: {
+    function refresh_all() {
         Hyprland.refreshWorkspaces();
         Hyprland.refreshMonitors();
+        Hyprland.refreshToplevels();
     }
 
     Connections {

@@ -29,7 +29,7 @@ Item {
 
             active: root.menuVisible.start
 
-            sourceComponent: Start {
+            sourceComponent: Apps {
                 menuVisible: root.menuVisible
             }
         }
