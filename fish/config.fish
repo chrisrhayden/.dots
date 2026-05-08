@@ -2,7 +2,7 @@ if status is-login
     # set --global GBM_BACKEND=nvidia-drm
     # set --global __GLX_VENDOR_LIBRARY_NAME=nvidia
     if test \( -z "$DISPLAY"  \) -a \( "$XDG_VTNR" -eq "1" \)
-        Hyprland
+        start-hyprland
     end
 end
 
