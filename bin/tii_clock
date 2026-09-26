@@ -4,7 +4,6 @@ import curses
 import time
 from datetime import datetime
 
-
 time_width = (6 * 5) + 4
 time_height = 5
 
