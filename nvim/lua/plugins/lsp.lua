@@ -135,6 +135,7 @@ local function mk_lua_settings()
     settings = {
       Lua = {
         diagnostics = {
+          globals = { "hl" },
           neededFileStatus = {
             ["codestyle-check"] = "Any"
           }
@@ -155,6 +156,7 @@ local servers = {
     cmd = { "qmlls6", "-E" }
   },
   pyright = {},
+  zls = {},
 }
 
 local lsp = {

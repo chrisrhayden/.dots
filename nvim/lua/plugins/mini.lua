@@ -24,17 +24,17 @@ return {
         }
       }
 
-      local files = require("mini.files")
+      -- local files = require("mini.files")
 
-      files.setup()
+      -- files.setup()
 
-      set_key {
-        "-",
-        function()
-          MiniFiles.open(vim.api.nvim_buf_get_name(0))
-        end,
-        desc = "open dir for buf with mini.files"
-      }
+      -- set_key {
+      --   "-",
+      --   function()
+      --     MiniFiles.open(vim.api.nvim_buf_get_name(0))
+      --   end,
+      --   desc = "open dir for buf with mini.files"
+      -- }
 
       -- highlight and remove trailing spaces
       local trail = require("mini.trailspace")

@@ -17,11 +17,12 @@ $rounding = 5
 # monitor=,addreserved,0,24,0,0
 # monitor=0,12,0,0
 # monitor=,addreserved,0,18,0,0
-monitor = eDP-1, 1920x1080, 0x0, 1
+monitor = eDP-2, 1920x1080, 0x0, 1
 monitor = DP-2, 1920x1080, 0x0, 1
 monitor = HDMI-A-1, 1920x1080, 1920x0, 1
-monitor= HDMI-A-1,addreserved,0,12,0,0
-monitor= DP-2,addreserved,0,12,0,0
+monitor = HDMI-A-1,addreserved,0,12,0,0
+monitor = DP-2,addreserved,0,12,0,0
+monitor = eDP-2,addreserved,0,12,0,0
 
 # Execute your favorite apps at launch
 exec-once = hyprpaper
@@ -59,6 +60,11 @@ device {
 
 device {
     name = clearly-superior-technologies.-cst-laser-trackball
+    sensitivity = -0.9
+}
+
+device {
+    name = logitech-m325
     sensitivity = -0.9
 }
 
