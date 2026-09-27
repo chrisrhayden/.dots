@@ -80,6 +80,10 @@ require("setup_plugins")
 
 --- things to try later {{{
 --------------------------------------------------------------------------------
+-- * nice code block joins
+--   https://github.com/wansmer/treesj
+-- * insert log statements
+--   https://github.com/chrisgrieser/nvim-chainsaw
 -- * a plugin to help make better vim habits
 --   https://github.com/m4xshen/hardtime.nvim
 -- * improve the nvim ui

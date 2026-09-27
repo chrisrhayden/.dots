@@ -28,6 +28,7 @@ vim.api.nvim_create_user_command(
 )
 
 -- }}}
+
 -- auto cmds {{{
 
 local create_augroup = vim.api.nvim_create_augroup
@@ -242,10 +243,15 @@ end
 -- misc {{{
 create_autocmd("TextYankPost", {
   group = create_augroup("HighlightYanked", {}),
-  callback = function() vim.hl.on_yank() end
+  callback = function() vim.hl.hl_op { higroup = "Visual", timeout = 300 } end
+})
+
+create_autocmd("FileType", {
+  pattern = "directory",
+  command = "setlocal bufhidden=delete"
 })
 
 -- }}}
 -- end augroups }}}
 
--- vim: foldmethod=marker
+-- vim:foldmethod=marker
