@@ -19,6 +19,13 @@ Variants {
             color: "transparent"
             exclusionMode: ExclusionMode.Ignore
 
+            PersistentProperties {
+                id: menuVisible
+                reloadableId: "menuVisible"
+
+                property bool start: false
+            }
+
             HyprlandFocusGrab {
                 id: hypr_focus
 
@@ -41,24 +48,24 @@ Variants {
                 }
             }
 
-            // mask: Region {
-            //     x: 0
-            //     y: 0
-            //     width: barWin.width
-            //     height: barWin.height - barLayout.height
-            //     intersection: Intersection.Xor
-            //
-            //     regions: regions.instances
-            // }
             mask: Region {
-                x: barLayout.x
-                y: barLayout.y
-                width: barLayout.width
-                height: barLayout.height
-                intersection: Intersection.Combine
+                x: 0
+                y: 0
+                width: barWin.width
+                height: barWin.height - barLayout.height
+                intersection: Intersection.Subtract
 
                 regions: regions.instances
             }
+            // mask: Region {
+            //     x: barLayout.x
+            //     y: barLayout.y
+            //     width: barLayout.width
+            //     height: barLayout.height
+            //     intersection: Intersection.Combine
+            //
+            //     regions: regions.instances
+            // }
 
             Variants {
                 id: regions
@@ -88,17 +95,10 @@ Variants {
                 left: 14
             }
 
-            PersistentProperties {
-                id: menuVisible
-                reloadableId: "menuVisible"
-
-                property bool start: false
-            }
-
             MouseArea {
                 anchors.fill: parent
 
-                focus: true
+                // focus: false
                 Keys.onPressed: evt => {
                     if (evt.key === Qt.Key_Escape) {
                         menuVisible.start = false;

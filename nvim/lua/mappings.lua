@@ -5,6 +5,7 @@ local set_keys = require("util").set_keys
 local add_blank_lines = require("util").add_blank_lines
 local command = vim.api.nvim_create_user_command
 
+
 -- commands {{{
 command("W", "w", {})
 command("WQ", "wq", {})
@@ -13,6 +14,18 @@ command("Q", "q", {})
 
 -- set keys {{{
 set_keys {
+
+  { "<leader>zm", function()
+    vim.api.nvim_put(
+      { 'const std = @import("std");',
+        "",
+        "pub fn main() void {",
+        '    std.debug.print("fuck\\n", .{});',
+        "}"
+      }, "", true, false
+    )
+  end
+  },
   -- disable things  {{{
   { "<f1>", "<nop>", mode = { "", "i" }, desc = "disable help" },
   { "<up>", "<nop>", desc = "disable key up" },

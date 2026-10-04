@@ -7,12 +7,14 @@ if status is-login
 end
 
 if status is-interactive
-    fish_add_path ~/bin ~/.cargo/bin
+    fish_add_path ~/bin ~/.cargo/bin ~/.local/share/zvm/bin
 
     # Commands to run in interactive sessions can go here
     set -U fish_greeting
 
     set --global --export ANI "/mnt/slowlinuxstorage/anime/"
+    set --global --export ZVM_PATH "$HOME/.config/zvm"
+
     abbr --add ani "cd $ANI"
 
     set --global --export MOV "/mnt/linuxstorage/movies/"

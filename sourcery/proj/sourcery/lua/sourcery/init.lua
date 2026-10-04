@@ -249,6 +249,10 @@ function SourceryColor()
         ["@lsp.typemod.macro.declaration.cpp"]     = { link = "Function" },
         -- }}}
 
+        -- {{{
+        ["@lsp.type.label.zig"]                    = { link = "Label" },
+        -- }}}
+
         -- treesitter {{{
         -- treesitter links to appropriate groups
         ["@punctuation"]                           = { fg = colors.blue_2 },

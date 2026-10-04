@@ -45,7 +45,9 @@ StyleRect {
         hoverEnabled: true
         onClicked: mouse => {
             if (mouse.button === 1) {
-                Hyprland.dispatch(`workspace ${ws_box.modelData.id}`);
+                // Hyprland.dispatch(`workspace ${ws_box.modelData.id}`);
+                // Hyprland.dispatch(`workspace ${ws_box.modelData.id}`);
+                parent.modelData.activate();
             }
         }
     }

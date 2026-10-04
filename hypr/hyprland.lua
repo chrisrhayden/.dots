@@ -14,13 +14,22 @@
 ---- MONITORS ---- {{{
 ------------------
 
+local reserved_area = { top = 0, left = 0, right = 0, bottom = 12 }
+
 -- See https://wiki.hypr.land/configuring/core/monitors/
 hl.monitor({
     output        = "eDP-2",
-    mode          = "preferred",
-    position      = "auto",
-    scale         = 1,
-    reserved_area = { top = 0, left = 0, right = 0, bottom = 12 }
+    reserved_area = reserved_area,
+})
+
+hl.monitor({
+    output = "HDMI-A-1",
+    reserved_area = reserved_area,
+})
+
+hl.monitor({
+    output = "DP-2",
+    reserved_area = reserved_area,
 })
 -- }}}
 
@@ -257,6 +266,11 @@ hl.config({
     },
 })
 
+hl.device({
+    name = "clearly-superior-technologies.-cst-laser-trackball",
+    sensitivity = -0.9,
+})
+
 hl.gesture({
     fingers = 3,
     direction = "horizontal",
@@ -307,6 +321,29 @@ hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.move({ direction = "down" }))
+
+hl.bind(mainMod .. " + SHIFT + CTRL + h", hl.dsp.window.move({
+    direction = "left",
+    group_aware = true,
+}))
+hl.bind(mainMod .. " + SHIFT + CTRL + l", hl.dsp.window.move({
+    direction = "right",
+    group_aware = true,
+}))
+hl.bind(mainMod .. " + SHIFT + CTRL + j", hl.dsp.window.move({
+    direction = "down",
+    group_aware = true,
+}))
+hl.bind(mainMod .. " + SHIFT + CTRL + k", hl.dsp.window.move({
+    direction = "up",
+    group_aware = true,
+}))
+
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -363,14 +400,12 @@ hl.bind(
     hl.dsp.exec_cmd("volume --mute"),
     { locked = true, repeating = true }
 )
--- hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
--- hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
-
--- Requires playerctl
--- hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
--- hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
--- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
--- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- XF86MonBrightnessUp
+-- XF86MonBrightnessDown
+-- XF86AudioNext
+-- XF86AudioPause
+-- XF86AudioPlay
+-- XF86AudioPrev
 -- }}}
 
 -- }}}
@@ -383,7 +418,8 @@ hl.bind(
 
 -- Example window rules that are useful
 
-local suppressMaximizeRule = hl.window_rule({
+-- local suppressMaximizeRule = hl.window_rule({
+hl.window_rule({
     -- Ignore maximize requests from all apps. You'll probably like this.
     name           = "suppress-maximize-events",
     match          = { class = ".*" },
@@ -427,7 +463,7 @@ hl.window_rule({
 hl.window_rule({
     name = "set steam to a ws",
     match = { class = "^([sS]team.*)" },
-    workspace = "10",
+    workspace = "10 silent",
 })
 -- }}}
 
