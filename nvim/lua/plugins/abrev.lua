@@ -40,6 +40,7 @@ return {
       { "seom", "some" },
       { "lable", "label" },
       { "SOme", "Some" },
+      { "ocnst", "const" },
     }
   },
 }
