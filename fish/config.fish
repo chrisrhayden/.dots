@@ -57,7 +57,6 @@ if status is-interactive
     alias jj='journalctl'
     alias py='python'
     alias job='jobs'
-    alias tii='tii --color magenta'
 
     # misspelling {{{
     alias sl='ls'

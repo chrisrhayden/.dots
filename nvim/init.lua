@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 --- vim init
 --------------------------------------------------------------------------------
 
@@ -41,10 +41,11 @@ require("setup_plugins")
 --        meh, its probably not a big deal
 
 -- ** tabstop:
---    it sounds like you should be able to leave `tabstop` alone but there are so
---    many edge cases that it doesn't really work well, along with this I want
---    real tabs to be the equivalent amount of spaces visually so code and other
---    text lines up well, its much easier to set `tabstop` and `expandtab`.
+--    it sounds like you should be able to leave `tabstop` alone but there are
+--    so many edge cases that it doesn't really work well, along with this I
+--    want real tabs to be the equivalent amount of spaces visually so code and
+--    other text lines up well, its much easier to set `tabstop` and
+--    `expandtab`.
 
 -- ** spell & thesaurus:
 --    spelling/thesaurus files can be found here if vim does not download them
@@ -74,8 +75,6 @@ require("setup_plugins")
 --     i think this would be hard as you would need to merge old undo with the
 --     new ones then re-save so vim can read them, as far as i know there is no
 --     way to import undo's without adding them to undo history
--- * make debug mappings local to debug sessions,
---   i made debug mappings use the leader so its probably fine
 -- }}}
 
 --- things to try later {{{

@@ -116,34 +116,37 @@ def print_colon(stdsrc: curses.window, start_x: int, start_h: int, color: int):
             stdsrc.addstr(y + start_h, start_x + x, ch, color)
 
 
+def print_date(
+    stdsrc: curses.window, start_x: int, start_y: int, date: str, color: int
+):
+    stdsrc.addstr(start_y, start_x, date, color)
+
+
 def print_time(stdsrc: curses.window, now: datetime):
     """"""
-    # n = datetime.now()
     rows, cols = stdsrc.getmaxyx()
     rows -= 1
     cols -= 1
     start_h = int((rows - time_height) / 2)
     start_w = int((cols - time_width) / 2)
 
-    # color = curses.color_pair(1)
-    # color = curses.col(curses.COLOR_MAGENTA)
-    # color = curses.COLOR_MAGENTA
-    # color = 134
-    # color = curses.color_pair(5)
     color = curses.color_pair(1)
 
-    hh = num_to_list(now.hour)
-    mm = num_to_list(now.minute)
+    # hh = num_to_list(now.hour)
+    hh = [h for h in now.strftime("%I")]
+    # mm = num_to_list(now.minute)
+    mm = [m for m in now.strftime("%M")]
+    date = now.strftime("%Y-%m-%d")
 
     for h in hh:
-        print_num(stdsrc, start_w, start_h, h, color)
+        print_num(stdsrc, start_w, start_h + 1, int(h), color)
         start_w += 7
 
-    print_colon(stdsrc, start_w, start_h, color)
+    print_colon(stdsrc, start_w, start_h + 1, color)
     start_w += 7
 
     for m in mm:
-        print_num(stdsrc, start_w, start_h, m, color)
+        print_num(stdsrc, start_w, start_h + 1, int(m), color)
         start_w += 7
 
 

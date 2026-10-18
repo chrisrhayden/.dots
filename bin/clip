@@ -6,7 +6,7 @@ xorg_clip() {
 
 wayland_clip() {
     if [[ -t 0 ]]; then
-        wl-paste
+        wl-paste --no-newline
     else
         wl-copy
     fi
