@@ -3,21 +3,19 @@ import Quickshell.Hyprland
 
 import QtQuick
 
-Variants {
-    model: Quickshell.screens
-
-    Scope {
-        id: scope
-
-        required property ShellScreen modelData
+Scope {
+    id: scope
+    Variants {
+        model: Quickshell.screens
 
         PanelWindow {
             id: barWin
-            focusable: true
+            // focusable: true
+            required property ShellScreen modelData
 
-            screen: scope.modelData
+            screen: modelData
             color: "transparent"
-            exclusionMode: ExclusionMode.Ignore
+            exclusionMode: ExclusionMode.Normal
 
             PersistentProperties {
                 id: menuVisible
@@ -48,15 +46,15 @@ Variants {
                 }
             }
 
-            mask: Region {
-                x: 0
-                y: 0
-                width: barWin.width
-                height: barWin.height - barLayout.height
-                intersection: Intersection.Subtract
-
-                regions: regions.instances
-            }
+            // mask: Region {
+            //     x: 0
+            //     y: 0
+            //     width: barWin.width
+            //     height: barWin.height - barLayout.height
+            //     intersection: Intersection.Subtract
+            //
+            //     regions: regions.instances
+            // }
             // mask: Region {
             //     x: barLayout.x
             //     y: barLayout.y

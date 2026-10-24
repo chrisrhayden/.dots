@@ -1,0 +1,17 @@
+build_dir := "build"
+
+target_dir := justfile_directory()
+
+alias r := run
+
+# default: config build
+
+# config:
+#     cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B {{build_dir}}
+
+# build:
+#     cmake --build {{build_dir}}
+
+#QML_IMPORT_PATH={{target_dir}} quickshell -p {{target_dir}}
+run:
+    quickshell --path {{target_dir}}

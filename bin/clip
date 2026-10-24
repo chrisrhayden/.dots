@@ -6,7 +6,7 @@ xorg_clip() {
 
 wayland_clip() {
     if [[ -t 0 ]]; then
-        wl-paste --no-newline
+        wl-paste --no-newline | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
     else
         wl-copy
     fi

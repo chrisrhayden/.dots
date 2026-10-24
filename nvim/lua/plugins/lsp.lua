@@ -152,9 +152,7 @@ local servers = {
   rust_analyzer = mk_rust_settings(),
   lua_ls = mk_lua_settings(),
   clangd = {},
-  qmlls = {
-    cmd = { "qmlls6", "-E" }
-  },
+  qmlls = { cmd = { "qmlls6", "-E" } },
   pyright = {},
   zls = {},
 }

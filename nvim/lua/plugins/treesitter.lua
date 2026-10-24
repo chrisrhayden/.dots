@@ -5,27 +5,28 @@
 local set_keys = require("util").set_keys
 
 local ts_langs = {
-  "vimdoc",
   "bash",
   "c",
   "cmake",
   "cpp",
   "fish",
   "html",
+  "hyprlang",
+  "javascript",
   "json",
+  "just",
   "just",
   "lua",
   "make",
   "markdown",
   "python",
+  "qmljs",
   "regex",
   "rust",
   "toml",
   "typescript",
-  "javascript",
   "vim",
-  "hyprlang",
-  "just",
+  "vimdoc",
 }
 
 local treesitter = {

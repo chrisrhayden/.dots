@@ -48,8 +48,9 @@ Item {
             }
         }
         Item {
-            Layout.alignment: Qt.AlignHCenter
+            // Layout.alignment: Qt.AlignHCenter
             Layout.fillHeight: true
+            Layout.minimumWidth: childrenRect.width
 
             Clock {}
         }

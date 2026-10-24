@@ -10,16 +10,26 @@
 -- require("myColors")
 
 
+-- local reserved_area = { top = 0, left = 0, right = 0, bottom = 12 }
+local reserved_area = { top = 0, left = 0, right = 0, bottom = 0 }
+local gaps_out_val = 14
+local gaps_out = {
+    top = gaps_out_val,
+    left = gaps_out_val,
+    right = gaps_out_val,
+    bottom = 0,
+}
 ------------------
 ---- MONITORS ---- {{{
 ------------------
 
-local reserved_area = { top = 0, left = 0, right = 0, bottom = 12 }
 
 -- See https://wiki.hypr.land/configuring/core/monitors/
 hl.monitor({
     output        = "eDP-2",
     reserved_area = reserved_area,
+    -- this is always wrond for this monitor for som reson
+    scale         = 1.0,
 })
 
 hl.monitor({
@@ -42,7 +52,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("dunst")
-    hl.exec_cmd("just --justfile ~/.dots/ok_shell/justfile run")
+    hl.exec_cmd("just --justfile ~/.dots/other_shell/justfile run")
 end)
 -- }}}
 
@@ -91,7 +101,7 @@ local rounding = 5
 hl.config({
     general = {
         gaps_in          = 4,
-        gaps_out         = 14,
+        gaps_out         = gaps_out,
         border_size      = 2,
         col              = {
             active_border   = active_border,

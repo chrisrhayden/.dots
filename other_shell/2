@@ -1,0 +1,27 @@
+import Quickshell
+import QtQuick
+import QtQuick.Layouts
+import Quickshell.Widgets
+
+import qs
+
+PanelWindow {
+    id: root
+    required property ShellScreen modelData
+
+    anchors {
+        left: true
+        right: true
+        bottom: true
+    }
+
+    implicitWidth: modelData.width
+    implicitHeight: 20
+
+    color: Style.colors.bg
+
+    RowLayout {
+        implicitWidth: root.implicitWidth - (14 * 2)
+        anchors.centerIn: parent
+    }
+}
