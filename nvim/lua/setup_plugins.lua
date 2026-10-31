@@ -26,9 +26,7 @@ require("lazy").setup("plugins",
       notify = false,
     },
     install = {
-      colorscheme = {
-        "sourcery"
-      }
+      -- colorscheme = { "sourcery" }
     },
     ui = {
       border = "rounded"

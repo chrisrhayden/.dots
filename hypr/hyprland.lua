@@ -49,10 +49,7 @@ hl.monitor({
 
 -- See https://wiki.hypr.land/configuring/core/autostart/
 hl.on("hyprland.start", function()
-    hl.exec_cmd("hyprpaper")
-    hl.exec_cmd("hypridle")
-    hl.exec_cmd("dunst")
-    hl.exec_cmd("just --justfile ~/.dots/other_shell/justfile run")
+    hl.exec_cmd("noctalia")
 end)
 -- }}}
 
@@ -305,6 +302,8 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local terminal = "kitty"
 local shudown_cmd = "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
 
+local shell = "noctalia msg "
+
 -- actions {{{
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(shudown_cmd))
@@ -314,7 +313,8 @@ hl.bind(mainMod .. " + F2", hl.dsp.exec_cmd("firefox 'https://www.youtube.com'")
 hl.bind(mainMod .. " + SHIFT + F2",
     hl.dsp.exec_cmd("firefox --new-window 'https://www.youtube.com'"))
 
-hl.bind(mainMod .. " + TAB", hl.dsp.global("quickshell:open_start_menu"))
+hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd(shell .. "panel-toggle launcher"))
+hl.bind(mainMod .. " + SHIFT + + TAB", hl.dsp.exec_cmd(shell .. "panel-toggle control-center"))
 -- }}}
 
 -- windows {{{
@@ -474,6 +474,17 @@ hl.window_rule({
     name = "set steam to a ws",
     match = { class = "^([sS]team.*)" },
     workspace = "10 silent",
+})
+
+hl.layer_rule({
+    name = "noctalia",
+    match = {
+        namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
+    },
+    no_anim = true,
+    ignore_alpha = 0.5,
+    blur = true,
+    blur_popups = true,
 })
 -- }}}
 

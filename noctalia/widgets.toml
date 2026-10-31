@@ -1,0 +1,8 @@
+[widget.workspaces]
+style = "minimal"
+focused_color = "surface"
+# occupied_color = "on_secondary"
+
+[widget.clock]
+format = "{:%l:%M}"
+tooltip_format = "{:%A %b %d} | {:%F}"

@@ -69,5 +69,19 @@ return {
     config = function()
       vim.cmd.colorscheme "sourcery"
     end
+  },
+  {
+    "vague-theme/vague.nvim",
+    -- config = function()
+    --   require("vague").setup {
+    --     on_highlights = function(hl, _)
+    --       local l_column = { fg = hl.StatusLine.fg, bg = hl.StatusLine.bg }
+    --       hl.LineNr = l_column
+    --       hl.CursorLineNr = l_column
+    --       -- hl.LineNr.bg = hl.StatusLine.bg
+    --     end
+    --   }
+    --   vim.cmd.colorscheme "vague"
+    -- end
   }
 }

@@ -1,0 +1,63 @@
+[shell]
+corner_radius_scale = 1.0
+show_location = false
+font_family = "Cartograph CF"
+
+[shell.panel]
+launcher_position = "bottom_left"
+
+[shell.animation]
+speed = 2.0
+
+[shell.launcher]
+layout = "simple"
+categories = false
+show_icons  = false
+fetch_exchange_rates = false
+
+[shell.launcher.dmenu.entry.clip]
+command = "echo clip"
+exec = "noctalia msg panel-open clipboard"
+prefix = "clip"
+
+[theme]
+mode = "dark"
+source = "custom"
+custom_palette = "Main"
+
+[wallpaper]
+enabled = true
+
+[wallpaper.default]
+path = "~/Pictures/WANEELLA/Horizon_Pt-2_5400x2700.png"
+
+[idle]
+# Canonical evaluation order for named behaviors.
+# Names not listed are appended.
+behavior_order = ["lock", "screen-off", "suspend"]
+# Seconds to fade a fullscreen surface-tint overlay, then run the idle command.
+# 0 disables the overlay (the command runs as soon as the compositor reports
+# idle). Parsed between 0 and 120; the in-app Settings stepper uses whole
+# seconds 0–30.
+pre_action_fade_seconds = 2.0
+
+[idle.behavior.lock]
+timeout = 600
+action = "command"
+command = "hyprlock"
+enabled = true             # explicitly disabled in the default config
+
+[idle.behavior.screen-off]
+timeout = 1200
+action = "screen_off"       # turns monitors off, and back on when you return
+enabled = true             # explicitly disabled in the default config
+
+# [idle.behavior.suspend]
+# timeout = 900
+# # or action = "suspend" with lock_before_suspend = false
+# action = "lock_and_suspend"
+# enabled = true
+
+[lockscreen]
+# blurred_desktop = false
+enabled = false

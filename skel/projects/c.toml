@@ -1,5 +1,6 @@
 dirs = [
     "src",
+    "build"
 ]
 
 [[templates]]
@@ -15,8 +16,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
 """
 
 [[templates]]
-path = "CMakeLists.txt"
-include = "{{config-dir}}/projects/c_basic/CMakeLists.txt"
+path = "Makefile"
+include = "{{config-dir}}/projects/c_basic/Makefile"
 
 [[templates]]
 path = ".gitignore"

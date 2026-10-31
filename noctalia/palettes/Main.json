@@ -1,0 +1,48 @@
+{
+  "dark": {
+    "mPrimary": "#000000",
+    "mOnPrimary": "#df6a88",
+    "mSecondary": "#ffffff",
+    "mOnSecondary": "#000000",
+    "mTertiary": "#000000",
+    "mOnTertiary": "#ffffff",
+    "mError": "#000000",
+    "mOnError": "#ff0000",
+    "mSurface": "#df6a88",
+    "mOnSurface": "#ffffff",
+    "mSurfaceVariant": "#df6a88",
+    "mOnSurfaceVariant": "#000000",
+    "mOutline": "#000000",
+    "mShadow": "#000000",
+    "mHover": "#ffffff",
+    "mOnHover": "#000000",
+    "terminal": {
+      "background": "#000000",
+      "foreground": "#d0d0d0",
+      "cursor": "#d0d0d0",
+      "cursorText": "#ff0000",
+      "selectionBg": "#d0d0d0",
+      "selectionFg": "#000000",
+      "normal": {
+        "black": "#000000",
+        "red": "#ff0000",
+        "green": "#33ff00",
+        "yellow": "#ffcc00",
+        "blue": "#0066ff",
+        "magenta": "#cc00ff",
+        "cyan": "#00ffff",
+        "white": "#d0d0d0"
+      },
+      "bright": {
+        "black": "#000000",
+        "red": "#ff0000",
+        "green": "#33ff00",
+        "yellow": "#ffcc00",
+        "blue": "#0066ff",
+        "magenta": "#cc00ff",
+        "cyan": "#00ffff",
+        "white": "#d0d0d0"
+      }
+    }
+  }
+}

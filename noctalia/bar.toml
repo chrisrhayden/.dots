@@ -1,0 +1,21 @@
+[bar.main]
+position = "bottom"
+thickness = 20
+background_opacity = 0.0
+compositor_blur    = false
+margin_ends = 0
+font_weight = 700
+capsule = false
+
+start = ["launcher", "workspaces"]
+center = ["clock"]
+end = [
+    "control-center",
+    "tray",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "session",
+]
+
